@@ -1,0 +1,144 @@
+// ==UserScript==
+// @name       Project QBD
+// @namespace  -
+// @icon
+// @version    v1
+// @description  -
+// @author       QuickBlackDeath/QBD
+// @match        *://moomoo.io/*
+// @match        *://dev.moomoo.io/*
+// @match        *://sandbox.moomoo.io/*
+// @grant        none
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @downloadURL none
+// ==/UserScript==
+'use strict';function chunkData(bin,size){var results=[];var length=bin.length;var i=0;for(;i<length;i=i+size){if(i+size<length){results.push(bin.substring(i,i+size))}else{results.push(bin.substring(i,length))}}return results}const get=(doc,key)=>{return doc.getElementById(key)};document.getElementById("gameName").innerHTML="~_._~";
+var TESTRRR=true
+var TRUE=true
+var dist;
+var mouseX;
+var mouseY;
+var ws;
+var wall;
+var food;
+var mill;
+var spike;
+var trap;
+var mine;
+var width;
+var height;
+var primary;
+var secondary;
+var turret;
+var msgpack5 = msgpack;
+document.msgpack=msgpack;WebSocket.prototype.oldSend=WebSocket.prototype.send;document.msgpack=msgpack;WebSocket.prototype.oldSend=WebSocket.prototype.send;WebSocket.prototype.send=function(stringifyJSON){if(!ws){document.ws=this;ws=this;socketFound(this)}this.oldSend(stringifyJSON)};function socketFound(socket){socket.addEventListener("message",function(data){handleMessage(data)})}let myPlayer={id:null,x:null,y:null,dir:null,object:null,weapon:null,clan:null,isLeader:null,hat:null,accessory:null,isSkull:null};
+var enemiesNear;
+var enemyX;
+var enemyY;
+var isEnemyNear;
+var nearestEnemy;
+var nearestEnemyAngle;
+var repeater = function(x, fn, interval) {
+let _isKeyDown=false;let id=undefined;return{start(option){if(option==x&&document.activeElement.id.toLowerCase()!=="chatbox"){_isKeyDown=true;if(id===undefined){id=setInterval(()=>{fn();if(!_isKeyDown){clearInterval(id);id=undefined}},interval)}}},stop(format){if(format==x&&document.activeElement.id.toLowerCase()!=="chatbox"){_isKeyDown=false}}}};
+function update(){for(let i=0;i<9;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){primary=i}}for(let i=9;i<16;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){secondary=i}}for(let i=16;i<19;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){food=i-16}}for(let i=19;i<22;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){wall=i-16}}for(let i=22;i<26;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){spike=i-16}}for(let i=26;i<29;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){mill=i-16}}for(let i=29;i<31;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){mine=i-16}}for(let i=31;i<33;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))){trap=i-16}}for(let i=33;i<39;i++){if(isElementVisible(document.getElementById("actionBarItem"+i.toString()))&&i!=36){turret=i-16}}}
+function toRad(angle){return angle*0.01745329251}function handleMessage(bytes){let results=msgpack5.decode(new Uint8Array(bytes.data));let result;if(results.length>1){result=[results[0],...results[1]];if(result[1]instanceof Array){result=result}}else{result=results}let token=result[0];if(!result){return}if(token==="io-init"){let win=document.getElementById("gameCanvas");width=win.clientWidth;height=win.clientHeight;$(window).resize(function(){width=win.clientWidth;height=win.clientHeight});win.addEventListener("mousemove",(event)=>{mouseX=event.clientX;mouseY=event.clientY})}if(token=="1"&&myPlayer.id==null){myPlayer.id=result[1]}if(token=="33"){enemiesNear=[];for(let i=0;i<result[1].length/13;i++){let bindings=result[1].slice(13*i,13*i+13);if(bindings[0]==myPlayer.id){myPlayer.x=bindings[1];myPlayer.y=bindings[2];myPlayer.dir=bindings[3];myPlayer.object=bindings[4];myPlayer.weapon=bindings[5];myPlayer.clan=bindings[7];myPlayer.isLeader=bindings[8];myPlayer.hat=bindings[9];myPlayer.accessory=bindings[10];myPlayer.isSkull=bindings[11]}else{if(bindings[7]!=myPlayer.clan||bindings[7]===null){enemiesNear.push(bindings)}}}}if(token=="h"&&result[1]==myPlayer.id){if(result[2]<90&&result[2]>0){setTimeout(()=>{doNewSend(["ch",[""]]);place(food,null);place(food,null)},80)}}update()}document.getElementById("adCard").remove();function place(name,angle=Math.atan2(mouseY-height/2,mouseX-width/2)){doNewSend(["5",[name,null]]);doNewSend(["c",[1,angle]]);doNewSend(["c",[0,angle]]);doNewSend(["5",[myPlayer.weapon,true]])}function isElementVisible(options){return options.offsetParent!==null}function doNewSend(data){ws.send(new Uint8Array(Array.from(msgpack5.encode(data))))}
+document.addEventListener("keydown", (event) => {
+if(event.keyCode==82&&document.activeElement.id.toLowerCase()!=="chatbox"){doNewSend(["13c",[0,0,1]]);doNewSend(["ch",["..."]]);doNewSend(["5",[primary,true]]);doNewSend(["13c",[0,7,0]]);doNewSend(["13c",[1,7,0]]);doNewSend(["c",[1]]);doNewSend(["c",[0]]);setTimeout(()=>{doNewSend(["5",[secondary,true]]);doNewSend(["13c",[0,53,0]]);doNewSend(["13c",[1,53,0]]);doNewSend(["c",[1]]);doNewSend(["c",[0]]);setTimeout(()=>{doNewSend(["13c",[0,0,0]]);doNewSend(["5",[primary,true]]);doNewSend(["13c",[0,12,0]]);doNewSend(["13c",[0,11,1]]);setTimeout(()=>{doNewSend(["13c",[0,6,0]]);doNewSend(["13c",[0,21,1]]);setTimeout(()=>{doNewSend(["13c",[0,21,1]]);doNewSend(["13c",[0,6,0]]);doNewSend(["5",[secondary,true]]);doNewSend(["ch",["......"]]);setTimeout(()=>{doNewSend(["5",[primary,true]]);doNewSend(["ch",["........."]]);doNewSend(["13c",[0,12,0]]);doNewSend(["13c",[0,11,1]])},1870)},300)},255)},130)},80)}});
+var kills=0;setInterval(()=>{if(kills<document.getElementById("killCounter").innerHTML){kills=document.getElementById("killCounter").innerHTML;doNewSend(["ch",["Ez Nub"]]);doNewSend(["13c",[0,6,0]]);doNewSend(["13c",[0,21,1]]);place(trap)}});
+const rep0=repeater(81,()=>{place(food)},0);const rep1=repeater(70,()=>{place(trap)},0);const rep2=repeater(86,()=>{place(spike)},0);const rep3=repeater(72,()=>{place(turret)},0);const rep4=repeater(52,()=>{place(wall)},0);const rep5=repeater(78,()=>{place(mill)},0);
+document.addEventListener("keyup",(event)=>{rep0.stop(event.keyCode);rep1.stop(event.keyCode);rep2.stop(event.keyCode);rep3.stop(event.keyCode);rep4.stop(event.keyCode);rep5.stop(event.keyCode)});document.addEventListener("keydown",(event)=>{rep0.start(event.keyCode);rep1.start(event.keyCode);rep2.start(event.keyCode);rep3.start(event.keyCode);rep4.start(event.keyCode);rep5.start(event.keyCode);
+  if (event.keyCode == 90 && document.activeElement.id.toLowerCase() !== "chatbox") {
+     doNewSend(["ch", [""]])
+    doNewSend(["13c", [0, 40, 0]]);
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 21, 1]]);
+  }
+  if (event.keyCode == 67 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 21, 1]]);
+  }
+  if (event.keyCode == 67 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["ch", [""]])
+    doNewSend(["13c", [0, 6, 0]]);
+    doNewSend(["13c", [0, 21, 0]]);
+  }
+  if (event.keyCode == 84 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["13c", [0, 0, 1]]);
+  }
+  if (event.keyCode == 84 && document.activeElement.id.toLowerCase() !== "chatbox") {
+     doNewSend(["ch", [""]])
+    doNewSend(["13c", [0, 7, 0]]);
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 21, 0]]);
+  }
+  if (event.keyCode == 89 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 21, 1]]);
+  }
+ if (event.keyCode == 32 && document.activeElement.id.toLowerCase() !== "chatbox") {
+          doNewSend(["13c", [0, 0, 1]]);
+       doNewSend(["5", [primary, true]]);
+       doNewSend(["13c", [0, 7, 0]]);
+       doNewSend(["c", [1]]);
+       setTimeout( () => {
+       doNewSend(["13c", [0, 53, 0]]);
+       doNewSend(["13c", [0, 21, 0]]);
+       setTimeout( () => {
+       doNewSend(["13c", [0, 0, 0]]);
+       }, 95);
+       }, 105);
+      }
+  if (event.keyCode == 75 && document.activeElement.id.toLowerCase() !== "chatbox") {
+     doNewSend(["ch", [""]])
+    doNewSend(["13c", [0, 53, 0]]);
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 21, 0]]);
+  }
+if(event.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+place(spike)
+}
+if(event.keyCode==76&&document.activeElement.id.toLowerCase()!=="chatbox"){doNewSend(["5",[primary,true]]);setTimeout(()=>{doNewSend(["c",[1]]);doNewSend(["13c",[0,53,0]]);doNewSend(["5",[secondary,true]]);doNewSend(["c",[1]]);setTimeout(()=>{doNewSend(["6",[12]]);doNewSend(["5",[secondary,true]]);doNewSend(["c",[1]]);setTimeout(()=>{doNewSend(["5",[secondary,true]]);doNewSend(["6",[15]]);doNewSend(["c",[1]]);setTimeout(()=>{doNewSend(["5",[primary,true]]);doNewSend(["13c",[0,0,0]])},90)},90)},90)},90)}
+
+  if (event.keyCode == 192 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["ch", [""]])
+    doNewSend(["13c", [0, 31, 0]]);
+    doNewSend(["13c", [0, 11, 0]]);
+  }
+  if (event.keyCode == 76 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, 21, 1]]);
+  }
+  if (event.keyCode == 66 && document.activeElement.id.toLowerCase() !== "chatbox") {
+    doNewSend(["ch", [""]])
+    doNewSend(["13c", [0, 22, 0]]);
+    doNewSend(["13c", [0, 21, 0]]);
+  }
+  if (event.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+	 if (myPlayer.y < 2400){
+doNewSend(["13c", [0, 15, 0]]);
+doNewSend(["ch", [""]]);
+} else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+doNewSend(["13c", [0, 31, 0]]);
+doNewSend(["ch", [""]]);
+} else {
+doNewSend(["13c", [0, 12, 0]]);
+doNewSend(["ch",  [""]]);
+}
+doNewSend(["13c", [0, 11, 1]]);
+}
+    if (event.keyCode == 46 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+if(TRUE==true){
+TRUE=false
+doNewSend(["ch", [""]])
+doNewSend(["6", [4]]);
+}else{
+TRUE=true
+doNewSend(["ch", [""]])
+doNewSend(["6", [15]]);
+}
+    }
+if(event.keyCode==71&&document.activeElement.id.toLowerCase()!=="chatbox"){place(spike,myPlayer.dir+toRad(90))}if(event.keyCode==71&&document.activeElement.id.toLowerCase()!=="chatbox"){place(trap,myPlayer.dir+toRad(0))}if(event.keyCode==71&&document.activeElement.id.toLowerCase()!=="chatbox"){place(spike,myPlayer.dir+toRad(265))}if(event.keyCode==78&&document.activeElement.id.toLowerCase()!=="chatbox"){place(mill,myPlayer.dir+toRad(70))}if(event.keyCode==78&&document.activeElement.id.toLowerCase()!=="chatbox"){place(mill,myPlayer.dir+toRad(0))}if(event.keyCode==78&&document.activeElement.id.toLowerCase()!=="chatbox"){place(mill,myPlayer.dir+toRad(290))}})
+document.getElementById("gameName").innerHTML="QBD";$("#ageBarContainer").append('</br><div id="hacktext"></div><div style="width: 100%;position: absolute;bottom: 94px;text-align: center;color:blue;font-size: 24px;" id="freetext"></div><div style="width: 100%;position: absolute;bottom: 144px;text-align: center;color: #ed3f00;font-size: 24px;" id="ptext"></div><div style="width: 100%;position: absolute;bottom: 224px;text-align: center;color: #9a008b;font-size: 24px;" id="ctext"></div><div style="width: 100%;position: absolute;top: 100px;text-align: center;color: white;font-size: 12px;" id="bilgitext">MooMoo.io </div><div style="width: 100%;position: absolute;bottom: 170px;text-align: center;color: #fff;font-size: 24px;" id="atext"></div><div style="width: 100%;position: absolute;bottom: 196px;text-align: center;color: black;font-size: 24px;" id="mtext"></div>');(function(){var css=["div#adCard, ","  #twitterFollow, ","  #youtubeFollow, ","  #downloadButtonContainer, ","  #followText, ","  #promoImg:hover {","  display: none;","  background: rgba(0, 0, 0, 0.6);","  }","","  #featuredYoutube > a.ytLink, ","  a {","    color: #fff !important;","    font-size: 0px;","    margin-top: 0px;","    padding: 6px;","    top: 100px;","    transition: 1s;","  }","","  a:hover {","    color: blue!important;","  }","","  #youtuberOf, ","  #linksContainer2, ","  .partyWrap {","    background-color: rgba(0, 0, 0, 0.6) !important;","    border: 1px solid rgb(255, 0, 0);","    border-radius: 10px;","    padding: 10px;","    font-size: 10px;","    position: absolute;","    color: #fff;","  }","","  .partyWrap {","    min-height: 80px;","    min-width: 160px;","    top: 10px;","    right: 10px;","  }","","  #youtuberOf {","    top: 10px;","    left: 10px;","  }","","  #followText {","    min-height: 200px;","    bottom: 10px;","    left: 10px;","  }","","  #linksContainer2 {","    bottom: 10px;","    right: 10px;","    color: transparent;","  }","","  .menuCard {","    background-color: rgba(0, 0, 0, 0.3) !important;","    border: 1px solid rgb(255, 0, 0);","    border-radius: 20px;","    box-shadow: none;","    overflow:auto;","   transition: 1.5s;","  }","    .menucard:hover {","    box-shadow: 0 5px 50px 0 #32ff00 inset, 0 5px 50px 0 #32ff00;","               0 5px 50px 0 #32ff00 inset, 0 5px 50px 0 #32ff00;","    text-shadow: 0 0 5px #32ff00, 0 0 5px #32ff00;","    background: #0b3800;","    color: green;","   }","","    FPS:hover {","    box-shadow: 0 5px 50px 0 #32ff00 inset, 0 5px 50px 0 #32ff00;","               0 5px 50px 0 #32ff00 inset, 0 5px 50px 0 #32ff00;","    text-shadow: 0 0 5px #32ff00, 0 0 5px #32ff00;","    background: #0b3800;","    color: green;","   }","","","  ::-webkit-scrollbar {","    width: 10px;","    border-right: 1px solid rgb(255, 0, 0);","  }","","  ::-webkit-scrollbar-thumb {","    border: 1px solid white;","  }","","  ::-webkit-scrollbar-thumb:hover {","    background: rgb(255, 0, 0);","  }","","  ::-webkit-scrollbar-thumb:active {","    background: black;","    border: 1px solid rgb(255, 0, 0);","  }","","  .menuHeader {","    font-size: 24px;","    color: #fff;","    margin-bottom: 1px;","    border-bottom: 1px solid rgb(255, 0, 0);","  }","","  .menuHeader:first-child {","    margin-bottom: 30px;","  }","","  .menuText {","    font-size: 18px;","    color: black;","    margin-bottom: 10px;","  }","  .menuText {","    font-size: 18px;","    color: red;","    margin-bottom: 10px;","  }","","  .ytLink {","    color: white;","    font-size: 24px;","    text-decoration: none;","    transition: 0.5s;","  }","","  #gameName {","  margin: 0;","  min-height: 1vh;","  font-family: 'Poppin', sans-serif;","  position: relative;","   text-shadow: 0 0 15px rgb(255, 0, 0), 0 0 15px rgb(255, 0, 0);","  }","","  #pingDisplay {","  margin: 0;","  min-height: 1vh;","  font-family: 'Poppin', sans-serif;","  }","  #pingDisplay:hover {","   text-shadow: 0 0 15px rgb(255, 0, 0), 0 0 15px rgb(255, 0, 0);","  }","","  #Hammersmith One {","   text-shadow: 0 0 15px rgb(255, 0, 0), 0 0 15px rgb(255, 0, 0);","  }","  .globalAlpha {","   background: #115400;","  }","","  #leaderboard {","  margin: 0;","  background: rgba(0, 0, 0, 0.3);","  font-family: Arial, Helvetica, sans-serif;","  position: relative;","  }","  #leaderboard:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 15px rgb(255, 0, 0), 0 0 15px rgb(255, 0, 0);","    background: #0b3800;","    color: green;","  }","","  #actionBarItem:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0);","    background: #0b3800;","    color: black;","  }","","  .menuButton {","   top: 50%;","   left: 50%;","   transform: translate(-0%, -0%);","   text-align: center;","   font-size: 23px;","   padding: 25px;","   color: darkred;","   border: 3px solid red;","   font-family: poppins;","   font-weight: 400;","   background: rgb(58, 0, 0);","   text-transform: uppercase;","   letter-spacing: 15px;","   cursor: pointer;","   border-radius: 100px;","   transition: 1.5s;","  }","  .menuButton:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 2px rgb(255, 0, 0), 0 0 2px rgb(255, 0, 0);","    background: rgba(0, 0, 0, 0.3);","  }","","  .menuCard span {","    margin: 1px;","  }","","  #promoHolderImg > img {","    width: 300px;","    height: 94px;","  }","","  #guideCard {","    max-height: 282px;","   transition: 1.5s;","  }","  #guideCard:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 2px white, 0 0 2px white;","    background: rgba(0, 0, 0, 0.3);","    color: rgba(0, 0, 0, 0.3);","  }","","  .skinColorItem {","    transition: 3s;","    border: 1px solid red;","  }","","  select {","    background: rgba(0, 0, 0, 0.6);","    border-radius: 5px;","    border: 1px solid rgb(255, 0, 0);","    margin-bottom: 10px;","    color: #fff;","    transition: 0.5s;","  }","","  select:hover {","    border: 1px solid red;","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","    text-shadow: 0 0 5px red, 0 0 5px red;","    background: rgba(0, 0, 0, 0.6);","  }","","  #pre-content-container {","    display: none!important;","  }","","  .uiElement, ","  .resourceDisplay, ","  .actionBarItem {","    background-color: rgba(0, 0, 0, 0.6) !important;","    border: 1px solid red;","    color: red;","    transition: 0.5s;","  }","  .uiElement:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 5px red, 0 0 5px red;","   color: #32ff00;","  }","","  .uiElement:hover, ","  .resourceDisplay:hover, ","  .actionBarItem:hover {","    background-color: rgba(0,0,0,0.6) !important;","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 5px red, 0 0 5px red;","    border: 1px solid red;","    border-radius: 50px !important;","    color: rgba(0,0,0,0.6);","  }","","  #topInfoHolder, #itemInfoHolder, #mapDisplay, #chatBox  { ","    background-color: rgba(0,0,0,0.6) !important;","    border: 1px solid red;","    border-radius: 10px !important;","    color: red;","  }","","  #itemInfoHolder { ","    -webkit-text-stroke: transparent;","  }","","  .material-icons { ","    color: rgba(41, 0, 0, 1);","    font-size: 315px;","    -webkit-text-stroke: 2px rgba(0,0,0,0.6);","  }","","  #altServer > a > i {","    font-size: 30px !important;","    -webkit-text-stroke: transparent !important;","  }","","  #ageText { ","    font-size: 30px !important;","    color: #fff;","    -webkit-text-stroke: 1.5px #black;","    margin-bottom: 30px;","  }","","  #ageBarBody {","    background-color: rgba(0,0,0,0.6) !important;","    border: 1px solid #fff","  }","  #ageBarBody:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 5px red, 0 0 5px red;","    background: #0b3800!important;","  }","","  #ageBar {","    background-color: rgba(0,0,0,0.6) !important;","    border: 1px solid #32ff00;","    height: 5px;","    padding-bottom: 5px;","    margin-bottom: 3px;","  }","  #ageBar:hover {","    background-color: #32ff00 !important;","    border: 1px solid black;","    height: 5px;","    padding-bottom: 5px;","    margin-bottom: 3px;","  }","","  .actionBarItem {","    width: 55px;","    height: 55px;","    background-position: center; ","    background-size: 50px 50px;","  }","","  #aBox {","    color: #fff!important;","    transition: 5s;","  }","","  #chatBox::placeholder {","    color: #fff!important;","  }","","  #chatBox:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 5px red, 0 0 5px red;","    background: red !important;","    transition: 5s;","  }","","  #chatBox:hover::placeholder {","    color: #fff!important;","  }","","  #leaderboard, .leaderboardItem[style*=\"color: rgba(0,0,0,0.3);\"] {","    color: #32ff00 !important;","  }","","  .ytLink:hover {","    color: #fff;","  }","","  #nameInput {","    background: rgba(0,0,0,0.6);","    border: 1px solid red;","    transition: 3s;","  }","","  #nameInput::placeholder {","    color: rgba(0,0,0,0.6);","    transition: 0.5s;","  }","","  #nameInput:hover {","   box-shadow: 0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","               0 5px 50px 0 rgb(255, 0, 0) inset, 0 5px 50px 0 rgb(255, 0, 0);","   text-shadow: 0 0 5px red, 0 0 5px red;","    background: rgba(0,0,0,0.6) !important;","    color: black;","  }","","  #nameInput:hover::placeholder {","    background: rgba(0,0,0,0.6);","    color: #085909;","  }","","  #linksContainer2 {","    max-height: 500px;","    width: 250px;","  }","","  #linksContainer2 > * {","    display:table-cell;","    vertical-align:middle;","    text-align: center;","    width:700px;","  }","  ","  .storeTab, ","  #storeHolder, ","  #allianceHolder, ","  #allianceInput, ","  .allianceButtonM {","    background: rgba(0,0,0,0.6);","    border: 1px solid red;","  }","","  .storeItem, ","  .storeTab, ","  .allianceButtonM, ","  #allianceInput::placeholder, ","  .allianceItem {","    color: red !important;","  }","","  .storeItem, ","  .storeTab, ","  .allianceButtonM, ","  #allianceInput::placeholder, ","  .allianceItem, ","  .joinAlBtn {","    color: #32ff00 !important;","  }","","  .storeItem:hover, ","  .storeTab:hover, ","  .allianceButtonM:hover,","  .allianceItem:hover, ","  .joinAlBtn:hover {","   box-shadow: 0 5px 70px 0 rgba(41, 0, 0, 1) inset, 0 5px 70px 0 red;","               0 5px 70px 0 rgba(41, 0, 0, 1) inset, 0 5px 70px 0 red;","   text-shadow: 0 0 5px #32ff00, 0 0 5px white;","    background: rgba(41, 0, 0, 1) !important;","  }","","  #scoreDisplay, ","  #stoneDisplay, ","  #foodDisplay, ","  #woodDisplay, ","  #allianceInput, ","  #killCounter {","  color: #32ff00;","  }","  #promoImgHolder {","   box-shadow: 0 5px 70px 0 rgba(41, 0, 0, 1) inset, 0 5px 70px 0 red;","               0 5px 70px 0 rgba(41, 0, 0, 1) inset, 0 5px 70px 0 red;","   text-shadow: 0 0 5px #32ff00, 0 0 5px white;","    background: rgba(41, 0, 0, 1) !important;","  }","","  #scoreDisplay, ","  #stoneDisplay, ","  #foodDisplay, ","  #woodDisplay, ","  #allianceInput, ","  #killCounter {","  #allianceInput:hover {","   box-shadow: 0 5px 70px 0 #32ff00 inset, 0 5px 70px 0 #32ff00;","               0 5px 70px 0 #32ff00 inset, 0 5px 70px 0 #32ff00;","   text-shadow: 0 0 5px #32ff00, 0 0 5px #085909;","    background: #0b3800 !important;","    color: #f50202;","  }","","  #allianceInput:hover::placeholder{","   box-shadow: 0 5px 70px 0 #32ff00 inset, 0 5px 70px 0 #32ff00;","               0 5px 70px 0 #32ff00 inset, 0 5px 70px 0 #32ff00;","   text-shadow: 0 0 5px #32ff00, 0 0 5px #085909;","    background: #0b3800 !important;","    color: #32ff00;","  }","","  #linksContainer2 > *:first-child {","    border-bottom: 1px solid #fff;","  }","","  #moddedMenu {","    position: absolute;","    top: 3.25%;","    left: 0px;","    width: 3%;","    height: 45.0%;","    background: rgba(0,0,0,0.6);","    border: 1px solid rgba(0,0,0,0.9);","    border-top-right-radius: 30px;","    border-bottom-right-radius: 30px;","    transition: 1s;","    z-index: 999;","  }","","  #moddedMenu:hover {","    width: 20%;","  }","","  #youtuberOf {","    bottom: 10px;","    top: auto;","  }","","  .titleMM {","    color: #fff;","    border-bottom: 3px solid #FF8C00;","    font-size: 32px;","    transform: rotate(90deg);","    white-space: nowrap;","    margin-top: 250%;","    transition: 1s;","  }","","  #moddedMenu:hover > .titleMM {","    transform: rotate(0deg) translate(0,-1580%)","  }","","  .switch {","    margin-top: 5px;","    margin-left: 10px;","    position: absolute;","    width: 60px;","    height: 34px;","    transition: opacity 1s;","    opacity: 0;","  }","","  .text {","    bottom: 76%;","    position: absolute;","    color: #fff;","    font-size: 20px;","    left: 0%;","    display: none;","    transition: 20s;","  }","","  .text > b { ","    font-size: 20px;","    color: #fff;","  }","","  b:hover { ","    color: gray;","  }","","  .one > .text {","    top: 5.5%;","  }","","  .two > .text {","    top: 10.7%;","  }","","  .three > .text {","    top: 37.5%;","  }","","  .four > .text {","    top: 47.5%;","  }","","  .five > .text {","    top: 57.5%;","  }","","  .six > .text {","    top: 67.5%;","  }","","  .seven > .text {","    top: 77.5%;","  }","","  .eight > .text {","    top: 87.5%;","  }","","  #moddedMenu:hover .switch {","    opacity: 1;","  }","","  #moddedMenu:hover .text {","    display: block;","  }","","  .one > .switch {","    top: 15%;","  }","","  .two > .switch {","    top: 25%;","  }","","  .three > .switch {","    top: 35%;","  }","","  .four > .switch {","    top: 45%;","  }","","  .five > .switch {","    top: 55%;","  }","","  .six > .switch {","    top: 65%;","  }","","  .seven > .switch {","    top: 75%;","  }","","  .eight > .switch {","    top: 85%;","  }","","  .switch input {","    display:none;","  }","","  .slider {","    position: absolute;","    cursor: pointer;","    top: 0;","    left: 0;","    right: 0;","    bottom: 0;","    background-color: #888;","    -webkit-transition: .4s;","    transition: .4s;","  }","","  .slider:before {","    position: absolute;","    content: \"\";","    height: 26px;","    width: 26px;","    left: 4px;","    bottom: 4px;","    background-color: white;","    -webkit-transition: .4s;","    transition: .4s;","  }","","  input:checked + .slider {","    background-color: #FF8C00;","  }","  ","  input:focus + .slider {","    box-shadow: 0 0 1px #59ff00;","  }","","  input:checked + .slider:before {","    -webkit-transform: translateX(26px);","    -ms-transform: translateX(26px);","    transform: translateX(26px);","  }","","  .slider.round {","    border-radius: 34px;","  }","","  .slider.round:before {","    border-radius: 50%;","  }"].join("\n");if(typeof GM_addStyle!="undefined"){GM_addStyle(css)}else if(typeof PRO_addStyle!="undefined"){PRO_addStyle(css)}else if(typeof addStyle!="undefined"){addStyle(css)}else{var node=document.createElement("style");node.type="text/css";node.appendChild(document.createTextNode(css));var heads=document.getElementsByTagName("head");if(heads.length>0){heads[0].appendChild(node)}else{document.documentElement.appendChild(node)}}})();(function(){'use strict'})();
