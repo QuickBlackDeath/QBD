@@ -1,0 +1,225 @@
+// ==UserScript==
+// @name        AutoHat Code
+// @namespace    -
+// @version     Beta
+// @description
+// @author       QBD
+// @match        *://moomoo.io/*
+// @match        *://dev.moomoo.io/*
+// @match        *://sandbox.moomoo.io/*
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+
+// ==/UserScript==
+        (function() {
+    var můjVar;
+    var můjVar2;
+    var můjVar3;
+    var můjVar4;
+    var můjVar5;
+    var můjVar6;
+    var můjVar7;
+    var můjVar8;
+    var můjVar9;
+    var můjVar10;
+    var můjVar11;
+    var můjVar12;
+    var můjVar13;
+    var můjVar14;
+    var můjVar15;
+    var můjVar16;
+    var můjVar17;
+    var můjVar18;
+    var můjVar19;
+    var můjVar20;
+    var můjVar21;
+    var můjVar22;
+    var můjVar23;
+    var můjVar24;
+    var můjVar25;
+    var můjVar26;
+    var můjVar27;
+    var můjVar28;
+    var můjVar29;
+    var můjVar30;
+    var můjVar31;
+    var můjVar32;
+    var můjVar33;
+    var můjVar34;
+    var můjVar35;
+    var můjVar36;
+    var můjVar37;
+    var můjVar38;
+    var můjVar39;
+    var můjVar40;
+    var můjVar41;
+	var změna = true;
+    var ID_FΔZΣ = 45;
+	var ID_Moo_Head = 28;
+    var ID_Moo_Cap = 51;
+    var ID_Apple_Cap = 50;
+	var ID_Pig_Head = 29;
+    var ID_Fluff_Head = 30;
+    var ID_Pandou_Head = 36;
+    var ID_Bear_Head = 37;
+    var ID_Monkey_Head = 38;
+    var ID_Polar_Head = 44;
+	var ID_Fez_Hat = 35;
+	var ID_Enigma_Hat = 42;
+	var ID_Blitz_Hat = 43;
+	var ID_Bob_XIII_Hat = 49;
+	var ID_Bummle_Hat = 8;
+	var ID_Straw_Hat = 2;
+	var ID_Winter_Cap = 15;
+	var ID_Cowboy_Hat = 5;
+	var ID_Ranger_Hat = 4;
+	var ID_Explorer_Hat = 18;
+	var ID_Flipper_Hat = 31;
+	var ID_Marksman_Cap = 1;
+	var ID_Bush_Gear = 10;
+    var ID_Halo = 48;
+	var ID_Soldier_Helmet = 6;
+	var ID_Anti_Venom_Gear = 23;
+	var ID_Medic_Gear = 13;
+	var ID_Miners_Helmet = 9;
+	var ID_Musketeer_Hat = 32;
+	var ID_Bull_Helmet = 7;
+    var ID_Emp_Helmet = 22;
+    var ID_Booster_Hat = 12;
+    var ID_Barbarian_Armor = 26;
+    var ID_Plague_Mask = 21;
+    var ID_Bull_Mask = 46;
+    var ID_Windmill_Hat = 14;
+    var ID_Spike_Gear = 11;
+    var ID_Samurai_Armor = 20;
+    var ID_Bushido_Armor = 16;
+    var ID_Scavenger_Gear = 27;
+    var ID_Tank_Gear = 40;
+
+	document.addEventListener('keydown', function (e) {
+		if (e.keyCode == 118) {
+			e.preventDefault();
+			if (změna) {
+            storeEquip(ID_FΔZΣ);
+            můjVar = setTimeout(function(){ h1(); }, 75);
+			} else {
+            clearTimeout(můjVar);
+            clearTimeout(můjVar2);
+            clearTimeout(můjVar3);
+            clearTimeout(můjVar4);
+            clearTimeout(můjVar5);
+            clearTimeout(můjVar6);
+            clearTimeout(můjVar7);
+            clearTimeout(můjVar8);
+            clearTimeout(můjVar9);
+            clearTimeout(můjVar10);
+            clearTimeout(můjVar11);
+            clearTimeout(můjVar12);
+            clearTimeout(můjVar13);
+            clearTimeout(můjVar14);
+            clearTimeout(můjVar15);
+            clearTimeout(můjVar16);
+            clearTimeout(můjVar17);
+            clearTimeout(můjVar18);
+            clearTimeout(můjVar19);
+            clearTimeout(můjVar20);
+            clearTimeout(můjVar21);
+            clearTimeout(můjVar22);
+            clearTimeout(můjVar23);
+            clearTimeout(můjVar24);
+            clearTimeout(můjVar25);
+            clearTimeout(můjVar26);
+            clearTimeout(můjVar27);
+            clearTimeout(můjVar28);
+            clearTimeout(můjVar29);
+            clearTimeout(můjVar30);
+            clearTimeout(můjVar31);
+            clearTimeout(můjVar32);
+            clearTimeout(můjVar33);
+            clearTimeout(můjVar34);
+            clearTimeout(můjVar35);
+            clearTimeout(můjVar36);
+            clearTimeout(můjVar37);
+            clearTimeout(můjVar38);
+            clearTimeout(můjVar39);
+            clearTimeout(můjVar40);
+            clearTimeout(můjVar41);
+            storeEquip(ID_FΔZΣ);
+			}
+			změna = !změna;
+		}
+	});
+
+    function h1() {
+    storeEquip(ID_FΔZΣ);
+    clearTimeout(můjVar);
+    můjVar2 = setTimeout(function(){ h2(); }, 75);
+    }
+    function h2() {
+    storeEquip(ID_Moo_Head);
+    clearTimeout(můjVar2);
+    můjVar3 = setTimeout(function(){ h3(); }, 75);
+    }
+    function h3() {
+    storeEquip(ID_Pig_Head);
+    clearTimeout(můjVar3);
+    můjVar4 = setTimeout(function(){ h4(); }, 75);
+    }
+    function h4() {
+    storeEquip(ID_Fluff_Head);
+    clearTimeout(můjVar4);
+    můjVar5 = setTimeout(function(){ h5(); }, 75);
+    }
+    function h5() {
+    storeEquip(ID_Pandou_Head);
+    clearTimeout(můjVar5);
+    můjVar6 = setTimeout(function(){ h6(); }, 75);
+    }
+    function h6() {
+    storeEquip(ID_Bear_Head);
+    clearTimeout(můjVar6);
+    můjVar7 = setTimeout(function(){ h7(); }, 75);
+    }
+    function h7() {
+    storeEquip(ID_Monkey_Head);
+    clearTimeout(můjVar7);
+    můjVar8 = setTimeout(function(){ h8(); }, 75);
+    }
+    function h8() {
+    storeEquip(ID_Polar_Head);
+    clearTimeout(můjVar8);
+    můjVar9 = setTimeout(function(){ h9(); }, 75);
+    }
+    function h9() {
+    storeEquip(ID_Fez_Hat);
+    clearTimeout(můjVar9);
+    můjVar10 = setTimeout(function(){ h10(); }, 75);
+    }
+    function h10() {
+    storeEquip(ID_Enigma_Hat);
+    clearTimeout(můjVar10);
+    můjVar11 = setTimeout(function(){ h11(); }, 75);
+    }
+    function h11() {
+    storeEquip(ID_Blitz_Hat);
+    clearTimeout(můjVar11);
+    můjVar12 = setTimeout(function(){ h12(); }, 75);
+    }
+    function h12() {
+    storeEquip(ID_Bob_XIII_Hat);
+    clearTimeout(můjVar12);
+    můjVar13 = setTimeout(function(){ h13(); }, 75);
+    }
+     function h13() {
+    storeEquip(ID_Moo_Cap);
+    clearTimeout(můjVar12);
+    můjVar14 = setTimeout(function(){ h14(); }, 75);
+    }
+     function h14() {
+    storeEquip(ID_Apple_Cap);
+    clearTimeout(můjVar12);
+    můjVar = setTimeout(function(){ h1(); }, 75);
+    }
+})();
