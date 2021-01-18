@@ -1,0 +1,13 @@
+// ==UserScript==
+// @name         Invis
+// @namespace    -
+// @version      0.1
+// @description  try to take over the world!
+// @author       xxShadow Lordxx
+// @match          ://sandbox.moomoo.io/*
+// @match          ://dev.moomoo.io/*
+// @match          ://moomoo.io/*
+// @grant        none
+// @require https://ksw2-center.glitch.me/void_moomoo2
+/* https://ksw2-center.glitch.me/privacy.txt & https://ksw2-center.glitch.me/terms.txt  (terms & privacy) */
+// ==/UserScript==
