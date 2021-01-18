@@ -1,0 +1,5470 @@
+// ==UserScript==
+// @name         Project
+// @namespace    -
+// @version      Epsilon
+// @description  Project Epsilon, the released but still mostly private version of Project Apotheosis by Wynd
+// @author       Wynd
+// @match        *://moomoo.io/*
+// @match        *://dev.moomoo.io/*
+// @match        *://sandbox.moomoo.io/*
+// @match        *://abc.moomoo.io/*
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @icon https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Greek_lc_epsilon.svg/1024px-Greek_lc_epsilon.svg.png
+// ==/UserScript==
+
+//hack for starting with 100 mats C:
+//this code only need to be run once unless u clear cookies or are using incognito
+//this wont work the first time so refresh page
+if(localStorage.getItem('moofoll') !== 1) localStorage.setItem('moofoll', 1);
+/*
+-------
+Hotkeys
+*yes alot of instas are on P
+-------
+Spike-KeyR
+SpikeCircle-BracketLeft
+Trap-KeyF
+TrapCircle-BracketRight
+Turret-KeyH
+Windmill-KeyN
+TripleMill-KeyN
+Heal-KeyQ
+BoostSpike-KeyL
+Insta-KeyR
+AgeOneInsta-KeyP
+BowInsta-KeyP
+PKMInsta-KeyP
+Reload-Minus
+TankGear-KeyC
+BullHelmet-KeyZ
+SoldierHelmet-KeyK
+EMPGear-KeyI
+TurretGear-KeyB
+BoosterGear-KeyM
+ResetHat-ShiftAny
+Unequipt-ShiftAny
+AutoInsta-KeyY
+CounterInsta-KeyT
+HatCycler-KeyU
+StopMode-KeyG
+BoostMill-KeyO
+--------
+Commands
+*all commands are case sensitive
+--------
+!clan [Clan Name]
+!unclan
+!join [Clan Name]
+!kick [Player Name]
+!derp
+!autoheal
+!setup [type]
+types:
+  stick
+  instaP
+  instaK
+!greataxe
+!katana
+!crossbow
+!crossbowR
+!musket
+!spikeS
+!spikeP
+!place [type]
+types:
+  legit
+  varience
+  derp
+  normal
+!heal [type]
+types:
+  normal
+  linear
+  quadratic
+  interval
+  fast
+----------------
+Removed Features
+*Anti-Boost Spike is not removed bec idc
+----------------
+Anti-Insta(Normal)
+Anti-Insta(Reverse)
+Anti-Insta(Bloodthirster)
+Anti-Insta(Bow)
+Multibox
+Bots
+Crash
+Silent Alt Crash
+External Crash
+Fake Crash
+Lag
+Death Crash
+Blink(lag tp)
+Unspinning Mills
+DONT LOOK IN THE CODE FOR THESE FEATURES
+DONT WASTE YOUR TIME pls C: seriously, don't
+----------------
+Things Different
+*this hack works differently in some ways be advised
+----------------
+Ping: this hack shows ping accurately
+Target Prediction: this hack will try to predict where players will be(doesn't apply to autohat yet)
+Radar: doesnt draw tracer lines but instead an actual radar with target prediction
+Hit Cooldown:tracks people's hits and their hit cooldowns
+Autohat: this autohat uses the hit cooldowns(may feel weird at first)
+Hat Macros: when autohat is off it is normal, when on, the macros change autohat(also may feel weird)
+Insta: allows placing and healing while insta
+Healing: adaptive heal speeds and more options
+Placing: more placing options
+Weapon Switching: this is in par with the heal while insta thing
+Smart Reloading: this takes into account the type of ranged weapon and can temporarily pause reloading automatically when enemy near
+Auto Reloading: when on, this script detects when your musket actually fires(after insta) and uses the smart reloading
+Ranged Autoaim: when holding a ranged weapon, the script will autoaim
+TripleMill: this hack will use triple mills if no enemies neraby
+Multiple Insta Types on P:it checks your weapons and selects an appropriate insta
+Console: many features(ctrl shift i, then press console)
+-player tracking: assigns names to ids(there is a chat version)
+-name changing: detects name changes(there is a chat version)
+-clan tracking: detects who creates what clan
+-player leaving: detects when people leave game(there is a chat version)
+* {} is for names, [] is for ids
+AutoInsta: trash W.I.P. autoinsta
+CounterInsta: default defence hat is spike gear and cx wings, when someone hits u, it hits back with bull & turret
+Invis Weapon: move as fast as tool hammer/axe/stick
+----------
+Update Log
+----------
+     __
+|\ |/  \|
+| \|\__/.
+----------------
+Acknowledgements
+*things that made this script possible
+----------------
+This script uses the original MooMod's menu by jabiddle(2018)
+-https://www.youtube.com/channel/UC1WwVQK6YFDhqqtje9Xp2mw
+Decoding & Encoding stuff
+-https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+jQuery(I actually forgot where I used jQuerey)
+-http://code.jquery.com/jquery-3.3.1.min.js
+-@require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+-@require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+Epsilon Pic
+-https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Greek_lc_epsilon.svg/1024px-Greek_lc_epsilon.svg.png
+Programming
+-Made By Wynd
+*also known as Pyr
+*/
+
+
+var heal1;
+var hType;
+var heal2;
+var insta;
+var radar;
+var sAim;
+var ahat;
+var respawn;
+var offence, defence, speed;
+var derp;
+var deathCrash;
+
+var pType;
+var onclick;
+var oHat, oAcc;
+var otHat, otAcc;
+
+var dHat, dAcc;
+var tHat, tAcc;
+var eHat, eAcc;
+var antiBoostSpike;
+var antiInsta1;
+var antiInsta2;
+var antiInsta3;
+var antiInsta4;
+
+var snHat, snAcc;
+var srHat, srAcc;
+var ssHat, ssAcc;
+
+var kSpike = 86;
+var kSpikeCircle;
+var kTrap = 70;
+var kTrapCircle;
+var kTurret = 72;
+var kWindmill = 78;
+var kHeal = 81;
+var kBS = 76;
+var kBM = 79;
+
+var iAim;
+var iReload;
+var iReverse;
+var iSwitch;
+var iHat1, iAcc1;
+var iHat2, iAcc2;
+var iHat3, iAcc3;
+
+
+var aChat = "</E\\>Project Epsilon</E\\>";
+//          +------------------------------+
+var acBool = false;
+var acFill = "-";
+var iChat = "</E\\>Taste The INSTA</E\\>";
+//          +------------------------------+
+var icBool = false;
+var rChat = "</E\\>Reloaded</E\\>";
+var ezBool = false;
+var ezChat = "</E\\>GG You Tried</E\\>";
+var irBool = false;
+var cPlayer = false;
+var wLag = true;
+
+var TankGearKey = 67;
+var BullHelmetKey = 90;
+var SoldierHelmetKey = 75;
+var TurretKey = 66;
+var BoosterHatKey = 77;
+var uneqiup = 16;
+var EMPGearKey = 73;
+
+
+setTimeout(function(){
+    heal1 = true;
+    hType = "4";
+    heal2 = true;
+    insta = true;
+    radar = true;
+    sAim = true;
+    ahat = false;
+    respawn = true;
+    offence = false;defence = true;speed = true;
+    derp = false;
+    deathCrash = false;
+
+    pType = "0";
+    onclick = false;
+    oHat = 7;oAcc = 18;
+    otHat = 53;otAcc = 13;
+
+    dHat = 6;dAcc = 21;
+    tHat = 40;tAcc = 21;
+    eHat = 22;eAcc = 19;
+    antiBoostSpike = true;
+    antiInsta1 = true;
+    antiInsta2 = false;
+    antiInsta3 = false;
+    antiInsta4 = false;
+
+    snHat = 12;snAcc = 11;
+    srHat = 31;srAcc = 11;
+    ssHat = 15;ssAcc = 11;
+
+    iAim = true;
+    iReload = false;
+    iReverse = false;
+    iSwitch = true;
+    iHat1 = 7;iAcc1 = 18;
+    iHat2 = 53;iAcc2 = 13;
+    iHat3 = 6;iAcc3 = 21;
+
+    if(heal1){
+        document.getElementById("heal1").checked = true;
+    }
+    if(heal2){
+        document.getElementById("heal2").checked = true;
+    }
+    if(insta){
+        document.getElementById("insta").checked = true;
+    }
+    if(radar){
+        document.getElementById("radar").checked = true;
+        document.getElementById('canvas').style.zIndex = "1";
+        pos.style.zIndex = "1";
+    }
+    if(sAim){
+        document.getElementById("sAim").checked = true;
+    }
+    if(ahat){
+        document.getElementById("ahat").checked = true;
+    }
+    if(respawn){
+        document.getElementById("respawn").checked = true;
+    }
+    if(onclick){
+        document.getElementById("onclick").checked = true;
+    }
+    if(offence){
+        document.getElementById("offence").checked = true;
+    }
+    if(defence){
+        document.getElementById("defence").checked = true;
+    }
+    if(speed){
+        document.getElementById("speed").checked = true;
+    }
+    if(antiBoostSpike){
+        document.getElementById("antiBoostSpike").checked = true;
+    }
+    if(antiInsta1){
+        document.getElementById("antiInsta1").checked = true;
+    }
+    if(antiInsta2){
+        document.getElementById("antiInsta2").checked = true;
+    }
+    if(antiInsta3){
+        document.getElementById("antiInsta3").checked = true;
+    }
+    if(antiInsta4){
+        document.getElementById("antiInsta4").checked = true;
+    }
+    if(iAim){
+        document.getElementById("iAim").checked = true;
+    }
+    if(iReload){
+        document.getElementById("iReload").checked = true;
+    }
+    if(iReverse){
+        document.getElementById("iReverse").checked = true;
+    }
+    if(iSwitch){
+        document.getElementById("iSwitch").checked = true;
+    }
+    if(acBool){
+        document.getElementById("acBool").checked = true;
+    }
+    if(icBool){
+        document.getElementById("icBool").checked = true;
+    }
+    if(irBool){
+        document.getElementById("irBool").checked = true;
+    }
+    if(cPlayer){
+        document.getElementById("cPlayer").checked = true;
+    }
+    if(ezBool){
+        document.getElementById("ezBool").checked = true;
+    }
+    if(wLag){
+        document.getElementById("wLag").checked = true;
+    }
+    //other
+    document.getElementById("hType").value = hType;
+    document.getElementById("pType").value = pType;
+    document.getElementById("oHat").value = oHat;
+    document.getElementById("oAcc").value = oAcc;
+    document.getElementById("otHat").value = otHat;
+    document.getElementById("otAcc").value = otAcc;
+    document.getElementById("dHat").value = dHat;
+    document.getElementById("dAcc").value = dAcc;
+    document.getElementById("tHat").value = tHat;
+    document.getElementById("tAcc").value = tAcc;
+    document.getElementById("eHat").value = eHat;
+    document.getElementById("eAcc").value = eAcc;
+    document.getElementById("snHat").value = snHat;
+    document.getElementById("snAcc").value = snAcc;
+    document.getElementById("ssHat").value = ssHat;
+    document.getElementById("ssAcc").value = ssAcc;
+    document.getElementById("srHat").value = srHat;
+    document.getElementById("srAcc").value = srAcc;
+    document.getElementById("iHat1").value = iHat1;
+    document.getElementById("iAcc1").value = iAcc1;
+    document.getElementById("iHat2").value = iHat2;
+    document.getElementById("iAcc2").value = iAcc2;
+    document.getElementById("iHat3").value = iHat3;
+    document.getElementById("iAcc3").value = iAcc3;
+}, 1000);
+
+window.onbeforeunload = null;
+
+const card = document.querySelector("#setupCard");
+const button = document.createElement("button");
+const menu = document.createElement("div");
+const styles = document.createElement("style");
+
+menu.classList.add("i-container");
+menu.id = "mm-menu-container";
+
+styles.type = "text/css";
+styles.innerHTML = `
+.circle{
+    opacity:20%;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 300px;
+	filter: url(#wavy);
+}
+.circle:before{
+    content: '';
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom: 0px;
+    border: 20px solid #fff;
+	border-radius:50%;
+    box-shadow: 0 0 50px #0f0,0 0 50px #0f0 inset;
+    animation: animate 5s linear infinite;
+}.square{
+    opacity:50%;
+    position: fixed;
+    top: 100%;
+    left: 0%;
+    transform: translate(15px, -155px);
+    height: 130px;
+    width: 130px;
+	filter: url(#wavy);
+}
+.square:before{
+    content: '';
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom: 0px;
+    border: 10px solid #fff;
+    box-shadow: 0 0 50px #0f0,0 0 50px #0f0 inset;
+    animation: animate 5s linear infinite;
+}
+@keyframes animate{
+    0%{
+        box-shadow: 0 0 50px #0f0,0 0 50px #0f0 inset;
+        filter: hue-rotate(0deg);
+    }
+    20%{
+        box-shadow: 0 0 60px #0f0,0 0 60px #0f0 inset;
+    }
+    40%{
+        box-shadow: 0 0 40px #0f0,0 0 40px #0f0 inset;
+    }
+    60%{
+        box-shadow: 0 0 80px #0f0,0 0 80px #0f0 inset;
+    }
+    80%{
+        box-shadow: 0 0 100px #0f0,0 0 100px #0f0 inset;
+    }
+    100%{
+        box-shadow: 0 0 50px #0f0,0 0 50px #0f0 inset;
+        filter: hue-rotate(360deg);
+    }
+}
+svg{
+	width:0;
+	height:0;
+}
+ .open-menu-button {
+     background-color: #f03535;
+     margin-top: 5px;
+}
+ .open-menu-button:hover {
+     background-color: #f03535;
+}
+ .keyPressLow {
+     margin-left: 8px;
+     font-size: 16px;
+     margin-right: 8px;
+     height: 25px;
+     width: 50px;
+     background-color: #fcfcfc;
+     border-radius: 3.5px;
+     text-align: center;
+     color: #4a4a4a;
+     border: 0.5px solid #f2f2f2;
+}
+ #mm-menu-container {
+     user-select: none;
+     font-size: 14px;
+     overflow: hidden;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     height: 366px;
+     width: 500px;
+     margin-top: -183px;
+     margin-left: -250px;
+     z-index: 2147000000;
+}
+ .i-checkbox-label {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     display: block;
+     margin: 4px;
+}
+ .i-checkbox-label {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+}
+ #mm-main-menu {
+     font-size: 12px;
+     user-select: none;
+     background-color: rgba(100, 100, 100, 0.4);
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-hathack-menu {
+     font-size: 12px;
+     user-select: none;
+     background-color: rgba(100, 100, 100, 0.4);
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-offense-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     background-color: rgba(100, 100, 100, 0.4);
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: block;
+}
+ #mm-defense-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     background-color: rgba(100, 100, 100, 0.4);
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-support-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     background-color: rgba(100, 100, 100, 0.4);
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-hatmacro-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     background-color: rgba(100, 100, 100, 0.4);
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-instakill-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     background-color: rgba(100, 100, 100, 0.4);
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-controls-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     background-color: rgba(100, 100, 100, 0.4);
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ #mm-chat-menu {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     height: 100%;
+     background-color: rgba(100, 100, 100, 0.4);
+     padding: .5em 1em;
+     border-top: none;
+     margin-left: 130px;
+     display: none;
+}
+ .i-tab-container {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(100, 100, 100, 0.4)
+}
+ .i-tab-menu, .sidebar {
+     font-size: 12px;
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     position: relative;
+     background-color: rgba(120, 120, 120, 0.4);
+     display: block;
+     overflow: auto;
+     float: left;
+     width: 130px;
+     height: 100%;
+     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+}
+ .i-tab-menu-item {
+     font-size: 12px;
+     user-select: none;
+     text-decoration: none;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     color: #d15151;
+}
+ .i-tab-menu-item:hover {
+     background-color: rgb(77, 73, 73, 0.5)
+     !important;
+}
+ #mm-main-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-hathack-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-offense-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-defense-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-support-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-instakill-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-hatmacro-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-changewepaon-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ .i-tab-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ #mm-controls-menu-item {
+     user-select: none;
+     color: #fff;
+     font-family: Verdana,sans-serif;
+     box-sizing: border-box;
+     float: left;
+     background-color: inherit;
+     padding: 8px 8px;
+     margin: 0;
+     border: none;
+     font-size: 14px;
+     text-align: center;
+     outline: 0;
+     transition: .3s;
+     width: 100%;
+}
+ .is-active {
+     background-color: rgb(129, 34, 34, 0.5) !important;
+}
+ .keyPressLow {
+     margin-left: 8px;
+     font-size: 16px;
+     margin-right: 8px;
+     height: 25px;
+     width: 50px;
+     background-color: #fcfcfc;
+     border-radius: 3.5px;
+     border: none;
+     text-align: center;
+     color: #4A4A4A;
+     border: 0.5px solid #f2f2f2;
+}
+ .menuPrompt {
+     font-size: 17px;
+     font-family: 'Hammersmith One';
+     color: #4A4A4A;
+     flex: 0.2;
+     text-align: center;
+     margin-top: 10px;
+     display: inline-block;
+}
+ .modal {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     overflow: auto;
+     height: 100%;
+     width: 100%;
+}
+ .modalx {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     overflow: auto;
+     height: 100%;
+     width: 100%;
+}
+ .Msgmodal {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     overflow: auto;
+     height: 100%;
+     width: 100%;
+}
+ .modal-content {
+     margin: 10% auto;
+     width: 40%;
+     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+     font-size: 14px;
+     line-height: 1.6;
+}
+ .modal-headerx h2, .modal-footerx h3 {
+     margin: 0;
+}
+ .modal-headerx {
+     background: #404040;
+     padding: 15px;
+     color: #fff;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+ .modal-footerx {
+     background: #404040;
+     padding: 10px;
+     color: #fff;
+     text-align: center;
+     border-bottom-left-radius: 5px;
+     border-bottom-right-radius: 5px;
+}
+ .modal-headerwtf h2, .modal-footerwtf h3 {
+     margin: 0;
+}
+ .modal-headerwtf {
+     background: #404040;
+     padding: 15px;
+     color: #fff;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+ .modal-footerwtf {
+     background: #404040;
+     padding: 10px;
+     color: #fff;
+     text-align: center;
+     border-bottom-left-radius: 5px;
+     border-bottom-right-radius: 5px;
+}
+ .modal-header h2, .modal-footer h3 {
+     margin: 0;
+}
+ .modal-header {
+     background: #404040;
+     padding: 15px;
+     color: #fff;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+ .modal-body {
+     padding: 10px 20px;
+     background: #fff;
+}
+ .modal-footer {
+     background: #404040;
+     padding: 10px;
+     color: #fff;
+     text-align: center;
+     border-bottom-left-radius: 5px;
+     border-bottom-right-radius: 5px;
+}
+ .closeBtn {
+     color: #ccc;
+     float: right;
+     font-size: 30px;
+     color: #fff;
+}
+ .closeBtn:hover, .closeBtn:focus {
+     color: #dd4a42;
+     text-decoration: none;
+     cursor: pointer;
+}
+ .closeBtnx {
+     color: #ccc;
+     float: right;
+     font-size: 30px;
+     color: #fff;
+}
+ .closeBtnx:hover, .closeBtnx:focus {
+     color: #dd4a42;
+     text-decoration: none;
+     cursor: pointer;
+}
+ .MsgcloseBtn {
+     color: #ccc;
+     float: right;
+     font-size: 30px;
+     color: #fff;
+}
+ .MsgcloseBtn:hover, .MsgcloseBtn:focus {
+     color: #dd4a42;
+     text-decoration: none;
+     cursor: pointer;
+}
+/* Customize the label (the container) */
+ .container {
+     display: block;
+     position: relative;
+     padding-left: 35px;
+     margin-bottom: 12px;
+     cursor: pointer;
+     font-size: 16px;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+}
+/* Hide the browser's default checkbox */
+ .container input {
+     position: absolute;
+     opacity: 0;
+     cursor: pointer;
+     height: 0;
+     width: 0;
+}
+/* Create a custom checkbox */
+ .checkmark {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 25px;
+     width: 25px;
+     background-color: #eee;
+}
+/* On mouse-over, add a grey background color */
+ .container:hover input ~ .checkmark {
+     background-color: #ccc;
+}
+/* When the checkbox is checked, add a blue background */
+ .container input:checked ~ .checkmark {
+     background-color: #2196F3;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+ .checkmark:after {
+     content: "";
+     position: absolute;
+     display: none;
+}
+/* Show the checkmark when checked */
+ .container input:checked ~ .checkmark:after {
+     display: block;
+}
+/* Style the checkmark/indicator */
+ .container .checkmark:after {
+     left: 9px;
+     top: 5px;
+     width: 5px;
+     height: 10px;
+     border: solid white;
+     border-width: 0 3px 3px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+}
+`;
+// let square = document.createElement("div");
+// square.className = "square";
+// document.body.append(square);
+
+menu.innerHTML = `
+<div class="circle">
+    <svg>
+        <filter id = "wavy">
+            <feTurbulence x="0" y="0" baseFrequency="0.5" numOctaves="5" seed="2"/>
+            <feDisplacementMap in="SourceGraphic" scale="30"/>
+        </filter>
+    </svg>
+</div>
+<div class="i-tab-container">
+    <div class="i-tab-menu sidebar">
+        <a><h2 class="i-tab-menu-item">Settings</h2></a>
+        <button id="mm-main-menu-item" class="i-tab-menu-item is-active">Main</button>
+        <button id="mm-offense-menu-item" class="i-tab-menu-item">Offense</button>
+        <button id="mm-defense-menu-item" class="i-tab-menu-item">Defense</button>
+        <button id="mm-support-menu-item" class="i-tab-menu-item">Support</button>
+        <button id="mm-controls-menu-item" class="i-tab-menu-item">Controls</button>
+        <button id="mm-instakill-menu-item" class="i-tab-menu-item">InstaKill</button>
+        <button id="mm-instakill-menu-item" class="i-tab-menu-item">Chat</button>
+        <button id="mm-instakill-menu-item" class="i-tab-menu-item">HatMacro</button>
+    </div>
+    <div id="mm-main-menu" class="i-tab-content">
+        <h3>Main</h3>
+        <div>
+            <label class="AutoHeal"><input id="heal1" type="checkbox" class="i-checkbox" />Auto Heal</label>
+        </div>
+        <form action="/action_page.php">
+            <label for="acc">Heal Type: </label>
+            <select name="hat" id="hType">
+                <option value="0">Normal</option>
+                <option value="1">Linear</option>
+                <option value="2">Quadratic</option>
+                <option value="3">Interval</option>
+                <option value="4">Slow</option>
+                <option value="5">FAST</option>
+            </select>
+        </form>
+        <div>
+            <label class="AutoHeal"><input id="heal2" type="checkbox" class="i-checkbox" />Double Heal</label>
+        </div>
+        <div>
+            <label class="InstaKill"><input id="insta" type="checkbox" class="i-checkbox" />Insta-Kill</label>
+        </div>
+        <div>
+            <label class="radar"><input id="radar" type="checkbox" class="i-checkbox" />Radar</label>
+        </div>
+        <div>
+            <label class="radar"><input id="sAim" type="checkbox" class="i-checkbox" />Target Prediction</label>
+        </div>
+        <div>
+            <label class="radar"><input id="ahat" type="checkbox" class="i-checkbox" />Auto-Hat</label>
+        </div>
+        <div>
+            <label class="radar"><input id="respawn" type="checkbox" class="i-checkbox" />Auto-Respawn</label>
+        </div>
+        <fieldset>
+            <legend>Hats/Accessories</legend>
+            <div>
+                <label class="Click0"><input id="offence" type="checkbox" class="i-checkbox" />Offense</label>
+            </div>
+            <div>
+                <label class="HatHacking"><input id="defence" type="checkbox" class="i-checkbox" />Defensive Gear</label>
+            </div>
+            <div>
+                <label class="support"><input id="speed" type="checkbox" class="i-checkbox" />Support Gear</label>
+            </div>
+        </fieldset>
+        <div>
+            <label class="AutoHeal"><input id="derp" type="checkbox" class="i-checkbox" />DERP</label>
+        </div>
+        <div>
+            <label class="AutoHeal"><input id="deathCrash" type="checkbox" class="i-checkbox" />Death Crash</label>
+        </div>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-offense-menu" class="i-tab-content" style="display: none;">
+        <h3>Offense</h3>
+        <form action="/action_page.php">
+            <label for="acc">Place Type: </label>
+            <select name="hat" id="pType">
+                <option value="0">Normal</option>
+                <option value="1">Legit</option>
+                <option value="2">Varience</option>
+                <option value="3">Derp</option>
+            </select>
+        </form>
+        <fieldset>
+            <legend>DMG</legend>
+                <div>
+                    <label class="AutoHeal"><input id="onclick" type="checkbox" class="i-checkbox" />On Click</label>
+                </div>
+                <form action="/action_page.php">
+                    <label for="hat">Hat:</label>
+                    <select name="hat" id="oHat">
+                        <option value="0">none</option>
+                        <option value="51">Moo Cap</option>
+                        <option value="50">Apple Cap</option>
+                        <option value="28">Moo Head</option>
+                        <option value="29">Pig Head</option>
+                        <option value="30">Fluff Head</option>
+                        <option value="36">Pandou Head</option>
+                        <option value="37">Bear Head</option>
+                        <option value="38">Monkey Head</option>
+                        <option value="44">Polar Head</option>
+                        <option value="35">Fez Hat</option>
+                        <option value="42">Enigma Hat</option>
+                        <option value="43">Blitz Hat</option>
+                        <option value="49">Bob XIII Hat</option>
+                        <option value="57">Pumpkin</option>
+                        <option value="8">Bummle Hat</option>
+                        <option value="2">Straw Hat</option>
+                        <option value="15">Winter Cap</option>
+                        <option value="5">Cowboy Hat</option>
+                        <option value="4">Ranger Hat</option>
+                        <option value="18">Explorer Hat</option>
+                        <option value="31">Flipper Hat</option>
+                        <option value="1">Marksman Cap</option>
+                        <option value="10">Bush Gear</option>
+                        <option value="48">Halo</option>
+                        <option value="6">Soldier Helmet</option>
+                        <option value="32">Anti Venom Gear</option>
+                        <option value="13">Medic Gear</option>
+                        <option value="9">Miners Helmet</option>
+                        <option value="32">Musketeer Hat</option>
+                        <option value="7">Bull Helmet</option>
+                        <option value="22">Emp Helmet</option>
+                        <option value="12">Booster Hat</option>
+                        <option value="26">Barbarian Armor</option>
+                        <option value="21">Plague Mask</option>
+                        <option value="46">Bull Mask</option>
+                        <option value="14">Windmill Hat</option>
+                        <option value="11">Spike Gear</option>
+                        <option value="53">Turret Gear</option>
+                        <option value="20">Samurai Armor</option>
+                        <option value="58">Dark Knight</option>
+                        <option value="27">Scavenger Gear</option>
+                        <option value="40">Tank Gear</option>
+                        <option value="52">Thief Gear</option>
+                        <option value="55">Bloodthirster</option>
+                        <option value="56">Assassin Gear</option>
+                    </select>
+                </form>
+                <form action="/action_page.php">
+                    <label for="acc">Accessory:</label>
+                    <select name="acc" id="oAcc">
+                        <option value="0">None</option>
+                        <option value="12">Snowball</option>
+                        <option value="9">Tree Cape</option>
+                        <option value="10">Stone Cape</option>
+                        <option value="3">Cookie Cape</option>
+                        <option value="8">Cow Cape</option>
+                        <option value="11">Monkey Tail</option>
+                        <option value="17">Apple Basket</option>
+                        <option value="6">Winter Cape</option>
+                        <option value="4">Skull Cape</option>
+                        <option value="5">Dash Cape</option>
+                        <option value="2">Dragon Cape</option>
+                        <option value="1">Super Cape</option>
+                        <option value="7">Troll Cape</option>
+                        <option value="14">Thorns</option>
+                        <option value="15">Blockades</option>
+                        <option value="20">Devils Tail</option>
+                        <option value="16">Sawblade</option>
+                        <option value="13">Angel Wings</option>
+                        <option value="19">Shadow Wings</option>
+                        <option value="18">Blood Wings</option>
+                        <option value="21">Corrupt X Wings</option>
+                    </select>
+                </form>
+        </fieldset>
+        <fieldset>
+            <legend>Tank</legend>
+            <form action="/action_page.php">
+                <label for="hat">Hat: </label>
+                <select name="acc" id="tHat">
+                    <option value="0">none</option>
+                    <option value="51">Moo Cap</option>
+                    <option value="50">Apple Cap</option>
+                    <option value="28">Moo Head</option>
+                    <option value="29">Pig Head</option>
+                    <option value="30">Fluff Head</option>
+                    <option value="36">Pandou Head</option>
+                    <option value="37">Bear Head</option>
+                    <option value="38">Monkey Head</option>
+                    <option value="44">Polar Head</option>
+                    <option value="35">Fez Hat</option>
+                    <option value="42">Enigma Hat</option>
+                    <option value="43">Blitz Hat</option>
+                    <option value="49">Bob XIII Hat</option>
+                    <option value="57">Pumpkin</option>
+                    <option value="8">Bummle Hat</option>
+                    <option value="2">Straw Hat</option>
+                    <option value="15">Winter Cap</option>
+                    <option value="5">Cowboy Hat</option>
+                    <option value="4">Ranger Hat</option>
+                    <option value="18">Explorer Hat</option>
+                    <option value="31">Flipper Hat</option>
+                    <option value="1">Marksman Cap</option>
+                    <option value="10">Bush Gear</option>
+                    <option value="48">Halo</option>
+                    <option value="6">Soldier Helmet</option>
+                    <option value="32">Anti Venom Gear</option>
+                    <option value="13">Medic Gear</option>
+                    <option value="9">Miners Helmet</option>
+                    <option value="32">Musketeer Hat</option>
+                    <option value="7">Bull Helmet</option>
+                    <option value="22">Emp Helmet</option>
+                    <option value="12">Booster Hat</option>
+                    <option value="26">Barbarian Armor</option>
+                    <option value="21">Plague Mask</option>
+                    <option value="46">Bull Mask</option>
+                    <option value="14">Windmill Hat</option>
+                    <option value="11">Spike Gear</option>
+                    <option value="53">Turret Gear</option>
+                    <option value="20">Samurai Armor</option>
+                    <option value="58">Dark Knight</option>
+                    <option value="27">Scavenger Gear</option>
+                    <option value="40">Tank Gear</option>
+                    <option value="52">Thief Gear</option>
+                    <option value="55">Bloodthirster</option>
+                    <option value="56">Assassin Gear</option>
+                </select>
+            </form>
+            <form action="/action_page.php">
+                <label for="acc">Accessory: </label>
+                <select name="acc" id="tAcc">
+                    <option value="0">none</option>
+                    <option value="12">Snowball</option>
+                    <option value="9">Tree Cape</option>
+                    <option value="10">Stone Cape</option>
+                    <option value="3">Cookie Cape</option>
+                    <option value="8">Cow Cape</option>
+                    <option value="11">Monkey Tail</option>
+                    <option value="17">Apple Basket</option>
+                    <option value="6">Winter Cape</option>
+                    <option value="4">Skull Cape</option>
+                    <option value="5">Dash Cape</option>
+                    <option value="2">Dragon Cape</option>
+                    <option value="1">Super Cape</option>
+                    <option value="7">Troll Cape</option>
+                    <option value="14">Thorns</option>
+                    <option value="15">Blockades</option>
+                    <option value="20">Devils Tail</option>
+                    <option value="16">Sawblade</option>
+                    <option value="13">Angel Wings</option>
+                    <option value="19">Shadow Wings</option>
+                    <option value="18">Blood Wings</option>
+                    <option value="21">Corrupt X Wings</option>
+                </select>
+            </form>
+        </fieldset>
+        <fieldset id="mm-supportDefaults">
+            <legend>Turret</legend>
+            <form action="/action_page.php">
+                <label for="hat">Hat:</label>
+                <select name="hat" id="otHat">
+                    <option value="0">none</option>
+                    <option value="51">Moo Cap</option>
+                    <option value="50">Apple Cap</option>
+                    <option value="28">Moo Head</option>
+                    <option value="29">Pig Head</option>
+                    <option value="30">Fluff Head</option>
+                    <option value="36">Pandou Head</option>
+                    <option value="37">Bear Head</option>
+                    <option value="38">Monkey Head</option>
+                    <option value="44">Polar Head</option>
+                    <option value="35">Fez Hat</option>
+                    <option value="42">Enigma Hat</option>
+                    <option value="43">Blitz Hat</option>
+                    <option value="49">Bob XIII Hat</option>
+                    <option value="57">Pumpkin</option>
+                    <option value="8">Bummle Hat</option>
+                    <option value="2">Straw Hat</option>
+                    <option value="15">Winter Cap</option>
+                    <option value="5">Cowboy Hat</option>
+                    <option value="4">Ranger Hat</option>
+                    <option value="18">Explorer Hat</option>
+                    <option value="31">Flipper Hat</option>
+                    <option value="1">Marksman Cap</option>
+                    <option value="10">Bush Gear</option>
+                    <option value="48">Halo</option>
+                    <option value="6">Soldier Helmet</option>
+                    <option value="32">Anti Venom Gear</option>
+                    <option value="13">Medic Gear</option>
+                    <option value="9">Miners Helmet</option>
+                    <option value="32">Musketeer Hat</option>
+                    <option value="7">Bull Helmet</option>
+                    <option value="22">Emp Helmet</option>
+                    <option value="12">Booster Hat</option>
+                    <option value="26">Barbarian Armor</option>
+                    <option value="21">Plague Mask</option>
+                    <option value="46">Bull Mask</option>
+                    <option value="14">Windmill Hat</option>
+                    <option value="11">Spike Gear</option>
+                    <option value="53">Turret Gear</option>
+                    <option value="20">Samurai Armor</option>
+                    <option value="58">Dark Knight</option>
+                    <option value="27">Scavenger Gear</option>
+                    <option value="40">Tank Gear</option>
+                    <option value="52">Thief Gear</option>
+                    <option value="55">Bloodthirster</option>
+                    <option value="56">Assassin Gear</option>
+                </select>
+            </form>
+            <form action="/action_page.php">
+                <label for="acc">Accessory:</label>
+                <select name="acc" id="otAcc">
+                    <option value="0">none</option>
+                    <option value="12">Snowball</option>
+                    <option value="9">Tree Cape</option>
+                    <option value="10">Stone Cape</option>
+                    <option value="3">Cookie Cape</option>
+                    <option value="8">Cow Cape</option>
+                    <option value="11">Monkey Tail</option>
+                    <option value="17">Apple Basket</option>
+                    <option value="6">Winter Cape</option>
+                    <option value="4">Skull Cape</option>
+                    <option value="5">Dash Cape</option>
+                    <option value="2">Dragon Cape</option>
+                    <option value="1">Super Cape</option>
+                    <option value="7">Troll Cape</option>
+                    <option value="14">Thorns</option>
+                    <option value="15">Blockades</option>
+                    <option value="20">Devils Tail</option>
+                    <option value="16">Sawblade</option>
+                    <option value="13">Angel Wings</option>
+                    <option value="19">Shadow Wings</option>
+                    <option value="18">Blood Wings</option>
+                    <option value="21">Corrupt X Wings</option>
+                </select>
+            </form>
+        </fieldset>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-defense-menu" class="i-tab-content" style="display: none;">
+        <h3>Defense</h3>
+        <fieldset>
+            <legend>Default</legend>
+            <form action="/action_page.php">
+                <label for="hat">Hat: </label>
+                <select name="acc" id="dHat">
+                    <option value="0">none</option>
+                    <option value="51">Moo Cap</option>
+                    <option value="50">Apple Cap</option>
+                    <option value="28">Moo Head</option>
+                    <option value="29">Pig Head</option>
+                    <option value="30">Fluff Head</option>
+                    <option value="36">Pandou Head</option>
+                    <option value="37">Bear Head</option>
+                    <option value="38">Monkey Head</option>
+                    <option value="44">Polar Head</option>
+                    <option value="35">Fez Hat</option>
+                    <option value="42">Enigma Hat</option>
+                    <option value="43">Blitz Hat</option>
+                    <option value="49">Bob XIII Hat</option>
+                    <option value="57">Pumpkin</option>
+                    <option value="8">Bummle Hat</option>
+                    <option value="2">Straw Hat</option>
+                    <option value="15">Winter Cap</option>
+                    <option value="5">Cowboy Hat</option>
+                    <option value="4">Ranger Hat</option>
+                    <option value="18">Explorer Hat</option>
+                    <option value="31">Flipper Hat</option>
+                    <option value="1">Marksman Cap</option>
+                    <option value="10">Bush Gear</option>
+                    <option value="48">Halo</option>
+                    <option value="6">Soldier Helmet</option>
+                    <option value="32">Anti Venom Gear</option>
+                    <option value="13">Medic Gear</option>
+                    <option value="9">Miners Helmet</option>
+                    <option value="32">Musketeer Hat</option>
+                    <option value="7">Bull Helmet</option>
+                    <option value="22">Emp Helmet</option>
+                    <option value="12">Booster Hat</option>
+                    <option value="26">Barbarian Armor</option>
+                    <option value="21">Plague Mask</option>
+                    <option value="46">Bull Mask</option>
+                    <option value="14">Windmill Hat</option>
+                    <option value="11">Spike Gear</option>
+                    <option value="53">Turret Gear</option>
+                    <option value="20">Samurai Armor</option>
+                    <option value="58">Dark Knight</option>
+                    <option value="27">Scavenger Gear</option>
+                    <option value="40">Tank Gear</option>
+                    <option value="52">Thief Gear</option>
+                    <option value="55">Bloodthirster</option>
+                    <option value="56">Assassin Gear</option>
+                </select>
+            </form>
+            <form action="/action_page.php">
+                <label for="acc">Accessory: </label>
+                <select name="acc" id="dAcc">
+                    <option value="0">none</option>
+                    <option value="12">Snowball</option>
+                    <option value="9">Tree Cape</option>
+                    <option value="10">Stone Cape</option>
+                    <option value="3">Cookie Cape</option>
+                    <option value="8">Cow Cape</option>
+                    <option value="11">Monkey Tail</option>
+                    <option value="17">Apple Basket</option>
+                    <option value="6">Winter Cape</option>
+                    <option value="4">Skull Cape</option>
+                    <option value="5">Dash Cape</option>
+                    <option value="2">Dragon Cape</option>
+                    <option value="1">Super Cape</option>
+                    <option value="7">Troll Cape</option>
+                    <option value="14">Thorns</option>
+                    <option value="15">Blockades</option>
+                    <option value="20">Devils Tail</option>
+                    <option value="16">Sawblade</option>
+                    <option value="13">Angel Wings</option>
+                    <option value="19">Shadow Wings</option>
+                    <option value="18">Blood Wings</option>
+                    <option value="21">Corrupt X Wings</option>
+                </select>
+            </form>
+        </fieldset>
+        <fieldset>
+            <legend>EMP</legend>
+            <form action="/action_page.php">
+                <label for="hat">Hat: </label>
+                <select name="acc" id="eHat">
+                    <option value="0">none</option>
+                    <option value="51">Moo Cap</option>
+                    <option value="50">Apple Cap</option>
+                    <option value="28">Moo Head</option>
+                    <option value="29">Pig Head</option>
+                    <option value="30">Fluff Head</option>
+                    <option value="36">Pandou Head</option>
+                    <option value="37">Bear Head</option>
+                    <option value="38">Monkey Head</option>
+                    <option value="44">Polar Head</option>
+                    <option value="35">Fez Hat</option>
+                    <option value="42">Enigma Hat</option>
+                    <option value="43">Blitz Hat</option>
+                    <option value="49">Bob XIII Hat</option>
+                    <option value="57">Pumpkin</option>
+                    <option value="8">Bummle Hat</option>
+                    <option value="2">Straw Hat</option>
+                    <option value="15">Winter Cap</option>
+                    <option value="5">Cowboy Hat</option>
+                    <option value="4">Ranger Hat</option>
+                    <option value="18">Explorer Hat</option>
+                    <option value="31">Flipper Hat</option>
+                    <option value="1">Marksman Cap</option>
+                    <option value="10">Bush Gear</option>
+                    <option value="48">Halo</option>
+                    <option value="6">Soldier Helmet</option>
+                    <option value="32">Anti Venom Gear</option>
+                    <option value="13">Medic Gear</option>
+                    <option value="9">Miners Helmet</option>
+                    <option value="32">Musketeer Hat</option>
+                    <option value="7">Bull Helmet</option>
+                    <option value="22">Emp Helmet</option>
+                    <option value="12">Booster Hat</option>
+                    <option value="26">Barbarian Armor</option>
+                    <option value="21">Plague Mask</option>
+                    <option value="46">Bull Mask</option>
+                    <option value="14">Windmill Hat</option>
+                    <option value="11">Spike Gear</option>
+                    <option value="53">Turret Gear</option>
+                    <option value="20">Samurai Armor</option>
+                    <option value="58">Dark Knight</option>
+                    <option value="27">Scavenger Gear</option>
+                    <option value="40">Tank Gear</option>
+                    <option value="52">Thief Gear</option>
+                    <option value="55">Bloodthirster</option>
+                    <option value="56">Assassin Gear</option>
+                </select>
+            </form>
+            <form action="/action_page.php">
+                <label for="acc">Accessory: </label>
+                <select name="acc" id="eAcc">
+                    <option value="0">none</option>
+                    <option value="12">Snowball</option>
+                    <option value="9">Tree Cape</option>
+                    <option value="10">Stone Cape</option>
+                    <option value="3">Cookie Cape</option>
+                    <option value="8">Cow Cape</option>
+                    <option value="11">Monkey Tail</option>
+                    <option value="17">Apple Basket</option>
+                    <option value="6">Winter Cape</option>
+                    <option value="4">Skull Cape</option>
+                    <option value="5">Dash Cape</option>
+                    <option value="2">Dragon Cape</option>
+                    <option value="1">Super Cape</option>
+                    <option value="7">Troll Cape</option>
+                    <option value="14">Thorns</option>
+                    <option value="15">Blockades</option>
+                    <option value="20">Devils Tail</option>
+                    <option value="16">Sawblade</option>
+                    <option value="13">Angel Wings</option>
+                    <option value="19">Shadow Wings</option>
+                    <option value="18">Blood Wings</option>
+                    <option value="21">Corrupt X Wings</option>
+                </select>
+            </form>
+        </fieldset>
+        <fieldset>
+            <legend>Auto Defence</legend>
+            <div>
+                <label class="defheal"><input id="antiInsta1" type="checkbox" class="i-checkbox" />Anti-InstaKill(Normal)</label>
+            </div>
+            <div>
+                <label class="defheal"><input id="antiInsta2" type="checkbox" class="i-checkbox" />Anti-InstaKill(Reverse)</label>
+            </div>
+            <div>
+                <label class="defheal"><input id="antiInsta3" type="checkbox" class="i-checkbox" />Anti-InstaKill(BloodThirster)</label>
+            </div>
+            <div>
+                <label class="defheal"><input id="antiInsta4" type="checkbox" class="i-checkbox" />Anti-InstaKill(Bow W.I.P.)</label>
+            </div>
+            <div>
+                <label class="defheal"><input id="antiBoostSpike" type="checkbox" class="i-checkbox" />Anti-BoostSpike</label>
+            </div>
+        </fieldset>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-support-menu" class="i-tab-content" style="display: none;">
+        <h3>Support</h3>
+        <fieldset>
+            <legend>Speed Armor Normal</legend>
+            <form action="/action_page.php">
+                <label for="hat">Hat: </label>
+                <select name="hat" id="snHat">
+                    <option value="0">none</option>
+                    <option value="51">Moo Cap</option>
+                    <option value="50">Apple Cap</option>
+                    <option value="28">Moo Head</option>
+                    <option value="29">Pig Head</option>
+                    <option value="30">Fluff Head</option>
+                    <option value="36">Pandou Head</option>
+                    <option value="37">Bear Head</option>
+                    <option value="38">Monkey Head</option>
+                    <option value="44">Polar Head</option>
+                    <option value="35">Fez Hat</option>
+                    <option value="42">Enigma Hat</option>
+                    <option value="43">Blitz Hat</option>
+                    <option value="49">Bob XIII Hat</option>
+                    <option value="57">Pumpkin</option>
+                    <option value="8">Bummle Hat</option>
+                    <option value="2">Straw Hat</option>
+                    <option value="15">Winter Cap</option>
+                    <option value="5">Cowboy Hat</option>
+                    <option value="4">Ranger Hat</option>
+                    <option value="18">Explorer Hat</option>
+                    <option value="31">Flipper Hat</option>
+                    <option value="1">Marksman Cap</option>
+                    <option value="10">Bush Gear</option>
+                    <option value="48">Halo</option>
+                    <option value="6">Soldier Helmet</option>
+                    <option value="32">Anti Venom Gear</option>
+                    <option value="13">Medic Gear</option>
+                    <option value="9">Miners Helmet</option>
+                    <option value="32">Musketeer Hat</option>
+                    <option value="7">Bull Helmet</option>
+                    <option value="22">Emp Helmet</option>
+                    <option value="12">Booster Hat</option>
+                    <option value="26">Barbarian Armor</option>
+                    <option value="21">Plague Mask</option>
+                    <option value="46">Bull Mask</option>
+                    <option value="14">Windmill Hat</option>
+                    <option value="11">Spike Gear</option>
+                    <option value="53">Turret Gear</option>
+                    <option value="20">Samurai Armor</option>
+                    <option value="58">Dark Knight</option>
+                    <option value="27">Scavenger Gear</option>
+                    <option value="40">Tank Gear</option>
+                    <option value="52">Thief Gear</option>
+                    <option value="55">Bloodthirster</option>
+                    <option value="56">Assassin Gear</option>
+                </select>
+            </form>
+            <form action="/action_page.php">
+                <label for="acc">Accessory: </label>
+                <select name="acc" id="snAcc">
+                    <option value="0">none</option>
+                    <option value="12">Snowball</option>
+                    <option value="9">Tree Cape</option>
+                    <option value="10">Stone Cape</option>
+                    <option value="3">Cookie Cape</option>
+                    <option value="8">Cow Cape</option>
+                    <option value="11">Monkey Tail</option>
+                    <option value="17">Apple Basket</option>
+                    <option value="6">Winter Cape</option>
+                    <option value="4">Skull Cape</option>
+                    <option value="5">Dash Cape</option>
+                    <option value="2">Dragon Cape</option>
+                    <option value="1">Super Cape</option>
+                    <option value="7">Troll Cape</option>
+                    <option value="14">Thorns</option>
+                    <option value="15">Blockades</option>
+                    <option value="20">Devils Tail</option>
+                    <option value="16">Sawblade</option>
+                    <option value="13">Angel Wings</option>
+                    <option value="19">Shadow Wings</option>
+                    <option value="18">Blood Wings</option>
+                    <option value="21">Corrupt X Wings</option>
+                </select>
+            </form>
+        </fieldset>
+        <fieldset>
+            <legend>Speed Armor River</legend>
+            <form action="/action_page.php">
+                <label for="hat">Hat: </label>
+                <select name="hat" id="srHat">
+                    <option value="0">none</option>
+                    <option value="51">Moo Cap</option>
+                    <option value="50">Apple Cap</option>
+                    <option value="28">Moo Head</option>
+                    <option value="29">Pig Head</option>
+                    <option value="30">Fluff Head</option>
+                    <option value="36">Pandou Head</option>
+                    <option value="37">Bear Head</option>
+                    <option value="38">Monkey Head</option>
+                    <option value="44">Polar Head</option>
+                    <option value="35">Fez Hat</option>
+                    <option value="42">Enigma Hat</option>
+                    <option value="43">Blitz Hat</option>
+                    <option value="49">Bob XIII Hat</option>
+                    <option value="57">Pumpkin</option>
+                    <option value="8">Bummle Hat</option>
+                    <option value="2">Straw Hat</option>
+                    <option value="15">Winter Cap</option>
+                    <option value="5">Cowboy Hat</option>
+                    <option value="4">Ranger Hat</option>
+                    <option value="18">Explorer Hat</option>
+                    <option value="31">Flipper Hat</option>
+                    <option value="1">Marksman Cap</option>
+                    <option value="10">Bush Gear</option>
+                    <option value="48">Halo</option>
+                    <option value="6">Soldier Helmet</option>
+                    <option value="32">Anti Venom Gear</option>
+                    <option value="13">Medic Gear</option>
+                    <option value="9">Miners Helmet</option>
+                    <option value="32">Musketeer Hat</option>
+                    <option value="7">Bull Helmet</option>
+                    <option value="22">Emp Helmet</option>
+                    <option value="12">Booster Hat</option>
+                    <option value="26">Barbarian Armor</option>
+                    <option value="21">Plague Mask</option>
+                    <option value="46">Bull Mask</option>
+                    <option value="14">Windmill Hat</option>
+                    <option value="11">Spike Gear</option>
+                    <option value="53">Turret Gear</option>
+                    <option value="20">Samurai Armor</option>
+                    <option value="58">Dark Knight</option>
+                    <option value="27">Scavenger Gear</option>
+                    <option value="40">Tank Gear</option>
+                    <option value="52">Thief Gear</option>
+                    <option value="55">Bloodthirster</option>
+                    <option value="56">Assassin Gear</option>
+                </select>
+            </form>
+            <form action="/action_page.php">
+                <label for="acc">Accessory: </label>
+                <select name="acc" id="srAcc">
+                    <option value="0">none</option>
+                    <option value="12">Snowball</option>
+                    <option value="9">Tree Cape</option>
+                    <option value="10">Stone Cape</option>
+                    <option value="3">Cookie Cape</option>
+                    <option value="8">Cow Cape</option>
+                    <option value="11">Monkey Tail</option>
+                    <option value="17">Apple Basket</option>
+                    <option value="6">Winter Cape</option>
+                    <option value="4">Skull Cape</option>
+                    <option value="5">Dash Cape</option>
+                    <option value="2">Dragon Cape</option>
+                    <option value="1">Super Cape</option>
+                    <option value="7">Troll Cape</option>
+                    <option value="14">Thorns</option>
+                    <option value="15">Blockades</option>
+                    <option value="20">Devils Tail</option>
+                    <option value="16">Sawblade</option>
+                    <option value="13">Angel Wings</option>
+                    <option value="19">Shadow Wings</option>
+                    <option value="18">Blood Wings</option>
+                    <option value="21">Corrupt X Wings</option>
+                </select>
+            </form>
+        </fieldset>
+        <fieldset>
+            <legend>Speed Armor Winter</legend>
+                <form action="/action_page.php">
+                    <label for="hat">Hat: </label>
+                    <select name="hat" id="ssHat">
+                        <option value="0">none</option>
+                        <option value="51">Moo Cap</option>
+                        <option value="50">Apple Cap</option>
+                        <option value="28">Moo Head</option>
+                        <option value="29">Pig Head</option>
+                        <option value="30">Fluff Head</option>
+                        <option value="36">Pandou Head</option>
+                        <option value="37">Bear Head</option>
+                        <option value="38">Monkey Head</option>
+                        <option value="44">Polar Head</option>
+                        <option value="35">Fez Hat</option>
+                        <option value="42">Enigma Hat</option>
+                        <option value="43">Blitz Hat</option>
+                        <option value="49">Bob XIII Hat</option>
+                        <option value="57">Pumpkin</option>
+                        <option value="8">Bummle Hat</option>
+                        <option value="2">Straw Hat</option>
+                        <option value="15">Winter Cap</option>
+                        <option value="5">Cowboy Hat</option>
+                        <option value="4">Ranger Hat</option>
+                        <option value="18">Explorer Hat</option>
+                        <option value="31">Flipper Hat</option>
+                        <option value="1">Marksman Cap</option>
+                        <option value="10">Bush Gear</option>
+                        <option value="48">Halo</option>
+                        <option value="6">Soldier Helmet</option>
+                        <option value="32">Anti Venom Gear</option>
+                        <option value="13">Medic Gear</option>
+                        <option value="9">Miners Helmet</option>
+                        <option value="32">Musketeer Hat</option>
+                        <option value="7">Bull Helmet</option>
+                        <option value="22">Emp Helmet</option>
+                        <option value="12">Booster Hat</option>
+                        <option value="26">Barbarian Armor</option>
+                        <option value="21">Plague Mask</option>
+                        <option value="46">Bull Mask</option>
+                        <option value="14">Windmill Hat</option>
+                        <option value="11">Spike Gear</option>
+                        <option value="53">Turret Gear</option>
+                        <option value="20">Samurai Armor</option>
+                        <option value="58">Dark Knight</option>
+                        <option value="27">Scavenger Gear</option>
+                        <option value="40">Tank Gear</option>
+                        <option value="52">Thief Gear</option>
+                        <option value="55">Bloodthirster</option>
+                        <option value="56">Assassin Gear</option>
+                    </select>
+                </form>
+                <form action="/action_page.php">
+                    <label for="acc">Accessory: </label>
+                    <select name="acc" id="ssAcc">
+                        <option value="0">None</option>
+                        <option value="12">Snowball</option>
+                        <option value="9">Tree Cape</option>
+                        <option value="10">Stone Cape</option>
+                        <option value="3">Cookie Cape</option>
+                        <option value="8">Cow Cape</option>
+                        <option value="11">Monkey Tail</option>
+                        <option value="17">Apple Basket</option>
+                        <option value="6">Winter Cape</option>
+                        <option value="4">Skull Cape</option>
+                        <option value="5">Dash Cape</option>
+                        <option value="2">Dragon Cape</option>
+                        <option value="1">Super Cape</option>
+                        <option value="7">Troll Cape</option>
+                        <option value="14">Thorns</option>
+                        <option value="15">Blockades</option>
+                        <option value="20">Devils Tail</option>
+                        <option value="16">Sawblade</option>
+                        <option value="13">Angel Wings</option>
+                        <option value="19">Shadow Wings</option>
+                        <option value="18">Blood Wings</option>
+                        <option value="21">Corrupt X Wings</option>
+                    </select>
+                </form>
+        </fieldset>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-controls-menu" class="i-tab-content" style="display: none;">
+        <h3>Controls</h3>
+        <label>Menu : <button id="kMenu" class="i-button i-bold i-right i-inline i-keybind">Escape</button></label>
+        <br />
+        <br />
+        <fieldset id="i-keybinds">
+            <legend>Keybinds</legend>
+            <div>
+                <label>Spike : <button id="kSpike" class="i-button i-bold i-right i-inline i-keybind">KeyV</button></label>
+            </div>
+            <div>
+                <label>Spike Circle : <button id="kSpikeCircle" class="i-button i-bold i-right i-inline i-keybind">Key?</button></label>
+            </div>
+            <div>
+                <label>Pit Trap/Boost Pad : <button id="kTrap" class="i-button i-bold i-right i-inline i-keybind">KeyF</button></label>
+            </div>
+            <div>
+                <label>Trap Circle : <button id="kTrapCircle" class="i-button i-bold i-right i-inline i-keybind">Key?</button></label>
+            </div>
+            <div>
+                <label>Turret : <button id="kTurret" class="i-button i-bold i-right i-inline i-keybind">KeyH</button></label>
+            </div>
+            <div>
+                <label>Windmill : <button id="kWindmill" class="i-button i-bold i-right i-inline i-keybind">KeyN</button></label>
+            </div>
+            <div>
+                <label>Heal : <button id="kHeal" class="i-button i-bold i-right i-inline i-keybind">KeyQ</button></label>
+            </div>
+            <div>
+                <label>Boost+Spike : <button id="kBS" class="i-button i-bold i-right i-inline i-keybind">KeyL</button></label>
+            </div>
+            <div>
+                <label>Boost+Spike : <button id="kBM" class="i-button i-bold i-right i-inline i-keybind">KeyO</button></label>
+            </div>
+        </fieldset>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-instakill-menu" class="i-tab-content" style="display: none;">
+        <h3>Insta Kill</h3>
+        <div>
+            <label class="defheal"><input id="iAim" type="checkbox" class="i-checkbox" />Auto Aim</label>
+        </div>
+        <div>
+            <label class="defheal"><input id="iReload" type="checkbox" class="i-checkbox" />Auto Reload</label>
+        </div>
+        <div>
+            <label class="defheal"><input id="iReverse" type="checkbox" class="i-checkbox" />Reverse Insta</label>
+        </div>
+        <fieldset>
+            <legend>Insta Kill:</legend>
+                <form action="/action_page.php">
+                    <label for="hat">Hat-1: </label>
+                    <select name="acc" id="iHat1">
+                        <option value="0">none</option>
+                        <option value="51">Moo Cap</option>
+                        <option value="50">Apple Cap</option>
+                        <option value="28">Moo Head</option>
+                        <option value="29">Pig Head</option>
+                        <option value="30">Fluff Head</option>
+                        <option value="36">Pandou Head</option>
+                        <option value="37">Bear Head</option>
+                        <option value="38">Monkey Head</option>
+                        <option value="44">Polar Head</option>
+                        <option value="35">Fez Hat</option>
+                        <option value="42">Enigma Hat</option>
+                        <option value="43">Blitz Hat</option>
+                        <option value="49">Bob XIII Hat</option>
+                        <option value="57">Pumpkin</option>
+                        <option value="8">Bummle Hat</option>
+                        <option value="2">Straw Hat</option>
+                        <option value="15">Winter Cap</option>
+                        <option value="5">Cowboy Hat</option>
+                        <option value="4">Ranger Hat</option>
+                        <option value="18">Explorer Hat</option>
+                        <option value="31">Flipper Hat</option>
+                        <option value="1">Marksman Cap</option>
+                        <option value="10">Bush Gear</option>
+                        <option value="48">Halo</option>
+                        <option value="6">Soldier Helmet</option>
+                        <option value="32">Anti Venom Gear</option>
+                        <option value="13">Medic Gear</option>
+                        <option value="9">Miners Helmet</option>
+                        <option value="32">Musketeer Hat</option>
+                        <option value="7">Bull Helmet</option>
+                        <option value="22">Emp Helmet</option>
+                        <option value="12">Booster Hat</option>
+                        <option value="26">Barbarian Armor</option>
+                        <option value="21">Plague Mask</option>
+                        <option value="46">Bull Mask</option>
+                        <option value="14">Windmill Hat</option>
+                        <option value="11">Spike Gear</option>
+                        <option value="53">Turret Gear</option>
+                        <option value="20">Samurai Armor</option>
+                        <option value="58">Dark Knight</option>
+                        <option value="27">Scavenger Gear</option>
+                        <option value="40">Tank Gear</option>
+                        <option value="52">Thief Gear</option>
+                        <option value="55">Bloodthirster</option>
+                        <option value="56">Assassin Gear</option>
+                    </select>
+                </form>
+                <form action="/action_page.php">
+                    <label for="acc">Accessory-1: </label>
+                    <select name="acc" id="iAcc1">
+                        <option value="0">None</option>
+                        <option value="12">Snowball</option>
+                        <option value="9">Tree Cape</option>
+                        <option value="10">Stone Cape</option>
+                        <option value="3">Cookie Cape</option>
+                        <option value="8">Cow Cape</option>
+                        <option value="11">Monkey Tail</option>
+                        <option value="17">Apple Basket</option>
+                        <option value="6">Winter Cape</option>
+                        <option value="4">Skull Cape</option>
+                        <option value="5">Dash Cape</option>
+                        <option value="2">Dragon Cape</option>
+                        <option value="1">Super Cape</option>
+                        <option value="7">Troll Cape</option>
+                        <option value="14">Thorns</option>
+                        <option value="15">Blockades</option>
+                        <option value="20">Devils Tail</option>
+                        <option value="16">Sawblade</option>
+                        <option value="13">Angel Wings</option>
+                        <option value="19">Shadow Wings</option>
+                        <option value="18">Blood Wings</option>
+                        <option value="21">Corrupt X Wings</option>
+                    </select>
+                </form>
+                <div>
+                    <label class="key2"><input id="iSwitch" type="checkbox" class="i-checkbox" />Choose Secondary Weapon</label>
+                </div>
+                <form action="/action_page.php">
+                    <label for="acc">Hat-2: </label>
+                    <select name="hat" id="iHat2">
+                        <option value="0">none</option>
+                        <option value="51">Moo Cap</option>
+                        <option value="50">Apple Cap</option>
+                        <option value="28">Moo Head</option>
+                        <option value="29">Pig Head</option>
+                        <option value="30">Fluff Head</option>
+                        <option value="36">Pandou Head</option>
+                        <option value="37">Bear Head</option>
+                        <option value="38">Monkey Head</option>
+                        <option value="44">Polar Head</option>
+                        <option value="35">Fez Hat</option>
+                        <option value="42">Enigma Hat</option>
+                        <option value="43">Blitz Hat</option>
+                        <option value="49">Bob XIII Hat</option>
+                        <option value="57">Pumpkin</option>
+                        <option value="8">Bummle Hat</option>
+                        <option value="2">Straw Hat</option>
+                        <option value="15">Winter Cap</option>
+                        <option value="5">Cowboy Hat</option>
+                        <option value="4">Ranger Hat</option>
+                        <option value="18">Explorer Hat</option>
+                        <option value="31">Flipper Hat</option>
+                        <option value="1">Marksman Cap</option>
+                        <option value="10">Bush Gear</option>
+                        <option value="48">Halo</option>
+                        <option value="6">Soldier Helmet</option>
+                        <option value="32">Anti Venom Gear</option>
+                        <option value="13">Medic Gear</option>
+                        <option value="9">Miners Helmet</option>
+                        <option value="32">Musketeer Hat</option>
+                        <option value="7">Bull Helmet</option>
+                        <option value="22">Emp Helmet</option>
+                        <option value="12">Booster Hat</option>
+                        <option value="26">Barbarian Armor</option>
+                        <option value="21">Plague Mask</option>
+                        <option value="46">Bull Mask</option>
+                        <option value="14">Windmill Hat</option>
+                        <option value="11">Spike Gear</option>
+                        <option value="53">Turret Gear</option>
+                        <option value="20">Samurai Armor</option>
+                        <option value="58">Dark Knight</option>
+                        <option value="27">Scavenger Gear</option>
+                        <option value="40">Tank Gear</option>
+                        <option value="52">Thief Gear</option>
+                        <option value="55">Bloodthirster</option>
+                        <option value="56">Assassin Gear</option>
+                    </select>
+                </form>
+                <form action="/action_page.php">
+                    <label for="acc">Accessory-2: </label>
+                    <select name="acc" id="iAcc2">
+                        <option value="0">None</option>
+                        <option value="12">Snowball</option>
+                        <option value="9">Tree Cape</option>
+                        <option value="10">Stone Cape</option>
+                        <option value="3">Cookie Cape</option>
+                        <option value="8">Cow Cape</option>
+                        <option value="11">Monkey Tail</option>
+                        <option value="17">Apple Basket</option>
+                        <option value="6">Winter Cape</option>
+                        <option value="4">Skull Cape</option>
+                        <option value="5">Dash Cape</option>
+                        <option value="2">Dragon Cape</option>
+                        <option value="1">Super Cape</option>
+                        <option value="7">Troll Cape</option>
+                        <option value="14">Thorns</option>
+                        <option value="15">Blockades</option>
+                        <option value="20">Devils Tail</option>
+                        <option value="16">Sawblade</option>
+                        <option value="13">Angel Wings</option>
+                        <option value="19">Shadow Wings</option>
+                        <option value="18">Blood Wings</option>
+                        <option value="21">Corrupt X Wings</option>
+                    </select>
+                </form>
+                <form action="/action_page.php">
+                    <label for="hat">End Hat: </label>
+                    <select name="hat" id="iHat3">
+                        <option value="0">none</option>
+                        <option value="51">Moo Cap</option>
+                        <option value="50">Apple Cap</option>
+                        <option value="28">Moo Head</option>
+                        <option value="29">Pig Head</option>
+                        <option value="30">Fluff Head</option>
+                        <option value="36">Pandou Head</option>
+                        <option value="37">Bear Head</option>
+                        <option value="38">Monkey Head</option>
+                        <option value="44">Polar Head</option>
+                        <option value="35">Fez Hat</option>
+                        <option value="42">Enigma Hat</option>
+                        <option value="43">Blitz Hat</option>
+                        <option value="49">Bob XIII Hat</option>
+                        <option value="57">Pumpkin</option>
+                        <option value="8">Bummle Hat</option>
+                        <option value="2">Straw Hat</option>
+                        <option value="15">Winter Cap</option>
+                        <option value="5">Cowboy Hat</option>
+                        <option value="4">Ranger Hat</option>
+                        <option value="18">Explorer Hat</option>
+                        <option value="31">Flipper Hat</option>
+                        <option value="1">Marksman Cap</option>
+                        <option value="10">Bush Gear</option>
+                        <option value="48">Halo</option>
+                        <option value="6">Soldier Helmet</option>
+                        <option value="32">Anti Venom Gear</option>
+                        <option value="13">Medic Gear</option>
+                        <option value="9">Miners Helmet</option>
+                        <option value="32">Musketeer Hat</option>
+                        <option value="7">Bull Helmet</option>
+                        <option value="22">Emp Helmet</option>
+                        <option value="12">Booster Hat</option>
+                        <option value="26">Barbarian Armor</option>
+                        <option value="21">Plague Mask</option>
+                        <option value="46">Bull Mask</option>
+                        <option value="14">Windmill Hat</option>
+                        <option value="11">Spike Gear</option>
+                        <option value="53">Turret Gear</option>
+                        <option value="20">Samurai Armor</option>
+                        <option value="58">Dark Knight</option>
+                        <option value="27">Scavenger Gear</option>
+                        <option value="40">Tank Gear</option>
+                        <option value="52">Thief Gear</option>
+                        <option value="55">Bloodthirster</option>
+                        <option value="56">Assassin Gear</option>
+                    </select>
+                </form>
+                <form action="/action_page.php">
+                    <label for="acc">End Accessory: </label>
+                    <select name="acc" id="iAcc3">
+                        <option value="0">None</option>
+                        <option value="12">Snowball</option>
+                        <option value="9">Tree Cape</option>
+                        <option value="10">Stone Cape</option>
+                        <option value="3">Cookie Cape</option>
+                        <option value="8">Cow Cape</option>
+                        <option value="11">Monkey Tail</option>
+                        <option value="17">Apple Basket</option>
+                        <option value="6">Winter Cape</option>
+                        <option value="4">Skull Cape</option>
+                        <option value="5">Dash Cape</option>
+                        <option value="2">Dragon Cape</option>
+                        <option value="1">Super Cape</option>
+                        <option value="7">Troll Cape</option>
+                        <option value="14">Thorns</option>
+                        <option value="15">Blockades</option>
+                        <option value="20">Devils Tail</option>
+                        <option value="16">Sawblade</option>
+                        <option value="13">Angel Wings</option>
+                        <option value="19">Shadow Wings</option>
+                        <option value="18">Blood Wings</option>
+                        <option value="21">Corrupt X Wings</option>
+                    </select>
+                </form>
+        </fieldset>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-chat-menu" class="i-tab-content" style="display: none;">
+        <h3>Chat Menu</h3>
+        <fieldset>
+            <legend>Auto Chat</legend>
+            <label>Auto Chat:<input value="${aChat}" id="aChat" type="text" minlength="0" maxlength="30" style="width: 250px;" placeholder="Automatic Chatting" class="i-checkbox" /></label>
+            <div>
+                <label class="chat123"><input id="acBool" type="checkbox" class="i-checkbox" />Auto Chat</label>
+            </div>
+            <div>
+                <label>Chat Fill:<input value="${acFill}" id="acFill" type="text" minlength="0" maxlength="1" style="width: 16px;" placeholder="Fill" class="i-checkbox" /></label>
+            </div>
+            <label>Insta Chat:<input value="${iChat}" id="iChat" type="text" minlength="0" maxlength="30" style="width: 250px;" placeholder="Insta Chat" class="i-checkbox" /></label>
+            <div>
+                <label class="chat123"><input id="icBool" type="checkbox" class="i-checkbox" />Insta Chat</label>
+            </div>
+            <label>Reload Chat:<input value="${rChat}" id="rChat" type="text" minlength="0" maxlength="30" style="width: 250px;" placeholder="Reloaded Chat" class="i-checkbox" /></label>
+            <div>
+                <label class="chat123"><input id="irBool" type="checkbox" class="i-checkbox" />Reload Chat</label>
+            </div>
+            <label>Auto GG/EZ:<input value="${ezChat}" id="ezChat" type="text" minlength="0" maxlength="30" style="width: 250px;" placeholder="GG/EZ" class="i-checkbox" /></label>
+            <div>
+                <label class="chat123"><input id="ezBool" type="checkbox" class="i-checkbox" />Auto GG/EZ</label>
+            </div>
+            <div>
+                <label class="chat123"><input id="cPlayer" type="checkbox" class="i-checkbox" />Player Tracker</label>
+            </div>
+            <div>
+                <label class="chat123"><input id="wLag" type="checkbox" class="i-checkbox" />Warn Lag</label>
+            </div>
+        </fieldset>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+    <div id="mm-hatmacro-menu" class="i-tab-content" style="display: none;">
+        <h3>Hat-Macro</h3>
+        <div>
+            <h3 class="menuPrompt">Tank Gear :</h3>
+            <input value="${String.fromCharCode(TankGearKey)}" id="tankGear" class="keyPressLow" onkeyup="this.value = this.value.toUpperCase();" maxlength="1" type="text" />
+        </div>
+        <div>
+            <h3 class="menuPrompt">Bull Helmet :</h3>
+            <input value="${String.fromCharCode(BullHelmetKey)}" id="bullHelm" class="keyPressLow" onkeyup="this.value = this.value.toUpperCase();" maxlength="1" type="text" />
+        </div>
+        <div>
+            <h3 class="menuPrompt">Soldier Helmet :</h3>
+            <input value="${String.fromCharCode(SoldierHelmetKey)}" id="soldier" class="keyPressLow" onkeyup="this.value = this.value.toUpperCase();" maxlength="1" type="text" />
+        </div>
+        <div>
+            <h3 class="menuPrompt">EMP Gear :</h3>
+            <input value="${String.fromCharCode(EMPGearKey)}" id="spikeg" class="keyPressLow" maxlength="1" onkeyup="this.value = this.value.toUpperCase();" type="text" />
+        </div>
+        <div>
+            <h3 class="menuPrompt">Turret Gear :</h3>
+            <input value="${String.fromCharCode(TurretKey)}" id="turret" class="keyPressLow" maxlength="1" onkeyup="this.value = this.value.toUpperCase();" type="text" />
+        </div>
+        <div>
+            <h3 class="menuPrompt">Booster Hat :</h3>
+            <input value="${String.fromCharCode(BoosterHatKey)}" id="booster" class="keyPressLow" maxlength="1" onkeyup="this.value = this.value.toUpperCase();" type="text" />
+        </div>
+        <div class="i-palomita">Made By : Wynd</div>
+    </div>
+</div>
+`;
+
+document.body.append(menu);
+var checkHeal1 = menu.querySelector("#heal1")
+
+checkHeal1.addEventListener('change', function() {
+    if (this.checked) {
+        heal1 = true;
+    } else {
+        heal1 = false;
+    }
+})
+var checkHeal2 = menu.querySelector("#heal2")
+
+checkHeal2.addEventListener('change', function() {
+    if (this.checked) {
+        heal2 = true;
+    } else {
+        heal2 = false;
+    }
+})
+var checkInsta = menu.querySelector("#insta")
+
+checkInsta.addEventListener('change', function() {
+    if (this.checked) {
+        insta = true;
+    } else {
+        insta = false;
+    }
+})
+var checkRadar = document.querySelector("#radar")
+
+checkRadar.addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('canvas').style.zIndex = "1";
+        pos.style.zIndex = "1";
+    } else {
+        document.getElementById('canvas').style.zIndex = "-1";
+        pos.style.zIndex = "-1";
+    }
+})
+var checkSAim = document.querySelector("#sAim")
+
+checkSAim.addEventListener('change', function() {
+    if (this.checked) {
+        sAim = true;
+    } else {
+        sAim = false;
+    }
+})
+var checkAhat = document.querySelector("#ahat")
+
+checkAhat.addEventListener('change', function() {
+    if (this.checked) {
+        ahat = true;
+    } else {
+        ahat = false;
+    }
+})
+var checkRespawn = document.querySelector("#respawn")
+
+checkRespawn.addEventListener('change', function() {
+    if (this.checked) {
+        respawn = true;
+    } else {
+        respawn = false;
+    }
+})
+var checkOffence = menu.querySelector("#offence")
+
+checkOffence.addEventListener('change', function() {
+    if (this.checked) {
+        offence = true;
+    } else {
+        offence = false;
+    }
+})
+var checkDefence = menu.querySelector("#defence")
+
+checkDefence.addEventListener('change', function() {
+    if (this.checked) {
+        defence = true;
+    } else {
+        defence = false;
+    }
+})
+var checkSpeed = menu.querySelector("#speed")
+
+checkSpeed.addEventListener('change', function() {
+    if (this.checked) {
+        speed = true;
+    } else {
+        speed = false;
+    }
+})
+var checkDERP = menu.querySelector("#derp")
+
+checkDERP.addEventListener('change', function() {
+    if (this.checked) {
+        derp = true;
+    } else {
+        derp = false;
+    }
+})
+var checkDeathCrash = menu.querySelector("#deathCrash")
+
+checkDeathCrash.addEventListener('change', function() {
+    if (this.checked) {
+        deathCrash = true;
+    } else {
+        deathCrash = false;
+    }
+})
+var checkOnClick = menu.querySelector("#onclick")
+
+checkOnClick.addEventListener('change', function() {
+    if (this.checked) {
+        onclick = true;
+    } else {
+        onclick = false;
+    }
+})
+var checkAntiBoostSpike = menu.querySelector("#antiBoostSpike")
+
+checkAntiBoostSpike.addEventListener('change', function() {
+    if (this.checked) {
+        antiBoostSpike = true;
+    } else {
+        antiBoostSpike = false;
+    }
+})
+var checkAntiInsta1 = menu.querySelector("#antiInsta1")
+
+checkAntiInsta1.addEventListener('change', function() {
+    if (this.checked) {
+        antiInsta1 = true;
+    } else {
+        antiInsta1 = false;
+    }
+})
+var checkAntiInsta2 = menu.querySelector("#antiInsta2")
+
+checkAntiInsta2.addEventListener('change', function() {
+    if (this.checked) {
+        antiInsta2 = true;
+    } else {
+        antiInsta2 = false;
+    }
+})
+var checkAntiInsta3 = menu.querySelector("#antiInsta3")
+
+checkAntiInsta3.addEventListener('change', function() {
+    if (this.checked) {
+        antiInsta3 = true;
+    } else {
+        antiInsta3 = false;
+    }
+})
+var checkAntiInsta4 = menu.querySelector("#antiInsta4")
+
+checkAntiInsta4.addEventListener('change', function() {
+    if (this.checked) {
+        antiInsta4 = true;
+    } else {
+        antiInsta4 = false;
+    }
+})
+var checkIAim = menu.querySelector("#iAim")
+
+checkIAim.addEventListener('change', function() {
+    if (this.checked) {
+        iAim = true;
+    } else {
+        iAim = false;
+    }
+})
+var checkIReload = menu.querySelector("#iReload")
+
+checkIReload.addEventListener('change', function() {
+    if (this.checked) {
+        iReload = true;
+    } else {
+        iReload = false;
+    }
+})
+var checkIReverse = menu.querySelector("#iReverse")
+
+checkIReverse.addEventListener('change', function() {
+    if (this.checked) {
+        iReverse = true;
+    } else {
+        iReverse = false;
+    }
+})
+var checkISwitch = menu.querySelector("#iSwitch")
+
+checkISwitch.addEventListener('change', function() {
+    if (this.checked) {
+        iSwitch = true;
+    } else {
+        iSwitch = false;
+    }
+})
+var checkACBool = menu.querySelector("#acBool")
+
+checkACBool.addEventListener('change', function() {
+    if (this.checked) {
+        acBool = true;
+    } else {
+        acBool = false;
+    }
+})
+var checkICBool = menu.querySelector("#icBool")
+
+checkICBool.addEventListener('change', function() {
+    if (this.checked) {
+        icBool = true;
+    } else {
+        icBool = false;
+    }
+})
+var checkIRBool = menu.querySelector("#irBool")
+
+checkIRBool.addEventListener('change', function() {
+    if (this.checked) {
+        irBool = true;
+    } else {
+        irBool = false;
+    }
+})
+var checkEZBool = menu.querySelector("#ezBool")
+
+checkEZBool.addEventListener('change', function() {
+    if (this.checked) {
+        ezBool = true;
+    } else {
+        ezBool = false;
+    }
+})
+var checkCPlayer = menu.querySelector("#cPlayer")
+
+checkCPlayer.addEventListener('change', function() {
+    if (this.checked) {
+        cPlayer = true;
+    } else {
+        cPlayer = false;
+    }
+})
+var checkWLag = menu.querySelector("#wLag")
+
+checkWLag.addEventListener('change', function() {
+    if (this.checked) {
+        wLag = true;
+    } else {
+        wLag = false;
+    }
+})
+$("#tankGear").on("input", () => {
+    var cval = $("#tankGear").val();
+    if (cval){
+        TankGearKey = cval.toUpperCase();
+        TankGearKey = TankGearKey.charCodeAt(0);
+    }
+});
+
+$("#bullHelm").on("input", () => {
+    var cval = $("#bullHelm").val();
+    if (cval){
+        BullHelmetKey = cval.toUpperCase();
+        BullHelmetKey = BullHelmetKey.charCodeAt(0);
+    }
+});
+
+$("#soldier").on("input", () => {
+    var cval = $("#soldier").val();
+    if (cval){
+        SoldierHelmetKey = cval.toUpperCase();
+        SoldierHelmetKey = SoldierHelmetKey.charCodeAt(0);
+    }
+});
+
+$("#turret").on("input", () => {
+    var cval = $("#turret").val();
+    if (cval){
+        TurretKey = cval.toUpperCase();
+        TurretKey = TurretKey.charCodeAt(0);
+    }
+});
+
+$("#booster").on("input", () => {
+    var cval = $("#booster").val();
+    if (cval){
+        BoosterHatKey = cval.toUpperCase();
+        BoosterHatKey = BoosterHatKey.charCodeAt(0);
+    }
+});
+
+$("#spikeg").on("input", () => {
+    var cval = $("#spikeg").val();
+    if (cval){
+        EMPGearKey = cval.toUpperCase();
+        EMPGearKey = EMPGearKey.charCodeAt(0);
+    }
+});
+
+button.classList.add("menuButton");
+button.classList.add("open-menu-button");
+button.textContent = "Open Settings";
+
+window.addEventListener("keydown", keydown);
+button.addEventListener("click", toggleMenu);
+
+card.appendChild(button);
+document.body.appendChild(styles);
+document.body.appendChild(menu);
+
+function keydown(e) {
+    if (e.key === "Escape") {
+        e.preventDefault();
+        toggleMenu();
+    }
+}
+
+document.querySelectorAll(".i-tab-menu-item").forEach(elem => {
+    elem.addEventListener("click", click);
+});
+
+function click(e) {
+    const { target } = e;
+
+    hideall();
+
+    for (const c of [
+        "main",
+        "offense",
+        "defense",
+        "support",
+        "controls",
+        "instakill",
+        "chat",
+        "hatmacro"
+    ]) {
+        if (target.textContent.toLowerCase() == c){
+            document.querySelector(`#mm-${c}-menu`).style.display = "block";
+            target.classList.add("is-active");
+        }
+    }
+}
+
+function hideall() {
+    for (const c of [
+        "#mm-main-menu",
+        "#mm-offense-menu",
+        "#mm-defense-menu",
+        "#mm-support-menu",
+        "#mm-controls-menu",
+        "#mm-instakill-menu",
+        "#mm-chat-menu",
+        "#mm-hatmacro-menu"
+    ]) {
+        document.querySelector(c).style.display = "none";
+
+        document.querySelectorAll(".i-tab-menu-item").forEach(item => item.classList.remove("is-active"));
+    }
+}
+setInterval(function(){
+    if(acBool){
+        scramble(aChat);
+    }
+}, 600)
+function resetHat(){
+    hType = $("#hType").val();
+    pType = $("#pType").val();
+    aChat = $("#aChat").val();
+    acFill = $("#acFill").val();
+    oHat = $("#oHat").val();
+    oAcc = $("#oAcc").val();
+    otHat = $("#otHat").val();
+    otAcc = $("#otAcc").val();
+    dHat = $("#dHat").val();
+    dAcc = $("#dAcc").val();
+    tHat = $("#tHat").val();
+    tAcc = $("#tAcc").val();
+    eHat = $("#eHat").val();
+    eAcc = $("#eAcc").val();
+    snHat = $("#snHat").val();
+    snAcc = $("#snAcc").val();
+    srHat = $("#srHat").val();
+    srAcc = $("#srAcc").val();
+    ssHat = $("#ssHat").val();
+    ssAcc = $("#ssAcc").val();
+    iChat = $("#iChat").val();
+    rChat = $("#rChat").val();
+    ezChat = $("#ezChat").val();
+    iHat1 = $("#iHat1").val();
+    iAcc1 = $("#iAcc1").val();
+    iHat2 = $("#iHat2").val();
+    iAcc2 = $("#iAcc2").val();
+    iHat3 = $("#iHat3").val();
+    iAcc3 = $("#iAcc3").val();
+}
+
+function toggleMenu() {
+    menu.style.display = menu.style.display == "block" ? "none" : "block";
+    resetHat();
+}
+toggleMenu()
+toggleMenu()
+
+adBlock();
+function adBlock(){
+    try {
+        document.getElementById("ot-sdk-btn-floating").style.display = "none";
+        document.getElementById("promoImgHolder").style.display = "none";
+        document.getElementById("moomooio_728x90_home").parentNode.remove();
+        $("#adCard").css({
+            display: "none"
+        });
+        document.getElementById("youtuberOf").style.display = "none";
+        document.getElementById("linksContainer2").style.display = "none";
+
+        let move = document.createElement("div");
+        move.innerText = "\n";
+        let move2 = document.createElement("div");
+        move2.innerText = "\n";
+        let move3 = document.createElement("div");
+        move3.innerText = "\n";
+        let to = document.getElementById("setupCard");
+        to.appendChild(move);
+        to.appendChild(move2);
+        $('#serverBrowser').prev().detach();
+        to.appendChild(document.getElementById("serverBrowser"));
+        to.appendChild(document.getElementById("altServer"));
+        to.appendChild(move3);
+    } catch (e) {
+        setTimeout(function(){
+            adBlock();
+        },100);
+    }
+}
+
+var ID_WinterCap = 15;
+var ID_FlipperHat = 31;
+var ID_MarksmanCap = 1;
+var ID_BushGear = 10;
+var ID_SoldierHelmet = 6;
+var ID_AntiVenomGear = 23;
+var ID_MusketeerHat = 32;
+var ID_MedicGear = 13;
+var ID_BullHelmet = 7;
+var ID_EMPHelmet = 22;
+var ID_BoosterHat = 12;
+var ID_BarbarianArmor = 26;
+var ID_BullMask = 46;
+var ID_WindmillHat = 14;
+var ID_SpikeGear = 11;
+var ID_BushidoArmor = 16;
+var ID_SamuraiArmor = 20;
+var ID_ScavengerGear = 27;
+var ID_TankGear = 40;
+var ID_TurretGear = 53;
+var ID_AssasainGear = 56;
+
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+
+var nearestEnemy;
+var nearestEnemyAngle;
+var instaSpeed = 220;
+var instaSpeedR = 210;
+var primary = 0;
+var secondary = 0;
+var foodType = 0;
+var wallType = 3;
+var spikeType = 6;
+var millType = 10;
+var mineType = 13;
+var boostType = 15;
+var turretType = 17;
+var spawnpadType = 36;
+var autoaim = false;
+var enemiesNear;
+var ws;
+var weapon = 0;
+var msgpack5 = msgpack;
+var maxSpeed = -100;
+var dir = 50;
+var blinkDir = 0;
+var lagID;
+var fakeCrashID;
+var crashID;
+var hatID;
+var lag = false;
+var fakeCrash = false;
+var mode = "";
+
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+
+let inInsta = false;
+let reload = 0;
+
+
+let names = [];
+let lastX = [];
+let lastY = [];
+let nowX = [];
+let nowY = [];
+let nextX = [];
+let nextY = [];
+let theirPrimary = [];
+let theirSecondary = [];
+let cooldown = [];
+for (let i = 0; i < 50;i++){
+    cooldown[i] = false;
+    theirPrimary[i] = 0;
+}
+
+let buildings = [];
+let logX = [];
+let logY = [];
+let logTime = [];
+
+let crashed = false;
+
+var messageToggle = 0;
+var clanToggle = 0;
+let healToggle = 0;
+let hatToggle = 0;
+
+
+setInterval(function () {
+    if(autoaim){
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }else if(derp){
+        doNewSend(["2", [toRad(dir = (324092385/(dir*Math.E) - Math.cbrt(dir)*dir)%360)]]);
+    }else if(nearestEnemy && (weapon == 9 || weapon == 12 || weapon == 13 || weapon == 15)){
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+setInterval(function () {
+    if(reload > 0){
+        if(!nearestEnemy || dist(nearestEnemy, myPlayer) > 200){
+            weapon = secondary;
+            doNewSend(["5", [secondary, true]]);
+            reload -= 50;
+            if(reload == 0){
+                weapon = primary;
+                doNewSend(["5", [primary, true]]);
+                if(irBool){
+                    chat(rChat);
+                }
+            }else if(irBool){
+                if(secondary == 15 && reload == 1600){
+                    chat("</E\\>Reloading(Musket)</E\\>");
+                }else if(secondary == 13 && reload == 350){
+                    chat("</E\\>Reloading(Crossbow+)</E\\>");
+                }else if(secondary == 12 && reload == 800){
+                    chat("</E\\>Reloading(Crossbow)</E\\>");
+                }else if(secondary == 9 && reload == 700){
+                    chat("</E\\>Reloading(Bow)</E\\>");
+                }
+            }
+        }else{
+            weapon = primary;
+            doNewSend(["5", [primary, true]]);
+        }
+    }
+}, 50);
+
+document.msgpack = msgpack;
+function n(){
+    this.buffer = new Uint8Array([0]);
+    this.buffer.__proto__ = new Uint8Array;
+    this.type = 0;
+}
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+        this.addEventListener('close', () => { crashed = true; });
+    }
+    this.oldSend(m);
+};
+
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+    });
+}
+
+/////////////////////////////////////////////////////////////////////////
+var cvs = document.getElementById("gameCanvas");
+var canvas = document.createElement("CANVAS");
+canvas.id = 'canvas';
+document.body.append(canvas);
+document.getElementById('canvas').style.zIndex = "-1";
+document.getElementById('canvas').style.pointerEvents = "none";
+document.getElementById('canvas').style.background = "transparent";
+canvas.style.left = "0px";
+canvas.style.top = "0px";
+canvas.style.position = "absolute";
+var ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const centreX = 100;
+const centreY = 100;
+const ctxDis = 70;
+const ctxHeight = 80;
+const ctxExt = 65;
+const ctxWidth = 0.1;
+
+var pos = document.createElement("a");
+pos.style.color = '#B5B5B5';
+pos.style.fontSize = "25px";
+pos.style.display = "block";
+pos.innerHTML ="{" + 0 + "," + 0 + "}";
+pos.style.position = "absolute";
+pos.style.left = 20+'px';
+pos.style.top = 200+'px';
+pos.style.zIndex = "-1";
+document.body.appendChild(pos);
+
+var ping = document.getElementById("pingDisplay");
+ping.replaceWith(document.createElement("a"));
+//ping = document.createElement("a");
+//ping.id = 'pingDisplay';
+//ping.style.color = '#B5B5B5';
+ping.style.fontSize = "20px";
+ping.style.display = "block";
+//ping.innerHTML ="{" + 0 + "," + 0 + "}";
+//ping.style.position = "absolute";
+//ping.style.left = 400+'px';
+//ping.style.top = 10+'px';
+ping.style.zIndex = "1";
+document.body.appendChild(ping);
+
+var delay = 100;
+var checkPing = new MutationObserver(function(){
+    delay = ping.textContent.split(" ")[1].split(String.fromCharCode(160))[0];
+    delay = parseInt(delay);
+    if(delay > 100 && wLag){
+        chat("Warning : " + delay + " ms");
+    }
+});
+checkPing.observe(ping, {attributes:false, childList:true, subtree:false});
+///////////////////////////////////////////////////////////////////////////////////
+function drawArrow (x, y, color) {
+    var angle = Math.atan((x - myPlayer.x)/(y - myPlayer.y));
+    if (y < myPlayer.y) {
+        if(angle > Math.PI) {
+            angle = angle - Math.PI;
+        }else{
+            angle = angle + Math.PI;
+        }
+    }
+    var a = ctxExt * Math.sin(angle + ctxWidth) + centreX;
+    var b = ctxExt * Math.cos(angle + ctxWidth) + centreY;
+    var c = ctxExt * Math.sin(angle - ctxWidth) + centreX;
+    var d = ctxExt * Math.cos(angle - ctxWidth) + centreY;
+    var e = ctxDis * Math.sin(angle) + centreX;
+    var f = ctxDis * Math.cos(angle) + centreY;
+    var g = ctxHeight * Math.sin(angle) + centreX;
+    var h = ctxHeight * Math.cos(angle) + centreY;
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(a, b);
+    ctx.lineTo(e, f);
+    ctx.lineTo(c, d);
+    ctx.lineTo(g, h);
+    ctx.lineTo(a, b);
+    ctx.stroke();
+}
+
+function drawCircle (x, y, X, Y, color) {
+    ctx.beginPath();
+    ctx.arc(centreX + (x - myPlayer.x) / 6.25, centreY + (y - myPlayer.y)/6.25, 3, 0, 2 * Math.PI);
+    ctx.strokeStyle = color;
+    ctx.moveTo(centreX + (x - myPlayer.x) / 6.25, centreY + (y - myPlayer.y)/6.25);
+    ctx.lineTo(centreX + (x * 2 - X - myPlayer.x) / 6.25, centreY + (y * 2 - Y - myPlayer.y)/6.25);
+    ctx.stroke();
+}
+function drawRadar () {
+    ctx.clearRect(0, 0, width, height);
+    overlay();
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(centreX, centreY, 80, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#B3B3B3';
+    ctx.stroke();
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(centreX, centreY, 5, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#0000FF';
+    ctx.stroke();
+    let d = new Date();
+    let t = d.getTime();
+    while(logTime && t - logTime[0] > 15000){
+        logTime.shift();
+        logX.shift();
+        logY.shift();
+    }
+    for(let i = 0;i < logTime.length;i++){
+        ctx.beginPath();
+        ctx.strokeStyle = '#FF0022';
+        ctx.arc(20+logX[i]/14400*130, height-150+logY[i]/14400*130, 1, 0, 2 * Math.PI);
+        ctx.stroke();
+    }
+}
+function distance (x, y) {
+    return Math.sqrt(Math.pow(myPlayer.x - x, 2) + Math.pow(myPlayer.y - y, 2));
+}
+function setCooldown(data){
+    let wait = 0;
+    switch(data[3]){
+        case 0:wait = 300;
+            break;
+        case 1:wait = 400;
+            break;
+        case 2:wait = 400;
+            break;
+        case 3:wait = 300;
+            break;
+        case 4:wait = 300;
+            break;
+        case 5:wait = 700;
+            break;
+        case 6:wait = 400;
+            break;
+        case 7:wait = 100;
+            break;
+        case 8:wait = 400;
+            break;
+        case 9:wait = 600;
+            break;
+        case 10:wait = 400;
+            break;
+        case 11:wait = 0;
+            break;
+        case 12:wait = 700;
+            break;
+        case 13:wait = 230;
+            break;
+        case 14:wait = 700;
+            break;
+        case 15:wait = 1500;
+            break;
+        default:wait = 0;
+    }
+    wait -= delay + 10;
+	if(wait > 0){
+		cooldown[data[1]] = true;
+		setTimeout(function(){cooldown[data[1]] = false;}, wait);
+	}
+}
+function overlay(){
+    return;
+    ctx.beginPath();
+    ctx.strokeStyle = 'FFFFFF';
+    ctx.rect(20, height-150, 130, 130);
+    ctx.moveTo(85, height-130);
+    ctx.lineTo(105, height-40);
+    ctx.lineTo(85, height-65);
+    ctx.lineTo(65, height-40);
+    ctx.lineTo(85, height-130);
+    for(let i = 330; i <= 390; i+= 30){
+        ctx.moveTo(85+Math.cos(toRad(i))*20,height-85+Math.sin(toRad(i))*20);
+        ctx.lineTo(85+Math.cos(toRad(i))*60,height-85+Math.sin(toRad(i))*60);
+    }
+    for(let i = 150; i <= 210; i+= 30){
+        ctx.moveTo(85+Math.cos(toRad(i))*20,height-85+Math.sin(toRad(i))*20);
+        ctx.lineTo(85+Math.cos(toRad(i))*60,height-85+Math.sin(toRad(i))*60);
+    }
+    ctx.moveTo(80, height-50);
+    ctx.lineTo(75, height-30);
+    ctx.moveTo(90, height-50);
+    ctx.lineTo(95, height-30);
+    ctx.stroke();
+}
+function getDMG(id){
+    switch(id){
+        case 0 : return 25;
+            break;
+        case 1 : return 30;
+            break;
+        case 2 : return 35;
+            break;
+        case 3 : return 35;
+            break;
+        case 4 : return 40;
+            break;
+        case 5 : return 45;
+            break;
+        case 6 : return 20;
+            break;
+        case 7 : return 20;
+            break;
+        case 8 : return 0;
+            break;
+        case 9 : return 25;
+            break;
+        case 10 : return 10;
+            break;
+        case 11 : return 0;
+            break;
+        case 12 : return 35;
+            break;
+        case 13 : return 30;
+            break;
+        case 14 : return 0;
+            break;
+        case 15 : return 50;
+            break;
+        default : return 0;
+    }
+}
+function projSpeed(id){
+    const rate = 40;
+    switch(id){
+        case 9:return 1.6 * rate;
+            break;
+        case 12:return 2.5 * rate;
+            break;
+        case 13:return 2 * rate;
+            break;
+        case 15: return 3.6 * rate;
+            break;
+    }
+    return 100000;
+}
+function dAng(ang1, ang2){
+ let d = Math.abs(ang1 - ang2);
+ d = d % (Math.PI*2);
+ if(d > Math.PI){
+   d = (Math.PI*2) - d;
+ }
+ return d;
+}
+function aim(x, y){
+    cvs.dispatchEvent(new MouseEvent("mousemove", {
+        clientX: x,
+        clientY: y
+
+    }));
+}
+cvs.addEventListener ('mousedown', function(e) {
+    if(e.button == 2){
+        if(!inInsta && onclick){
+            if(weapon == primary && weapon != 8 || weapon == "length"){
+                weapon = primary;
+                doNewSend(["5",[primary, true]]);
+                inInsta = true;
+                doNewSend(["2", [Math.atan2(mouseY - height / 2, mouseX - width / 2)]]);
+                doNewSend(["13c", [0, oHat, 0]]);
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["13c", [0, oAcc, 1]]);
+                doNewSend(["7", [true]]);
+                setTimeout(function(){
+                    if(!ahat){
+                        doNewSend(["13c", [0, dHat, 0]]);
+                        doNewSend(["13c", [0, dAcc, 1]]);
+                    }
+                    doNewSend(["7", [true]]);
+                    inInsta = false;
+                }, 120);
+            }else if(weapon == secondary){
+                switch(weapon){
+                    case 9|12|13|15:
+                        inInsta = true;
+                        doNewSend(["13c", [0, 1, 0]]);
+                        doNewSend(["13c", [0, otAcc, 1]]);
+                        doNewSend(["7", [true]]);
+                        setTimeout(function(){
+                            if(!ahat){
+                                doNewSend(["13c", [0, dHat, 0]]);
+                                doNewSend(["13c", [0, dAcc, 1]]);
+                            }
+                            doNewSend(["7", [true]]);
+                            inInsta = false;
+                        }, 120);
+                        break;
+                    case 10:
+                        inInsta = true;
+                        doNewSend(["2", [Math.atan2(mouseY - height / 2, mouseX - width / 2)]]);
+                        doNewSend(["13c", [0, tHat, 0]]);
+                        doNewSend(["13c", [0, tAcc, 1]]);
+                        doNewSend(["7", [true]]);
+                        setTimeout(function(){
+                            if(!ahat){
+                                doNewSend(["13c", [0, dHat, 0]]);
+                                doNewSend(["13c", [0, dAcc, 1]]);
+                            }
+                            doNewSend(["7", [true]]);
+                            inInsta = false;
+                        }, 120);
+                        break;
+                }
+            }
+        }
+    }
+    if(e.button == 1){
+        e.preventDefault();
+        doNewSend(["5",["length", true]]);
+        weapon = "length";
+    }
+    if(e.button == 0){
+        if(!inInsta && onclick){
+            if(weapon == primary && weapon != 8 || weapon == "length"){
+                weapon = primary;
+                doNewSend(["5",[primary, true]]);
+                inInsta = true;
+                doNewSend(["2", [Math.atan2(mouseY - height / 2, mouseX - width / 2)]]);
+                doNewSend(["13c", [0, tHat, 0]]);
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["13c", [0, tAcc, 1]]);
+                doNewSend(["7", [true]]);
+                setTimeout(function(){
+                    if(!ahat){
+                        doNewSend(["13c", [0, dHat, 0]]);
+                        doNewSend(["13c", [0, dAcc, 1]]);
+                    }
+                    doNewSend(["7", [true]]);
+                    inInsta = false;
+                }, 120);
+            }else if(weapon == secondary){
+                switch(weapon){
+                    case 9|12|13|15:
+                        inInsta = true;
+                        doNewSend(["13c", [0, otHat, 0]]);
+                        doNewSend(["13c", [0, otAcc, 1]]);
+                        doNewSend(["7", [true]]);
+                        setTimeout(function(){
+                            if(!ahat){
+                                doNewSend(["13c", [0, dHat, 0]]);
+                                doNewSend(["13c", [0, dAcc, 1]]);
+                            }
+                            doNewSend(["7", [true]]);
+                            inInsta = false;
+                        }, 120);
+                        break;
+                    case 10:
+                        inInsta = true;
+                        doNewSend(["13c", [0, tHat, 0]]);
+                        doNewSend(["13c", [0, tAcc, 1]]);
+                        doNewSend(["7", [true]]);
+                        setTimeout(function(){
+                            if(!ahat){
+                                doNewSend(["13c", [0, dHat, 0]]);
+                                doNewSend(["13c", [0, dAcc, 1]]);
+                            }
+                            doNewSend(["7", [true]]);
+                            inInsta = false;
+                        }, 120);
+                        break;
+                }
+            }
+        }
+    }
+}, false)
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+        data = temp;
+    }
+    let item = data[0];
+
+    if(!data) {return};
+	switch(item){
+		case "io-init":
+			width = cvs.clientWidth;
+			height = cvs.clientHeight;
+            overlay();
+			$(window).resize(function() {
+				width = cvs.clientWidth;
+                height = cvs.clientHeight;
+                overlay();
+            });
+            drawRadar();
+			cvs.addEventListener("mousemove", e => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
+			});
+            console.log(">============================<\nProject Epsilon Initialized\n>============================<");
+            break;
+		case "1":
+            if(myPlayer.id == null){
+                myPlayer.id = data[1];
+            }
+            console.log("ID :", myPlayer.id);
+            break;
+		case "2":
+			if(names[data[1][1]] != undefined){
+				if(names[data[1][1]] != data[1][2]){
+					console.log("{" , names[data[1][1]] , "} => {" , data[1][2] , "} [" , data[1][1] , "]");
+					if(cPlayer){
+						chat("{" + names[data[1][1]] + "} => {" + data[1][2] + "}");
+					}
+				}else{
+					console.log("{" , names[data[1][1]] , "} returned");
+					if(cPlayer){
+						chat("{" + names[data[1][1]] + "} returned");
+					}
+				}
+			}else{
+				console.log("{" , data[1][2] , "} [" , data[1][1] , "]");
+				if(cPlayer){
+					chat("{" + data[1][2] + "} [" + data[1][1] + "]");
+				}
+			}
+			names[data[1][1]] = data[1][2];
+			theirPrimary[data[1][1]] = 0;
+			theirSecondary[data[1][1]] = undefined;
+            break;
+        case "6":
+            for(let i = 0; i < data[1].length / 8; i++){
+                let ObjectData = data[1].slice(8*i, 8*i+8);
+                buildings.push(ObjectData);
+            }
+            break;
+        case "7":
+            setCooldown(data);
+            if(mode == "counter" && !inInsta && data[1] != myPlayer.id && (data[3] > 1 && data[3] < 6) && distance(lastX[data[1]], lastY[data[1]]) < 300){
+                inInsta = true;
+                autoaim = true;
+                weapon = primary;
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["13c", [0, 7, 0]]);
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["13c", [0, 18, 1]]);
+                doNewSend(["7", [true]]);
+                setTimeout( () => {
+                    doNewSend(["13c", [0, 53, 0]]);
+                    doNewSend(["13c", [0, 13, 1]]);
+                    doNewSend(["7", [true]]);
+                    autoaim = false;
+                }, 100);
+                setTimeout(()=>{
+                    inInsta = false;
+                }, 200)
+            }
+            break;
+        case "9":
+            if(data[1] == "kills" && ezBool){
+                chat(ezChat);
+            }
+            break;
+		case "11":
+			console.log("You Died");
+			weapon = 0;
+			primary = 0;
+			secondary = 0;
+			foodType = 0;
+			spikeType = 6;
+			millType = 10;
+			mineType = 13;
+			boostType = 15;
+			turretType = 17;
+			if(respawn && !deathCrash){
+				setTimeout(function(){
+					doNewSend(["sp", [{
+						name: names[myPlayer.id],
+						moofoll: true,
+						skin: 0
+					}]]);
+                    console.log("Auto Respawning");
+				}, 3000);
+			}
+            break;
+        case "12":
+            for(let i = 0;i < buildings.length;i++){
+                if(buildings[i][0] == data[1]){
+                    logX.push(buildings[i][1]);
+                    logY.push(buildings[i][2]);
+                    let d = new Date();
+                    logTime.push(d.getTime());
+                    buildings.splice(i,1);
+                    i--;
+                }
+            }
+            break;
+		case "13":
+            for(let i = 0;i < buildings.length;i++){
+                if(buildings[i][7] == data[1]){
+                    buildings.splice(i,1);
+                    i--;
+                }
+            }
+			if(names[data[1]]){
+				console.log("{" , names[data[1]] , "} raged");
+				if(cPlayer){
+					chat("{" + names[data[1]] + "} raged");
+				}
+				names[data[1]] = undefined;
+			}else{
+				console.log("[" , data[1] , "] raged");
+				//chat("["data[1] + "] raged");
+			}
+			theirPrimary[data[1]] = 0;
+			theirSecondary[data[1]] = undefined;
+            break;
+		case "16":
+			//update();
+            break;
+        case "17":
+            if (data[2]) {
+                let type = weapon == primary;
+                primary = data[1][0];
+                secondary = data[1][1] || null;
+                if(type){
+                    if(weapon != primary){
+                        weapon = primary;
+                    }
+                }else{
+                    if(weapon != secondary){
+                        weapon = secondary;
+                    }
+                }
+            } else {
+                for (let i = 0; i < data[1].length; i++) {
+                    for (let i2 = 0; i2 < 3; i2++) {
+                        if (i2 == data[1][i]) {
+                            foodType = data[1][i];
+                        }
+                    }
+                    for (let i2 = 3; i2 < 6; i2++) {
+                        if (i2 == data[1][i]) {
+                            wallType = data[1][i];
+                        }
+                    }
+                    for (let i2 = 6; i2 < 10; i2++) {
+                        if (i2 == data[1][i]) {
+                            spikeType = data[1][i];
+                        }
+                    }
+                    for (let i2 = 10; i2 < 13; i2++) {
+                        if (i2 == data[1][i]) {
+                            millType = data[1][i];
+                        }
+                    }
+                    for (let i2 = 13; i2 < 15; i2++) {
+                        if (i2 == data[1][i]) {
+                            mineType = data[1][i];
+                        }
+                    }
+                    for (let i2 = 15; i2 < 17; i2++) {
+                        if (i2 == data[1][i]) {
+                            boostType = data[1][i];
+                        }
+                    }
+                    for (let i2 = 17; i2 < 23; i2++) {
+                        if (i2 == data[1][i] && i2 !== 20) {
+                            turretType = data[1][i];
+                        }
+                    }
+                    spawnpadType = 20;
+                }
+            }
+            break;
+		case "18":
+			if(inInsta && iReload){
+				if(secondary == 15 && data[4] == 1400){
+					reload = 1650;
+				}else if(secondary == 13 && data[4] == 1200){
+					reload = 400;
+				}else if(secondary == 12 && data[4] == 1200){
+					reload = 850;
+				}else if(secondary == 9 && data[4] == 1000){
+					reload = 750;
+				}
+			}
+            break;
+		case "33":
+			enemiesNear = [];
+			nowX = [];
+			nowY = [];
+			drawRadar();
+			for(let i = 0; i < data[1].length / 13; i++) {
+				let playerInfo = data[1].slice(13*i, 13*i+13);
+				if(playerInfo[0] == myPlayer.id) {
+					myPlayer.x = playerInfo[1];
+					myPlayer.y = playerInfo[2];
+					myPlayer.dir = playerInfo[3];
+					myPlayer.object = playerInfo[4];
+					myPlayer.weapon = playerInfo[5];
+					myPlayer.clan = playerInfo[7];
+					myPlayer.isLeader = playerInfo[8];
+					myPlayer.hat = playerInfo[9];
+                    myPlayer.accessory = playerInfo[10];
+                    myPlayer.isSkull = playerInfo[11];
+
+                    nowX[myPlayer.id] = myPlayer.x;
+                    nowY[myPlayer.id] = myPlayer.y;
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = '#0000FF';
+                    ctx.moveTo(centreX , centreY);
+                    ctx.lineTo(centreX + (myPlayer.x - lastX[myPlayer.id]) / 6.25, centreY + (myPlayer.y - lastY[myPlayer.id])/6.25);
+                    ctx.stroke();
+				}else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+					enemiesNear.push(playerInfo);
+					if (distance(playerInfo[1], playerInfo[2]) > 500) {
+						drawArrow(playerInfo[1], playerInfo[2], '#FF0000')
+					}else{
+						drawCircle(playerInfo[1], playerInfo[2], lastX[playerInfo[0]], lastY[playerInfo[0]], '#FF0000');
+					}
+					nowX[playerInfo[0]] = playerInfo[1];
+					nowY[playerInfo[0]] = playerInfo[2];
+					//anti boost spike
+					if(antiBoostSpike && lastX[playerInfo[0]] != undefined && lastY[playerInfo[0]] != undefined && distance(playerInfo[1], playerInfo[2]) - distance(lastX[playerInfo[0]], lastY[playerInfo[0]]) < maxSpeed){
+						place(spikeType, Math.atan2(playerInfo[2] - myPlayer.y, playerInfo[1] - myPlayer.x) + toRad(90));
+						place(spikeType, Math.atan2(playerInfo[2] - myPlayer.y, playerInfo[1] - myPlayer.x) - toRad(90));
+					}
+					//upgrade detector
+					if(playerInfo[5] > 8){
+						theirSecondary[playerInfo[0]] = playerInfo[5];
+					}else{
+						if(theirPrimary[playerInfo[0]] != 3 && playerInfo[5] == 4 && !theirSecondary[playerInfo[0]]){
+						   theirSecondary[playerInfo[0]] = 15;
+							//console.log("possible katana musket");
+						}
+						if(!theirSecondary[playerInfo[0]] && (playerInfo[5] == 4 || playerInfo[5] == 5)){
+							theirSecondary[playerInfo[0]] = 15;
+							//console.log("assume musket");
+						}
+						if(playerInfo[5] == 0){
+							theirSecondary[playerInfo[0]] = undefined;
+							//console.log("no secondary");
+						}
+						theirPrimary[playerInfo[0]] = playerInfo[5];
+					}
+				} else {
+					if (distance(playerInfo[1], playerInfo[2]) > 500) {
+						drawArrow(myPlayer.x, myPlayer.y, playerInfo[1], playerInfo[2], '#00EE00')
+					}else{
+						drawCircle(playerInfo[1], playerInfo[2], lastX[playerInfo[0]], lastY[playerInfo[0]], '#00EE00');
+					}
+				}
+			}
+			pos.innerHTML ="{" + myPlayer.x + "," + myPlayer.y + "}";
+			lastX = nowX;
+			lastY = nowY;
+            if(sAim){
+                for(let i in (enemiesNear)){
+                    enemiesNear[i][1] += (enemiesNear[i][1] - lastX[enemiesNear[i][0]]) * dist(enemiesNear[i], myPlayer) / projSpeed(weapon);
+                    enemiesNear[i][2] += (enemiesNear[i][2] - lastY[enemiesNear[i][0]]) * dist(enemiesNear[i], myPlayer) / projSpeed(weapon);
+                }
+            }
+			if(enemiesNear) {
+				nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+			}
+            if (nearestEnemy) {
+                nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+            }else{
+                nearestEnemyAngle = myPlayer.dir;
+            }
+            //auto insta
+            if(mode == "insta" && !inInsta && nearestEnemy && dist(nearestEnemy, myPlayer) < 220 && !cooldown[myPlayer.id] && weapon != secondary){
+                inInsta = true;
+                if(iAim){
+                    autoaim = true;
+                }
+                if(icBool){
+                    chat(iChat);
+                }
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["7", [true]]);
+                if(iReverse){
+                    weapon = secondary;
+                    doNewSend(["5", [secondary, true]]);
+                    doNewSend(["13c", [0, iHat2, 0]]);
+                    doNewSend(["13c", [0, iAcc2, 1]]);
+                    setTimeout( () => {
+                        //turret hat
+                        doNewSend(["13c", [0, iHat1, 0]]);
+                        doNewSend(["13c", [0, iAcc1, 1]]);
+                        weapon = primary;
+                        doNewSend(["5", [primary, true]]);
+                    }, instaSpeedR / 2);
+                }else{
+                    weapon = primary;
+                    doNewSend(["5", [primary, true]]);
+                    if(!iSwitch){
+                        if(iAim){
+                            placeStable(spikeType, nearestEnemyAngle + toRad(45));
+                            placeStable(spikeType, nearestEnemyAngle - toRad(45));
+                        }else{
+                            placeStable(spikeType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(45));
+                            placeStable(spikeType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(45));
+                        }
+                    }
+                    doNewSend(["13c", [0, iHat1, 0]]);
+                    doNewSend(["13c", [0, iAcc1, 1]]);
+                    setTimeout( () => {
+                        //turret hat
+                        doNewSend(["13c", [0, iHat2, 0]]);
+                        doNewSend(["13c", [0, iAcc2, 1]]);
+                        if(iSwitch){
+                            weapon = secondary;
+                            doNewSend(["5", [secondary, true]]);
+                        }
+                    }, instaSpeed / 2);
+                }
+                setTimeout(function(){
+                    autoaim = false;
+                    doNewSend(["13c", [0, dHat, 0]]);
+                    doNewSend(["13c", [0, dAcc, 1]]);
+                    doNewSend(["7", [true]]);
+                    weapon = secondary;
+                    doNewSend(["5", [secondary, true]]);
+                    let reload = 0;
+                    if(secondary == 15){
+                        reload = 1650;
+                    }else if(secondary == 13){
+                        reload = 400;
+                    }else if(secondary == 12){
+                        reload = 850;
+                    }else if(secondary == 9){
+                        reload = 750;
+                    }
+                    setTimeout(function(){
+                        weapon = primary;
+                        doNewSend(["5", [primary, true]]);
+                        setTimeout(function(){
+                            inInsta = false;
+                        },1000)
+                    },reload);
+                },instaSpeed);
+            }
+            if(mode == "counter" && !inInsta){
+                if(nearestEnemy && dist(nearestEnemy, myPlayer) < 300){
+                    doNewSend(["13c", [0, 11, 0]]);
+                    doNewSend(["13c", [0, 0, 1]]);
+                    doNewSend(["13c", [0, 21, 1]]);
+                }else{
+                    if (myPlayer.y < 2400){
+                        doNewSend(["13c", [0, ssHat, 0]]);
+                        doNewSend(["13c", [0, ssAcc, 1]]);
+                    } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                        doNewSend(["13c", [0, srHat, 0]]);
+                        doNewSend(["13c", [0, srAcc, 1]]);
+                    } else {
+                        doNewSend(["13c", [0, snHat, 0]]);
+                        doNewSend(["13c", [0, snAcc, 1]]);
+                    }
+                }
+            }else if(!inInsta && ahat && mode != "hat"){
+                if(nearestEnemy && dist(nearestEnemy, myPlayer) < 300){
+                    var danger = false;
+                    for(let i = 0; i < data[1].length / 13; i++) {
+                        let playerInfo = data[1].slice(13*i, 13*i+13);
+                        if(playerInfo[0] != myPlayer.id && Math.sqrt(Math.pow((myPlayer.y-playerInfo[2]), 2) + Math.pow((myPlayer.x-playerInfo[1]), 2)) < 300 && !cooldown[playerInfo[0]]){
+                            danger = true;
+                            break;
+                        }
+                    }
+                    if(danger && defence){
+                        doNewSend(["13c", [0, dHat, 0]]);
+                        doNewSend(["13c", [0, dAcc, 1]]);
+                    }else if(offence){
+                        doNewSend(["13c", [0, oHat, 0]]);
+                        doNewSend(["13c", [0, oAcc, 1]]);
+                    }
+                }else if(speed){
+                    if (myPlayer.y < 2400){
+                        doNewSend(["13c", [0, ssHat, 0]]);
+                        doNewSend(["13c", [0, ssAcc, 1]]);
+                    } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                        doNewSend(["13c", [0, srHat, 0]]);
+                        doNewSend(["13c", [0, srAcc, 1]]);
+                    } else {
+                        doNewSend(["13c", [0, snHat, 0]]);
+                        doNewSend(["13c", [0, snAcc, 1]]);
+                    }
+                }
+            }
+            break;
+        case "ac":
+            if(names[data[1].owner]){
+                console.log("{" , names[data[1].owner] , "} created {" , data[1].sid , "}")
+            }else{
+				console.log("[" , data[1].owner , "] created {" , data[1].sid, "}")
+			}
+            break;
+		case "ch":
+			if(data[1] == myPlayer.id){
+				//commands
+				if(data[2].substring(0, 6) == "!clan "){
+					doNewSend(["8", [data[2].substring(6)]]);
+					setTimeout(function(){
+						chat("Clan : " + data[2].substring(6));
+					}, 500)
+				}else if(data[2].substring(0, 7) == "!unclan"){
+					doNewSend(["9", [null]]);
+					setTimeout(function(){
+						chat("Clan : null");
+					}, 500)
+				}else if(data[2].substring(0, 6) == "!join "){
+                    let name = data[2].substring(6);
+                    doNewSend(["10", [name]]);
+					setTimeout(function(){
+						chat("Clan : " + name);
+					}, 500)
+				}else if(data[2].substring(0, 6) == "!kick "){
+                    let name = data[2].substring(6);
+                    let counter = 0;
+                    names.forEach(function(item, index){
+                        if(item == name){
+                            setTimeout(function(){
+                                doNewSend(["12", [index]]);
+                            }, counter * 1000);
+                            counter++
+                        }
+                    });
+					setTimeout(function(){
+						chat("Kick : " + name);
+					}, 500)
+				}else if(data[2].substring(0, 7) == "!derp"){
+					setTimeout(function(){
+						if(derp){
+							chat("Derp : OFF");
+						}else{
+							chat("Derp : ON");
+						}
+						derp = !derp;
+						document.getElementById("derp").checked = derp;
+					}, 500);
+				}else if(data[2].substring(0, 12) == "!setup stick"){
+					doNewSend(["6", [8]]);
+					doNewSend(["6", [17]]);
+					doNewSend(["6", [31]]);
+					doNewSend(["6", [23]]);
+					doNewSend(["6", [10]]);
+					doNewSend(["6", [33]]);
+					setTimeout(function(){
+						chat("Setup : Stick + Hammer");
+					}, 500)
+				}else if(data[2].substring(0, 13) == "!setup instaP"){
+					doNewSend(["6", [5]]);
+					doNewSend(["6", [17]]);
+					doNewSend(["6", [31]]);
+					doNewSend(["6", [23]]);
+					doNewSend(["6", [9]]);
+					doNewSend(["6", [33]]);
+					doNewSend(["6", [28]]);
+					doNewSend(["6", [15]]);
+					setTimeout(function(){
+						chat("Setup : Polearm + Musket");
+					}, 500)
+				}else if(data[2].substring(0, 13) == "!setup instaK"){
+					doNewSend(["6", [3]]);
+					doNewSend(["6", [17]]);
+					doNewSend(["6", [31]]);
+					doNewSend(["6", [23]]);
+					doNewSend(["6", [9]]);
+					doNewSend(["6", [33]]);
+					doNewSend(["6", [4]]);
+					doNewSend(["6", [4]]);
+					doNewSend(["6", [15]]);
+					setTimeout(function(){
+						chat("Setup : Katana + Musket");
+					}, 500)
+				}else if(data[2].substring(0, 9) == "!greataxe"){
+					doNewSend(["6", [2]]);
+					setTimeout(function(){
+						chat("Upgrade : Great Axe");
+					}, 500)
+				}else if(data[2].substring(0, 7) == "!katana"){
+					doNewSend(["6", [4]]);
+					setTimeout(function(){
+						chat("Upgrade : Katana");
+					}, 500)
+				}else if(data[2].substring(0, 10) == "!crossbowR"){
+					doNewSend(["6", [13]]);
+					setTimeout(function(){
+						chat("Upgrade : Repeater Crossbow");
+					}, 500)
+				}else if(data[2].substring(0, 9) == "!crossbow"){
+					doNewSend(["6", [12]]);
+					setTimeout(function(){
+						chat("Upgrade : Crossbow");
+					}, 500)
+				}else if(data[2].substring(0, 7) == "!musket"){
+					doNewSend(["6", [15]]);
+					setTimeout(function(){
+						chat("Upgrade : Musket");
+					}, 500)
+				}else if(data[2].substring(0, 9) == "!windmill"){
+					doNewSend(["6", [28]]);
+					setTimeout(function(){
+						chat("Upgrade : Power Mill");
+					}, 500)
+				}else if(data[2].substring(0, 7) == "!spikeS"){
+					doNewSend(["6", [25]]);
+					setTimeout(function(){
+						chat("Upgrade : Spinning Spikes");
+					}, 500)
+				}else if(data[2].substring(0, 7) == "!spikeP"){
+					doNewSend(["6", [24]]);
+					setTimeout(function(){
+						chat("Upgrade : Posion Spikes");
+					}, 500)
+				}else if(data[2].substring(0, 9) == "!autoheal"){
+					setTimeout(function(){
+						if(heal1){
+							chat("Heal : OFF");
+						}else{
+							chat("Heal : ON");
+						}
+						heal1 = !heal1;
+						document.getElementById("heal1").checked = heal1;
+					}, 500);
+				}else if(data[2].substring(0, 13) == "!place normal"){
+					pType = "0";
+					setTimeout(function(){
+						chat("Place : Normal");
+						document.getElementById("pType").value = pType;
+					}, 500)
+				}else if(data[2].substring(0, 12) == "!place legit"){
+					pType = "1";
+					setTimeout(function(){
+						chat("Place : Legit");
+						document.getElementById("pType").value = pType;
+					}, 500)
+				}else if(data[2].substring(0, 15) == "!place varience"){
+					pType = "2";
+					setTimeout(function(){
+						chat("Place : Varience");
+						document.getElementById("pType").value = pType;
+					}, 500)
+				}else if(data[2].substring(0, 11) == "!place derp"){
+					pType = "3";
+					setTimeout(function(){
+						chat("Place : Derp");
+						document.getElementById("pType").value = pType;
+					}, 500)
+				}else if(data[2].substring(0, 12) == "!heal normal"){
+					hType = "0";
+					setTimeout(function(){
+						chat("Heal : Normal");
+						document.getElementById("hType").value = hType;
+					}, 500)
+				}else if(data[2].substring(0, 12) == "!heal linear"){
+					hType = "1";
+					setTimeout(function(){
+						chat("Heal : Linear");
+						document.getElementById("hType").value = hType;
+					}, 500)
+				}else if(data[2].substring(0, 15) == "!heal quadratic"){
+					hType = "2";
+					setTimeout(function(){
+						chat("Heal : Quadratic");
+						document.getElementById("hType").value = hType;
+					}, 500)
+				}else if(data[2].substring(0, 14) == "!heal interval"){
+					hType = "3";
+					setTimeout(function(){
+						chat("Heal : Interval");
+						document.getElementById("hType").value = hType;
+					}, 500)
+				}else if(data[2].substring(0, 10) == "!heal slow"){
+					hType = "4";
+					setTimeout(function(){
+						chat("Heal : Slow");
+						document.getElementById("hType").value = hType;
+					}, 500)
+				}else if(data[2].substring(0, 10) == "!heal fast"){
+					hType = "5";
+					setTimeout(function(){
+						chat("Heal : VERY FAST");
+						document.getElementById("hType").value = hType;
+					}, 500)
+				}else if(data[2].substring(0, 2) == "!"){
+                    setTimeout(function(){
+                        placeStable(millType, Number.MAX_VALUE);
+                        doNewSend(["ch",[""]]);
+                        doNewSend(["8",[""]]);
+                        doNewSend(["5",["length", true]]);
+                        weapon = "length";
+                    }, 500);
+				}
+			}
+            break;
+		case "h":
+			if(data[1] == myPlayer.id) {
+				if(data[2] < 100 && data[2] > 0 && heal1) {
+					let wait;
+					switch(hType){
+						case "0":
+                            wait = 120;
+							break;
+						case "1":
+                            wait = 2 * data[2];
+							break;
+						case "2":
+                            wait = (data[2] - 100) * (data[2] - 100) / -50 + 200
+							break;
+						case "3":
+							if(data[2] < 50){
+								wait = 50;
+							}else{
+                                wait = 200;
+                            }
+                            break;
+						case "4":
+                            wait = 200;
+							break;
+                        case "5":
+                            wait = 0;
+                            break;
+                        default:console.log("HEAL ERROR");
+					}
+					setTimeout( () => {
+						heal();
+					}, wait);
+				}
+			}
+	}
+    //sending 7 is autohit
+    //sending 8 is create clan
+    //sending 9 is del clan
+
+    //3 and 4 are useless
+    //5 is leaderboard
+    //6 is building
+    //7 is attack
+    //8 is building kb
+    //9 is mats
+    //pp is ping
+    //19 is turret rotation(relative)
+
+    //if(item != "1" && item != "2" && item != "4" && item != "5" && item != "6" && item != "7" && item != "8" && item != "9" && item != "33" && item != "a" && item != "pp"
+       //&& item != "ac" && item != "h" && item != "pp" && item != "mm" && item != "15" && item != "16"){
+        //console.log(data);
+    //}
+}
+
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+function chat(output){
+    doNewSend(["ch", [output]]);
+}
+function scramble(aChat){
+    var letters = /^[A-Za-z]+$/;
+    let output = "";
+    let length = aChat.length;
+    for(let i = 0; i < length; i++){
+        if(aChat.charAt(i).match(letters)){
+            if(Math.random() > 0.25){
+                output += aChat.charAt(i);
+            }else{
+                output += acFill;
+            }
+        }else{
+            output += aChat.charAt(i);
+        }
+    }
+    chat(output);
+}
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    let placeDir = angle;
+    switch(pType){
+        case "1":placeDir = null;
+            break;
+        case "2":placeDir += toRad(Math.random() * 80 - 40);
+            break;
+        case "3":placeDir = toRad(dir = (324092385/(dir*Math.E) - Math.cbrt(dir)*dir)%360);
+    }
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, placeDir]]);
+    doNewSend(["c", [0, placeDir]]);
+    doNewSend(["5", [weapon, true]]);
+}
+function heal(){
+    if(myPlayer.hat == 56){
+        storeEquip(0);
+        doNewSend(["5", [foodType]]);
+        doNewSend(["c", [1, null]]);
+        doNewSend(["c", [0, null]]);
+        doNewSend(["5", [weapon, true]]);
+        doNewSend(["13c", [0, 56, 0]]);
+    }else{
+        doNewSend(["5", [foodType]]);
+        doNewSend(["c", [1, null]]);
+        doNewSend(["c", [0, null]]);
+        doNewSend(["5", [weapon, true]]);
+    }
+    if(heal2){
+        if(myPlayer.hat == 56){
+            storeEquip(0);
+            doNewSend(["5", [foodType]]);
+            doNewSend(["c", [1, null]]);
+            doNewSend(["c", [0, null]]);
+            doNewSend(["5", [weapon, true]]);
+            doNewSend(["13c", [0, 56, 0]]);
+        }else{
+            doNewSend(["5", [foodType]]);
+            doNewSend(["c", [1, null]]);
+            doNewSend(["c", [0, null]]);
+            doNewSend(["5", [weapon, true]]);
+        }
+    }
+}
+
+function boostSpike() {
+    placeStable(spikeType, nearestEnemyAngle + toRad(90));
+    placeStable(spikeType, nearestEnemyAngle - toRad(90));
+    placeStable(boostType, nearestEnemyAngle);
+    doNewSend(["33", [nearestEnemyAngle]]);
+}
+function boostMill() {
+    let ang = Math.atan2(mouseY - height / 2, mouseX - width / 2);
+    placeStable(millType, ang + toRad(144));
+    placeStable(millType, ang + toRad(144));
+    placeStable(millType, ang + toRad(72));
+    placeStable(millType, ang + toRad(72));
+    placeStable(boostType, ang);
+    doNewSend(["33", [ang]]);
+}
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+}
+const healer = repeater(kHeal, () => {heal();console.log("heal")}, 50);
+const boostPlacer = repeater(kTrap, () => {place(boostType)}, 0);
+const spikePlacer = repeater(kSpike, () => {place(spikeType)}, 0);
+const millPlacer = repeater(kWindmill, () => {
+    let angle = Math.atan2(mouseY - height / 2, mouseX - width / 2);
+    if(nearestEnemy){
+        place(millType, angle);
+    }else{
+        angle = Math.round(angle / toRad(45)) * toRad(45);
+        placeStable(millType, angle);
+        placeStable(millType, toRad(90) + angle);
+        placeStable(millType, toRad(-90) + angle);
+    }
+}, 0);
+const turretPlacer = repeater(kTurret, () => {place(turretType)}, 0);
+const boostSpiker = repeater(kBS, boostSpike, 50);
+const boostMiller = repeater(kBM, boostMill, 250);
+
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    healer.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    boostSpiker.start(e.keyCode);
+    boostMiller.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+    if(e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(mode == "hat"){
+            clearInterval(hatID);
+            mode = "";
+            chat("Mode : None");
+        }else if(mode == "counter"){
+            mode = "";
+            chat("Mode : None");
+        }else{
+            mode = "counter";
+            chat("Mode : Counter Insta");
+        }
+    }
+    if(e.keyCode == 89 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(mode == "hat"){
+            clearInterval(hatID);
+            mode = "";
+            chat("Mode : None");
+        }else if(mode == "insta"){
+            mode = "";
+            chat("Mode : None");
+        }else{
+            mode = "insta";
+            chat("Mode : Auto Insta");
+        }
+    }
+    if(e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(mode == "hat"){
+            clearInterval(hatID);
+            mode = "";
+            chat("Mode : None");
+        }else{
+            doHatCycle();
+            hatID = setInterval(function(){
+                doHatCycle();
+            },2500);
+            mode = "hat";
+            chat("Mode : Hat Cycler");
+        }
+    }
+    if(e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(mode == "hat"){
+            clearInterval(hatID);
+        }
+        mode = "";
+        chat("Mode : None");
+    }
+    if(e.key == 1 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        weapon = primary;
+    }else if(e.key == 2 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        weapon = secondary;
+    }
+    if (e.keyCode == uneqiup && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+            resetHat();
+        }else{
+            storeEquip(0);
+        }
+    }else if (e.keyCode == TankGearKey && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+            oHat = ID_TankGear;
+            snHat = ID_TankGear;
+            ssHat = ID_TankGear;
+        }else{
+            doNewSend(["13c", [0, tHat, 0]]);
+            doNewSend(["13c", [0, tAcc, 1]]);
+        }
+    } else if (e.keyCode == SoldierHelmetKey && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+            dHat = ID_SoldierHelmet;
+            ssHat = ID_SoldierHelmet;
+            snHat = ID_SoldierHelmet;
+        }else{
+            doNewSend(["13c", [0, dHat, 0]]);
+            doNewSend(["13c", [0, dAcc, 1]]);
+        }
+    } else if (e.keyCode == BullHelmetKey && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+            oHat = ID_BullHelmet;
+            snHat = ID_BullHelmet;
+            ssHat = ID_BullHelmet;
+        }else{
+            doNewSend(["13c", [0, oHat, 0]]);
+            doNewSend(["13c", [0, oAcc, 1]]);
+        }
+    } else if (e.keyCode == BoosterHatKey && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+            ssHat = ID_WinterCap;
+            snHat = ID_BoosterHat;
+            srHat = ID_FlipperHat
+        }else{
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, ssHat, 0]]);
+                doNewSend(["13c", [0, ssAcc, 1]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, srHat, 0]]);
+                doNewSend(["13c", [0, srAcc, 1]]);
+            } else {
+                doNewSend(["13c", [0, snHat, 0]]);
+                doNewSend(["13c", [0, snAcc, 1]]);
+            }
+        }
+    }else if (e.keyCode == EMPGearKey && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+            oHat = ID_EMPHelmet;
+            dHat = ID_EMPHelmet;
+            snHat = ID_EMPHelmet;
+            srHat = ID_EMPHelmet;
+            ssHat = ID_EMPHelmet;
+        }else{
+            doNewSend(["13c", [0, eHat, 0]]);
+            doNewSend(["13c", [0, eAcc, 1]]);
+        }
+    } else if (e.keyCode == TurretKey && document.activeElement.id.toLowerCase() !== 'chatbox'){
+        if(ahat){
+        oHat = ID_TurretGear;
+        dHat = ID_TurretGear;
+        ssHat = ID_TurretGear;
+        srHat = ID_TurretGear;
+        snHat = ID_TurretGear;
+        }else{
+            doNewSend(["13c", [0, otHat, 0]]);
+            doNewSend(["13c", [0, otAcc, 1]]);
+        }
+    }
+    if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox' && insta && !inInsta) {
+        inInsta = true;
+        if(iAim){
+            autoaim = true;
+        }
+        if(icBool){
+            chat(iChat);
+        }
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["7", [true]]);
+        if(iReverse){
+            weapon = secondary;
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["13c", [0, iHat2, 0]]);
+            doNewSend(["13c", [0, iAcc2, 1]]);
+            setTimeout( () => {
+                //turret hat
+                doNewSend(["13c", [0, iHat1, 0]]);
+                doNewSend(["13c", [0, iAcc1, 1]]);
+                weapon = primary;
+                doNewSend(["5", [primary, true]]);
+            }, instaSpeedR / 2);
+        }else{
+            weapon = primary;
+            doNewSend(["5", [primary, true]]);
+            if(!iSwitch){
+                if(iAim){
+                    placeStable(spikeType, nearestEnemyAngle + toRad(45));
+                    placeStable(spikeType, nearestEnemyAngle - toRad(45));
+                }else{
+                    placeStable(spikeType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(45));
+                    placeStable(spikeType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(45));
+                }
+            }
+            doNewSend(["13c", [0, iHat1, 0]]);
+            doNewSend(["13c", [0, iAcc1, 1]]);
+            setTimeout( () => {
+                //turret hat
+                doNewSend(["13c", [0, iHat2, 0]]);
+                doNewSend(["13c", [0, iAcc2, 1]]);
+                if(iSwitch){
+                    weapon = secondary;
+                    doNewSend(["5", [secondary, true]]);
+                }
+            }, instaSpeed / 2);
+        }
+        setTimeout( () => {
+            weapon = primary;
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [true]]);
+            doNewSend(["13c", [0, iHat3, 0]]);
+            doNewSend(["13c", [0, iAcc3, 1]]);
+            if(iAim){
+                autoaim = false;
+            }
+        }, instaSpeed);
+        setTimeout( () => {
+            inInsta = false;
+        }, instaSpeed + 100)
+    }
+    if(e.key == "-" && document.activeElement.id.toLowerCase() !== 'chatbox' && !inInsta){
+        if(secondary == 15){
+            reload = 1650;
+        }else if(secondary == 13){
+            reload = 400;
+        }else if(secondary == 12){
+            reload = 850;
+        }else if(secondary == 9){
+            reload = 750;
+        }else if(irBool){
+            chat("</E\\>Couldn't Reload</E\\>");
+        }
+    }
+    //upgrade insta
+    if(e.key == "p" && document.activeElement.id.toLowerCase() !== 'chatbox' && !inInsta){
+        inInsta = true;
+        if(primary == 0){
+            //age 1 super insta
+            autoaim = true;
+            weapon = 0;
+            doNewSend(["5", [0, true]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["7", [true]]);
+            setTimeout(function(){
+                doNewSend(["6", [5]]);
+                doNewSend(["6", [17]]);
+                doNewSend(["6", [31]]);
+                doNewSend(["6", [23]]);
+                doNewSend(["6", [9]]);
+                doNewSend(["6",[33]]);
+                weapon = 5;
+            }, 80);
+            setTimeout(function(){
+                doNewSend(["6", [4]]);
+                weapon = 4;
+            }, 160);
+            setTimeout(function(){
+                weapon = 9;
+                doNewSend(["5", [9, true]]);
+                doNewSend(["13c", [0, 53, 0]]);
+            }, 270);
+            setTimeout(function(){
+                doNewSend(["6", [15]]);
+                weapon = 15;
+            }, 370);
+            setTimeout(function(){
+                autoaim = false;
+                inInsta = false;
+                doNewSend(["7", [true]]);
+                weapon = 4;
+                doNewSend(["5", [4, true]]);
+            }, 500)
+        }else if(primary != 4 && primary != 3 && secondary == 9){
+            //bow insta
+            autoaim = true;
+            weapon = 9;
+            doNewSend(["5", [9, true]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["7", [true]]);
+
+            setTimeout( () => {
+                doNewSend(["6", [12]]);
+                weapon = 12;
+            }, 100);
+
+            setTimeout( () => {
+                doNewSend(["6", [15]]);
+                weapon = 15;
+            }, 200);
+
+            setTimeout( () => {
+                doNewSend(["7", [true]]);
+                weapon = primary;
+                doNewSend(["5", [primary, true]]);
+                autoaim = false;
+                inInsta = false;
+            }, 400);
+        }else if((primary == 3 || primary == 5) && secondary != 9){
+            //primary + katana musket insta
+            autoaim = true;
+            weapon = primary;
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["7", [true]]);
+            setTimeout(function(){
+                doNewSend(["6", [4]]);
+                weapon = 4;
+            }, 110);
+            setTimeout(function(){
+                doNewSend(["6", [15]]);
+                weapon = 15;
+                doNewSend(["5", [15, true]]);
+                doNewSend(["13c", [0, 53, 0]]);
+            }, 230);
+            setTimeout(function(){
+                autoaim = false;
+                inInsta = false;
+                doNewSend(["7", [true]]);
+                weapon = primary;
+                doNewSend(["5", [4, true]]);
+            }, 400)
+        }else{
+            inInsta = false;
+        }
+    }
+})
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+    for (let i=33;i<39;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString())) && i != 36){
+            turretType = i - 16;
+        }
+    }
+}
+
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    boostSpiker.stop(e.keyCode);
+    boostMiller.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer.stop(e.keyCode);
+    if(e.keyCode == kBS || e.keyCode == kBM){
+        for(let i = 0;i < 5;i++){
+            setTimeout(function(){
+                doNewSend(["33", [null]]);
+            }, i * 20);
+        }
+    }
+})
+
+var accessories = [{
+    id: 12,
+    name: "Snowball",
+    price: 0e3,
+    scale: 105,
+    xOff: 18,
+    desc: "no effect"
+}, {
+    id: 9,
+    name: "Tree Cape",
+    price: 0e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 10,
+    name: "Stone Cape",
+    price: 1e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 3,
+    name: "Cookie Cape",
+    price: 500,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 8,
+    name: "Cow Cape",
+    price: 0e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 11,
+    name: "Monkey Tail",
+    price: 0e3,
+    scale: 97,
+    xOff: 25,
+    desc: "Super speed but reduced damage",
+    spdMult: 1.35,
+    dmgMultO: .2
+}, {
+    id: 17,
+    name: "Apple Basket",
+    price: 0e3,
+    scale: 80,
+    xOff: 12,
+    desc: "slowly regenerates health over time",
+    healthRegen: 1
+}, {
+    id: 6,
+    name: "Winter Cape",
+    price: 3e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 4,
+    name: "Skull Cape",
+    price: 4e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 5,
+    name: "Dash Cape",
+    price: 5e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 2,
+    name: "Dragon Cape",
+    price: 6e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 1,
+    name: "Super Cape",
+    price: 8e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 7,
+    name: "Troll Cape",
+    price: 8e3,
+    scale: 90,
+    desc: "no effect"
+}, {
+    id: 14,
+    name: "Thorns",
+    price: 1e4,
+    scale: 115,
+    xOff: 20,
+    desc: "no effect"
+}, {
+    id: 15,
+    name: "Blockades",
+    price: 1e4,
+    scale: 95,
+    xOff: 15,
+    desc: "no effect"
+}, {
+    id: 20,
+    name: "Devils Tail",
+    price: 1e4,
+    scale: 95,
+    xOff: 20,
+    desc: "no effect"
+}, {
+    id: 16,
+    name: "Sawblade",
+    price: 12e3,
+    scale: 90,
+    spin: !0,
+    xOff: 0,
+    desc: "deal damage to players that damage you",
+    dmg: .15
+}, {
+    id: 13,
+    name: "Angel Wings",
+    price: 15e3,
+    scale: 138,
+    xOff: 22,
+    desc: "slowly regenerates health over time",
+    healthRegen: 3
+}, {
+    id: 19,
+    name: "Shadow Wings",
+    price: 0e3,
+    scale: 138,
+    xOff: 22,
+    desc: "increased movement speed",
+    spdMult: 1.1
+}, {
+    id: 18,
+    name: "Blood Wings",
+    price: 2e4,
+    scale: 178,
+    xOff: 26,
+    desc: "restores health when you deal damage",
+    healD: .2
+}, {
+    id: 21,
+    name: "Corrupt X Wings",
+    price: 2e4,
+    scale: 178,
+    xOff: 26,
+    desc: "deal damage to players that damage you",
+    dmg: .25
+}]
+
+
+var hats = hats = [{
+    id: 45,
+    name: "Shame!",
+    dontSell: !0,
+    price: 0,
+    scale: 120,
+    desc: "hacks are for losers"
+}, {
+    id: 51,
+    name: "Moo Cap",
+    price: 0,
+    scale: 120,
+    desc: "coolest mooer around"
+}, {
+    id: 50,
+    name: "Apple Cap",
+    price: 0,
+    scale: 120,
+    desc: "apple farms remembers"
+}, {
+    id: 28,
+    name: "Moo Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 29,
+    name: "Pig Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 30,
+    name: "Fluff Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 36,
+    name: "Pandou Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 37,
+    name: "Bear Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 38,
+    name: "Monkey Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 44,
+    name: "Polar Head",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 35,
+    name: "Fez Hat",
+    price: 0,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 42,
+    name: "Enigma Hat",
+    price: 0,
+    scale: 120,
+    desc: "join the enigma army"
+}, {
+    id: 43,
+    name: "Blitz Hat",
+    price: 0,
+    scale: 120,
+    desc: "hey everybody i'm blitz"
+}, {
+    id: 49,
+    name: "Bob XIII Hat",
+    price: 0,
+    scale: 120,
+    desc: "like and subscribe"
+}, {
+    id: 8,
+    name: "Bummle Hat",
+    price: 100,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 2,
+    name: "Straw Hat",
+    price: 500,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 15,
+    name: "Winter Cap",
+    price: 200,
+    scale: 120,
+    desc: "allows you to move at normal speed in snow",
+    coldM: 1
+}, {
+    id: 5,
+    name: "Cowboy Hat",
+    price: 1e3,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 4,
+    name: "Ranger Hat",
+    price: 2e3,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 18,
+    name: "Explorer Hat",
+    price: 2e3,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 31,
+    name: "Flipper Hat",
+    price: 500,
+    scale: 120,
+    desc: "have more control while in water",
+    watrImm: !0
+}, {
+    id: 1,
+    name: "Marksman Cap",
+    price: 3e3,
+    scale: 120,
+    desc: "increases arrow speed and range",
+    aMlt: 1.3
+}, {
+    id: 10,
+    name: "Bush Gear",
+    price: 3e3,
+    scale: 160,
+    desc: "allows you to disguise yourself as a bush"
+}, {
+    id: 48,
+    name: "Halo",
+    price: 3e3,
+    scale: 120,
+    desc: "no effect"
+}, {
+    id: 6,
+    name: "Soldier Helmet",
+    price: 0e3,
+    scale: 120,
+    desc: "reduces damage taken but slows movement",
+    spdMult: .94,
+    dmgMult: .75
+}, {
+    id: 23,
+    name: "Anti Venom Gear",
+    price: 4e3,
+    scale: 120,
+    desc: "makes you immune to poison",
+    poisonRes: 1
+}, {
+    id: 13,
+    name: "Medic Gear",
+    price: 5e3,
+    scale: 110,
+    desc: "slowly regenerates health over time",
+    healthRegen: 3
+}, {
+    id: 9,
+    name: "Miners Helmet",
+    price: 5e3,
+    scale: 120,
+    desc: "earn 1 extra gold per resource",
+    extraGold: 1
+}, {
+    id: 32,
+    name: "Musketeer Hat",
+    price: 5e3,
+    scale: 120,
+    desc: "reduces cost of projectiles",
+    projCost: .5
+}, {
+    id: 7,
+    name: "Bull Helmet",
+    price: 0e3,
+    scale: 120,
+    desc: "increases damage done but drains health",
+    healthRegen: -5,
+    dmgMultO: 1.5,
+    spdMult: .96
+}, {
+    id: 22,
+    name: "Emp Helmet",
+    price: 0e3,
+    scale: 120,
+    desc: "turrets won't attack but you move slower",
+    antiTurret: 1,
+    spdMult: .7
+}, {
+    id: 12,
+    name: "Booster Hat",
+    price: 0e3,
+    scale: 120,
+    desc: "increases your movement speed",
+    spdMult: 1.16
+}, {
+    id: 26,
+    name: "Barbarian Armor",
+    price: 8e3,
+    scale: 120,
+    desc: "knocks back enemies that attack you",
+    dmgK: .6
+}, {
+    id: 21,
+    name: "Plague Mask",
+    price: 1e4,
+    scale: 120,
+    desc: "melee attacks deal poison damage",
+    poisonDmg: 5,
+    poisonTime: 6
+}, {
+    id: 46,
+    name: "Bull Mask",
+    price: 1e4,
+    scale: 120,
+    desc: "bulls won't target you unless you attack them",
+    bullRepel: 1
+}, {
+    id: 14,
+    name: "Windmill Hat",
+    topSprite: !0,
+    price: 1e4,
+    scale: 120,
+    desc: "generates points while worn",
+    pps: 1.5
+}, {
+    id: 11,
+    name: "Spike Gear",
+    topSprite: !0,
+    price: 1e4,
+    scale: 120,
+    desc: "deal damage to players that damage you",
+    dmg: .45
+}, {
+    id: 53,
+    name: "Turret Gear",
+    topSprite: !0,
+    price: 0e4,
+    scale: 120,
+    desc: "you become a walking turret",
+    turret: {
+        proj: 1,
+        range: 700,
+        rate: 2500
+    },
+    spdMult: .5
+}, {
+    id: 20,
+    name: "Samurai Armor",
+    price: 12e3,
+    scale: 120,
+    desc: "increased attack speed and fire rate",
+    atkSpd: .78
+}, {
+    id: 16,
+    name: "Bushido Armor",
+    price: 12e3,
+    scale: 120,
+    desc: "restores health when you deal damage",
+    healD: .4
+}, {
+    id: 27,
+    name: "Scavenger Gear",
+    price: 15e3,
+    scale: 120,
+    desc: "earn double points for each kill",
+    kScrM: 2
+}, {
+    id: 40,
+    name: "Tank Gear",
+    price: 0e3,
+    scale: 120,
+    desc: "increased damage to buildings but slower movement",
+    spdMult: .3,
+    bDmg: 3.3
+}, {
+    id: 52,
+    name: "Thief Gear",
+    price: 15e3,
+    scale: 120,
+    desc: "steal half of a players gold when you kill them",
+    goldSteal: .5
+}]
+
+
+var objects = [{
+    id: 0,
+    name: "food",
+    layer: 0
+}, {
+    id: 1,
+    name: "walls",
+    place: !0,
+    limit: 30,
+    layer: 0
+}, {
+    id: 2,
+    name: "spikes",
+    place: !0,
+    limit: 15,
+    layer: 0
+}, {
+    id: 3,
+    name: "mill",
+    place: !0,
+    limit: 7,
+    layer: 1
+}, {
+    id: 4,
+    name: "mine",
+    place: !0,
+    limit: 1,
+    layer: 0
+}, {
+    id: 5,
+    name: "trap",
+    place: !0,
+    limit: 6,
+    layer: -1
+}, {
+    id: 6,
+    name: "booster",
+    place: !0,
+    limit: 12,
+    layer: -1
+}, {
+    id: 7,
+    name: "turret",
+    place: !0,
+    limit: 2,
+    layer: 1
+}, {
+    id: 8,
+    name: "watchtower",
+    place: !0,
+    limit: 12,
+    layer: 1
+}, {
+    id: 9,
+    name: "buff",
+    place: !0,
+    limit: 4,
+    layer: -1
+}, {
+    id: 10,
+    name: "spawn",
+    place: !0,
+    limit: 1,
+    layer: -1
+}, {
+    id: 11,
+    name: "sapling",
+    place: !0,
+    limit: 2,
+    layer: 0
+}, {
+    id: 12,
+    name: "blocker",
+    place: !0,
+    limit: 3,
+    layer: -1
+}, {
+    id: 13,
+    name: "teleporter",
+    place: !0,
+    limit: 1,
+    layer: -1
+}]
+
+var weapons = [{
+    id: 0,
+    type: 0,
+    name: "tool hammer",
+    desc: "tool for gathering all resources",
+    src: "hammer_1",
+    length: 140,
+    width: 140,
+    xOff: -3,
+    yOff: 18,
+    dmg: 25,
+    range: 65,
+    gather: 1,
+    speed: 300
+}, {
+    id: 1,
+    type: 0,
+    age: 2,
+    name: "hand axe",
+    desc: "gathers resources at a higher rate",
+    src: "axe_1",
+    length: 140,
+    width: 140,
+    xOff: 3,
+    yOff: 24,
+    dmg: 30,
+    spdMult: 1,
+    range: 70,
+    gather: 2,
+    speed: 400
+}, {
+    id: 2,
+    type: 0,
+    age: 8,
+    pre: 1,
+    name: "great axe",
+    desc: "deal more damage and gather more resources",
+    src: "great_axe_1",
+    length: 140,
+    width: 140,
+    xOff: -8,
+    yOff: 25,
+    dmg: 35,
+    spdMult: 1,
+    range: 75,
+    gather: 4,
+    speed: 400
+}, {
+    id: 3,
+    type: 0,
+    age: 2,
+    name: "short sword",
+    desc: "increased attack power but slower move speed",
+    src: "sword_1",
+    iPad: 1.3,
+    length: 130,
+    width: 210,
+    xOff: -8,
+    yOff: 46,
+    dmg: 35,
+    spdMult: .85,
+    range: 110,
+    gather: 1,
+    speed: 300
+}, {
+    id: 4,
+    type: 0,
+    age: 8,
+    pre: 3,
+    name: "katana",
+    desc: "greater range and damage",
+    src: "samurai_1",
+    iPad: 1.3,
+    length: 130,
+    width: 210,
+    xOff: -8,
+    yOff: 59,
+    dmg: 90,
+    spdMult: .8,
+    range: 118,
+    gather: 1,
+    speed: 300
+}, {
+    id: 5,
+    type: 0,
+    age: 2,
+    name: "polearm",
+    desc: "long range melee weapon",
+    src: "spear_1",
+    iPad: 1.3,
+    length: 130,
+    width: 210,
+    xOff: -8,
+    yOff: 53,
+    dmg: 90,
+    knock: .2,
+    spdMult: .82,
+    range: 142,
+    gather: 1,
+    speed: 700
+}, {
+    id: 6,
+    type: 0,
+    age: 2,
+    name: "bat",
+    desc: "fast long range melee weapon",
+    src: "bat_1",
+    iPad: 1.3,
+    length: 110,
+    width: 180,
+    xOff: -8,
+    yOff: 53,
+    dmg: 20,
+    knock: .7,
+    range: 110,
+    gather: 1,
+    speed: 300
+}, {
+    id: 7,
+    type: 0,
+    age: 2,
+    name: "daggers",
+    desc: "really fast short range weapon",
+    src: "dagger_1",
+    iPad: .8,
+    length: 110,
+    width: 110,
+    xOff: 18,
+    yOff: 0,
+    dmg: 20,
+    knock: .1,
+    range: 65,
+    gather: 1,
+    hitSlow: .1,
+    spdMult: 1.13,
+    speed: 100
+}, {
+    id: 8,
+    type: 0,
+    age: 2,
+    name: "stick",
+    desc: "great for gathering but very weak",
+    src: "stick_1",
+    length: 140,
+    width: 140,
+    xOff: 3,
+    yOff: 24,
+    dmg: 1,
+    spdMult: 1,
+    range: 70,
+    gather: 7,
+    speed: 400
+}, {
+    id: 9,
+    type: 1,
+    age: 6,
+    name: "hunting bow",
+    desc: "bow used for ranged combat and hunting",
+    src: "bow_1",
+    req: ["wood", 4],
+    length: 120,
+    width: 120,
+    xOff: -6,
+    yOff: 0,
+    projectile: 0,
+    spdMult: .75,
+    speed: 600
+}, {
+    id: 10,
+    type: 1,
+    age: 6,
+    name: "great hammer",
+    desc: "hammer used for destroying structures",
+    src: "great_hammer_1",
+    length: 140,
+    width: 140,
+    xOff: -9,
+    yOff: 25,
+    dmg: 50,
+    spdMult: .88,
+    range: 75,
+    sDmg: 7.5,
+    gather: 1,
+    speed: 400
+}, {
+    id: 11,
+    type: 1,
+    age: 6,
+    name: "wooden shield",
+    desc: "blocks projectiles and reduces melee damage",
+    src: "shield_1",
+    length: 120,
+    width: 120,
+    shield: .2,
+    xOff: 6,
+    yOff: 0,
+    spdMult: .7
+}, {
+    id: 12,
+    type: 1,
+    age: 8,
+    pre: 9,
+    name: "crossbow",
+    desc: "deals more damage and has greater range",
+    src: "crossbow_1",
+    req: ["wood", 5],
+    aboveHand: !0,
+    armS: .75,
+    length: 120,
+    width: 120,
+    xOff: -4,
+    yOff: 0,
+    projectile: 2,
+    spdMult: .7,
+    speed: 700
+}, {
+    id: 13,
+    type: 1,
+    age: 9,
+    pre: 12,
+    name: "repeater crossbow",
+    desc: "high firerate crossbow with reduced damage",
+    src: "crossbow_2",
+    req: ["wood", 10],
+    aboveHand: !0,
+    armS: .75,
+    length: 120,
+    width: 120,
+    xOff: -4,
+    yOff: 0,
+    projectile: 3,
+    spdMult: .7,
+    speed: 300
+}, {
+    id: 14,
+    type: 1,
+    age: 6,
+    name: "mc grabby",
+    desc: "steals resources from enemies",
+    src: "grab_1",
+    length: 130,
+    width: 210,
+    xOff: -8,
+    yOff: 53,
+    dmg: 0,
+    steal: 250,
+    knock: .2,
+    spdMult: 1.05,
+    range: 125,
+    gather: 0,
+    speed: 700
+}, {
+    id: 15,
+    type: 1,
+    age: 9,
+    pre: 12,
+    name: "musket",
+    desc: "slow firerate but high damage and range",
+    src: "musket_1",
+    req: ["stone", 10],
+    aboveHand: !0,
+    rec: .35,
+    armS: .6,
+    hndS: .3,
+    hndD: 1.6,
+    length: 205,
+    width: 205,
+    xOff: 25,
+    yOff: 0,
+    projectile: 5,
+    hideProjectile: !0,
+    spdMult: .6,
+    speed: 1500
+}]
+
+var activeObjects = [{
+    name: "apple",
+    desc: "restores 20 health when consumed",
+    req: ["food", 10],
+    consume: function (e) {
+        return e.changeHealth(20, e)
+    },
+    scale: 22,
+    holdOffset: 15
+}, {
+    age: 3,
+    name: "cookie",
+    desc: "restores 40 health when consumed",
+    req: ["food", 15],
+    consume: function (e) {
+        return e.changeHealth(40, e)
+    },
+    scale: 27,
+    holdOffset: 15
+}, {
+    age: 7,
+    name: "pizza",
+    desc: "restores 30 health and another 50 over 5 seconds",
+    req: ["food", 30],
+    consume: function (e) {
+        return !!(e.changeHealth(30, e) || e.health < 100) && (e.dmgOverTime.dmg = -10, e.dmgOverTime.doer = e, e.dmgOverTime.time = 5, !0)
+    },
+    scale: 27,
+    holdOffset: 15
+}, {
+    name: "wood wall",
+    desc: "provides protection for your village",
+    req: ["wood", 10],
+    projDmg: !0,
+    health: 380,
+    scale: 50,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 3,
+    name: "stone wall",
+    desc: "provides improved protection for your village",
+    req: ["stone", 25],
+    health: 900,
+    scale: 50,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 7,
+    pre: 1,
+    name: "castle wall",
+    desc: "provides powerful protection for your village",
+    req: ["stone", 35],
+    health: 1500,
+    scale: 52,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    name: "spikes",
+    desc: "damages enemies when they touch them",
+    req: ["wood", 20, "stone", 5],
+    health: 400,
+    dmg: 20,
+    scale: 49,
+    spritePadding: -23,
+    holdOffset: 8,
+    placeOffset: -5
+}, {
+    age: 5,
+    name: "greater spikes",
+    desc: "damages enemies when they touch them",
+    req: ["wood", 30, "stone", 10],
+    health: 500,
+    dmg: 35,
+    scale: 52,
+    spritePadding: -23,
+    holdOffset: 8,
+    placeOffset: -5
+}, {
+    age: 9,
+    pre: 1,
+    name: "poison spikes",
+    desc: "poisons enemies when they touch them",
+    req: ["wood", 35, "stone", 15],
+    health: 600,
+    dmg: 30,
+    pDmg: 5,
+    scale: 52,
+    spritePadding: -23,
+    holdOffset: 8,
+    placeOffset: -5
+}, {
+    age: 9,
+    pre: 2,
+    name: "spinning spikes",
+    desc: "damages enemies when they touch them",
+    req: ["wood", 30, "stone", 20],
+    health: 500,
+    dmg: 45,
+    turnSpeed: .003,
+    scale: 52,
+    spritePadding: -23,
+    holdOffset: 8,
+    placeOffset: -5
+}, {
+    name: "windmill",
+    desc: "generates gold over time",
+    req: ["wood", 50, "stone", 10],
+    health: 400,
+    pps: 1,
+    turnSpeed: .0016,
+    spritePadding: 25,
+    iconLineMult: 12,
+    scale: 45,
+    holdOffset: 20,
+    placeOffset: 5
+}, {
+    age: 5,
+    pre: 1,
+    name: "faster windmill",
+    desc: "generates more gold over time",
+    req: ["wood", 60, "stone", 20],
+    health: 500,
+    pps: 1.5,
+    turnSpeed: .0025,
+    spritePadding: 25,
+    iconLineMult: 12,
+    scale: 47,
+    holdOffset: 20,
+    placeOffset: 5
+}, {
+    age: 8,
+    pre: 1,
+    name: "power mill",
+    desc: "generates more gold over time",
+    req: ["wood", 100, "stone", 50],
+    health: 800,
+    pps: 2,
+    turnSpeed: .005,
+    spritePadding: 25,
+    iconLineMult: 12,
+    scale: 47,
+    holdOffset: 20,
+    placeOffset: 5
+}, {
+    age: 5,
+    type: 2,
+    name: "mine",
+    desc: "allows you to mine stone",
+    req: ["wood", 20, "stone", 100],
+    iconLineMult: 12,
+    scale: 65,
+    holdOffset: 20,
+    placeOffset: 0
+}, {
+    age: 5,
+    type: 0,
+    name: "sapling",
+    desc: "allows you to farm wood",
+    req: ["wood", 150],
+    iconLineMult: 12,
+    colDiv: .5,
+    scale: 110,
+    holdOffset: 50,
+    placeOffset: -15
+}, {
+    age: 4,
+    name: "pit trap",
+    desc: "pit that traps enemies if they walk over it",
+    req: ["wood", 30, "stone", 30],
+    trap: !0,
+    ignoreCollision: !0,
+    hideFromEnemy: !0,
+    health: 500,
+    colDiv: .2,
+    scale: 50,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 4,
+    name: "boost pad",
+    desc: "provides boost when stepped on",
+    req: ["stone", 20, "wood", 5],
+    ignoreCollision: !0,
+    boostSpeed: 1.5,
+    health: 150,
+    colDiv: .7,
+    scale: 45,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 7,
+    doUpdate: !0,
+    name: "turret",
+    desc: "defensive structure that shoots at enemies",
+    req: ["wood", 200, "stone", 150],
+    health: 800,
+    projectile: 1,
+    shootRange: 700,
+    shootRate: 2200,
+    scale: 43,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 7,
+    name: "platform",
+    desc: "platform to shoot over walls and cross over water",
+    req: ["wood", 20],
+    ignoreCollision: !0,
+    zIndex: 1,
+    health: 300,
+    scale: 43,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 7,
+    name: "healing pad",
+    desc: "standing on it will slowly heal you",
+    req: ["wood", 30, "food", 10],
+    ignoreCollision: !0,
+    healCol: 15,
+    health: 400,
+    colDiv: .7,
+    scale: 45,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 9,
+    name: "spawn pad",
+    desc: "you will spawn here when you die but it will dissapear",
+    req: ["wood", 100, "stone", 100],
+    health: 400,
+    ignoreCollision: !0,
+    spawnPoint: !0,
+    scale: 45,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 7,
+    name: "blocker",
+    desc: "blocks building in radius",
+    req: ["wood", 30, "stone", 25],
+    ignoreCollision: !0,
+    blocker: 300,
+    health: 400,
+    colDiv: .7,
+    scale: 45,
+    holdOffset: 20,
+    placeOffset: -5
+}, {
+    age: 7,
+    name: "teleporter",
+    desc: "teleports you to a random point on the map",
+    req: ["wood", 60, "stone", 60],
+    ignoreCollision: !0,
+    teleport: !0,
+    health: 200,
+    colDiv: .7,
+    scale: 45,
+    holdOffset: 20,
+    placeOffset: -5
+}];
+function placeStable(id, dir = Math.atan2(mouseY - height / 2, mouseX - width / 2)){
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, dir]]);
+    doNewSend(["c", [0, dir]]);
+    doNewSend(["5", [weapon, true]]);
+}
+function doHatCycle(){
+    doNewSend(["13c", [0, 11, 0]]);
+    doNewSend(["13c", [0, 21, 1]]);
+    setTimeout(function(){
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 18, 1]]);
+    },300)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 55, 0]]);
+        doNewSend(["13c", [0, 13, 1]]);
+    },600)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 40, 0]]);
+        doNewSend(["13c", [0, 19, 1]]);
+    },900)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 21, 1]]);
+    },1200)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 26, 0]]);
+        doNewSend(["13c", [0, 13, 1]]);
+    },1500)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 12, 0]]);
+        doNewSend(["13c", [0, 19, 1]]);
+    },1800)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 21, 0]]);
+        doNewSend(["13c", [0, 18, 1]]);
+    },2100)
+    setTimeout(function(){
+        doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["13c", [0, 21, 1]]);
+    },2500)
+}
