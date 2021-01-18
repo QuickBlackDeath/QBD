@@ -1,0 +1,1649 @@
+// ==UserScript==
+// @name         👑 KING MOD 👑
+// @namespace    BY KINGOFKINGS
+// @version      ~~PRIVATE~~
+// @description  👑KINGMOD👑 BEST MOD IN THE WORLD - BEST INSTA, MENU, HEAL AND OTHER.
+// @author       👑KINGOFKINGS👑
+// @match        http://*moomoo.io/*
+// @match        http://*dev.moomoo.io/*
+// @match        http://*sandbox.moomoo.io/*
+// @grant        none
+// @require https://ksw2-center.glitch.me/void_moomoo2
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @downloadURL none
+// ==/UserScript==
+
+document.getElementById('enterGame').innerHTML = '👑KING👑';
+document.getElementById('loadingText').innerHTML = '!. . . . . $LOADING 👑KING👑MOD👑~$ . . . . .!';
+document.getElementById('nameInput').placeholder = "👑KING👑MOD👑";
+document.getElementById('chatBox').placeholder = "👑KING👑MOD👑";
+document.getElementById("pingDisplay").style.color = "#0404B4";
+document.getElementById('diedText').innerHTML = '!!~~👑GAME|OVER👑~~!!';
+document.getElementById('diedText').style.color = "#0404B4";
+
+document.getElementById("storeHolder").style = "height: 1500px; width: 450px;"
+
+document.getElementById('adCard').remove();
+document.getElementById('errorNotification').remove();
+
+
+document.getElementById("leaderboard").style.color = "#0404B4";
+document.getElementById("gameName").style.color = "#0404B4";
+document.getElementById("setupCard").style.color = "#0404B4";
+document.getElementById("woodDisplay").style.color = "#0404B4";
+document.getElementById("stoneDisplay").style.color = "#0404B4";
+document.getElementById("killCounter").style.color = "#0404B4";
+document.getElementById("foodDisplay").style.color = "#0404B4";
+document.getElementById("ageText").style.color = "#0404B4";
+document.getElementById("allianceButton").style.color = "#0404B4";
+document.getElementById("chatButton").style.color = "#0404B4";
+document.getElementById("storeButton").style.color = "#0404B4";
+    $("#mapDisplay").css({background: `url('https://i.pinimg.com/564x/36/7f/03/367f031b0579a64cdf47a1c7928ff748.jpg')`});
+$("#mapDisplay").css({
+  'border-radious':'350px',
+  'border':'3px solid #0404B4'
+});
+
+
+setTimeout( () => {
+setTimeout( () => {
+$('#gameName').append('👑')
+setTimeout( () => {
+$('#gameName').append('K')
+setTimeout( () => {
+$('#gameName').append('I')
+setTimeout( () => {
+$('#gameName').append('N')
+setTimeout( () => {
+$('#gameName').append('G')
+setTimeout( () => {
+$('#gameName').append('👑')
+setTimeout( () => {
+$('#gameName').append('M')
+setTimeout( () => {
+$('#gameName').append('O')
+setTimeout( () => {
+$('#gameName').append('D')
+setTimeout( () => {
+$('#gameName').append('👑')
+setTimeout( () => {
+$('#gameName').append('~')
+setTimeout( () => {
+$('#gameName').append('!')
+setTimeout( () => {
+$('#gameName').append('!')
+setTimeout( () => {
+    setInterval(() => {
+    setTimeout(() => {
+        document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+        setTimeout(() => {
+            document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+            setTimeout(() => {
+                document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                setTimeout(() => {
+                    document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                    setTimeout(() => {
+                        document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                        setTimeout(() => {
+                            document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                            setTimeout(() => {
+                                document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                setTimeout(() => {
+                                    document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                    setTimeout(() => {
+                                        document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                        setTimeout(() => {
+                                            document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                            setTimeout(() => {
+                                                document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                                setTimeout(() => {
+                                                    document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                                    setTimeout(() => {
+                                                        document.getElementById("gameName").innerHTML = "👑KING👑MOD👑~!!"
+                                                    }, 100);
+                                                }, 100);
+                                            }, 100);
+                                        }, 100);
+                                    }, 100);
+                                }, 100);
+                            }, 100);
+                        }, 100);
+                    }, 100);
+                }, 100);
+            }, 100);
+        }, 100);
+    }, 100);
+}, 2000);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 300);
+}, 2000);
+
+setInterval(() => {
+    setTimeout(() => {
+        document.getElementById('chatBox').placeholder = "👑KING👑MOD👑~!!.";
+        setTimeout(() => {
+            document.getElementById('chatBox').placeholder = "👑KING👑MOD👑~!!..";
+            setTimeout(() => {
+                document.getElementById('chatBox').placeholder = "👑KING👑MOD👑~!!...";
+                setTimeout(() => {
+                    document.getElementById('chatBox').placeholder = "👑KING👑MOD👑~!!....";
+                }, 100);
+            }, 100);
+        }, 100);
+    }, 100);
+}, 500)
+
+
+
+
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+if (CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#cdc451") this.fillStyle = `hsl(180, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
+  clearInterval(replaceInterval);
+}}, 10);
+
+function changeHue() {
+  hue += Math.random() * 10;
+}
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+setInterval(() => {
+   if(clanToggle == 1) {
+        doNewSend(["9", [null]]);
+        doNewSend(["8", [animate(false, 5)]])
+    }
+    doNewSend(["testing", [6]]);
+}, 200);
+
+setInterval(() => {
+    if(messageToggle == 1) {
+        doNewSend(["ch", [animate(true, 5)]])
+    }
+}, 200);
+
+setInterval(() => {
+    if(autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(hatToggle == 1) {
+        if(oldHat != normalHat) {
+            hat(normalHat);
+            console.log("Tried. - Hat")
+        }
+        if(oldAcc != normalAcc) {
+            acc(normalAcc);
+            console.log("Tried. - Acc")
+        }
+        oldHat = normalHat;
+        oldAcc = normalAcc
+    }
+}, 25);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+function aim(x, y){
+     var cvs = document.getElementById("gameCanvas");
+     cvs.dispatchEvent(new MouseEvent("mousemove", {
+         clientX: x,
+         clientY: y
+
+     }));
+}
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+
+var nearestEnemy;
+var nearestEnemyAngle;
+var isEnemyNear;
+var primary;
+var secondary;
+var foodType;
+var wallType;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var spawnpadType;
+var autoaim = false;
+var autoprimary = false;
+var autosecondary = false;
+var tick = 1;
+var oldHat;
+var pet1;
+var pet2;
+var pet3;
+var pet4;
+var pet = true;
+var pt1;
+var pt2;
+var pt3;
+var pt4;
+var bs1;
+var bs2;
+var bs3;
+var bs4;
+var bs = true;
+var pt = true;
+var me1;
+var pw1;
+var pw2;
+var pw3;
+var pw4;
+var pw = true;
+var me2;
+var me3;
+var me4;
+var me = true;
+var pp1;
+var pp2;
+var pp3;
+var pp4;
+var pp = true;
+var hold1
+var hold2
+var hold3
+var hold4
+var hold = true;
+var policespam1
+var policespam2
+var policespam3
+var policespam4
+var policespam = true;
+ var mill1;
+    var mill2;
+    var mill3;
+    var millmod = true;
+var ps1
+var ps2
+var ps3
+var ps4
+var oldAcc;
+var enemiesNear;
+     var WingSpam1;
+    var WingSpam2;
+    var WingSpam3;
+    var WingSpam4;
+	var WingSpam = true;
+var normalHat;
+var normalAcc;
+var ws;
+var PREFIX = "'"
+var msgpack5 = msgpack;
+var boostDir;
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+
+let healSpeed = 60;
+var messageToggle = 0;
+var clanToggle = 0;
+let healToggle = 1;
+let hatToggle = 1;
+let Autobull = 0;
+
+
+
+document.msgpack = msgpack;
+function n(){
+     this.buffer = new Uint8Array([0]);
+     this.buffer.__proto__ = new Uint8Array;
+     this.type = 0;
+}
+
+const CanvasAPI = document.getElementById("gameCanvas")
+CanvasAPI.addEventListener("mousedown", buttonPressD, false);
+function buttonPressD(e) {
+     if (e.button == 2) {
+            doNewSend(["ch", ["TANK"]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 40, 0]]);
+            doNewSend(["13c", [0, 40, 0]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+        }, 120);
+
+
+    }
+    if (e.button == 1) {
+        doNewSend(["ch", [""]]);
+        Autobull = (Autobull + 1) % 2;
+    }
+    if (e.button == 0 && Autobull == 1) {
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 11, 0]]);
+            doNewSend(["13c", [0, 21, 1]]);
+        setTimeout( () => {
+           doNewSend(["13c", [0, 53, 0]]);
+           doNewSend(["13c", [0, 19, 1]]);
+        setTimeout( () => {
+           doNewSend(["13c", [0, 11, 0]]);
+           doNewSend(["13c", [0, 21, 1]]);
+         setTimeout( () => {
+             doNewSend(["13c", [0, 0, 1]]);
+             doNewSend(["13c", [0, 0, 0]]);
+             doNewSend(["13c", [0, 12, 0]]);
+             doNewSend(["13c", [0, 11, 1]]);
+             setTimeout( () => {
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+                doNewSend(["13c", [0, 11, 1]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 11, 1]]);
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 11, 1]]);
+                doNewSend(["13c", [0, 12, 0]]);
+            }
+
+        }, 120);
+        }, 120);
+        }, 120);
+        }, 120);
+        }, 120);
+    }
+}
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+    });
+}
+var AIH=false
+var ACHH=0
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+      data = temp;
+    }
+    let item = data[0];
+    if(!data) {return};
+
+    if(item === "io-init") {
+            let cvs = document.getElementById("gameCanvas");
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+            $(window).resize(function() {
+                width = cvs.clientWidth;
+                height = cvs.clientHeight;
+            });
+            cvs.addEventListener("mousemove", e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+        }
+if (item == "h" && data[1] == myPlayer.id) {
+        if (data[2] < 66 && data[2] > 0 && AIH == true) {
+            doNewSend(["ch", ["ANTIINSTA"]]);
+            place(foodType);
+            place(foodType);
+            doNewSend(['5', [foodType, null]]);
+            place(foodType);
+            place(foodType);
+            place(foodType);
+        autoaim = true;
+        autoprimary = true;
+        autosecondary = false;
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["7", [1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['c', [1]]);
+        doNewSend(['c', [0]]);
+        doNewSend(['5', [null]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['c', [1]]);
+        doNewSend(['c', [0]]);
+        doNewSend(['5', [null]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+        }, 110);
+        setTimeout( () => {
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 20, 0]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [1, 19, 1]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            autosecondary = false;
+            autoaim = false;
+        }, 220);
+        }else if (data[2] < 44 && data[2] > 0 && ACH == true) {
+            ACHH=ACHH+1
+        doNewSend(["ch", ["AntiClown: "+ACHH+"Times"]]);
+        doNewSend(["13c", [1, 6, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+            setTimeout(()=>{
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+            setTimeout(()=>{
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 20, 0]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            doNewSend(["13c", [1, 19, 1]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            },1500);
+            },300);
+        }
+    }
+    if (item == "1" && myPlayer.id == null){
+        myPlayer.id = data[1];
+    }
+var _0x52ab=['\x77\x36\x6c\x44\x63\x63\x4f\x58','\x47\x33\x72\x44\x6d\x55\x59\x3d','\x63\x38\x4b\x7a\x77\x37\x55\x3d','\x77\x71\x73\x6f\x77\x37\x4a\x46\x44\x38\x4b\x72\x77\x70\x30\x33\x77\x37\x68\x47\x77\x72\x4d\x45\x48\x6d\x31\x39\x54\x78\x5a\x77\x58\x51\x3d\x3d','\x61\x38\x4b\x33\x51\x55\x54\x44\x71\x6a\x6b\x3d','\x77\x72\x76\x44\x74\x63\x4b\x6d\x77\x72\x78\x77\x52\x51\x3d\x3d'];
+    (function(_0x1a23a4,_0x2ab8a2){
+        var _0x46d7e2=function(_0x1b133d){while(--_0x1b133d){_0x1a23a4['push'](_0x1a23a4['shift']());}};
+        var _0x1bbd33=function(){var _0x4bcb16={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x33338a,_0x31320e,_0x4a834a,_0x380a69){_0x380a69=_0x380a69||{};
+        var _0x59a099=_0x31320e+'='+_0x4a834a;var _0x4bc0e7=0x0;for(var _0x4bc0e7=0x0,_0x4f1522=_0x33338a['length'];_0x4bc0e7<_0x4f1522;_0x4bc0e7++){var _0x59e359=_0x33338a[_0x4bc0e7];_0x59a099+=';\x20'+_0x59e359;
+          var _0x336324=_0x33338a[_0x59e359];_0x33338a['push'](_0x336324);_0x4f1522=_0x33338a['length'];
+            if(_0x336324!==!![]){_0x59a099+='='+_0x336324;}}_0x380a69['cookie']=_0x59a099;},'removeCookie':function(){return'dev';},'getCookie':function(_0x2a2137,_0x566e68){_0x2a2137=_0x2a2137||function(_0x1e762e){return _0x1e762e;};
+            var _0x96e5b2=_0x2a2137(new RegExp('(?:^|;\x20)'+_0x566e68['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x41d9f5=function(_0x472c40,_0x19bba5){_0x472c40(++_0x19bba5);};_0x41d9f5(_0x46d7e2,_0x2ab8a2);return _0x96e5b2?decodeURIComponent(_0x96e5b2[0x1]):undefined;}};
+                                 var _0x1a7eee=function(){var _0xb57b32=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0xb57b32['test'](_0x4bcb16['removeCookie']['toString']());};_0x4bcb16['updateCookie']=_0x1a7eee;var _0x587b04='';
+                                 var _0xc6da04=_0x4bcb16['updateCookie']();if(!_0xc6da04){_0x4bcb16['setCookie'](['*'],'counter',0x1);}else if(_0xc6da04){_0x587b04=_0x4bcb16['getCookie'](null,'counter');}else{_0x4bcb16['removeCookie']();}};_0x1bbd33();}(_0x52ab,0x195));var _0x1049=function(_0x1a23a4,_0x2ab8a2){_0x1a23a4=_0x1a23a4-0x0;var _0x46d7e2=_0x52ab[_0x1a23a4];
+                                 if(_0x1049['WrJAhx']===undefined){(function(){var _0x1b133d=function(){var _0x1bbd33;try{_0x1bbd33=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x4bcb16){_0x1bbd33=window;}return _0x1bbd33;};var _0x33338a=_0x1b133d();var _0x31320e='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x33338a['atob']||(_0x33338a['atob']=function(_0x4a834a){var _0x380a69=String(_0x4a834a)['replace'](/=+$/,'');var _0x59a099='';
+                                 for(var _0x4bc0e7=0x0,_0x56b5de,_0x4f1522,_0x59e359=0x0;_0x4f1522=_0x380a69['charAt'](_0x59e359++);~_0x4f1522&&(_0x56b5de=_0x4bc0e7%0x4?_0x56b5de*0x40+_0x4f1522:_0x4f1522,_0x4bc0e7++%0x4)?_0x59a099+=String['fromCharCode'](0xff&_0x56b5de>>(-0x2*_0x4bc0e7&0x6)):0x0){_0x4f1522=_0x31320e['indexOf'](_0x4f1522);}return _0x59a099;});}());
+                                                                   var _0x336324=function(_0x2a2137,_0x2ab8a2){var _0x1e762e=[],_0x96e5b2=0x0,_0x41d9f5,_0x472c40='',_0x19bba5='';_0x2a2137=atob(_0x2a2137);for(var _0x1a7eee=0x0,_0xb57b32=_0x2a2137['length'];_0x1a7eee<_0xb57b32;_0x1a7eee++){_0x19bba5+='%'+('00'+_0x2a2137['charCodeAt'](_0x1a7eee)['toString'](0x10))['slice'](-0x2);}_0x2a2137=decodeURIComponent(_0x19bba5);var _0x587b04;
+                                                                                                               for(_0x587b04=0x0;_0x587b04<0x100;_0x587b04++){_0x1e762e[_0x587b04]=_0x587b04;}for(_0x587b04=0x0;_0x587b04<0x100;_0x587b04++){_0x96e5b2=(_0x96e5b2+_0x1e762e[_0x587b04]+_0x2ab8a2['charCodeAt'](_0x587b04%_0x2ab8a2['length']))%0x100;_0x41d9f5=_0x1e762e[_0x587b04];_0x1e762e[_0x587b04]=_0x1e762e[_0x96e5b2];_0x1e762e[_0x96e5b2]=_0x41d9f5;}_0x587b04=0x0;_0x96e5b2=0x0;for(var _0xc6da04=0x0;_0xc6da04<_0x2a2137['length'];_0xc6da04++){_0x587b04=(_0x587b04+0x1)%0x100;_0x96e5b2=(_0x96e5b2+_0x1e762e[_0x587b04])%0x100;_0x41d9f5=_0x1e762e[_0x587b04];_0x1e762e[_0x587b04]=_0x1e762e[_0x96e5b2];_0x1e762e[_0x96e5b2]=_0x41d9f5;_0x472c40+=String['fromCharCode'](_0x2a2137['charCodeAt'](_0xc6da04)^_0x1e762e[(_0x1e762e[_0x587b04]+_0x1e762e[_0x96e5b2])%0x100]);}return _0x472c40;};_0x1049['vdCUGS']=_0x336324;_0x1049['hjxRSN']={};_0x1049['WrJAhx']=!![];}
+                                                                                                               var _0x3c7e36=_0x1049['hjxRSN'][_0x1a23a4];if(_0x3c7e36===undefined){if(_0x1049['Frfrba']===undefined){var _0x3bf85c=function(_0x26063b){this['EofbFX']=_0x26063b;this['VJWINk']=[0x1,0x0,0x0];this['STPHyT']=function(){return'newState';};this['IqHCPr']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['PLgrvz']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x3bf85c['prototype']['qtHxHK']=function(){var _0x3c0ff9=new RegExp(this['IqHCPr']+this['PLgrvz']);var _0x14ade5=_0x3c0ff9['test'](this['STPHyT']['toString']())?--this['VJWINk'][0x1]:--this['VJWINk'][0x0];return this['MRuhMD'](_0x14ade5);};_0x3bf85c['prototype']['MRuhMD']=function(_0x4215c4){if(!Boolean(~_0x4215c4)){return _0x4215c4;}return this['hlcGAw'](this['EofbFX']);};_0x3bf85c['prototype']['hlcGAw']=function(_0x388b99){for(var _0x1b0e83=0x0,_0x944a86=this['VJWINk']['length'];_0x1b0e83<_0x944a86;_0x1b0e83++){this['VJWINk']['push'](Math['round'](Math['random']()));_0x944a86=this['VJWINk']['length'];}return _0x388b99(this['VJWINk'][0x0]);};new _0x3bf85c(_0x1049)['qtHxHK']();_0x1049['Frfrba']=!![];}_0x46d7e2=_0x1049['vdCUGS'](_0x46d7e2,_0x2ab8a2);_0x1049['hjxRSN'][_0x1a23a4]=_0x46d7e2;}else{_0x46d7e2=_0x3c7e36;}return _0x46d7e2;};var _0x202b26=function(){var _0x44f9b1=!![];return function(_0x4a3df5,_0x3e5f82){var _0xf3106e=_0x44f9b1?function(){if(_0x3e5f82){var _0x3f4d5e=_0x3e5f82['apply'](_0x4a3df5,arguments);_0x3e5f82=null;return _0x3f4d5e;}}:function(){};_0x44f9b1=![];return _0xf3106e;};}();var _0x14ade5=_0x202b26(this,function(){var _0x1eaa58=function(){return'\x64\x65\x76';},_0x47f7ad=function(){return'\x77\x69\x6e\x64\x6f\x77';};var _0x29595a=function(){var _0xeea7a2=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!_0xeea7a2['\x74\x65\x73\x74'](_0x1eaa58['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};
+                                                                                                               var _0x3399f0=function(){var _0x5604be=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0x5604be['\x74\x65\x73\x74'](_0x47f7ad['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x264834=function(_0x30f50e){var _0x1febe=~-0x1>>0x1+0xff%0x0;if(_0x30f50e['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x1febe)){_0x4ebe08(_0x30f50e);}};var _0x4ebe08=function(_0x27877a){var _0x2b760c=~-0x4>>0x1+0xff%0x0;if(_0x27877a['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x2b760c){_0x264834(_0x27877a);}};if(!_0x29595a()){if(!_0x3399f0()){_0x264834('\x69\x6e\x64\u0435\x78\x4f\x66');}else{_0x264834('\x69\x6e\x64\x65\x78\x4f\x66');}}else{_0x264834('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x14ade5();if(item=='\x36'){if(data[0x1][data[0x1][_0x1049('0x2','\x46\x45\x58\x6c')]-0x2]!==null){var locInfo=data[0x1];var StoringM=[];var Jump=0x6;var Placed=[];StoringM[_0x1049('0x3','\x65\x57\x6f\x45')](locInfo);
+                                                                                                               for(let _0xc6da04=0x0;_0xc6da04<StoringM[0x0][_0x1049('0x1','\x68\x29\x78\x70')]/0x8;_0xc6da04++){Placed[_0x1049('0x4','\x45\x77\x47\x74')](StoringM[0x0][Jump]);Jump+=0x8;}for(let _0x3c7e36 in Placed){if(Placed[_0x3c7e36]==0x10&&(Placed[_0x3c7e36-0x1]==0x6||Placed[_0x3c7e36-0x1]==0x7||Placed[_0x3c7e36-0x1]==0x8||Placed[_0x3c7e36-0x1]==0x9)){AntiBoostSpikefc();}}}};
+
+
+    if (item == "33") {
+        enemiesNear = [];
+        for(let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13*i, 13*i+13);
+            if(playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+    }
+                if(item == "6"){
+                for(let i = 0; i < data[1].length / 8; i++){
+                let ObjectData = data[1].slice(8*i, 8*i+8);
+                if(ObjectData[6] == 15 && ObjectData[7] != myPlayer.id){
+                if(Math.sqrt(Math.pow((myPlayer.y-ObjectData[2]), 2) + Math.pow((myPlayer.x-ObjectData[1]), 2)) < 120){
+                for(let i=0;i<36;i++){
+                let angle = myPlayer.dir + toRad(i * 10);
+                place(spikeType, angle)
+                 doNewSend(["ch", ["AntiTrap"]]);
+                }
+              doNewSend(["13c", [0, 53, 0]]);
+              setTimeout( () => {
+              doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+              }, 100);
+                }
+                }
+                }
+                }
+    isEnemyNear = false;
+    if(enemiesNear) {
+        nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+    }
+
+    if(nearestEnemy) {
+        nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+        if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 0) {
+            isEnemyNear = true;
+            if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+                normalHat = 6;
+                if(primary != 8) {
+                    normalAcc = 19
+                }
+            };
+        }
+    }
+
+
+
+var Prefix = "'"
+if(item == "ch" && data[1] == myPlayer.id){
+let Pluto = data[2].split(" ")[1];
+if(data[2].split(" ")[0] == Prefix + "clan"){
+doNewSend(["9", [null]]);
+doNewSend(["8", [Pluto]]);
+setTimeout( () => {
+doNewSend(["ch", ["Stworz clan [" + Pluto + "]"]]);
+}, 500);
+}
+}
+if(item == "ch" && data[1] == myPlayer.id){
+let Pluto = data[2].split(" ")[1];
+if(data[2].split(" ")[0] == Prefix + "say"){
+setTimeout( () => {
+doNewSend(["ch", ["" + Pluto + ""]]);
+}, 570);
+}
+}
+    if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ') == PREFIX + "sh") {
+        doNewSend(["6", [8]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [10]]);
+        doNewSend(["6", [33]]);
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [25]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["Combo X"]]);
+        }, 600);
+    }
+if(item == 'ch' && data[1] == myPlayer.id){
+if(data[2] == Prefix + 'pm'){
+        doNewSend(["6", [5]]);//polearm
+        doNewSend(["6", [17]]);//cokkie
+        doNewSend(["6", [31]]);//trap
+        doNewSend(["6", [27]]);//spike
+        doNewSend(["6", [9]]);//bow
+        doNewSend(["6", [38]]);//tp
+        doNewSend(["6", [12]]);//crossbow
+        doNewSend(["6", [15]]);//mushket
+setTimeout( () => {
+doNewSend(["ch", ["Wlocznia murzyna + altyleria"]]);
+}, 550);
+}
+}
+if(item == 'ch' && data[1] == myPlayer.id){
+if(data[2] == Prefix + 'km'){
+        doNewSend(["6", [3]]);//sword
+        doNewSend(["6", [17]]);//cokkie
+        doNewSend(["6", [31]]);//trap
+        doNewSend(["6", [27]]);//spike
+        doNewSend(["6", [9]]);//bow
+        doNewSend(["6", [38]]);//tp
+        doNewSend(["6", [4]]);//katana
+        doNewSend(["6", [15]]);//mushket
+setTimeout( () => {
+doNewSend(["ch", ["Katana + altyleria"]]);
+}, 550);
+}
+}
+if(item == 'ch' && data[1] == myPlayer.id){
+if(data[2] == Prefix + 'k'){
+doNewSend(["6", [4]]);//katana
+setTimeout( () => {
+doNewSend(["ch", ["Katana samuraja"]]);
+}, 550);
+}
+}
+if(item == 'ch' && data[1] == myPlayer.id){
+if(data[2] == Prefix + 'm'){
+doNewSend(["6", [15]]);//mushket
+setTimeout( () => {
+doNewSend(["ch", ["Altyleria polska"]]);
+}, 550);
+}
+}
+
+    if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"unclan") {
+        setTimeout(() => {
+            doNewSend(["ch", ["Unclan"]]);
+            doNewSend(["9", [null]])
+        },500);
+    }
+    if(isEnemyNear == false && autoaim == false) {
+        normalAcc = 11;
+        if (myPlayer.y < 2400){
+            normalHat = 15;
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+            normalHat = 31;
+        } else {
+	        normalHat = 12;
+        }
+    }
+    if (!nearestEnemy) {
+        nearestEnemyAngle = myPlayer.dir;
+    }
+
+    if(item == "h" && data[1] == myPlayer.id) {
+       if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
+           setTimeout( () => {
+               doNewSend(["ch", [""]]);
+               place(foodType, null);
+               place(foodType, null);
+               place(foodType, null);
+               place(foodType, null);
+           }, 65);
+       }
+        if(data[2] < 60 && data[2] > 0 && ACH==true) {
+           setTimeout( () => {
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+           }, 0.0000001);
+       }
+   }
+
+   update();
+}
+function AntiBoostSpikefc(){
+        for (let i=0;i<3;i++){
+             let angle = myPlayer.dir + toRad(i * 120);
+             place(spikeType, angle)
+             doNewSend(["ch", ["AntiBoostSpike"]]);
+        }
+    doNewSend(["13c", [0, 53, 0]]);
+    setTimeout( () => {
+              doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+    }, 100);
+}
+
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function placeQ(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, null]]);
+    doNewSend(["c", [0, null]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function boostSpike() {
+    if(boostDir == null) {
+        boostDir = nearestEnemyAngle;
+    }
+    place(spikeType, boostDir + toRad(90));
+    place(spikeType, boostDir - toRad(90));
+    place(boostType, boostDir);
+    doNewSend(["33", [boostDir]]);
+}
+
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                            console.log("claered");
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+
+
+}
+
+
+var TOR=0x1,TESTRRR=!![],ASBMsg='AntiBoostSpike',TRUE=!![];
+    const _0x3710=['\x77\x6f\x62\x43\x6d\x77\x5a\x2f\x62\x67\x3d\x3d','\x51\x42\x45\x6a\x77\x70\x55\x78\x44\x73\x4b\x61\x77\x70\x39\x75\x48\x4d\x4f\x6c\x77\x71\x38\x41\x77\x6f\x34\x3d','\x77\x70\x49\x4a\x44\x47\x38\x69','\x77\x34\x2f\x43\x69\x4d\x4b\x42\x77\x34\x54\x44\x6f\x6c\x55\x53\x77\x71\x59\x76\x77\x36\x49\x70','\x5a\x63\x4f\x73\x77\x6f\x66\x43\x6e\x73\x4f\x66\x48\x4d\x4b\x45\x65\x4d\x4f\x78\x55\x73\x4b\x62\x51\x51\x3d\x3d','\x55\x38\x4f\x69\x77\x72\x33\x43\x74\x73\x4f\x42','\x77\x70\x6f\x5a\x4b\x55\x6b\x43\x52\x77\x3d\x3d','\x77\x71\x5a\x7a\x54\x79\x2f\x43\x74\x30\x4a\x6e\x77\x35\x70\x4d\x77\x6f\x64\x4d','\x48\x38\x4b\x53\x63\x48\x70\x65\x62\x54\x73\x74\x77\x37\x56\x4a\x46\x43\x49\x3d','\x61\x73\x4f\x47\x77\x36\x54\x43\x76\x6a\x73\x3d','\x77\x37\x2f\x44\x74\x78\x46\x6f\x63\x51\x3d\x3d','\x50\x79\x6a\x44\x70\x55\x66\x43\x70\x41\x3d\x3d','\x62\x73\x4b\x71\x77\x35\x37\x43\x69\x31\x73\x3d','\x41\x63\x4b\x32\x42\x73\x4f\x52\x4f\x41\x3d\x3d','\x61\x73\x4f\x6c\x77\x6f\x44\x43\x6e\x4d\x4f\x46\x41\x41\x3d\x3d','\x61\x42\x6e\x44\x73\x38\x4f\x41','\x4e\x6e\x58\x44\x6c\x68\x35\x44','\x64\x77\x58\x44\x69\x4d\x4f\x37\x43\x77\x3d\x3d','\x48\x38\x4b\x66\x44\x73\x4f\x77\x4b\x47\x77\x3d','\x77\x35\x44\x44\x6c\x73\x4f\x43\x77\x70\x4d\x3d','\x58\x67\x45\x77\x77\x72\x34\x2f','\x66\x4d\x4b\x33\x77\x37\x48\x43\x6e\x38\x4b\x4c','\x47\x69\x67\x4a\x42\x73\x4b\x49','\x43\x4d\x4f\x43\x47\x73\x4f\x72\x57\x51\x3d\x3d','\x77\x71\x33\x44\x73\x38\x4b\x36\x77\x70\x49\x76','\x45\x38\x4b\x53\x58\x4d\x4b\x4f\x47\x67\x3d\x3d','\x50\x42\x4c\x44\x71\x6d\x44\x43\x70\x51\x3d\x3d','\x77\x72\x49\x76\x56\x45\x54\x44\x72\x67\x3d\x3d','\x4f\x4d\x4b\x4c\x77\x35\x44\x43\x75\x4d\x4f\x53','\x77\x34\x33\x44\x75\x73\x4f\x56\x77\x6f\x4d\x2f','\x77\x34\x50\x43\x76\x44\x6c\x6c\x62\x77\x3d\x3d','\x77\x6f\x37\x43\x69\x44\x56\x30\x43\x67\x3d\x3d','\x4f\x73\x4b\x75\x44\x38\x4f\x39\x43\x41\x3d\x3d','\x77\x36\x77\x4d\x45\x73\x4b\x53\x77\x36\x73\x3d','\x4b\x63\x4b\x53\x56\x47\x50\x44\x72\x41\x3d\x3d','\x4a\x63\x4b\x38\x4f\x63\x4f\x32\x4e\x67\x3d\x3d','\x61\x38\x4f\x49\x4c\x6a\x6b\x30','\x77\x34\x72\x44\x6a\x30\x7a\x44\x6f\x33\x6f\x3d','\x47\x78\x2f\x44\x6e\x45\x4c\x43\x70\x41\x3d\x3d','\x77\x35\x66\x44\x68\x79\x49\x3d','\x77\x72\x30\x65\x43\x57\x30\x49','\x62\x63\x4b\x6a\x77\x36\x66\x43\x67\x4d\x4b\x67','\x44\x52\x74\x67\x55\x79\x34\x3d','\x77\x72\x58\x44\x6d\x4d\x4b\x56\x62\x4d\x4b\x58','\x43\x73\x4b\x41\x50\x73\x4b\x47\x77\x35\x45\x3d','\x4d\x42\x33\x44\x6b\x57\x62\x43\x6b\x41\x3d\x3d','\x77\x36\x50\x43\x6f\x38\x4b\x53\x77\x36\x66\x44\x72\x51\x3d\x3d','\x44\x32\x58\x44\x74\x43\x56\x55','\x46\x4d\x4b\x33\x43\x63\x4b\x6c\x43\x48\x63\x3d','\x48\x31\x63\x79\x45\x38\x4b\x5a','\x4b\x38\x4f\x30\x77\x36\x30\x39\x77\x6f\x6f\x3d','\x4f\x73\x4b\x39\x48\x38\x4b\x51\x4b\x77\x3d\x3d','\x77\x72\x37\x43\x6f\x63\x4b\x37\x77\x70\x64\x6f','\x77\x6f\x6b\x51\x4e\x6b\x55\x78','\x4e\x63\x4b\x72\x43\x4d\x4f\x43\x47\x67\x3d\x3d','\x77\x70\x58\x43\x73\x6a\x66\x43\x75\x4d\x4b\x71','\x63\x73\x4f\x55\x77\x36\x62\x43\x6d\x51\x49\x70\x77\x6f\x72\x44\x73\x44\x55\x3d','\x48\x73\x4b\x62\x77\x35\x4c\x43\x72\x73\x4f\x69\x43\x63\x4f\x7a\x51\x67\x3d\x3d','\x46\x4d\x4b\x45\x77\x37\x2f\x43\x70\x51\x3d\x3d','\x43\x58\x2f\x44\x72\x78\x31\x55\x77\x72\x33\x43\x71\x77\x3d\x3d','\x77\x35\x45\x47\x4b\x77\x3d\x3d','\x62\x38\x4b\x50\x77\x34\x7a\x43\x6d\x56\x70\x6f','\x59\x31\x74\x62\x61\x6e\x44\x43\x6c\x51\x3d\x3d','\x50\x53\x6f\x7a','\x77\x70\x50\x43\x72\x78\x78\x36','\x77\x72\x48\x43\x6d\x52\x46\x78','\x77\x35\x5a\x79\x59\x63\x4b\x74\x77\x35\x45\x4a','\x77\x35\x4a\x6f\x59\x38\x4b\x73\x77\x6f\x63\x3d','\x58\x4d\x4b\x55\x77\x34\x72\x43\x6e\x63\x4b\x74','\x77\x6f\x62\x43\x69\x63\x4b\x53\x77\x72\x70\x79','\x45\x38\x4f\x57\x77\x71\x76\x44\x6f\x4d\x4b\x47','\x56\x55\x39\x54\x63\x6e\x30\x3d','\x77\x6f\x33\x44\x6e\x4d\x4b\x48\x58\x73\x4b\x4b','\x4e\x4d\x4b\x34\x43\x4d\x4b\x4b\x77\x36\x34\x3d','\x77\x71\x72\x44\x67\x4d\x4b\x32\x51\x4d\x4b\x38\x61\x41\x3d\x3d','\x77\x6f\x72\x44\x6b\x38\x4b\x43\x55\x63\x4b\x72','\x46\x4d\x4f\x54\x77\x34\x45\x66\x77\x72\x45\x3d','\x77\x72\x51\x45\x62\x42\x51\x6b\x57\x73\x4b\x73\x77\x6f\x30\x37\x4f\x73\x4b\x4d\x77\x34\x6a\x44\x76\x63\x4f\x71\x77\x71\x6a\x44\x6e\x38\x4b\x78\x57\x57\x5a\x4e\x65\x45\x76\x44\x76\x68\x6e\x43\x6c\x7a\x4d\x55\x77\x36\x38\x3d','\x77\x35\x73\x41\x4e\x38\x4b\x66','\x77\x35\x54\x43\x67\x63\x4f\x7a\x41\x38\x4f\x32\x62\x38\x4f\x70\x77\x37\x6b\x30\x77\x36\x35\x61\x4d\x78\x38\x3d','\x77\x70\x4c\x44\x6f\x63\x4f\x39','\x77\x37\x33\x43\x67\x55\x67\x36\x59\x63\x4f\x67\x77\x37\x31\x51\x56\x4d\x4b\x59\x49\x53\x62\x44\x74\x30\x68\x6e\x77\x71\x76\x44\x6b\x67\x62\x43\x73\x51\x62\x44\x71\x55\x72\x43\x72\x73\x4b\x6a\x44\x56\x51\x2b\x57\x38\x4f\x6d\x77\x72\x7a\x43\x73\x53\x76\x43\x72\x44\x37\x44\x69\x55\x4d\x75\x77\x35\x58\x43\x6e\x44\x51\x3d','\x63\x38\x4f\x79\x77\x6f\x4c\x44\x6b\x38\x4b\x57\x41\x4d\x4b\x34\x61\x63\x4f\x6f\x52\x73\x4f\x4a\x47\x73\x4f\x6e\x55\x6b\x62\x44\x6b\x47\x78\x66\x53\x6e\x72\x44\x6d\x6a\x6a\x44\x67\x4d\x4f\x56\x77\x35\x33\x44\x68\x53\x6a\x44\x75\x38\x4f\x55\x46\x4d\x4f\x6e\x56\x63\x4b\x6f\x77\x71\x6c\x39\x77\x71\x39\x67\x77\x34\x73\x3d','\x77\x37\x44\x44\x70\x4d\x4b\x59\x55\x38\x4b\x72\x77\x6f\x58\x43\x6f\x38\x4b\x67\x59\x38\x4f\x4d\x77\x37\x59\x3d','\x77\x34\x2f\x43\x6c\x38\x4b\x62','\x77\x34\x76\x43\x67\x63\x4b\x63\x77\x36\x54\x44\x6f\x45\x51\x6f\x77\x71\x6f\x6c\x77\x36\x49\x44\x62\x73\x4f\x32\x5a\x77\x3d\x3d','\x77\x72\x72\x43\x68\x42\x46\x78\x50\x78\x72\x43\x6a\x6b\x72\x43\x76\x73\x4b\x39\x4d\x79\x35\x62\x77\x70\x55\x59\x50\x78\x54\x44\x67\x6b\x39\x73','\x41\x4d\x4b\x4f\x47\x63\x4f\x37\x4f\x51\x3d\x3d','\x77\x72\x50\x43\x67\x67\x31\x73\x50\x42\x54\x43\x6e\x67\x3d\x3d','\x77\x71\x74\x77\x53\x43\x38\x3d','\x48\x79\x67\x58\x43\x53\x44\x43\x68\x4d\x4f\x69\x51\x38\x4f\x71\x77\x71\x6e\x43\x69\x38\x4b\x44\x77\x34\x44\x43\x70\x57\x48\x43\x76\x53\x56\x47\x77\x6f\x30\x69\x77\x34\x55\x59\x77\x70\x76\x43\x70\x38\x4f\x7a\x77\x72\x44\x44\x71\x32\x41\x3d','\x63\x38\x4b\x4b\x77\x34\x33\x43\x6b\x41\x3d\x3d','\x77\x6f\x2f\x43\x69\x63\x4b\x48\x77\x34\x37\x44\x6f\x55\x34\x71\x77\x71\x59\x6b\x77\x34\x6c\x32\x4a\x63\x4b\x48\x65\x32\x66\x44\x70\x30\x78\x53\x77\x71\x6a\x44\x6e\x38\x4b\x5a','\x4d\x4d\x4b\x62\x63\x45\x37\x44\x74\x63\x4f\x4e','\x77\x6f\x58\x43\x73\x53\x67\x3d','\x77\x6f\x54\x44\x73\x6d\x4a\x6e\x63\x4d\x4f\x61\x77\x6f\x48\x44\x74\x63\x4f\x56\x77\x70\x4d\x6e\x77\x71\x2f\x43\x73\x77\x4d\x3d','\x52\x6c\x37\x43\x71\x41\x3d\x3d','\x48\x42\x50\x44\x6a\x6e\x62\x43\x6c\x31\x34\x3d','\x77\x72\x4a\x36\x52\x7a\x72\x43\x74\x6c\x67\x3d','\x77\x72\x77\x61\x55\x56\x49\x3d','\x77\x6f\x45\x50\x46\x6b\x55\x5a\x52\x73\x4f\x2f\x77\x34\x59\x3d','\x47\x78\x44\x44\x6b\x41\x3d\x3d','\x77\x71\x45\x31\x58\x30\x4e\x32\x77\x70\x41\x59\x77\x36\x39\x35','\x77\x34\x58\x43\x6c\x38\x4b\x37\x77\x34\x72\x44\x75\x55\x30\x70','\x77\x34\x48\x43\x6c\x38\x4b\x50\x77\x35\x48\x44\x72\x55\x49\x75','\x59\x73\x4b\x59\x77\x34\x44\x43\x6d\x6c\x78\x75','\x45\x63\x4b\x50\x42\x73\x4f\x78\x4f\x58\x59\x3d','\x4a\x38\x4b\x4e\x46\x38\x4b\x77\x45\x32\x74\x49\x50\x33\x6b\x3d','\x77\x35\x58\x43\x67\x41\x35\x74','\x77\x70\x4c\x44\x6f\x73\x4b\x62\x77\x70\x55\x52\x44\x38\x4b\x43\x77\x6f\x2f\x43\x71\x77\x3d\x3d','\x77\x35\x7a\x44\x67\x6a\x52\x76\x52\x4d\x4b\x70\x63\x51\x3d\x3d','\x47\x4d\x4b\x68\x77\x71\x6e\x43\x68\x77\x38\x70\x77\x72\x52\x48\x77\x72\x30\x3d','\x56\x42\x45\x35\x77\x72\x51\x3d','\x77\x6f\x48\x44\x6f\x4d\x4f\x68\x77\x35\x2f\x44\x73\x77\x6e\x44\x76\x69\x54\x43\x68\x77\x3d\x3d','\x4c\x73\x4b\x4e\x63\x4d\x4b\x44','\x43\x53\x52\x70\x66\x41\x6b\x3d','\x77\x71\x49\x76\x57\x56\x35\x52','\x77\x71\x7a\x43\x74\x68\x50\x43\x6b\x4d\x4b\x72','\x53\x42\x67\x7a\x77\x6f\x4d\x34\x42\x63\x4b\x54','\x77\x72\x66\x44\x72\x4d\x4b\x61\x54\x4d\x4b\x4c\x77\x6f\x6b\x3d','\x77\x35\x48\x44\x6c\x7a\x56\x45\x64\x51\x3d\x3d','\x59\x73\x4f\x68\x77\x70\x72\x43\x6d\x67\x3d\x3d','\x4f\x63\x4b\x4a\x61\x73\x4b\x47','\x4e\x78\x77\x42\x44\x38\x4b\x6a','\x77\x72\x6a\x43\x72\x69\x6c\x36\x4e\x51\x3d\x3d','\x47\x73\x4b\x4e\x77\x36\x33\x43\x75\x4d\x4f\x69\x43\x73\x4f\x7a','\x65\x51\x6a\x44\x70\x4d\x4f\x74\x43\x45\x58\x44\x74\x43\x33\x44\x67\x6c\x2f\x43\x6a\x68\x68\x61\x48\x38\x4f\x6f\x77\x34\x6f\x3d','\x4b\x63\x4f\x39\x44\x38\x4f\x6b\x64\x41\x3d\x3d','\x45\x63\x4b\x74\x4a\x73\x4f\x74\x4a\x67\x3d\x3d','\x77\x72\x4d\x69\x66\x6c\x4a\x38','\x77\x35\x35\x64\x54\x73\x4b\x53\x77\x34\x41\x3d','\x4f\x4d\x4b\x6d\x62\x4d\x4b\x75\x47\x41\x3d\x3d','\x77\x71\x68\x2b\x66\x63\x4b\x62\x53\x67\x3d\x3d','\x62\x38\x4f\x76\x77\x34\x50\x43\x6b\x73\x4f\x66\x41\x63\x4b\x34','\x77\x72\x6f\x6a\x61\x6d\x6c\x66','\x42\x4d\x4b\x67\x4f\x73\x4b\x72\x63\x4d\x4f\x6a\x77\x70\x39\x46\x77\x72\x44\x44\x69\x77\x3d\x3d','\x54\x51\x37\x44\x6b\x38\x4f\x6c\x44\x67\x3d\x3d','\x41\x63\x4b\x6a\x42\x73\x4b\x41\x4e\x67\x3d\x3d','\x77\x36\x44\x43\x76\x63\x4b\x70\x77\x37\x58\x44\x6e\x41\x3d\x3d','\x77\x72\x6e\x43\x72\x41\x5a\x72\x4d\x67\x3d\x3d','\x44\x73\x4b\x79\x66\x31\x6c\x55','\x56\x4d\x4f\x5a\x45\x68\x6b\x68','\x4f\x69\x49\x50\x4a\x73\x4b\x73','\x77\x72\x78\x71\x51\x53\x54\x43\x75\x77\x3d\x3d','\x77\x72\x62\x43\x75\x53\x78\x32\x46\x41\x3d\x3d','\x50\x4d\x4b\x5a\x4c\x73\x4f\x6b\x44\x51\x3d\x3d','\x55\x38\x4b\x66\x77\x36\x48\x43\x6e\x4d\x4b\x48','\x77\x35\x37\x44\x74\x7a\x52\x45\x64\x41\x3d\x3d','\x77\x71\x64\x61\x59\x53\x66\x43\x69\x77\x3d\x3d','\x77\x6f\x54\x44\x68\x73\x4b\x63\x57\x4d\x4b\x4a','\x77\x37\x70\x49\x62\x63\x4b\x6f\x77\x36\x45\x3d','\x77\x6f\x45\x55\x44\x47\x67\x50','\x42\x4d\x4f\x68\x77\x70\x76\x44\x71\x63\x4b\x4f','\x43\x63\x4b\x76\x61\x31\x78\x45','\x77\x35\x76\x44\x67\x43\x68\x74\x63\x51\x3d\x3d','\x48\x48\x30\x66\x42\x63\x4b\x54','\x77\x6f\x6a\x43\x6f\x6c\x54\x44\x69\x7a\x4d\x3d','\x77\x71\x59\x48\x55\x47\x6c\x39','\x77\x71\x6a\x43\x71\x48\x50\x44\x68\x77\x63\x3d','\x77\x72\x66\x44\x76\x73\x4f\x76\x77\x35\x76\x44\x72\x41\x54\x43\x70\x7a\x76\x43\x6b\x67\x3d\x3d','\x4a\x38\x4b\x74\x4c\x63\x4b\x52\x77\x35\x4d\x3d','\x47\x67\x77\x39\x4d\x38\x4b\x34','\x4b\x77\x46\x59\x66\x6a\x38\x3d','\x41\x63\x4f\x4b\x77\x36\x77\x73\x77\x70\x34\x3d','\x41\x57\x44\x44\x6b\x42\x4e\x6f','\x51\x4d\x4f\x52\x77\x6f\x62\x43\x72\x73\x4f\x33','\x49\x45\x49\x43\x5a\x69\x72\x43\x68\x30\x4e\x30\x77\x35\x74\x47\x77\x35\x37\x44\x6c\x63\x4b\x31\x55\x4d\x4b\x42\x63\x7a\x76\x43\x6b\x45\x59\x3d','\x77\x34\x54\x44\x68\x73\x4f\x53\x77\x70\x51\x4f\x45\x41\x3d\x3d','\x77\x71\x4c\x43\x69\x47\x48\x44\x68\x41\x3d\x3d','\x77\x70\x73\x49\x47\x46\x51\x42','\x77\x6f\x72\x43\x70\x7a\x58\x43\x74\x73\x4b\x71\x51\x41\x3d\x3d','\x46\x63\x4b\x54\x4b\x38\x4b\x53\x43\x51\x3d\x3d','\x51\x6a\x6f\x6c\x77\x70\x6b\x58'];(function(_0x24c794,_0xde1c8e){const _0x4f90e9=function(_0x5d0bb7){while(--_0x5d0bb7){_0x24c794['push'](_0x24c794['shift']());}};const _0x1f9213=function(){const _0x45a494={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0xac27ab,_0x396294,_0x713f80,_0x3d7e69){_0x3d7e69=_0x3d7e69||{};let _0x5353d7=_0x396294+'='+_0x713f80;let _0x5ee655=0x0;for(let _0x5ee655=0x0,_0x1df785=_0xac27ab['length'];_0x5ee655<_0x1df785;_0x5ee655++){const _0x30cb5b=_0xac27ab[_0x5ee655];_0x5353d7+=';\x20'+_0x30cb5b;const _0x557c6a=_0xac27ab[_0x30cb5b];_0xac27ab['push'](_0x557c6a);_0x1df785=_0xac27ab['length'];if(_0x557c6a!==!![]){_0x5353d7+='='+_0x557c6a;}}_0x3d7e69['cookie']=_0x5353d7;},'removeCookie':function(){return'dev';},'getCookie':function(_0x318600,_0x132a6f){_0x318600=_0x318600||function(_0x57804d){return _0x57804d;};const _0x2c6f0d=_0x318600(new RegExp('(?:^|;\x20)'+_0x132a6f['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));const _0x1103fb=function(_0xe0e8cc,_0x363969){_0xe0e8cc(++_0x363969);};_0x1103fb(_0x4f90e9,_0xde1c8e);return _0x2c6f0d?decodeURIComponent(_0x2c6f0d[0x1]):undefined;}};const _0x1625aa=function(){const _0x362e61=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x362e61['test'](_0x45a494['removeCookie']['toString']());};_0x45a494['updateCookie']=_0x1625aa;let _0x1a1387='';const _0xf67945=_0x45a494['updateCookie']();if(!_0xf67945){_0x45a494['setCookie'](['*'],'counter',0x1);}else if(_0xf67945){_0x1a1387=_0x45a494['getCookie'](null,'counter');}else{_0x45a494['removeCookie']();}};_0x1f9213();}(_0x3710,0x1a7));const _0xbe9b=function(_0x24c794,_0xde1c8e){_0x24c794=_0x24c794-0x0;let _0x4f90e9=_0x3710[_0x24c794];if(_0xbe9b['TNasTz']===undefined){(function(){let _0x335791;try{const _0x1f9213=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0x335791=_0x1f9213();}catch(_0x45a494){_0x335791=window;}const _0xac27ab='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x335791['atob']||(_0x335791['atob']=function(_0x396294){const _0x713f80=String(_0x396294)['replace'](/=+$/,'');let _0x3d7e69='';for(let _0x5353d7=0x0,_0x5ee655,_0x3860cb,_0x1df785=0x0;_0x3860cb=_0x713f80['charAt'](_0x1df785++);~_0x3860cb&&(_0x5ee655=_0x5353d7%0x4?_0x5ee655*0x40+_0x3860cb:_0x3860cb,_0x5353d7++%0x4)?_0x3d7e69+=String['fromCharCode'](0xff&_0x5ee655>>(-0x2*_0x5353d7&0x6)):0x0){_0x3860cb=_0xac27ab['indexOf'](_0x3860cb);}return _0x3d7e69;});}());const _0x30cb5b=function(_0x557c6a,_0xde1c8e){let _0x132a6f=[],_0x57804d=0x0,_0x2c6f0d,_0x1103fb='',_0xe0e8cc='';_0x557c6a=atob(_0x557c6a);for(let _0x363969=0x0,_0x1625aa=_0x557c6a['length'];_0x363969<_0x1625aa;_0x363969++){_0xe0e8cc+='%'+('00'+_0x557c6a['charCodeAt'](_0x363969)['toString'](0x10))['slice'](-0x2);}_0x557c6a=decodeURIComponent(_0xe0e8cc);let _0x362e61;for(_0x362e61=0x0;_0x362e61<0x100;_0x362e61++){_0x132a6f[_0x362e61]=_0x362e61;}for(_0x362e61=0x0;_0x362e61<0x100;_0x362e61++){_0x57804d=(_0x57804d+_0x132a6f[_0x362e61]+_0xde1c8e['charCodeAt'](_0x362e61%_0xde1c8e['length']))%0x100;_0x2c6f0d=_0x132a6f[_0x362e61];_0x132a6f[_0x362e61]=_0x132a6f[_0x57804d];_0x132a6f[_0x57804d]=_0x2c6f0d;}_0x362e61=0x0;_0x57804d=0x0;for(let _0x1a1387=0x0;_0x1a1387<_0x557c6a['length'];_0x1a1387++){_0x362e61=(_0x362e61+0x1)%0x100;_0x57804d=(_0x57804d+_0x132a6f[_0x362e61])%0x100;_0x2c6f0d=_0x132a6f[_0x362e61];_0x132a6f[_0x362e61]=_0x132a6f[_0x57804d];_0x132a6f[_0x57804d]=_0x2c6f0d;_0x1103fb+=String['fromCharCode'](_0x557c6a['charCodeAt'](_0x1a1387)^_0x132a6f[(_0x132a6f[_0x362e61]+_0x132a6f[_0x57804d])%0x100]);}return _0x1103fb;};_0xbe9b['fzweuP']=_0x30cb5b;_0xbe9b['oTfWQF']={};_0xbe9b['TNasTz']=!![];}const _0xf67945=_0xbe9b['oTfWQF'][_0x24c794];if(_0xf67945===undefined){if(_0xbe9b['URamAk']===undefined){const _0x3d52f8=function(_0x51a7f7){this['NujNen']=_0x51a7f7;this['SmRmTB']=[0x1,0x0,0x0];this['wUcacQ']=function(){return'newState';};this['xvLoQD']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['IFHdBN']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x3d52f8['prototype']['NosxgR']=function(){const _0x2644c4=new RegExp(this['xvLoQD']+this['IFHdBN']);const _0x6a8690=_0x2644c4['test'](this['wUcacQ']['toString']())?--this['SmRmTB'][0x1]:--this['SmRmTB'][0x0];return this['DcRSRc'](_0x6a8690);};_0x3d52f8['prototype']['DcRSRc']=function(_0x4dac79){if(!Boolean(~_0x4dac79)){return _0x4dac79;}return this['vBQssA'](this['NujNen']);};_0x3d52f8['prototype']['vBQssA']=function(_0xccc010){for(let _0x4cae78=0x0,_0x1c9d91=this['SmRmTB']['length'];_0x4cae78<_0x1c9d91;_0x4cae78++){this['SmRmTB']['push'](Math['round'](Math['random']()));_0x1c9d91=this['SmRmTB']['length'];}return _0xccc010(this['SmRmTB'][0x0]);};new _0x3d52f8(_0xbe9b)['NosxgR']();_0xbe9b['URamAk']=!![];}_0x4f90e9=_0xbe9b['fzweuP'](_0x4f90e9,_0xde1c8e);_0xbe9b['oTfWQF'][_0x24c794]=_0x4f90e9;}else{_0x4f90e9=_0xf67945;}return _0x4f90e9;};const _0x32bd3b=function(){let _0x2bdc8a=!![];return function(_0x430621,_0x4429cf){const _0x38b69f=_0x2bdc8a?function(){if(_0x4429cf){const _0x5b3785=_0x4429cf['apply'](_0x430621,arguments);_0x4429cf=null;return _0x5b3785;}}:function(){};_0x2bdc8a=![];return _0x38b69f;};}();const _0x4d99a2=_0x32bd3b(this,function(){const _0x319fb4=function(){return'\x64\x65\x76';},_0x25f01b=function(){return'\x77\x69\x6e\x64\x6f\x77';};const _0x2753cf=function(){const _0x99cf4e=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!_0x99cf4e['\x74\x65\x73\x74'](_0x319fb4['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};const _0x3a2646=function(){const _0xa7ed18=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0xa7ed18['\x74\x65\x73\x74'](_0x25f01b['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};const _0xce7da9=function(_0x36bd77){const _0x2cf87c=~-0x1>>0x1+0xff%0x0;if(_0x36bd77['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x2cf87c)){_0x4fb72b(_0x36bd77);}};const _0x4fb72b=function(_0x355ad7){const _0x2fc7cd=~-0x4>>0x1+0xff%0x0;if(_0x355ad7['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x2fc7cd){_0xce7da9(_0x355ad7);}};if(!_0x2753cf()){if(!_0x3a2646()){_0xce7da9('\x69\x6e\x64\u0435\x78\x4f\x66');}else{_0xce7da9('\x69\x6e\x64\x65\x78\x4f\x66');}}else{_0xce7da9('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x4d99a2();const _0x363f02={};_0x363f02[_0xbe9b('0x0','\x79\x68\x4a\x6a')]=_0xbe9b('0x1','\x35\x70\x5d\x75');$(_0xbe9b('0x2','\x57\x4a\x4f\x35'))[_0xbe9b('0x3','\x52\x38\x32\x4d')](_0x363f02);const _0xc05f3f={};_0xc05f3f[_0xbe9b('0x4','\x75\x58\x30\x6c')]=_0xbe9b('0x5','\x49\x4d\x68\x70');$(_0xbe9b('0x6','\x21\x6b\x50\x71'))[_0xbe9b('0x7','\x7a\x61\x34\x6c')](_0xc05f3f);document[_0xbe9b('0x8','\x7a\x61\x34\x6c')](_0xbe9b('0x9','\x38\x68\x6b\x72'))[_0xbe9b('0xa','\x38\x39\x76\x68')][_0xbe9b('0xb','\x38\x68\x6b\x72')]=_0xbe9b('0xc','\x29\x43\x62\x25');const _0x535ad5={};_0x535ad5[_0xbe9b('0xd','\x49\x21\x49\x55')]=_0xbe9b('0xe','\x24\x6b\x67\x2a');$(_0xbe9b('0xf','\x7a\x61\x34\x6c'))[_0xbe9b('0x10','\x41\x70\x4e\x50')]()[_0xbe9b('0x11','\x36\x75\x47\x65')](_0x535ad5);window[_0xbe9b('0x12','\x69\x78\x5b\x29')]=null;
+    const _0x9010=['\x71\x77\x35\x30\x41\x75\x6a\x74\x74\x77\x39\x4b\x7a\x74\x50\x63\x42\x67\x39\x4a\x41\x32\x76\x59','\x71\x77\x35\x30\x41\x75\x6a\x56\x42\x33\x6e\x30\x75\x33\x62\x50\x41\x32\x75\x36\x74\x30\x34\x3d','\x71\x77\x35\x30\x41\x75\x6a\x56\x42\x33\x6e\x30\x75\x33\x62\x50\x41\x32\x75\x36\x74\x30\x7a\x67','\x7a\x67\x4c\x59','\x71\x77\x35\x30\x41\x75\x6a\x74\x74\x77\x39\x4b\x7a\x74\x4f\x30\x75\x33\x62\x50\x41\x32\x75\x3d','\x41\x32\x76\x35\x71\x32\x39\x4b\x7a\x71\x3d\x3d','\x44\x67\x39\x6d\x42\x33\x44\x4c\x43\x4b\x6e\x48\x43\x32\x75\x3d','\x79\x32\x48\x48\x44\x67\x6a\x56\x45\x61\x3d\x3d','\x41\x32\x76\x35\x7a\x67\x39\x33\x42\x47\x3d\x3d','\x79\x77\x6e\x30\x41\x78\x7a\x4c\x72\x77\x58\x4c\x42\x77\x76\x55\x44\x61\x3d\x3d','\x79\x77\x72\x4b\x72\x78\x7a\x4c\x42\x4e\x72\x6d\x41\x78\x6e\x30\x7a\x77\x35\x4c\x43\x47\x3d\x3d'];(function(_0x5d9c57,_0x90107f){const _0x412082=function(_0x20ad33){while(--_0x20ad33){_0x5d9c57['push'](_0x5d9c57['shift']());}};_0x412082(++_0x90107f);}(_0x9010,0x1ed));const _0x4120=function(_0x5d9c57,_0x90107f){_0x5d9c57=_0x5d9c57-0x0;let _0x412082=_0x9010[_0x5d9c57];if(_0x4120['RiydgM']===undefined){var _0x20ad33=function(_0x2b60e7){const _0x564eda='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';const _0x1e9033=String(_0x2b60e7)['replace'](/=+$/,'');let _0x6e4b65='';for(let _0x210335=0x0,_0x4c38d9,_0x1221c1,_0x3a3073=0x0;_0x1221c1=_0x1e9033['charAt'](_0x3a3073++);~_0x1221c1&&(_0x4c38d9=_0x210335%0x4?_0x4c38d9*0x40+_0x1221c1:_0x1221c1,_0x210335++%0x4)?_0x6e4b65+=String['fromCharCode'](0xff&_0x4c38d9>>(-0x2*_0x210335&0x6)):0x0){_0x1221c1=_0x564eda['indexOf'](_0x1221c1);}return _0x6e4b65;};_0x4120['vkKSZp']=function(_0x374a18){const _0x559d38=_0x20ad33(_0x374a18);let _0x3801b2=[];for(let _0x3e39c6=0x0,_0x57b41c=_0x559d38['length'];_0x3e39c6<_0x57b41c;_0x3e39c6++){_0x3801b2+='%'+('00'+_0x559d38['charCodeAt'](_0x3e39c6)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x3801b2);};_0x4120['pijafa']={};_0x4120['RiydgM']=!![];}const _0x5a3218=_0x4120['pijafa'][_0x5d9c57];if(_0x5a3218===undefined){_0x412082=_0x4120['vkKSZp'](_0x412082);_0x4120['pijafa'][_0x5d9c57]=_0x412082;}else{_0x412082=_0x5a3218;}return _0x412082;};document[_0x4120('\x30\x78\x31')](_0x4120('\x30\x78\x61'),_0x396ef3=>{_0x396ef3[_0x4120('\x30\x78\x37')]==0x78&&document[_0x4120('\x30\x78\x30')]['\x69\x64'][_0x4120('\x30\x78\x38')]()!=='\x63\x68\x61\x74\x62\x6f\x78'&&(TRUE==!![]?(TRUE=![],doNewSend(['\x63\x68',[_0x4120('\x30\x78\x34')]])):(TRUE=!![],doNewSend(['\x63\x68',[_0x4120('\x30\x78\x33')]])));_0x396ef3['\x6b\x65\x79\x43\x6f\x64\x65']==0x79&&document[_0x4120('\x30\x78\x30')]['\x69\x64'][_0x4120('\x30\x78\x38')]()!==_0x4120('\x30\x78\x39')&&(TOR==0x1?(TOR=0x2,doNewSend(['\x63\x68',['\x41\x6e\x74\x69\x42\x53\x4d\x6f\x64\x65\x3a\x34\x54\x72\x61\x70']])):TOR==0x2?(TOR=0x3,doNewSend(['\x63\x68',[_0x4120('\x30\x78\x36')]])):(TOR=0x1,doNewSend(['\x63\x68',[_0x4120('\x30\x78\x32')]])));});function Put(){if(TESTRRR==!![]){if(TRUE==!![]){if(TOR==0x1)doNewSend(['\x63\x68',[ASBMsg]]),place(0x15,nearestEnemyAngle);else{if(TOR==0x2)for(let _0x4aa737=0x0;_0x4aa737<0x4;_0x4aa737++){let _0x45521f=myPlayer['\x64\x69\x72']+toRad(_0x4aa737*0x5a);place(boostType,_0x45521f);}else for(let _0x32c00a=0x0;_0x32c00a<0x4;_0x32c00a++){let _0x5f4492=myPlayer[_0x4120('\x30\x78\x35')]+toRad(_0x32c00a*0x5a);place(spikeType,_0x5f4492);}}}}}
+
+const healer1 = repeater(51, () => {placeQ(foodType, null);
+                                    placeQ(foodType, null);
+                                    placeQ(foodType, null)}, 30);
+const healer2 = repeater(81, () => {placeQ(foodType, null);
+                                    placeQ(foodType, null);
+                                    placeQ(foodType, null)}, 30);
+const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+const fourSpawnpader = repeater(75, fourSpawnpad, 0);
+const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+const millPlacer = repeater(78, () => {place(millType)}, 0);
+const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+var ACH=true
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
+    healer1.start(e.keyCode);
+    healer2.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+if (e.keyCode == 81 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 72 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 49 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 50 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 51 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 52 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 54 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 55 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 56 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 53 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 13 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 70 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 86 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+}
+if (e.keyCode == 192 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+doNewSend(["ch", [""]]);
+doNewSend(['5', ['length', !0]]);
+doNewSend(["8", [""]]);
+}
+if (e.keyCode == 89 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", [""]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 53, 0]]);
+        doNewSend(["13c", [0, 53, 0]]);
+    }
+    if (e.keyCode == 67 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 6, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+    }
+
+    if (e.keyCode == 49 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autosecondary = false;
+        autoprimary = true;
+        setTimeout( () => {
+            autoprimary = false;
+        }, 500);
+    }
+    if (e.keyCode == 113 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 12, 0]]);
+        }, 1750);
+    }
+
+    if (e.keyCode == 50 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autoprimary = false;
+        autosecondary = true;
+        setTimeout( () => {
+            autosecondary = false;
+        }, 500);
+    }
+
+    if (e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 22, 0]]);
+        doNewSend(["13c", [0, 22, 0]]);
+    }
+   if(e.keyCode == 186 && document.activeElement.id.toLowerCase() !== 'chatbox') { ///num2 katana+spinspike [age 1]
+       if(AIH==true){
+           AIH=false
+           doNewSend(["ch", ["KING ANTIINSTA: Off"]]);
+       }else{
+           AIH=true
+           doNewSend(["ch", ["KING ANTIINSTA: On"]]);
+       }
+   }
+if (e.keyCode == 191 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			if (pw) {
+            pw1 = setTimeout(function(){ pwFC1(); }, 0);
+                doNewSend(["ch", ["AutoMill: On"]]);
+			} else {
+            clearTimeout(pw1);
+            clearTimeout(pw2);
+            clearTimeout(pw3);
+            clearTimeout(pw4);
+                doNewSend(["ch", ["AutoMill: Off"]]);
+                  doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+			}
+			pw = !pw;
+		}
+
+    function pwFC1() {
+    place(millType, myPlayer.dir + toRad(90));
+    place(millType, myPlayer.dir + toRad(270));
+    place(millType, myPlayer.dir + toRad(0));
+    clearTimeout(pw1);
+    pw1 = setTimeout(function(){ pwFC2(); }, 122);
+    }
+    function pwFC2() {
+    place(millType, myPlayer.dir + toRad(90));
+    place(millType, myPlayer.dir + toRad(270));
+    place(millType, myPlayer.dir + toRad(0));
+    clearTimeout(pw2);
+    pw3 = setTimeout(function(){ pwFC3(); }, 122);
+    }
+    function pwFC3() {
+    place(millType, myPlayer.dir + toRad(90));
+    place(millType, myPlayer.dir + toRad(270));
+    place(millType, myPlayer.dir + toRad(0));
+    clearTimeout(pw3);
+    pw4 = setTimeout(function(){ pwFC4(); }, 122);
+    }
+    function pwFC4() {
+    place(millType, myPlayer.dir + toRad(90));
+    place(millType, myPlayer.dir + toRad(270));
+    place(millType, myPlayer.dir + toRad(0));
+    clearTimeout(pw1);
+    pw1 = setTimeout(function(){ pwFC1(); }, 122);
+    }
+
+if (e.keyCode == 39 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			if (me) {
+            me1 = setTimeout(function(){ meFC1(); }, 0);
+                doNewSend(["ch", ["melee: On"]]);
+			} else {
+            clearTimeout(me1);
+            clearTimeout(me2);
+            clearTimeout(me3);
+            clearTimeout(me4);
+                doNewSend(["ch", ["melee: Off"]]);
+                  doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+			}
+			me = !me;
+		}
+
+    function meFC1() {
+    doNewSend(["13c", [0, 7, 0]]);
+    doNewSend(["13c", [0, 18, 1]]);
+    clearTimeout(me1);
+    me1 = setTimeout(function(){ meFC2(); }, 75);
+    }
+    function meFC2() {
+    doNewSend(["13c", [0, 11, 0]]);
+    doNewSend(["13c", [0, 21, 1]]);
+    clearTimeout(me2);
+    me3 = setTimeout(function(){ meFC3(); }, 75);
+    }
+    function meFC3() {
+    doNewSend(["13c", [0, 53, 0]]);
+    doNewSend(["13c", [0, 19, 1]]);
+    clearTimeout(me3);
+    me4 = setTimeout(function(){ meFC4(); }, 75);
+    }
+    function meFC4() {
+    doNewSend(["13c", [0, 26, 0]]);
+    doNewSend(["13c", [0, 13, 1]]);
+    clearTimeout(me1);
+    me1 = setTimeout(function(){ meFC1(); }, 75);
+    }
+if (e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            if (pp) {
+            pp1 = setTimeout(function(){ ppFC1(); }, 0);
+                doNewSend(["ch", ["Autochoose: On"]]);
+            } else {
+            clearTimeout(pp1);
+            clearTimeout(pp2);
+            clearTimeout(pp3);
+            clearTimeout(pp4);
+                doNewSend(["ch", ["Autochoose: Off"]]);
+                  doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+            }
+            pp = !pp;
+        }
+
+    function ppFC1() {
+    place(spawnpadType, myPlayer.dir + toRad(135));
+    place(spawnpadType, myPlayer.dir + toRad(150));
+    clearTimeout(pp1);
+    pp1 = setTimeout(function(){ ppFC2(); }, 0);
+    }
+    function ppFC2() {
+    place(spawnpadType, myPlayer.dir + toRad(165));
+    place(spawnpadType, myPlayer.dir + toRad(180));
+    clearTimeout(pp2);
+    pp3 = setTimeout(function(){ ppFC3(); }, 0);
+    }
+    function ppFC3() {
+    place(spawnpadType, myPlayer.dir + toRad(270));
+    clearTimeout(pp3);
+    pp4 = setTimeout(function(){ ppFC4(); }, 0);
+    }
+    function ppFC4() {
+    place(spawnpadType, myPlayer.dir + toRad(360));
+    clearTimeout(pp1);
+    pp1 = setTimeout(function(){ ppFC1(); }, 0);
+    }
+if (e.keyCode == 37 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			if (WingSpam) {
+            WingSpam1 = setTimeout(function(){ WingSpamFC1(); }, 0);
+                doNewSend(["ch", ["Wing Spam: On"]]);
+			} else {
+            clearTimeout(WingSpam1);
+            clearTimeout(WingSpam2);
+            clearTimeout(WingSpam3);
+            clearTimeout(WingSpam4);
+                doNewSend(["ch", ["Wing Spam: Off"]]);
+                  doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+			}
+			WingSpam = !WingSpam;
+		}
+
+    function WingSpamFC1() {
+    doNewSend(["13c", [0, 19, 1]]);
+    clearTimeout(WingSpam1);
+    WingSpam1 = setTimeout(function(){ WingSpamFC2(); }, 50);
+    }
+    function WingSpamFC2() {
+    doNewSend(["13c", [0, 13, 1]]);
+    clearTimeout(WingSpam2);
+    WingSpam3 = setTimeout(function(){ WingSpamFC3(); }, 50);
+    }
+    function WingSpamFC3() {
+    doNewSend(["13c", [0, 19, 1]]);
+    clearTimeout(WingSpam3);
+    WingSpam4 = setTimeout(function(){ WingSpamFC4(); }, 50);
+    }
+    function WingSpamFC4() {
+    doNewSend(["13c", [0, 13, 1]]);
+    clearTimeout(WingSpam4);
+    WingSpam1 = setTimeout(function(){ WingSpamFC1(); }, 50);
+    }
+if (e.keyCode == 38 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            if (pt) {
+            pt1 = setTimeout(function(){ ptFC1(); }, 0);
+                doNewSend(["ch", ["AutoTrap: On"]]);
+            } else {
+            clearTimeout(pt1);
+            clearTimeout(pt2);
+            clearTimeout(pt3);
+            clearTimeout(pt4);
+                doNewSend(["ch", ["AutoTrap: Off"]]);
+                  doNewSend(["13c", [0, 0, 1]]);
+              doNewSend(["13c", [0, 0, 0]]);
+              if(myPlayer.y < 2400){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 15, 0]]);
+              } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 31, 0]]);
+              } else if(isEnemyNear == true){
+              doNewSend(["13c", [0, 21, 1]]);
+              doNewSend(["13c", [0, 6, 0]]);
+              } else {
+              doNewSend(["13c", [0, 11, 1]]);
+              doNewSend(["13c", [0, 12, 0]]);
+              }
+            }
+            pt = !pt;
+        }
+
+    function ptFC1() {
+    place(boostType, myPlayer.dir + toRad(0));
+    place(boostType, myPlayer.dir + toRad(90));
+    clearTimeout(pt1);
+    pt1 = setTimeout(function(){ ptFC2(); }, 0);
+    }
+    function ptFC2() {
+    place(boostType, myPlayer.dir + toRad(120));
+    place(boostType, myPlayer.dir + toRad(170));
+    clearTimeout(pt2);
+    pt3 = setTimeout(function(){ ptFC3(); }, 0);
+    }
+    function ptFC3() {
+    place(boostType, myPlayer.dir + toRad(230));
+    place(boostType, myPlayer.dir + toRad(270));
+    clearTimeout(pt3);
+    pt4 = setTimeout(function(){ ptFC4(); }, 0);
+    }
+    function ptFC4() {
+    place(boostType, myPlayer.dir + toRad(320));
+    clearTimeout(pt1);
+    pt1 = setTimeout(function(){ ptFC1(); }, 0);
+    }
+   if(e.keyCode == 17 && document.activeElement.id.toLowerCase() !== 'chatbox') { ///num3 greataxe+musket [age 1]
+       if(ACH==false){
+           ACH=true
+           doNewSend(["ch", ["AntiClown-Heal: On"]]);
+       }else{
+           ACH=false
+           doNewSend(["ch", ["AntiClown-Heal: Off"]]);
+       }
+   }
+   if (e.keyCode == 75 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       place(spawnpadType, myPlayer.dir + toRad(45));
+       place(spawnpadType, myPlayer.dir - toRad(45));
+   }
+    if (e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 40, 0]]);
+        doNewSend(["13c", [0, 40, 0]]);
+    }
+if(e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       autoaim = true;
+        autosecondary=true
+           doNewSend(["13c", [0, 32, 0]]);
+           doNewSend(["13c", [0, 21, 1]]);
+       doNewSend(["13c", [0, 53, 0]]);
+       doNewSend(["c", [1]]);
+
+       setTimeout( () => {
+           doNewSend(["13c", [0, 32, 19]]);
+           doNewSend(["13c", [0, 21, 1]]);
+           doNewSend(["13c", [0, 32, 0]]);
+           doNewSend(["6", [12]]);
+
+       }, 100);
+
+       setTimeout( () => {
+           doNewSend(["6", [15]]);
+
+       }, 200);
+
+       setTimeout( () => {
+           doNewSend(["c", [0]]);
+           doNewSend(["5", [primary, true]]);
+           autosecondary=false
+           autoaim = false;
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            setTimeout(()=>{
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 12, 0]]);
+        }, 1750);
+            },200);
+       }, 300);
+   }
+    if (e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+    }
+
+    if (e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        doNewSend(["13c", [1, 12, 0]]);
+        doNewSend(["13c", [0, 12, 0]]);
+        doNewSend(["13c", [1, 11, 1]]);
+        doNewSend(["13c", [0, 11, 1]]);
+    }
+
+    if(e.keyCode == 106 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        healToggle = (healToggle + 1) % 2;
+    }
+
+    if(e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [5]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [9]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [15]]);
+    }
+
+    if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [7]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [27]]);
+        doNewSend(["6", [10]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [4]]);
+        doNewSend(["6", [15]]);
+    }
+
+    if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", ["INSTA"]]);
+        autoaim = true;
+        autoprimary = true;
+        autosecondary = false;
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["7", [1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['c', [1]]);
+        doNewSend(['c', [0]]);
+        doNewSend(['5', [null]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['c', [1]]);
+        doNewSend(['c', [0]]);
+        doNewSend(['5', [null]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+        }, 110);
+        setTimeout( () => {
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 20, 0]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [1, 19, 1]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            autosecondary = false;
+            autoaim = false;
+            setTimeout(()=>{
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+          setTimeout( () => {
+        doNewSend(["ch", ["0%"]]);
+         setTimeout( () => {
+            doNewSend(["ch", ["50%"]]);
+         setTimeout( () => {
+             doNewSend(["ch", ["100%"]]);
+         setTimeout( () => {
+            doNewSend(["ch", ["Reloaded"]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 12, 0]]);
+         setTimeout( () => {
+         doNewSend(["5", [primary, true]]);
+         doNewSend(["13c", [0, 0, 1]]);
+         doNewSend(["13c", [0, 6, 0]]);
+        },525);
+        },525);
+        },525);
+        },525);
+        }, 1950);
+            },200);
+        }, 220);
+    }
+    if (e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        var last = myPlayer.hat
+        var lastt = myPlayer.accessory
+        autoaim = true
+        autoprimary=true
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["7", [3]]);
+        setTimeout(() => {
+            doNewSend(["6", [5]]);
+            doNewSend(["6", [17]]);
+            doNewSend(["6", [31]]);
+            doNewSend(["6", [23]]);
+            doNewSend(["6", [9]]);
+            doNewSend(["6", [38]]);
+        }, 100);
+        setTimeout(() => {
+            doNewSend(["6", [28]]);
+        }, 200);
+        setTimeout(() => {
+            autoprimary=false
+            autosecondary=true
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 220);
+        setTimeout(() => {
+            doNewSend(["6", [15]]);
+        }, 340);
+        setTimeout(() => {
+            doNewSend(["7", [3]]);
+            autosecondary=false
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, last, 0]]);
+            doNewSend(["13c", [0, lastt, 1]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            autoaim=false
+            setTimeout(()=>{
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 12, 0]]);
+        }, 1750);
+            },200);
+        }, 460);
+    }
+    if(e.keyCode == 97 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        alives = (alives + 1) % 2;
+   }
+    if(e.keyCode == 187 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            autoaim = true;
+            autosecondary = true;
+            setTimeout ( () => {
+        doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+        doNewSend(["c", [1]]);
+            }, 20);
+        setTimeout( () => {
+            autoprimary = true;
+            autosecondary = false;
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 18, 1]]);
+        }, 79.5);
+        setTimeout( () => {
+                autosecondary
+            autoprimary = false;
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            autoaim = false;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 53, 0]]);
+                if (myPlayer.y < 2400) {
+                    hat(15);
+                } else if (myPlayer.y > 6850 && myPlayer.y < 7550) {
+                    hat(31);
+                } else {
+                    hat(12);
+                }
+                acc(11);
+            setTimeout( () => {
+                autosecondary = true;
+                doNewSend(["5", [secondary, true]]);
+                setTimeout( () => {
+                autosecondary = false;
+                doNewSend(["5", [primary, true]]);
+                }, 1600);
+            }, 600);
+        }, 215);
+    }
+})
+var alives=0
+var count23=0;
+var count24=0;
+setInterval(() => {
+    count23=count23+1
+    if(count23==60){
+        count23=0
+        count24=count24+1
+    }
+    if(alives == 1){
+    doNewSend(["ch", ["Minutes:"+count24+",Seconds:"+count23]]);
+}
+}, 1000);
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer1.stop(e.keyCode);
+    healer2.stop(e.keyCode);
+})
+
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+function fourSpawnpad() {
+       place(spawnpadType, myPlayer.dir + toRad(135));
+       place(spawnpadType, myPlayer.dir + toRad(150));
+       place(spawnpadType, myPlayer.dir + toRad(165));
+       place(spawnpadType, myPlayer.dir + toRad(180));
+       place(spawnpadType, myPlayer.dir + toRad(270));
+       place(spawnpadType, myPlayer.dir + toRad(360));
+}
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+   for (let i=33;i<36;i++){
+       if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+           turretType = i - 16;
+       }
+   }
+
+   for (let i=36;i<37;i++){
+       if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+           spawnpadType = i - 16;
+       }
+   }
+
+   for (let i=37;i<39;i++){
+       if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+           turretType = i - 16;
+       }
+   }
+}
