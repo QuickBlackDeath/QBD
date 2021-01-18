@@ -1,0 +1,2087 @@
+// ==UserScript==
+// @name         👑UwU mod👑 ꪜ੨
+// @names        Best leading mod 2020
+// @version      2
+// @description  OMG
+// @author       [WP] ⓊⓦⓊ#3894 Dont beg for v3
+// @match        *://moomoo.io/*
+// @match        *://sandbox.moomoo.io/*
+// @grant        none
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+
+// @downloadURL none
+// ==/UserScript==
+// ⡆⣐⢕⢕⢕⢕⢕⢕⢕⢕⠅⢗⢕⢕⢕⢕⢕⢕⢕⠕⠕⢕⢕⢕⢕⢕⢕⢕⢕⢕   [WP] ⓊⓦⓊ#3894
+// ⢐⢕⢕⢕⢕⢕⣕⢕⢕⠕⠁⢕⢕⢕⢕⢕⢕⢕⢕⠅⡄⢕⢕⢕⢕⢕⢕⢕⢕⢕   [WP] ⓊⓦⓊ#3894
+// ⢕⢕⢕⢕⢕⠅⢗⢕⠕⣠⠄⣗⢕⢕⠕⢕⢕⢕⠕⢠⣿⠐⢕⢕⢕⠑⢕⢕⠵⢕   [WP] ⓊⓦⓊ#3894
+// ⢕⢕⢕⢕⠁⢜⠕⢁⣴⣿⡇⢓⢕⢵⢐⢕⢕⠕⢁⣾⢿⣧⠑⢕⢕⠄⢑⢕⠅⢕   [WP] ⓊⓦⓊ#3894
+// ⢕⢕⠵⢁⠔⢁⣤⣤⣶⣶⣶⡐⣕⢽⠐⢕⠕⣡⣾⣶⣶⣶⣤⡁⢓⢕⠄⢑⢅⢑   [WP] ⓊⓦⓊ#3894
+// ⠍⣧⠄⣶⣾⣿⣿⣿⣿⣿⣿⣷⣔⢕⢄⢡⣾⣿⣿⣿⣿⣿⣿⣿⣦⡑⢕⢤⠱⢐   [WP] ⓊⓦⓊ#3894
+// ⢠⢕⠅⣾⣿⠋⢿⣿⣿⣿⠉⣿⣿⣷⣦⣶⣽⣿⣿⠈⣿⣿⣿⣿⠏⢹⣷⣷⡅⢐   [WP] ⓊⓦⓊ#3894
+// ⣔⢕⢥⢻⣿⡀⠈⠛⠛⠁⢠⣿⣿⣿⣿⣿⣿⣿⣿⡀⠈⠛⠛⠁⠄⣼⣿⣿⡇⢔   [WP] ⓊⓦⓊ#3894
+// ⢕⢕⢽⢸⢟⢟⢖⢖⢤⣶⡟⢻⣿⡿⠻⣿⣿⡟⢀⣿⣦⢤⢤⢔⢞⢿⢿⣿⠁⢕   [WP] ⓊⓦⓊ#3894
+// ⢕⢕⠅⣐⢕⢕⢕⢕⢕⣿⣿⡄⠛⢀⣦⠈⠛⢁⣼⣿⢗⢕⢕⢕⢕⢕⢕⡏⣘⢕   [WP] ⓊⓦⓊ#3894
+// ⢕⢕⠅⢓⣕⣕⣕⣕⣵⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣷⣕⢕⢕⢕⢕⡵⢀⢕⢕   [WP] ⓊⓦⓊ#3894
+// ⢑⢕⠃⡈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢃⢕⢕⢕   [WP] ⓊⓦⓊ#3894
+// ⣆⢕⠄⢱⣄⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢁⢕⢕⠕⢁   [WP] ⓊⓦⓊ#3894
+// ⣿⣦⡀⣿⣿⣷⣶⣬⣍⣛⣛⣛⡛⠿⠿⠿⠛⠛⢛⣛⣉⣭⣤⣂⢜⠕⢑⣡⣴⣿   [WP] ⓊⓦⓊ#3894
+setInterval(() => {
+setTimeout(() => {
+document.getElementById("gameName").innerHTML = "_wU"
+setTimeout(() => {
+document.getElementById("gameName").innerHTML = "U_U"
+setTimeout(() => {
+document.getElementById("gameName").innerHTML = "Uw_"
+setTimeout(() => {
+}, 100);
+}, 100);
+}, 100);
+}, 100);
+}, 400);
+
+document.getElementById('enterGame').innerHTML = '>̳̿͟͞>̳̿͟͞P̳̿͟͞L̳̿͟͞A̳̿͟͞Y̳̿͟͞<̳̿͟͞<̳̿͟͞ ';
+document.getElementById('enterGame').style = "text-shadow: #fe52b9 1px 1px 40px;";
+document.getElementById('nameInput').placeholder = "‎";
+document.getElementById('nameInput').style.color = "white";
+document.getElementById("allianceButton").style.color = "#ffffff";
+document.getElementById("chatButton").style.color = "#ffffff";
+document.getElementById("storeButton").style.color = "#ffffff";
+document.title = "‎";
+document.getElementById('gameName').style.color = "#fe019a";
+document.getElementById('gameName').style = "text-shadow: #fe019a 1px 1px 40px;";
+document.getElementById("gameName").innerHTML = "UwU"
+document.getElementById("woodDisplay").style.color = "#ffffff";
+document.getElementById("stoneDisplay").style.color = "#ffffff";
+document.getElementById("killCounter").style.color = "#ffffff";
+document.getElementById("foodDisplay").style.color = "#ffffff"
+document.getElementById("scoreDisplay").style.color = "#ffffff";
+document.getElementById("mainMenu").style.backgroundImage = "url(https://i.pinimg.com/originals/55/f8/72/55f872275c4913f729ae10ba3f6a1a5f.jpg)";
+$("#mapDisplay").css({background: `url('http://i.imgur.com/Qllo1mA.png')`});
+$('#allianceButton').css({'color': 'rgba(89, 89, 89, 1)'});
+$('#storeButton').css({'color': 'rgba(89, 89, 89, 1))'});
+$('#chatButton').css({'color': 'rgba(89, 89, 89, 1)'});
+$('.menuCard').css({'black-space': 'normal',
+                    'text-align': 'center',
+                    'background-color': 'rgba(0, 0, 0, 0)',
+                    '-moz-box-shadow': '0px 0px rgba(255, 255, 255, 0)',
+                    '-webkit-box-shadow': '0px 0px rgba(255, 255, 255, 0)',
+                    'box-shadow': '0px 0px rgba(255, 255, 255, 0)',
+                    '-webkit-border-radius': '0px',
+                    '-moz-border-radius': '0px',
+                    'border-radius': '0px',
+                    'margin': '15px',
+                    'margin-top': '15px'});
+        $("#storeHolder").css({'height': '1500px',
+                               'width': '450px'})
+
+$( "#partyButton, #joinPartyButton" ).wrapAll( '<div class="partyWrap"></div>' );
+
+$( "#partyButton" ).replaceWith( '<span>Empty </span><i class="yt-link" style="font-size:30px;vertical-align:middle">î£“</i>' );
+
+$( "#errorNotification" ).after( '<div id="moddedMenu"><div class="titleMM">Insta menu</div><div class="one"><label class="switch"></span></label><div class="two"><div class="text"><br>‎<br>‎<hr></span></label><label class="container">LagInsta on R<input type="checkbox" id="rlaginsta"><span class="checkmark"></label><label class="container">Normal insta<input type="checkbox" id="rinsta"><span class="checkmark"></label><label class="></label><label class="container</label><lable class="container">ReverseInsta<input type="checkbox" id="reverseInsta"><span class="checkmark"');
+
+(function() {var css = [
+	"div#adCard, ",
+	"  #twitterFollow, ",
+	"  #youtubeFollow, ",
+	"  #downloadButtonContainer, ",
+	"  #followText, ",
+	"  #promoImg {",
+	"    display: none;",
+	"  }",
+	"",
+	"  #featuredYoutube > a.ytLink, ",
+	"  a {",
+	"    color: rgba(0,0,0,0.0) !important;",
+	"    font-size: 0px;",
+	"    margin-top: 0px;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  a:hover {",
+	"    color: rgba(0,0,0,0.0) !important;",
+	"  }",
+	"",
+	"  #youtuberOf, ",
+	"  #linksContainer2, ",
+	"  .partyWrap {",
+	"    background: rgba(0,0,0,0.0);",
+	"    border: 0px solid rgba(0,0,0,0.0);",
+	"    border-radius: 0px;",
+	"    padding: 0px;",
+	"    font-size: 0px;",
+	"    position: absolute;",
+	"    color: rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  .partyWrap {",
+	"    min-height: 80px;",
+	"    min-width: 160px;",
+	"    top: 10px;",
+	"    right: 10px;",
+	"  }",
+	"",
+	"  #youtuberOf {",
+	"    top: 10px;",
+	"    left: 10px;",
+	"  }",
+	"",
+	"  #followText {",
+	"    min-height: 200px;",
+	"    bottom: 10px;",
+	"    left: 10px;",
+	"  }",
+	"",
+	"  #linksContainer2 {",
+	"    bottom: 1000000px;",
+	"    right: 100000px;",
+	"    color: transparent;",
+	"  }",
+	"",
+	"  .menuCard {",
+	"    background: rgba(0,0,0,0.0);",
+	"    border-radius: 10px;",
+	"    border: 10px solid rgba(0,0,0,0.0);",
+	"    box-shadow: none;",
+	"    overflow:auto;",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar {",
+	"    width: 10px;",
+	"    border-right: 2px solid rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar-thumb {",
+	"    border: 2px solid rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar-thumb:hover {",
+	"    background: rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar-thumb:active {",
+	"    background: black;",
+	"    border: 2px solid rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  .menuHeader {",
+	"    font-size: 24px;",
+	"    color: rgba(0,0,0,0.0);",
+	"    margin-bottom: 3px;",
+	"    border-bottom: 3px solid #eee;",
+	"  }",
+	"",
+	"  .menuHeader:first-child {",
+	"    margin-bottom: 30px;",
+	"  }",
+	"",
+	"  .menuText {",
+	"    font-size: 18px;",
+	"    color: rgba(0,0,0,0.0);",
+	"    margin-bottom: 10px;",
+	"  }",
+	"",
+	"  .ytLink {",
+	"    color:rgba(0,0,0,0.0);",
+	"    font-size: 24px;",
+	"    text-decoration: none;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  .menuButton {",
+	"    color: #000000;",
+	"    background-color: transparent;",
+	"    border: 5px solid #000000;",
+	"    position: relative;",
+	"    display: inline-flex;",
+	"    padding: 0px 70px;",
+	"    font-family: denk one;",
+	"    transition: color .5s;",
+	"    overflow: hidden;",
+	"    width: 100%;",
+	"    justify-content: center;",
+	"  }",
+	"",
+	"  .menuButton:hover {",
+	"    color: rgba(0, 0, 0, 0) !important;",
+	"    border: 5px solid rgba(0, 0, 0, 0);",
+	"    cursor: pointer;",
+	"    background-color: transparent;",
+	"  }",
+	"",
+	"  .menuButton:before {",
+	"    content: \'\';",
+	"    position: absolute;",
+	"    top: 0;",
+	"    left: 0;",
+	"    width: 130%; ",
+	"    height: 10000%;",
+	"    background:rgba(0,0,0,0.0);",
+	"    border-right: 20px solid #b6fe9c;",
+	"    z-index: -1;",
+	"    transform-origin:0 0 ;",
+	"    transform:translateX(-112%) skewX(45deg);",
+	"    transition: transform .5s;",
+	"  }",
+	"",
+	"  .menuButton:hover:before {",
+	"    color: #000000 !important;",
+	"    transform: translateX(-20%) skewX(45deg);",
+	"  }",
+	"",
+	"  .menuCard span {",
+	"    margin: 10px;",
+	"  }",
+	"",
+	"  #promoHolderImg > img {",
+	"    width: 300px;",
+	"    height: 94px;",
+	"  }",
+	"",
+	"  #guideCard {",
+	"    max-height: 282px;",
+	"  }",
+	"",
+	"  .skinColorItem {",
+	"    transition: 1s;",
+	"    border: 3px solid #000000;",
+	"  }",
+	"",
+	"  select {",
+	"    background: rgba(0,0,0,0.0);",
+	"    border-radius: 5px;",
+	"    border: 3px solid #000000;",
+	"    margin-bottom: 10px;",
+	"    color: #000000;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  select:hover {",
+	"    background: #000000;",
+	"    border: 3px solid #000000;",
+	"  }",
+	"",
+	"  #pre-content-container {",
+	"    display: none!important;",
+	"  }",
+	"",
+	"  .uiElement, ",
+	"  .resourceDisplay, ",
+	"  .actionBarItem {",
+	"    background-color: rgba(0,0,0,0.6) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 50px !important;",
+	"    color: #ffffff;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  .uiElement:hover, ",
+	"  .resourceDisplay:hover, ",
+	"  .actionBarItem:hover {",
+	"    background-color: rgba(0,0,0,0.5) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 50px !important;",
+	"    color: #ffffff;",
+	"  }",
+	"",
+	"  #topInfoHolder, #itemInfoHolder, #mapDisplay, #chatBox  { ",
+	"    background-color: rgba(0,0,0,0.6) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 10px !important;",
+	"    color: #ffffff;",
+	"  }",
+	"",
+	"  #itemInfoHolder { ",
+	"    -webkit-text-stroke: transparent;",
+	"  }",
+	"",
+	"  .material-icons { ",
+	"    color: rgba(0,0,0,0.0);",
+	"    font-size: 31px;",
+	"    -webkit-text-stroke: 1.5px #ffffff;",
+	"  }",
+	"",
+	"  #altServer > a > i {",
+	"    font-size: 30px !important;",
+	"    -webkit-text-stroke: transparent !important;",
+	"  }",
+	"",
+	"  #ageText { ",
+	"    font-size: 40px !important;",
+	"    color:rgba(0,0,0,0.0) ;",
+	"    -webkit-text-stroke: 1.5px #000000;",
+	"    margin-bottom: 30px;",
+	"  }",
+	"",
+	"  #ageBarBody {",
+	"    background-color: #000000;",
+	"    border: 3px solid #000000",
+	"  }",
+	"",
+	"  #ageBar {",
+	"    background-color: rgba(0,0,0,0.0) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    height: 10px;",
+	"    padding-bottom: 10px;",
+	"    margin-bottom: 20px;",
+	"  }",
+	"",
+	"  .actionBarItem {",
+	"    width: 65px;",
+	"    height: 65px;",
+	"    background-position: center; ",
+	"    background-size: 55px 55px;",
+	"  }",
+	"",
+	"  #aBox {",
+	"    color: rgba(0,0,0,0.0)!important;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  #chatBox::placeholder {",
+	"    color: #0000000!important;",
+	"  }",
+	"",
+	"  #chatBox:hover {",
+	"    background: rgba(0,0,0,0.5)!important;",
+	"  }",
+	"",
+	"  #chatBox:hover::placeholder {",
+	"    color: #000000!important;",
+	"  }",
+	"",
+	"  #leaderboard, .leaderboardItem[style*=\"color: rgba(0,0,0,0.0);\"] {",
+	"    color: #ffffff!important;",
+	"  }",
+	"",
+	"  .ytLink:hover {",
+	"    color: rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  #nameInput {",
+	"    background: rgba(0,0,0,0.0);",
+	"    border: 5px solid #000000;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  #nameInput::placeholder {",
+	"    color: rgba(0,0,0,0.0);",
+    "    border: 5px solid #000000;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  #nameInput:hover {",
+	"    background: rgba(0,0,0,0.0);",
+	"    color: rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  #nameInput:hover::placeholder {",
+	"    background: rgba(0,0,0,0.0);",
+	"    color: rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  #linksContainer2 {",
+	"    max-height: 500px;",
+	"    width: 250px;",
+	"  }",
+	"",
+	"  #linksContainer2 > * {",
+	"    display:table-cell;",
+	"    vertical-align:middle;",
+	"    text-align: center;",
+	"    width:700px;",
+	"  }",
+	"  ",
+	"  .storeTab, ",
+	"  #storeHolder, ",
+	"  #allianceHolder, ",
+	"  #allianceInput, ",
+	"  .allianceButtonM {",
+	"    background: rgba(0,0,0,0.6);",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"  }",
+	"",
+	"  .storeItem, ",
+	"  .storeTab, ",
+	"  .allianceButtonM, ",
+	"  #allianceInput::placeholder, ",
+	"  .allianceItem {",
+	"    color: #ffffff !important;",
+	"  }",
+	"",
+	"  .storeItem, ",
+	"  .storeTab, ",
+	"  .allianceButtonM, ",
+	"  #allianceInput::placeholder, ",
+	"  .allianceItem, ",
+	"  .joinAlBtn {",
+	"    color: #000000 !important;",
+	"  }",
+	"",
+	"  .storeItem:hover, ",
+	"  .storeTab:hover, ",
+	"  .allianceButtonM:hover,",
+	"  .allianceItem:hover, ",
+	"  .joinAlBtn:hover {",
+	"    color: #000000 !important;",
+	"  }",
+	"",
+	"  #allianceInput, ",
+	"  #killCounter {",
+	"    color: #000000;",
+	"  }",
+	"  ",
+	"  #allianceInput:hover {",
+	"    background: rgba(0,0,0,0.5);",
+	"    color: #000000;",
+	"  }",
+	"",
+	"  #allianceInput:hover::placeholder{",
+	"    color: #000000;",
+	"  }",
+	"",
+	"  #linksContainer2 > *:first-child {",
+	"    border-bottom: 3px solid rgba(0,0,0,0.0);",
+	"  }",
+	"",
+	"  #moddedMenu {",
+	"    position: absolute;",
+	"    top: 3.25%;",
+	"    left: 0px;",
+	"    width: 3%;",
+	"    height: 45.0%;",
+	"    background: rgba(0,0,0,0.9);",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-top-right-radius: 30px;",
+	"    border-bottom-right-radius: 30px;",
+	"    transition: 1s;",
+	"    z-index: 999;",
+	"  }",
+	"",
+	"  #moddedMenu:hover {",
+	"    width: 20%;",
+	"  }",
+	"",
+	"  #youtuberOf {",
+	"    bottom: 10px;",
+	"    top: auto;",
+	"  }",
+	"",
+	"  .titleMM {",
+	"    color: #ffffff;",
+	"    border-bottom: 3px solid rgba(0, 0, 0, 0);",
+	"    font-size: 32px;",
+	"    transform: rotate(90deg);",
+	"    white-space: nowrap;",
+	"    margin-top: 250%;",
+	"    transition: 1s;",
+	"  }",
+	"",
+	"  #moddedMenu:hover > .titleMM {",
+	"    transform: rotate(0deg) translate(0,-1580%)",
+	"  }",
+	"",
+	"  .switch {",
+	"    margin-top: 5px;",
+	"    margin-left: 10px;",
+	"    position: absolute;",
+	"    width: 60px;",
+	"    height: 34px;",
+	"    transition: opacity 1s;",
+	"    opacity: 0;",
+	"  }",
+	"",
+	"  .text {",
+	"    bottom: 76%;",
+	"    position: absolute;",
+	"    color: #ffffff;",
+	"    font-size: 20px;",
+	"    left: 0%;",
+	"    display: none;",
+	"    transition: 1s;",
+	"  }",
+	"",
+	"  .text > b { ",
+	"    font-size: 20px;",
+	"    color: #ffffff;",
+	"  }",
+	"",
+	"  b:hover { ",
+	"    color: #ffffff;",
+	"  }",
+	"",
+	"  .one > .text {",
+	"    top: 5.5%;",
+	"  }",
+	"",
+	"  .two > .text {",
+	"    top: 10.7%;",
+	"  }",
+	"",
+	"  .three > .text {",
+	"    top: 37.5%;",
+	"  }",
+	"",
+	"  .four > .text {",
+	"    top: 47.5%;",
+	"  }",
+	"",
+	"  .five > .text {",
+	"    top: 57.5%;",
+	"  }",
+	"",
+	"  .six > .text {",
+	"    top: 67.5%;",
+	"  }",
+	"",
+	"  .seven > .text {",
+	"    top: 77.5%;",
+	"  }",
+	"",
+	"  .eight > .text {",
+	"    top: 87.5%;",
+	"  }",
+	"",
+	"  #moddedMenu:hover .switch {",
+	"    opacity: 1;",
+	"  }",
+	"",
+	"  #moddedMenu:hover .text {",
+	"    display: block;",
+	"  }",
+	"",
+	"  .one > .switch {",
+	"    top: 15%;",
+	"  }",
+	"",
+	"  .two > .switch {",
+	"    top: 25%;",
+	"  }",
+	"",
+	"  .three > .switch {",
+	"    top: 35%;",
+	"  }",
+	"",
+	"  .four > .switch {",
+	"    top: 45%;",
+	"  }",
+	"",
+	"  .five > .switch {",
+	"    top: 55%;",
+	"  }",
+	"",
+	"  .six > .switch {",
+	"    top: 65%;",
+	"  }",
+	"",
+	"  .seven > .switch {",
+	"    top: 75%;",
+	"  }",
+	"",
+	"  .eight > .switch {",
+	"    top: 85%;",
+	"  }",
+	"",
+	"  .switch input {",
+	"    display:none;",
+	"  }",
+	"",
+	"  .slider {",
+	"    position: absolute;",
+	"    cursor: pointer;",
+	"    top: 0;",
+	"    left: 0;",
+	"    right: 0;",
+	"    bottom: 0;",
+	"    background-color: #888;",
+	"    -webkit-transition: .4s;",
+	"    transition: .4s;",
+	"  }",
+	"",
+	"  .slider:before {",
+	"    position: absolute;",
+	"    content: \"\";",
+	"    height: 26px;",
+	"    width: 26px;",
+	"    left: 4px;",
+	"    bottom: 4px;",
+	"    background-color: white;",
+	"    -webkit-transition: .4s;",
+	"    transition: .4s;",
+	"  }",
+	"",
+	"  input:checked + .slider {",
+	"    background-color:  #ffffff;",
+	"  }",
+	"  ",
+	"  input:focus + .slider {",
+	"    box-shadow: 0 0 1px  #ffffff;",
+	"  }",
+	"",
+	"  input:checked + .slider:before {",
+	"    -webkit-transform: translateX(26px);",
+	"    -ms-transform: translateX(26px);",
+	"    transform: translateX(26px);",
+	"  }",
+	"",
+	"  .slider.round {",
+	"    border-radius: 34px;",
+	"  }",
+	"",
+	"  .slider.round:before {",
+	"    border-radius: 50%;",
+	"  }"
+].join("\n");
+if (typeof GM_addStyle != "undefined") {
+	GM_addStyle(css);
+} else if (typeof PRO_addStyle != "undefined") {
+	PRO_addStyle(css);
+} else if (typeof addStyle != "undefined") {
+	addStyle(css);
+} else {
+	var node = document.createElement("style");
+	node.type = "text/css";
+	node.appendChild(document.createTextNode(css));
+	var heads = document.getElementsByTagName("head");
+	if (heads.length > 0) {
+		heads[0].appendChild(node);
+	} else {
+		// no head yet, stick it whereever
+		document.documentElement.appendChild(node);
+	}
+}
+})();
+var kills = 0;
+
+setInterval(getkills, 1000);
+
+function getkills(){
+    var count = parseInt(document.getElementById("killCounter").innerText);
+    if(count > kills){
+   doNewSend(["ch", ["EZ_Kills = " +count]]);
+    }
+    kills = count;
+}
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+if (CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(${hue}, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
+  clearInterval(replaceInterval);
+}}, 10);
+
+function changeHue() {
+  hue += Math.random() * 999999999999999999999999999;
+}
+
+setInterval(changeHue, 0);
+$("#consentBlock").css({display: "none"});
+//$("#youtuberOf").css({display: "none"});
+
+document.getElementById("moomooio_728x90_home").style.display = "none";
+$("#moomooio_728x90_home").parent().css({display: "none"});
+
+window.onbeforeunload = null;
+
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+setInterval(() => {
+   if(clanToggle == 1) {
+        doNewSend(["9", [null]]);
+        doNewSend(["8", [animate(false, 5)]])
+    }
+    doNewSend(["testing", [6]]);
+}, 0);
+
+setInterval(() => {
+    if(messageToggle == 1) {
+        doNewSend(["ch", [animate(true, 5)]])
+    }
+}, 0);
+
+setInterval(() => {
+    if(AntiToggle == 1) {
+    setTimeout( () => {
+        place(foodType, null);
+        }, 0);}
+}, 75)
+
+setInterval(() => {
+    if(autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(hatToggle == 1) {
+        if(oldHat != normalHat) {
+            hat(normalHat);
+            console.log("Tried. - Hat")
+        }
+        if(oldAcc != normalAcc) {
+            acc(normalAcc);
+            console.log("Tried. - Acc")
+        }
+        oldHat = normalHat;
+        oldAcc = normalAcc
+    }
+}, 25);
+
+setInterval(() => {
+   if(autoaim == true) {
+       doNewSend(["2", [nearestEnemyAngle]]);
+   }
+}, 0);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+
+(function() {
+    var animal1;
+    var animal2;
+    var animal3;
+    var animal4;
+    var animal5;
+    var animal6;
+    var animal7;
+    var animal8;
+    var animalMod = true;
+
+       document.addEventListener('keydown', function(e) {
+        if (e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                e.preventDefault();
+                if (animalMod) {
+                    autoaim = true;
+                    doNewSend(["7", [2]]);
+                    animal1 = setTimeout(function() {
+                        h1();
+                    }, 0);
+                } else {
+                    clearTimeout(animal1);
+                    clearTimeout(animal2);
+                    clearTimeout(animal3);
+                    clearTimeout(animal4);
+                    clearTimeout(animal5);
+                    clearTimeout(animal6);
+                    clearTimeout(animal7);
+                    clearTimeout(animal8);
+                    doNewSend(["13c", [0, 45, 0]]);
+                    doNewSend(["7", [2]]);
+                    doNewSend(["33", [null]]);
+                    isEnemyNear = false;
+                    autoaim = false;
+                }
+                animalMod = !animalMod;
+            }
+        }
+    );
+
+
+
+    function h1() {
+        doNewSend(["33", [nearestEnemyAngle]]);
+        doNewSend(["ch", ['']]);
+        if (isEnemyNear == true) {
+            for (let i = 0; i < 4; i++) {
+                doNewSend(["13c", [0, 53, 0]]);
+                doNewSend(["13c", [0, 19, 1]]);
+                let boostSpike =  place(spikeType, boostDir + toRad(90));
+                                  place(spikeType, boostDir - toRad(90));
+                                  place(boostType, boostDir);
+                                  doNewSend(["33", [boostDir]]);
+                place(boostSpike)
+            }
+        }
+        clearTimeout(animal1);
+        animal2 = setTimeout(function() {
+            h2();
+        }, 270);
+    }
+
+    function h2() {
+        doNewSend(["33", [nearestEnemyAngle]]);
+        doNewSend(["ch", ['']]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            for (let i = 0; i < 1; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(boostType, angle)
+            }
+        }
+        clearTimeout(animal2);
+        animal3 = setTimeout(function() {
+            h3();
+        }, 270);
+    }
+
+    function h3() {
+        doNewSend(["ch", ['']]);
+        doNewSend(["33", [nearestEnemyAngle]]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 11, 0]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            for (let i = 0; i < 1; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(boostType, angle)
+            }
+        }
+        clearTimeout(animal3);
+        animal4 = setTimeout(function() {
+            h4();
+        }, 270);
+    }
+
+    function h4() {
+        doNewSend(["ch", ['']]);
+        doNewSend(["33", [nearestEnemyAngle]]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            for (let i = 0; i < 3; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(spikeType, angle)
+            }
+        }
+        clearTimeout(animal4);
+        animal5 = setTimeout(function() {
+            h5();
+        }, 270);
+    }
+
+    function h5() {
+        doNewSend(["33", [nearestEnemyAngle]]);
+        doNewSend(["ch", ['']]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 13, 1]]);
+            for (let i = 0; i < 1; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(boostType, angle)
+            }
+        }
+        clearTimeout(animal5);
+        animal6 = setTimeout(function() {
+            h6();
+        }, 270);
+    }
+
+    function h6() {
+        doNewSend(["ch", ['']]);
+        doNewSend(["33", [nearestEnemyAngle]]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 11, 0]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            for (let i = 0; i < 3; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(spikeType, angle)
+            }
+        }
+        clearTimeout(animal6);
+        animal7 = setTimeout(function() {
+            h7();
+        }, 270);
+    }
+
+    function h7() {
+        doNewSend(["ch", ['']]);
+        doNewSend(["33", [nearestEnemyAngle]]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 26, 0]]);
+            doNewSend(["13c", [0, 13, 1]]);
+            for (let i = 0; i < 2; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(boostType, angle)
+            }
+        }
+        clearTimeout(animal7);
+        animal8 = setTimeout(function() {
+            h8();
+        }, 270);
+    }
+
+    function h8() {
+        doNewSend(["ch", ['']]);
+        doNewSend(["33", [nearestEnemyAngle]]);
+        if (isEnemyNear == true) {
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            for (let i = 0; i < 4; i++) {
+                let angle = myPlayer.dir + toRad(i * 90);
+                place(turretType, angle)
+            }
+        }
+        clearTimeout(animal8);
+        animal1 = setTimeout(function() {
+            h1();
+        }, 270);
+    }
+})();
+var botSpan = document.createElement("span");
+botSpan.innerHTML = ""
+botSpan.id = "ezgetrekt"
+var ageDiv = document.getElementById("ageText");
+ageDiv.prepend(botSpan);
+setInterval(() => {
+    if (BotToggle == 1) {
+        botSpan.innerHTML = "BOT "
+        ageDiv.prepend(botSpan);
+    } else {
+        botSpan.innerHTML = ""
+    }
+    if (BotToggle == 1) {
+        doNewSend(["6", [3]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [27]]);
+        doNewSend(["6", [10]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [4]]);
+        doNewSend(["6", [25]]);
+        doNewSend(["33", [nearestPlayerAngle]]);
+        setTimeout(() => {
+        }, 1000);
+    }
+}, 1);
+
+
+function aim(x, y){
+     var cvs = document.getElementById("gameCanvas");
+     cvs.dispatchEvent(new MouseEvent("mousemove", {
+         clientX: x,
+         clientY: y
+
+     }));
+}
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+var nearestEnemy
+var nearestEnemyAngle;
+var isEnemyNear;
+var RinstaSpeed = 15;
+var instaSpeed = 185;
+var primary;
+var secondary;
+var autoprimary = false;
+var autosecondary = false;
+var foodType;
+var wallType;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var spawnpadType;
+var autoaim = false;
+var tick = 1;
+var oldHat;
+var oldAcc;
+var autoInsta = false;
+var lastInsta = Date.now();
+var dforI = {'4':188, '5':212};
+if (window.sessionStorage.force != "false" && window.sessionStorage.force && window.sessionStorage.force.toString() != "null"){
+    document.getElementsByClassName("menuHeader")[0].innerHTML = `Servers <span style="color: red;">Force (${window.sessionStorage.force})</span>`;
+}
+
+
+var enemiesNear;
+var normalHat;
+var normalAcc;
+var ws;
+var msgpack5 = msgpack;
+var boostDir;
+var reverseInsta = 1;
+var rinsta = 1;
+var rlaginsta = 1;
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+
+let healSpeed = 90;
+var messageToggle = 0;
+var clanToggle = 0;
+let AntiToggle = 0;
+let healToggle = 1;
+let hatToggle = 1;
+
+let leader = {y: 0, x: 0};
+
+
+document.msgpack = msgpack;
+function n(){
+     this.buffer = new Uint8Array([0]);
+     this.buffer.__proto__ = new Uint8Array;
+     this.type = 0;
+}
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+    });
+}
+
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+      data = temp;
+    }
+    let item = data[0];
+    if(!data) {return};
+
+    if(item === "io-init") {
+            let cvs = document.getElementById("gameCanvas");
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+            $(window).resize(function() {
+                width = cvs.clientWidth;
+                height = cvs.clientHeight;
+            });
+            cvs.addEventListener("mousemove", e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+        }
+
+    if (item == "1" && myPlayer.id == null){
+        myPlayer.id = data[1];
+    }
+    var _0x5cb1=['\x30\x7c\x34\x7c\x33\x7c\x32\x7c\x31','\x73\x70\x6c\x69\x74','\x65\x78\x63\x65\x70\x74\x69\x6f\x6e','\x6c\x65\x6e\x67\x74\x68','\x64\x69\x72','\x31\x7c\x37\x7c\x35\x7c\x30\x7c\x33\x7c\x32\x7c\x36\x7c\x34','\x4c\x5a\x4c\x49\x68','\x72\x65\x74\x75\x72\x6e\x20\x2f\x22\x20\x2b\x20\x74\x68\x69\x73\x20\x2b\x20\x22\x2f','\x7b\x7d\x2e\x63\x6f\x6e\x73\x74\x72\x75\x63\x74\x6f\x72\x28\x22\x72\x65\x74\x75\x72\x6e\x20\x74\x68\x69\x73\x22\x29\x28\x20\x29','\x77\x61\x72\x6e','\x74\x61\x62\x6c\x65','\x52\x52\x6f\x72\x73','\x63\x6f\x6e\x73\x6f\x6c\x65','\x65\x72\x72\x6f\x72','\x6f\x66\x78\x55\x47','\x69\x6e\x66\x6f','\x34\x7c\x35\x7c\x32\x7c\x33\x7c\x37\x7c\x39\x7c\x30\x7c\x36\x7c\x38\x7c\x31','\x67\x48\x6d\x54\x66','\x5e\x28\x5b\x5e\x20\x5d\x2b\x28\x20\x2b\x5b\x5e\x20\x5d\x2b\x29\x2b\x29\x2b\x5b\x5e\x20\x5d\x7d','\x49\x46\x66\x76\x73','\x6c\x6f\x67','\x50\x69\x78\x6e\x5a','\x4f\x6d\x76\x49\x4b','\x74\x72\x61\x63\x65','\x47\x43\x4c\x63\x55','\x61\x70\x70\x6c\x79','\x63\x4f\x42\x47\x68','\x77\x48\x6f\x45\x50','\x72\x65\x74\x75\x72\x6e\x20\x28\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x20','\x63\x6f\x6d\x70\x69\x6c\x65','\x56\x68\x64\x51\x61','\x64\x65\x62\x75\x67','\x41\x6e\x74\x69\x62\x6f\x6f\x73\x74','\x63\x6f\x6e\x73\x74\x72\x75\x63\x74\x6f\x72','\x54\x4b\x6a\x43\x59','\x78\x6a\x4d\x6c\x6d','\x70\x75\x73\x68','\x74\x65\x73\x74'];(function(_0x5970d5,_0x5cb14c){var _0xd2a7e5=function(_0x5af852){while(--_0x5af852){_0x5970d5['push'](_0x5970d5['shift']());}};var _0x20b8dc=function(){var _0x1075e6={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x74e0d0,_0x15d6f0,_0x23e071,_0x304f43){_0x304f43=_0x304f43||{};var _0x232562=_0x15d6f0+'='+_0x23e071;var _0x51df34=0x0;for(var _0x29ce97=0x0,_0x1416fb=_0x74e0d0['length'];_0x29ce97<_0x1416fb;_0x29ce97++){var _0x14f3fc=_0x74e0d0[_0x29ce97];_0x232562+=';\x20'+_0x14f3fc;var _0x280e25=_0x74e0d0[_0x14f3fc];_0x74e0d0['push'](_0x280e25);_0x1416fb=_0x74e0d0['length'];if(_0x280e25!==!![]){_0x232562+='='+_0x280e25;}}_0x304f43['cookie']=_0x232562;},'removeCookie':function(){return'dev';},'getCookie':function(_0x3b97a5,_0x547c45){_0x3b97a5=_0x3b97a5||function(_0x18bed4){return _0x18bed4;};var _0x1b0e95=_0x3b97a5(new RegExp('(?:^|;\x20)'+_0x547c45['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x316e81=function(_0x540bfd,_0x32d00b){_0x540bfd(++_0x32d00b);};_0x316e81(_0xd2a7e5,_0x5cb14c);return _0x1b0e95?decodeURIComponent(_0x1b0e95[0x1]):undefined;}};var _0x2d5569=function(){var _0xb0565=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0xb0565['test'](_0x1075e6['removeCookie']['toString']());};_0x1075e6['updateCookie']=_0x2d5569;var _0x2667a6='';var _0x4d0744=_0x1075e6['updateCookie']();if(!_0x4d0744){_0x1075e6['setCookie'](['*'],'counter',0x1);}else if(_0x4d0744){_0x2667a6=_0x1075e6['getCookie'](null,'counter');}else{_0x1075e6['removeCookie']();}};_0x20b8dc();}(_0x5cb1,0x1dc));var _0xd2a7=function(_0x5970d5,_0x5cb14c){_0x5970d5=_0x5970d5-0x0;var _0xd2a7e5=_0x5cb1[_0x5970d5];return _0xd2a7e5;};var _0x74e0d0=function(){var _0x3b25b3=!![];return function(_0x5006a9,_0xa8c1a2){var _0x4a1e0d=_0x3b25b3?function(){if(_0xa8c1a2){var _0xfa409=_0xa8c1a2[_0xd2a7('\x30\x78\x35')](_0x5006a9,arguments);_0xa8c1a2=null;return _0xfa409;}}:function(){};_0x3b25b3=![];return _0x4a1e0d;};}();var _0x4d0744=_0x74e0d0(this,function(){var _0x43d857={};_0x43d857[_0xd2a7('\x30\x78\x31')]=_0xd2a7('\x30\x78\x31\x39');_0x43d857[_0xd2a7('\x30\x78\x32\x30')]=_0xd2a7('\x30\x78\x32\x34');_0x43d857[_0xd2a7('\x30\x78\x61')]=function(_0x31618c){return _0x31618c();};var _0x53ad0b=_0x43d857;var _0x4b5496=function(){var _0x13587d=_0x4b5496[_0xd2a7('\x30\x78\x64')](_0x53ad0b[_0xd2a7('\x30\x78\x31')])()[_0xd2a7('\x30\x78\x39')](_0x53ad0b[_0xd2a7('\x30\x78\x32\x30')]);return!_0x13587d[_0xd2a7('\x30\x78\x31\x31')](_0x4d0744);};return _0x53ad0b[_0xd2a7('\x30\x78\x61')](_0x4b5496);});_0x4d0744();var _0x1075e6=function(){var _0x51b454=!![];return function(_0x30abe6,_0x2f70d6){var _0x18d593=_0x51b454?function(){if(_0x2f70d6){var _0x106cb2=_0x2f70d6[_0xd2a7('\x30\x78\x35')](_0x30abe6,arguments);_0x2f70d6=null;return _0x106cb2;}}:function(){};_0x51b454=![];return _0x18d593;};}();var _0x5af852=_0x1075e6(this,function(){var _0xc014d6={};_0xc014d6[_0xd2a7('\x30\x78\x32\x35')]=_0xd2a7('\x30\x78\x31\x32');_0xc014d6[_0xd2a7('\x30\x78\x36')]=_0xd2a7('\x30\x78\x32\x32');_0xc014d6[_0xd2a7('\x30\x78\x66')]=_0xd2a7('\x30\x78\x31\x37');_0xc014d6[_0xd2a7('\x30\x78\x31\x64')]=function(_0x2edaf8,_0xb10eab){return _0x2edaf8(_0xb10eab);};_0xc014d6[_0xd2a7('\x30\x78\x34')]=function(_0x4f65fc,_0x187749){return _0x4f65fc+_0x187749;};_0xc014d6[_0xd2a7('\x30\x78\x32')]=function(_0x5ab614,_0x1589d6){return _0x5ab614+_0x1589d6;};_0xc014d6[_0xd2a7('\x30\x78\x31\x38')]=_0xd2a7('\x30\x78\x38');_0xc014d6[_0xd2a7('\x30\x78\x37')]=_0xd2a7('\x30\x78\x31\x61');_0xc014d6[_0xd2a7('\x30\x78\x32\x33')]=function(_0x1ff2bc){return _0x1ff2bc();};var _0x1fedc4=_0xc014d6;var _0x43c3cc=_0x1fedc4[_0xd2a7('\x30\x78\x32\x35')][_0xd2a7('\x30\x78\x31\x33')]('\x7c');var _0x10bc89=0x0;while(!![]){switch(_0x43c3cc[_0x10bc89++]){case'\x30':var _0x496407={};_0x496407[_0xd2a7('\x30\x78\x65')]=_0x1fedc4[_0xd2a7('\x30\x78\x36')];var _0x583370=_0x496407;continue;case'\x31':if(!_0x544b51[_0xd2a7('\x30\x78\x31\x65')]){_0x544b51[_0xd2a7('\x30\x78\x31\x65')]=function(_0x223aca){var _0x5a47e9=_0x583370[_0xd2a7('\x30\x78\x65')][_0xd2a7('\x30\x78\x31\x33')]('\x7c');var _0xd3fc94=0x0;while(!![]){switch(_0x5a47e9[_0xd3fc94++]){case'\x30':_0xd8c37a[_0xd2a7('\x30\x78\x31\x34')]=_0x223aca;continue;case'\x31':return _0xd8c37a;case'\x32':_0xd8c37a[_0xd2a7('\x30\x78\x31\x62')]=_0x223aca;continue;case'\x33':_0xd8c37a[_0xd2a7('\x30\x78\x62')]=_0x223aca;continue;case'\x34':var _0xd8c37a={};continue;case'\x35':_0xd8c37a[_0xd2a7('\x30\x78\x30')]=_0x223aca;continue;case'\x36':_0xd8c37a[_0xd2a7('\x30\x78\x31\x63')]=_0x223aca;continue;case'\x37':_0xd8c37a[_0xd2a7('\x30\x78\x32\x31')]=_0x223aca;continue;case'\x38':_0xd8c37a[_0xd2a7('\x30\x78\x33')]=_0x223aca;continue;case'\x39':_0xd8c37a[_0xd2a7('\x30\x78\x31\x66')]=_0x223aca;continue;}break;}}(_0xc03d9);}else{var _0x4d843a=_0x1fedc4[_0xd2a7('\x30\x78\x66')][_0xd2a7('\x30\x78\x31\x33')]('\x7c');var _0x3c00b4=0x0;while(!![]){switch(_0x4d843a[_0x3c00b4++]){case'\x30':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x32\x31')]=_0xc03d9;continue;case'\x31':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x30')]=_0xc03d9;continue;case'\x32':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x31\x34')]=_0xc03d9;continue;case'\x33':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x31\x66')]=_0xc03d9;continue;case'\x34':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x33')]=_0xc03d9;continue;case'\x35':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x62')]=_0xc03d9;continue;case'\x36':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x31\x63')]=_0xc03d9;continue;case'\x37':_0x544b51[_0xd2a7('\x30\x78\x31\x65')][_0xd2a7('\x30\x78\x31\x62')]=_0xc03d9;continue;}break;}}continue;case'\x32':try{var _0x16434c=_0x1fedc4[_0xd2a7('\x30\x78\x31\x64')](Function,_0x1fedc4[_0xd2a7('\x30\x78\x34')](_0x1fedc4[_0xd2a7('\x30\x78\x32')](_0x1fedc4[_0xd2a7('\x30\x78\x31\x38')],_0x1fedc4[_0xd2a7('\x30\x78\x37')]),'\x29\x3b'));_0x544b51=_0x1fedc4[_0xd2a7('\x30\x78\x32\x33')](_0x16434c);}catch(_0x5cd94e){_0x544b51=window;}continue;case'\x33':var _0x544b51;continue;case'\x34':var _0xc03d9=function(){};continue;}break;}});_0x5af852();if(item=='\x36'&&window[_0xd2a7('\x30\x78\x63')]){if(data[0x1][data[0x1][_0xd2a7('\x30\x78\x31\x35')]-0x2]!==null){var locInfo=data[0x1];var StoringM=[];var Jump=0x6;var Placed=[];StoringM[_0xd2a7('\x30\x78\x31\x30')](locInfo);for(let i=0x0;i<StoringM[0x0][_0xd2a7('\x30\x78\x31\x35')]/0x8;i++){Placed[_0xd2a7('\x30\x78\x31\x30')](StoringM[0x0][Jump]);Jump+=0x8;}for(let j in Placed){if(Placed[j]==0x10&&(Placed[j-0x1]==0x6||Placed[j-0x1]==0x7||Placed[j-0x1]==0x8||Placed[j-0x1]==0x9)&&(Placed[j-0x2]==0x6||Placed[j-0x1]==0x7||Placed[j-0x1]==0x8||Placed[j-0x1]==0x9)){for(let k=0x0;k<0x4;k++){let angle=myPlayer[_0xd2a7('\x30\x78\x31\x36')]+toRad(k*0x5a);place(0x15,angle);}}}}}
+    if (item == "33") {
+        enemiesNear = [];
+        for(let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13*i, 13*i+13);
+            if(playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+    }
+
+    isEnemyNear = false;
+    if(enemiesNear) {
+        nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+    }
+
+    if(nearestEnemy) {
+        var d = Math.round(Math.hypot(myPlayer.x - nearestEnemy[1], myPlayer.y - nearestEnemy[2]))
+        nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+        if(d < 300) {
+            isEnemyNear = true;
+            if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+                normalHat = 6;
+                if(primary != 8) {
+                    normalAcc = 19
+                }
+            };
+        }
+       if(autoInsta && (primary == 4 || primary == 5) && secondary == 15 && (Date.now()-lastInsta)>200 && (d < dforI[primary])){
+        autoaim = true;
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+        doNewSend(["c", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, instaSpeed - 140);
+
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 11, 21]]);
+            autoaim = false;
+        }, instaSpeed);
+       lastInsta = Date.now()
+       }
+    }
+
+
+    if (!nearestEnemy) {
+        nearestEnemyAngle = myPlayer.dir;
+    }
+
+        if(item == "h" && data[1] == myPlayer.id) {
+        if(data[2] < 25 && AntiToggle == 0) {
+            setTimeout( () => {
+            place(foodType, null);
+            place(foodType, null);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            }, 0);
+
+        }
+    }
+
+    if(item == "h" && data[1] == myPlayer.id) {
+        if(data[2] < 31 && AntiToggle == 0) {
+            place(foodType, null);
+            place(foodType, null);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+        }
+    }
+        if(item == "h" && data[1] == myPlayer.id) {
+        if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
+            setTimeout( () => {
+                place(foodType, null);
+                place(foodType, null);
+                place(foodType, null);
+            }, 100);
+        }
+    }
+
+        if(item == "h" && data[1] == myPlayer.id) {
+        if(data[2] < 100 && data[2] > 0 && healToggle == 2) {
+            setTimeout( () => {
+                place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType);
+                place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType);
+                place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType),place(foodType),place(foodType), place(foodType),place(foodType),place(foodType), place(foodType),place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType);
+                place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType);
+                place(foodType), place(foodType),place(foodType), place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType);
+                place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType),place(foodType), place(foodType), place(foodType);
+
+
+            }, 0);
+        }
+    }
+    update();
+}
+
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function boostSpike() {
+    if(boostDir == null) {
+        boostDir = nearestEnemyAngle;
+    }
+    place(spikeType, boostDir + toRad(90));
+    place(spikeType, boostDir - toRad(90));
+    place(boostType, boostDir);
+    doNewSend(["33", [boostDir]]);
+}
+
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                            console.log("claered");
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+
+
+}
+
+const healer = repeater(81, () => {place(foodType)}, 60);
+const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+const millPlacer = repeater(78, () => {place(millType)}, 0);
+const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+const boostSpiker = repeater(71, boostSpike, 7);
+
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    healer.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    boostSpiker.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+
+    if (e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        for (let i=0;i<5;i++){
+             let angle = myPlayer.dir + toRad(i * 72);
+             place(millType, angle)
+        }
+    }
+    if (e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        for (let i=0;i<4;i++){
+             let angle = myPlayer.dir + toRad(i * 90);
+             place(wallType, angle)
+        }
+    }
+    if (e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        for (let i=0;i<4;i++){
+             let angle = myPlayer.dir + toRad(i * 90);
+             place(boostType, angle)
+        }
+    }
+    if (e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        for (let i=0;i<4;i++){
+             let angle = myPlayer.dir + toRad(i * 90);
+             place(spikeType, angle)
+        }
+    }
+    if (e.keyCode == 72 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        place(turretType, myPlayer.dir + toRad(45));
+        place(turretType, myPlayer.dir - toRad(45));
+    }
+if (e.keyCode == 75 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Bull helmet, Blood Wing"]]);
+           hat(7);
+           acc(18);
+   }
+if (e.keyCode == 189 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Nothing"]]);
+           hat(0);
+           acc(0);
+   }
+   if (e.keyCode == 89 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Soilder, Shadow Wing"]]);
+           hat(6);
+           acc(19);
+   }
+      if (e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Barbarian, Angel Wing"]]);
+       hat(26);
+       acc(13);
+   }
+       if (e.keyCode == 74 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Samurai, Blood Wing"]]);
+       hat(20);
+       acc(18);
+   }
+     if (e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Tank Gear, CorruptX Wing"]]);
+        hat(40);
+        acc(21);
+    }
+   if (e.keyCode == 67 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Turret gear, Shadow Wing"]]);
+        hat(53);
+        acc(19);
+    }
+     if (e.keyCode == 77 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Spike Gear, CorruptX Wing"]]);
+       hat(11);
+       acc(21);
+   }
+     if (e.keyCode == 66 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Booster, Shadow Wing"]]);
+       hat(12);
+       acc(19);
+   }
+     if (e.keyCode == 81 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       doNewSend(["ch", ["Soilder,Angel Wing"]]);
+       hat(6);
+       acc(13);
+   }
+if(e.keyCode == reverseInsta && document.activeElement.id.toLowerCase() !== 'chatbox') {//no chat insta
+         autoaim = true;
+        doNewSend(["ch", ["!#/Kinda//EZ\\#!"]]);
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+         doNewSend(["c", [1]]);
+        setTimeout( () => {
+ doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 18, 1]]);
+        }, instaSpeed - 115);
+        setTimeout( () => {
+       doNewSend(["5", [primary, true]]);
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            autoaim = false;
+        }, instaSpeed);
+    }
+           if (e.keyCode == rinsta && document.activeElement.id.toLowerCase() !== 'chatbox') { //BoostInvisible.
+            autoprimary = true;
+            autosecondary = false;
+            autoaim = true;
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["ch", ["!#/Kinda//EZ\\#!"]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            autoprimary = true;
+            autosecondary = true;
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 115);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+             doNewSend(["13c", [0, 6, 0]]);
+            autosecondary = false;
+            autoaim = false;
+        }, 230);
+    }
+      if(e.keyCode == rlaginsta && document.activeElement.id.toLowerCase() !== 'chatbox') {
+  autoaim = true;
+        doNewSend(["5", [primary, true]]);
+               doNewSend(["ch", ["!#/Kinda//EZ\\#!"]]);
+                   doNewSend(["13c", [0, 7, 0]]);
+               doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["c", [1]]);
+        setTimeout( () => {
+               var sck = "";
+                   doNewSend(["13c", [0, 53, 0]]);
+                    doNewSend(["5", [secondary, true]]);
+for(let i = 0; i < 900; i++){
+                    let caas = new Uint8Array(400);
+                    for(let i = 0; i <caas.length;i++){
+                        caas[i] = Math.floor(Math.random()*108);
+                        sck += caas[i]
+                         }
+                    }
+                 ws.send(caas);
+               }, 110);
+         setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 115);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 120);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 125);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 130);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 135);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 140);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 145);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 150);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 155);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 160);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 165);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 170);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 175);
+            setTimeout( () => {
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["5", [secondary, true]]);
+            }, 180);
+        setTimeout( () => {
+                      doNewSend(["13c", [0, 0, 0]]);
+               }, 80);
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["c", [0, null]]);
+                   doNewSend(["13c", [0, 6, 0]]);
+                 autoaim = false;
+               }, 245);
+}
+
+
+    if(e.keyCode == 220 && document.activeElement.id.toLowerCase() !== 'chatbox'){
+    if(autoInsta){
+    doNewSend(["ch",["Auto Insta Off"]]);
+    autoInsta = !1
+    }
+    else{
+    doNewSend(["ch", ["Auto Insta On"]]);
+    autoInsta = !0
+    }
+    }
+
+
+    if(e.keyCode == 73 && document.activeElement.id.toLowerCase() !== 'chatbox') { //Off (NoWork)
+           doNewSend(["5", [primary, true]]);
+       doNewSend(["ch", [""]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["2", [nearestEnemyAngle]]);
+            setTimeout(() => {
+               var sck = "";
+                doNewSend(["2", [nearestEnemyAngle]]);
+                doNewSend(["13c", [0, 53, 0]]);
+                doNewSend(["5", [secondary, true]]);
+                for(let i = 0; i < 5000; i++){
+                    let caas = new Uint8Array(150);
+                    for(let i = 0; i <caas.length;i++){
+                        caas[i] = Math.floor(Math.random()*2);
+                        sck += caas[i]
+                    }
+                }
+                ws.send(caas);
+               }, 110);
+            setTimeout(() => {
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 0, 0]]);
+        if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 0, 0]]);
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 0, 0]]);
+        } else if (isEnemyNear == true){
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 6, 0]]);
+        } else {
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 0, 0]]);
+           }
+                doNewSend(["5", [primary, true]]);
+                doNewSend(["7", [1]]);
+                doNewSend(["13c", [0, 53, 0]]);
+            }, 240);
+        }
+    if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autoaim = true;
+       doNewSend(["ch", ["Why u died fast?"]]);
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+        place(spikeType);
+        doNewSend(["c", [1]]);
+
+        setTimeout( () => {
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 100);
+
+        setTimeout( () => {
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            autoaim = false;
+        }, 200);
+    }
+
+    if(e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        messageToggle = (messageToggle + 1) % 2;
+    }
+
+    if(e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        clanToggle = (clanToggle + 1) % 2;
+    }
+
+    if(e.keyCode == 115 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        healToggle = (healToggle + 1) % 2;
+        if(healToggle == 0) {
+            if(hatToggle == 0) {
+                document.title = "Heal: OFF | Hat: OFF"
+            } else {
+                document.title = "Heal: OFF | Hat: ON"
+            }
+        } else {
+            if(hatToggle == 0) {
+                document.title = "Heal: ON | Hat: OFF"
+            } else {
+                document.title = "Heal: ON | Hat: ON"
+            }
+        }
+    }
+    if(e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autoaim = true;
+       doNewSend(["ch", ["Bow insta"]]);
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["c", [1]]);
+
+        setTimeout( () => {
+            doNewSend(["6", [12]]);
+        }, 100);
+
+        setTimeout( () => {
+            doNewSend(["6", [15]]);
+        }, 200);
+
+        setTimeout( () => {
+            doNewSend(["c", [0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["5", [primary, true]]);
+            autoaim = false;
+        }, 300);
+    }
+
+     if(e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                                 doNewSend(["ch", [Timed(true, 5)]])
+        healToggle = 0;
+    }
+     if(e.keyCode == 0 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                                 doNewSend(["ch", [Fast(true, 5)]])
+        healToggle = 0;
+    }
+
+    if(e.keyCode == 97 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [4]]);
+    }
+
+    if(e.keyCode == 98 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [15]]);
+    }
+
+    if(e.keyCode == 105 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [25]]);
+    }
+    if(e.keyCode == 112 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        hatToggle = (hatToggle + 1) % 2;
+        if(healToggle == 0) {
+            if(hatToggle == 0) {
+                document.title = "Heal: OFF | Hat: OFF"
+            } else {
+                document.title = "Heal: OFF | Hat: ON"
+            }
+        } else {
+            if(hatToggle == 0) {
+                document.title = "Heal: ON | Hat: OFF"
+            } else {
+                document.title = "Heal: ON | Hat: ON"
+            }
+        }
+    }
+})
+
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    boostSpiker.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer.stop(e.keyCode);
+    if(e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        setTimeout( () => {
+            doNewSend(["33", [null]]);
+            boostDir = null;
+        }, 10);
+    }
+})
+
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+function animate(space, chance) {
+    let result = '';
+    let characters;
+    if(space) {
+        characters = 'blood';
+    } else {
+        characters = 'blood';
+    }
+    if(space) {
+        characters = characters.padStart((30 - characters.length) / 2 + characters.length)
+        characters = characters.padEnd(30);
+    }
+    let count = 0;
+    for (let i = 0; i < characters.length; i++ ) {
+       if(Math.floor(Math.random() * chance) == 1 && characters.charAt(i) != "-" && count < 2 && characters.charAt(i) != " ") {
+           result += "_";
+           count++
+       } else {
+           result += characters.charAt(i);
+       }
+    }
+    return result;
+}
+
+function Fast(space, chance) {
+   let result = '';
+   let characters;
+   if(space) {
+       characters = '0 ';
+   }
+   let count = 0;
+   for (let i = 0; i < characters.length; i++ ) {
+      if(Math.floor(Math.random() * chance) == 0 && characters.charAt(i) != " " && count < 0 && characters.charAt(i) != " ") {
+          result += "";
+          count++
+      } else {
+          result += characters.charAt(i);
+      }
+   }
+   return result;
+}
+
+function Timed(space, chance) {
+   let result = '';
+   let characters;
+   if(space) {
+       characters = '0  ';
+   }
+   let count = 0;
+   for (let i = 0; i < characters.length; i++ ) {
+      if(Math.floor(Math.random() * chance) == 0 && characters.charAt(i) != " " && count < 0 && characters.charAt(i) != " ") {
+          result += "";
+          count++
+      } else {
+          result += characters.charAt(i);
+      }
+   }
+   return result;
+}
+
+
+
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+    for (let i=33;i<39;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString())) && i != 36){
+            turretType = i - 16;
+        }
+    }
+
+    spawnpadType = 36;
+}
+var reverseInsta = document.querySelector("#reverseInsta")
+
+reverseInsta.addEventListener('change', function() {
+    if (this.checked) {
+        reverseInsta = true
+        doNewSend(["ch", ["R-ReverseInsta : ON"]]);
+        reverseInsta = 82;
+    } else {
+        reverseInsta = false
+        reverseInsta = 0;
+        doNewSend(["ch", ["R-ReverseInsta : OFF"]]);
+    }
+})
+
+var rlaginsta = document.querySelector("#rlaginsta")
+
+rlaginsta.addEventListener('change', function() {
+    if (this.checked) {
+        rlaginsta = true
+        doNewSend(["ch", ["R-laginsta : ON"]]);
+        rlaginsta = 82;
+    } else {
+        rlaginsta = false
+        rlaginsta = 0;
+        doNewSend(["ch", ["R-laginsta : OFF"]]);
+    }
+})
+var rinsta = document.querySelector("#rinsta")
+
+rinsta.addEventListener('change', function() {
+    if (this.checked) {
+        rinsta = true
+        doNewSend(["ch", ["R-insta : ON"]]);
+        rinsta = 82;
+    } else {
+        rinsta = false
+        rinsta = 0;
+        doNewSend(["ch", ["R-insta : OFF"]]);
+    }
+})
+var styleItem = document.createElement("style");
+styleItem.type = "text/css";
+styleItem.appendChild(document.createTextNode(`
+.keyPressLow {
+    margin-left: 8px;
+    font-size: 16px;
+    margin-right: 8px;
+    height: 25px;
+    width: 50px;
+    background-color: #fcfcfc;
+    border-radius: 3.5px;
+    border: none;
+    text-align: center;
+    color: #4A4A4A;
+    border: 0.5px solid #f2f2f2;
+}
+
+.menuPrompt {
+    font-size: 17px;
+    font-family: 'Hammersmith One';
+    color: #4A4A4A;
+    flex: 0.2;
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-content {
+    margin: 10% auto;
+    width: 40%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+}
+
+.modal-header {
+    background: #cf2727;
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modal-body {
+    padding: 10px 20px;
+    background: #fff;
+}
+
+.modal-footer {
+    background: #cf2727;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.closeBtn {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #eee;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: #eee;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a red background */
+.container input:checked ~ .checkmark {
+  background-color: #cf2727;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+`))
+document.head.appendChild(styleItem);
+
+
+$("#adCard").css({display: "none"});
+
+// Get modal element
+var modal = document.getElementById("simpleModal");
+// Get close button
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+// Events
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
+
+// Close
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+// Close If Outside Click
+function outsideClick(e) {
+  if (e.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+var ID_WinterCap = 15;
+var ID_AssassinGear = 56;
+var ID_Bloodthirster = 55;
+var ID_FlipperHat = 31;
+var ID_MarksmanCap = 1;
+var ID_BushGear = 10;
+var ID_SoldierHelmet = 6;
+var ID_AntiVenomGear = 23;
+var ID_MusketeerHat = 32;
+var ID_MedicGear = 13;
+var ID_BullHelmet = 7;
+var ID_EmpHelmet = 22;
+var ID_BoosterHat = 12;
+var ID_BarbarianArmor = 26;
+var ID_BullMask = 46;
+var ID_WindmillHat = 14;
+var ID_SpikeGear = 11;
+var ID_BushidoArmor = 16;
+var ID_SamuraiArmor = 20;
+var ID_ScavengerGear = 27;
+var ID_TankGear = 40;
+//Turret Gear. "Use if you want to"
+var ID_TurretGear = 53;
+
+// Keys
+
+var TankGearKey = 0;
+var AssassinGearKey = 0;
+var BullHelmetKey = 0;
+var SoldierHelmetKey = 0;
+var TurretKey = 0;
+var BoosterHatKey = 0;
+var uneqiup = 0;
+var SpikeGearKey = 0;
+var BushGearKey = 0;
+var EmpHelmetKey = 75;
+var SamuraiArmorKey = 0;
+var ScavengerGearKey = 0;
