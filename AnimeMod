@@ -1,0 +1,1582 @@
+	// ==UserScript==
+	// @name       Anime Mod
+	// @namespace    -
+	// @version    1
+	// @description Anime Mod
+	// @author       CheeseCake#9238 And [₦Ⱨ]N̷i̷g̷h̷t̷H̷u̷n̷t̷e̷r̷#7642
+	// @match        *://sandbox.moomoo.io/*
+	// @match        *://moomoo.io/*
+	// @grant        none
+	// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+	// @require http://code.jquery.com/jquery-3.3.1.min.js
+	// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+	// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+	// @require https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js
+
+	// ==/UserScript==
+
+	let mouseX;
+	let mouseY;
+
+	let width;
+	let height;
+
+
+	setInterval(() => {
+		 if (eae == 1) {
+			  doNewSend(["13c", [0, 11, 0]]);
+			  doNewSend(["13c", [0, 21, 1]]);
+			  setTimeout(() => {
+					doNewSend(["13c", [0, 7, 0]]);
+					doNewSend(["13c", [0, 21, 1]]);
+			  }, 350);
+			  setTimeout(() => {
+					doNewSend(["13c", [0, 53, 0]]);
+					doNewSend(["13c", [0, 21, 1]]);
+			  }, 250);
+		 }
+	}, 450);
+	setInterval(() => {
+		 if (aea == 1) {
+			  doNewSend(["13c", [0, 13, 1]]);
+			  setTimeout(() => {
+					doNewSend(["13c", [0, 19, 1]]);
+			  }, 20);
+		 }
+	}, 10);
+	setInterval(() => {
+		if(clanToggle == 1) {
+			  doNewSend(["9", [null]]);
+			  doNewSend(["8", [animate(false, 5)]])
+		 }
+		 doNewSend(["testing", [6]]);
+	}, 200);
+
+	setInterval(() => {
+		 if(messageToggle == 1) {
+			  doNewSend(["ch", [animate(true, 5)]])
+		 }
+	}, 200);
+
+	setInterval(() => {
+		 if(autoaim == true) {
+			  doNewSend(["2", [nearestEnemyAngle]]);
+		 }
+	}, 0);
+
+	setInterval(() => {
+		 if(autoprimary == true) {
+			  doNewSend(["5", [primary, true]]);
+		 }
+	}, 0);
+
+	setInterval(() => {
+		 if(autosecondary == true) {
+			  doNewSend(["5", [secondary, true]]);
+		 }
+	}, 0);
+
+	setInterval(() => {
+		 if(click == true) {
+		 doNewSend(["c", [1, null]]);
+		 doNewSend(["c", [0, null]]);
+		 }
+	}, 10);
+
+	setInterval(() => {
+		 if(hatToggle == 1) {
+			  if(oldHat != normalHat) {
+					hat(normalHat);
+					console.log("Tried. - Hat")
+			  }
+			  if(oldAcc != normalAcc) {
+					acc(normalAcc);
+					console.log("Tried. - Acc")
+			  }
+			  oldHat = normalHat;
+			  oldAcc = normalAcc
+		 }
+	}, 25);
+
+	function normal() {
+		 hat(normalHat);
+		 acc(normalAcc);
+	}
+
+	function aim(x, y){
+		  var cvs = document.getElementById("gameCanvas");
+		  cvs.dispatchEvent(new MouseEvent("mousemove", {
+				clientX: x,
+				clientY: y
+
+		  }));
+	}
+	var CPS = true;
+	var CPSSpeed = 10;
+	function COU(Item) {
+		 if (CPS == true) {
+	for(var i=0;i<CPSSpeed;i++){
+			  place(Item)
+	}
+		 }
+	}
+
+	let coreURL = new URL(window.location.href);
+	window.sessionStorage.force = coreURL.searchParams.get("fc");
+
+	var antibull = false;
+	var AIH = true;
+	var click = false;
+	var nearestEnemy;
+	var nearestEnemyAngle;
+	var isEnemyNear;
+	var primary;
+	var secondary;
+	var foodType;
+	var wallType;
+	var spikeType;
+	var millType;
+	var mineType;
+	var boostType;
+	var turretType;
+	var spawnpadType;
+	var autoaim = false;
+	var autoprimary = false;
+	var autosecondary = false;
+	var tick = 1;
+	var oldHat;
+	var oldAcc;
+	var enemiesNear;
+	var normalHat;
+	var normalAcc;
+	var ws;
+	var msgpack5 = msgpack;
+	var boostDir;
+	let myPlayer = {
+		 id: null,
+		 x: null,
+		 y: null,
+		 dir: null,
+		 object: null,
+		 weapon: null,
+		 clan: null,
+		 isLeader: null,
+		 hat: null,
+		 accessory: null,
+		 isSkull: null
+	};
+
+	let healSpeed = 60;
+	var messageToggle = 0;
+	var um = 0;
+	var um = false;
+	var aea = 0;
+	var eae = 0;
+	var clanToggle = 0;
+	let healToggle = 1;
+	var AutoPlague = 0;
+	let hatToggle = 1;
+	let clickinsta = 1;
+   var PREFIX = "!";
+   var bullturret = false;
+   let katana = 0;
+
+
+
+
+	document.msgpack = msgpack;
+	function n(){
+		  this.buffer = new Uint8Array([0]);
+		  this.buffer.__proto__ = new Uint8Array;
+		  this.type = 0;
+	}
+
+document.addEventListener("mousedown", e => {
+  if (e.button == 0) {
+            bullturret = true;
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            click = true;
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+        setTimeout( () => {
+            autosecondary = false;
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 120);
+        setTimeout( () => {
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+        }, 240);
+
+  }
+  if(e.button == 0 && myPlayer.hat == 11){
+        doNewSend(["7", [1]]);
+        autoaim = true;
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        setTimeout( () => {
+            doNewSend(["7", [1]]);
+            autoaim = false;
+        doNewSend(["13c", [1, 11, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        }, 120);
+  }
+})
+
+document.addEventListener('mouseup', (e)=>{
+  if (e.button == 0 && bullturret == true) {
+        setTimeout( () => {
+            bullturret = false;
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 6, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            click = false;
+        }, 245);
+  }
+  if (e.button == 2) {
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 6, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            click = false;
+  }
+
+})
+
+	WebSocket.prototype.oldSend = WebSocket.prototype.send;
+	WebSocket.prototype.send = function(m){
+		 if (!ws){
+			  document.ws = this;
+
+			  ws = this;
+			  socketFound(this);
+		 }
+		 this.oldSend(m);
+	};
+
+
+	function socketFound(socket){
+		 socket.addEventListener('message', function(message){
+			  handleMessage(message);
+		 });
+	}
+
+	function handleMessage(m){
+		 let temp = msgpack5.decode(new Uint8Array(m.data));
+		 let data;
+		 if(temp.length > 1) {
+			  data = [temp[0], ...temp[1]];
+			  if (data[1] instanceof Array){
+					data = data;
+			  }
+		 } else {
+			data = temp;
+		 }
+		 let item = data[0];
+		 if(!data) {return};
+
+		 if(item === "io-init") {
+					let cvs = document.getElementById("gameCanvas");
+					width = cvs.clientWidth;
+					height = cvs.clientHeight;
+					$(window).resize(function() {
+						 width = cvs.clientWidth;
+						 height = cvs.clientHeight;
+					});
+					cvs.addEventListener("mousemove", e => {
+						 mouseX = e.clientX;
+						 mouseY = e.clientY;
+					});
+			  }
+
+		 if (item == "1" && myPlayer.id == null){
+			  myPlayer.id = data[1];
+		 }
+
+		 if (item == "33") {
+			  enemiesNear = [];
+			  for(let i = 0; i < data[1].length / 13; i++) {
+					let playerInfo = data[1].slice(13*i, 13*i+13);
+					if(playerInfo[0] == myPlayer.id) {
+						 myPlayer.x = playerInfo[1];
+						 myPlayer.y = playerInfo[2];
+						 myPlayer.dir = playerInfo[3];
+						 myPlayer.object = playerInfo[4];
+						 myPlayer.weapon = playerInfo[5];
+						 myPlayer.clan = playerInfo[7];
+						 myPlayer.isLeader = playerInfo[8];
+						 myPlayer.hat = playerInfo[9];
+						 myPlayer.accessory = playerInfo[10];
+						 myPlayer.isSkull = playerInfo[11];
+					} else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+						 enemiesNear.push(playerInfo);
+					}
+			  }
+		 }
+						 let Object = {x: null, y: null, dir: null, id: null, sid: null, type: null};
+		 if(item == "6" && nearestEnemy){
+			  for(let i = 0; i < data[1].length / 8; i++){
+					let ObjectData = data[1].slice(8*i, 8*i+8);
+					if(ObjectData[6] == 15 && ObjectData[7] != myPlayer.id){
+						 if(Math.sqrt(Math.pow((myPlayer.y-ObjectData[2]), 2) + Math.pow((myPlayer.x-ObjectData[1]), 2)) < 120){
+							  for(let i=0;i<36;i++){
+									let angle = myPlayer.dir + toRad(i * 10);
+									place(spikeType, angle)
+									doNewSend(["ch", ["     Anime | AntiTrap     "]]);
+							  }
+							  setTimeout(()=>{
+									doNewSend(["13c", [1, 11, 0]]);
+									doNewSend(["13c", [0, 11, 0]]);
+									doNewSend(["13c", [0, 0, 1]]);
+									doNewSend(["13c", [1, 21, 1]]);
+									doNewSend(["13c", [0, 21, 1]]);
+							  },100);
+						 }
+					}
+			  }
+		 }
+		 isEnemyNear = false;
+		 if(enemiesNear) {
+			  nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+		 }
+
+		 if(nearestEnemy) {
+			  nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+			  if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 0) {
+					isEnemyNear = true;
+					if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+						 normalHat = 6;
+						 if(primary != 8) {
+							  normalAcc = 19
+						 }
+					};
+			  }
+		 }
+		 if(isEnemyNear == false && autoaim == false) {
+			  normalAcc = 11;
+			  if (myPlayer.y < 2400){
+					normalHat = 15;
+			  } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+					normalHat = 31;
+			  } else {
+				  normalHat = 12;
+			  }
+		 }
+		 if (!nearestEnemy) {
+			  nearestEnemyAngle = myPlayer.dir;
+		 }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"km") {
+            doNewSend(["6", [4]]);
+            doNewSend(["6", [15]]);
+        setTimeout(() => {
+            doNewSend(["ch", [" Anime | Katana + Musket "]]);
+
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"mill+spike") {
+            doNewSend(["6", [28]]);
+            doNewSend(["6", [25]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["Mill+Spike Selected"]]);
+
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"crossbow+spike") {
+            doNewSend(["6", [12]]);
+            doNewSend(["6", [25]]);
+        setTimeout(() => {
+            doNewSend(["ch", [" Anime | Crossbow + Spike "]]);
+
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"k+spike") {
+            doNewSend(["6", [4]]);
+            doNewSend(["6", [25]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["Anime | Katana + Spin Spike"]]);
+
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"axe+rep") {
+            doNewSend(["6", [2]]);
+            doNewSend(["6", [13]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["   Anime | Axe + Repeater   "]]);
+
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"katana+rep") {
+            doNewSend(["6", [4]]);
+            doNewSend(["6", [13]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["  Anime | Katana + Repeater  "]]);
+
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"axe") {
+            doNewSend(["6", [2]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["         Anime | Axe         "]]);
+        },500);
+    }
+   if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == PREFIX+"katana") {
+            doNewSend(["6", [4]]);
+        setTimeout(() => {
+            doNewSend(["ch", ["       Anime | Katana       "]]);
+
+        },500);
+    }
+		 if (item == "h" && data[1] == myPlayer.id) {
+			  if (data[2] < 60 && data[2] > 0 && AIH == true) {
+               doNewSend(["ch", ["            "]]);
+					place(foodType);
+					place(foodType);
+			  }
+		 }
+	  if(item == "h" && data[1] == myPlayer.id) {
+			 if(data[2] < 95 && data[2] > 0 && healToggle == 1) {
+				  setTimeout( () => {
+					doNewSend(["ch", [""]]);
+					doNewSend(['5', [foodType, null]]);
+					doNewSend(['c', [1]]);
+					doNewSend(['c', [0]]);
+					doNewSend(['5', [null]]);
+					doNewSend(['5', [foodType, null]]);
+					doNewSend(['c', [1]]);
+					doNewSend(['c', [0]]);
+					doNewSend(['5', [null]]);
+					doNewSend(['5', [foodType, null]]);
+					doNewSend(['c', [1]]);
+					doNewSend(['c', [0]]);
+					doNewSend(['5', [null]]);
+					doNewSend(['5', [foodType, null]]);
+					doNewSend(['c', [1]]);
+					doNewSend(['c', [0]]);
+					doNewSend(['5', [null]]);
+					doNewSend(['5', [foodType, null]]);
+					doNewSend(['c', [1]]);
+					doNewSend(['c', [0]]);
+					doNewSend(['5', [null]]);
+				  }, healSpeed);
+
+			 }
+		}
+
+		update();
+	}
+
+	function doNewSend(sender){
+		 ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+	}
+
+	setInterval(() => {
+		 if(myPlayer.hat == 45){
+			  doNewSend(["ch", ["   Anime | Warning | Clown   "]]);
+		 }},50)
+
+	setInterval(() => {
+		 if(myPlayer.hat == 7){
+			  doNewSend(["ch", [""]]);
+		 }},1400)
+	function acc(id) {
+		 doNewSend(["13c", [0, 0, 1]]);
+		 doNewSend(["13c", [0, id, 1]]);
+	}
+
+	function hat(id) {
+		 doNewSend(["13c", [0, id, 0]]);
+	}
+
+
+	function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+		 doNewSend(["5", [id, null]]);
+		 doNewSend(["c", [1, angle]]);
+		 doNewSend(["c", [0, angle]]);
+		 doNewSend(["5", [myPlayer.weapon, true]]);
+	}
+
+	function placeQ(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+		 doNewSend(["5", [id, null]]);
+		 doNewSend(["c", [1, boostDir]]);
+		 doNewSend(["c", [0, boostDir]]);
+		 doNewSend(["5", [myPlayer.weapon, true]]);
+		 doNewSend(["2", [nearestEnemyAngle]]);
+	}
+
+	function boostSpike() {
+		 if(boostDir == null) {
+			  boostDir = nearestEnemyAngle;
+		 }
+		 place(spikeType, boostDir - toRad(90));
+		 place(spikeType, boostDir + toRad(90));
+		 place(boostType, boostDir);
+		 doNewSend(["33", [boostDir]]);
+	}
+
+	var repeater = function(key, action, interval) {
+		 let _isKeyDown = false;
+		 let _intervalId = undefined;
+
+		 return {
+			  start(keycode) {
+					if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+						 _isKeyDown = true;
+						 if(_intervalId === undefined) {
+							  _intervalId = setInterval(() => {
+									action();
+									if(!_isKeyDown){
+										 clearInterval(_intervalId);
+										 _intervalId = undefined;
+										 console.log("claered");
+									}
+							  }, interval);
+						 }
+					}
+			  },
+
+			  stop(keycode) {
+					if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+						 _isKeyDown = false;
+					}
+			  }
+		 };
+
+
+	}
+
+
+	const healer1 = repeater(51, () => {placeQ(foodType, boostDir);
+													placeQ(foodType, boostDir);
+													placeQ(foodType, boostDir)}, 50);
+	const healer2 = repeater(81, () => {placeQ(foodType, boostDir);
+													placeQ(foodType, boostDir);
+													placeQ(foodType, boostDir)}, 50);
+	const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+	const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+	const millPlacer = repeater(78, () => {place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(90));
+														place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(280));
+														place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(0));
+														}, 0);
+	const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+	const boostSpiker = repeater(71, () => {boostSpike}, 0);
+
+	document.addEventListener('keydown', (e)=>{
+		 spikePlacer.start(e.keyCode);
+		 healer1.start(e.keyCode);
+		 healer2.start(e.keyCode);
+		 boostPlacer.start(e.keyCode);
+		 boostSpiker.start(e.keyCode);
+		 millPlacer.start(e.keyCode);
+		 turretPlacer.start(e.keyCode);
+
+		 if (e.keyCode == 67 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+           doNewSend(["ch", ["   Anime | Soldier Helmet   "]]);
+			  doNewSend(["13c", [1, 6, 0]]);
+			  doNewSend(["13c", [0, 6, 0]]);
+			  doNewSend(["13c", [0, 0, 1]]);
+			  doNewSend(["13c", [1, 21, 1]]);
+			  doNewSend(["13c", [0, 21, 1]]);
+		 }
+
+		 if (e.keyCode == 49 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  autosecondary = false;
+			  autoprimary = true;
+			  setTimeout( () => {
+					autoprimary = false;
+			  }, 330);
+		 }
+
+		 if (e.keyCode == 50 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  autoprimary = false;
+			  autosecondary = true;
+			  setTimeout( () => {
+					autosecondary = false;
+			  }, 330);
+		 }
+		 if (e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  autoaim = true
+			  last = myPlayer.hat
+			  lastt = myPlayer.accessory
+			  doNewSend(["5", [secondary, true]]);
+			  doNewSend(["c", [1]]);
+			  doNewSend(["2", [nearestEnemyAngle]]);
+			  doNewSend(["ch", [spam(true, 5)]])
+			  doNewSend(["13c", [0, 53, 0]]);
+			  doNewSend(["13c", [0, 19, 1]]);
+			  setTimeout(() => {
+					doNewSend(["6", [12]]);
+					doNewSend(["2", [nearestEnemyAngle]]);
+			  },100);
+			  setTimeout(() => {
+					doNewSend(["6", [15]]);
+					doNewSend(["2", [nearestEnemyAngle]]);
+			  },200);
+			  setTimeout(() => {
+					doNewSend(["c", [null]]);
+					doNewSend(["5", [primary, true]]);
+					hat(last)
+					acc(lastt)
+					autoaim = false
+			  },300);
+			  setTimeout(() => {
+					doNewSend(["2", [myPlayer.dir]]);
+			  },310);
+		 }
+		 if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  setTimeout( () => {
+			  doNewSend(["ch", ["Anime | Charging Chakra"]]);
+			  doNewSend(["5", [secondary, true]]);
+			  }, 700)
+		 }
+		 if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  setTimeout( () => {
+			  doNewSend(["ch", [""]]);
+			  doNewSend(["5", [secondary, true]]);
+			  }, 1300)
+		}
+		 if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  setTimeout( () => {
+			  doNewSend(["ch", ["Anime | Chakra Charged"]]);
+			  doNewSend(["5", [primary, true]]);
+			  }, 2500)
+		 }
+		 if (e.keyCode == 66 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+           doNewSend(["ch", ["    Anime | Bull Helmet    "]]);
+			  doNewSend(["13c", [1, 7, 0]]);
+			  doNewSend(["13c", [0, 7, 0]]);
+           doNewSend(["13c", [0, 0, 1]]);
+			  doNewSend(["13c", [1, 21, 1]]);
+			  doNewSend(["13c", [0, 21, 1]]);
+		 }
+		if (e.keyCode == 72 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			 place(turretType, myPlayer.dir + toRad(45));
+			 place(turretType, myPlayer.dir - toRad(45));
+		}
+		 if (e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  click = true;
+			  doNewSend(["13c", [1, 40, 0]]);
+			  doNewSend(["13c", [0, 40, 0]]);
+			  doNewSend(["13c", [1, 21, 1]]);
+			  doNewSend(["13c", [0, 21, 1]]);
+		 }
+		 if (e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  click = false;
+			  doNewSend(["13c", [1, 6, 0]]);
+			  doNewSend(["13c", [0, 6, 0]]);
+			  doNewSend(["13c", [1, 21, 1]]);
+			  doNewSend(["13c", [0, 21, 1]]);
+		 }
+		 if (e.keyCode == 192 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+		 doNewSend(["ch", ["  Anime | Invisible Weapon  "]]);
+		 doNewSend(['5', ['length', !0]]);
+		 doNewSend(["8", [""]]);
+		 }
+		 if (e.keyCode == 9 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  doNewSend(["13c", [1, 11, 1]]);
+			  doNewSend(["13c", [0, 11, 1]]);
+			  doNewSend(["13c", [1, 12, 0]]);
+			  doNewSend(["13c", [0, 12, 0]]);
+           doNewSend(["13c", [1, 7, 0]]);
+           doNewSend(["13c", [1, 53, 0]]);
+           doNewSend(["13c", [1, 40, 0]]);
+           doNewSend(["13c", [1, 21, 1]]);
+			  doNewSend(["13c", [1, 31, 0]]);
+			  doNewSend(["13c", [1, 15, 0]]);
+		 }
+
+		 if(e.keyCode == 106 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  healToggle = (healToggle + 1) % 2;
+		 }
+		 if(e.keyCode == 37 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  aea = (aea + 1) % 2;
+					if(aea == 0) {
+						 doNewSend(["ch", ["Anime | Mode | None"]]);
+					} else {
+						 doNewSend(["ch", [" Anime | Mode | Wing Change "]]);
+					}
+		 }
+		 if(e.keyCode == 39 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  eae = (eae + 1) % 2;
+					if(eae == 0) {
+						 doNewSend(["ch", ["     Anime | Mode | None     "]]);
+					} else {
+						 doNewSend(["ch", ["  Anime | Mode | Hat Change  "]]);
+					}
+		 }
+		 if(e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  doNewSend(["6", [5]]);
+			  doNewSend(["6", [17]]);
+			  doNewSend(["6", [31]]);
+			  doNewSend(["6", [23]]);
+			  doNewSend(["6", [9]]);
+			  doNewSend(["6", [38]]);
+			  doNewSend(["6", [4]]);
+			  doNewSend(["6", [25]]);
+		 }
+		if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			 doNewSend(["ch", ["     Anime | Spike Insta     "]]);
+			  doNewSend(["5", [primary, true]]);
+			  doNewSend(["13c", [0, 7, 0]]);
+			  doNewSend(["13c", [0, 0, 1]]);
+			  doNewSend(["13c", [0, 21, 1]]);
+			  place(spikeType);
+			  doNewSend(["c", [1]]);
+
+			  setTimeout( () => {
+					doNewSend(["13c", [0, 53, 0]]);
+			  }, 70);
+
+			  setTimeout( () => {
+					doNewSend(["c", [0, null]]);
+					doNewSend(["13c", [0, 0, 0]]);
+					doNewSend(["13c", [0, 12, 0]])
+					doNewSend(["13c", [0, 6, 0]])
+			  }, 200);
+		 }
+		 if (e.keyCode == 50 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  doNewSend(["ch", [" Anime | Secondary Weapon "]]);
+		 }
+		 if (e.keyCode == 49 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  doNewSend(["ch", ["   Anime | Primary Weapon   "]]);
+		 }
+		 if (e.keyCode == 9 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  if (myPlayer.y < 2400){
+					doNewSend(["13c", [0, 15, 0]]);
+			  } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+					doNewSend(["13c", [0, 31, 0]]);
+			  } else {
+				  doNewSend(["13c", [0, 12, 0]]);
+			  }
+			  doNewSend(["13c", [0, 11, 1]]);
+		 }
+		 if (e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  var last = myPlayer.hat
+			  var lastt = myPlayer.accessory
+			  autoaim = true
+			  doNewSend(["5", [primary, true]]);
+			  doNewSend(["13c", [0, 7, 0]]);
+			  doNewSend(["13c", [0, 0, 1]]);
+			  doNewSend(["7", [3]]);
+			  setTimeout(() => {
+					doNewSend(["6", [5]]);
+					doNewSend(["6", [17]]);
+					doNewSend(["6", [31]]);
+					doNewSend(["6", [23]]);
+					doNewSend(["6", [9]]);
+					doNewSend(["6", [33]]);
+			  }, 100);
+			  setTimeout(() => {
+					doNewSend(["6", [4]]);
+			  }, 200);
+			  setTimeout(() => {
+					doNewSend(["5", [secondary, true]]);
+					doNewSend(["13c", [0, 53, 0]]);
+			  }, 300);
+			  setTimeout(() => {
+					doNewSend(["6", [15]]);
+			  }, 420);
+			  setTimeout(() => {
+					doNewSend(["7", [3]]);
+					doNewSend(["5", [primary, true]]);
+					doNewSend(["13c", [0, last, 0]]);
+					doNewSend(["13c", [0, lastt, 1]]);
+			  }, 500);
+		 }
+		 if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+			  autoprimary = true;
+					autosecondary = false;
+					autoaim = true;
+					autoprimary = true;
+					autosecondary = false;
+			      doNewSend(["ch", ["Rasengan!!!"]]);
+					doNewSend(["13c", [0, 0, 1]]);
+					doNewSend(["5", [primary, true]]);
+					doNewSend(["7", [1]]);
+					doNewSend(["13c", [1, 7, 0]]);
+					doNewSend(["13c", [0, 7, 0]]);
+					doNewSend(["13c", [1, 21, 1]]);
+					doNewSend(["13c", [0, 21, 1]]);
+			  setTimeout( () => {
+					var sck = "";
+					autoprimary = false;
+					autosecondary = true;
+					doNewSend(["13c", [0, 0, 0]]);
+					doNewSend(["13c", [1, 53, 0]]);
+					doNewSend(["13c", [0, 53, 0]]);
+					doNewSend(["5", [secondary, true]]);
+					for(let i = 0; i < 300; i++){
+							  let caas = new Uint8Array(225);
+							  for(let i = 0; i <caas.length;i++){
+									caas[i] = Math.floor(Math.random()*308);
+									sck += caas[i]
+							  }
+						 }
+						 ws.send(caas);
+			  }, 100);
+			  setTimeout( () => {
+					doNewSend(["13c", [0, 0, 0]]);
+					doNewSend(["7", [1]]);
+					doNewSend(["5", [secondary, true]]);
+					doNewSend(["13c", [0, 11, 1]]);
+					if (myPlayer.y < 2400){
+						 doNewSend(["13c", [0, 15, 0]]);
+					} else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+						 doNewSend(["13c", [0, 31, 0]]);
+					} else {
+						doNewSend(["13c", [0, 12, 0]]);
+					}
+					setTimeout(()=>{
+					doNewSend(["5", [primary, true]]);
+					doNewSend(["5", [primary, true]]);
+					}, 1850);
+					autosecondary = false;
+					autoaim = false;
+			  }, 230);
+		 }
+	})
+	document.addEventListener('keyup', (e)=>{
+		 spikePlacer.stop(e.keyCode);
+		 boostPlacer.stop(e.keyCode);
+		 millPlacer.stop(e.keyCode);
+		 boostSpiker.stop(e.keyCode);
+		 turretPlacer.stop(e.keyCode);
+		 healer1.stop(e.keyCode);
+		 healer2.stop(e.keyCode);
+    if(e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        setTimeout( () => {
+            doNewSend(["33", [null]]);
+            boostDir = null;
+        }, 10);
+    }
+})
+
+	function isElementVisible(e) {
+		 return (e.offsetParent !== null);
+	}
+
+	function toRad(angle) {
+		 return angle * 0.01745329251;
+	}
+
+	function dist(a, b){
+		 return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+	}
+
+	function update() {
+		 for (let i=0;i<9;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					primary = i;
+			  }
+		 }
+
+		 for (let i=9;i<16;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					secondary = i;
+			  }
+		 }
+
+		 for (let i=16;i<19;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					foodType = i - 16;
+			  }
+		 }
+
+		 for (let i=19;i<22;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					wallType = i - 16;
+			  }
+		 }
+
+		 for (let i=22;i<26;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					spikeType = i - 16;
+			  }
+		 }
+
+		 for (let i=26;i<29;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					millType = i - 16;
+			  }
+		 }
+
+		 for (let i=29;i<31;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					mineType = i - 16;
+			  }
+		 }
+
+		 for (let i=31;i<33;i++){
+			  if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+					boostType = i - 16;
+			  }
+		 }
+
+		for (let i=33;i<36;i++){
+			 if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+				  turretType = i - 16;
+			 }
+		}
+
+		for (let i=36;i<37;i++){
+			 if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+				  spawnpadType = i - 16;
+			 }
+		}
+
+		for (let i=37;i<39;i++){
+			 if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+				  turretType = i - 16;
+			 }
+		}
+	}
+
+	var ezsound = new Audio("https://dl.dropboxusercontent.com/s/qjfmz3sxmig1rrp/Black%20Ops%202%20Kaboom%20Sound%20%28Nuketown%20Map%29.mp3?dl=0");
+
+	var kills = 10;
+
+	setInterval(getkills, 250);
+
+	function getkills(){
+		 var count = parseInt(document.getElementById("killCounter").innerText);
+		 if(count > kills){
+		ezsound.play();
+			  doNewSend(["ch", ["     Anime | Get Killed     "]]);
+		 }
+		 kills = count;
+	}
+	function spam(space, chance) {
+		 let result = '';
+		 let characters;
+		 if(space) {
+			  characters = '      Anime | Bow Insta      ';
+		 }
+		 if(space) {
+			  characters = characters.padStart((30 - characters.length) / 2 + characters.length)
+			  characters = characters.padEnd(30);
+		 }
+		 let count = 0;
+		 for (let i = 0; i < characters.length; i++ ) {
+			  if(Math.floor(Math.random() * chance) == 0 && characters.charAt(i) != "-" && count < 0 && characters.charAt(i) != " ") {
+					result += "";
+					count++
+			  } else {
+					result += characters.charAt(i);
+			  }
+		 }
+		 return result;
+	}
+	$('#promoImgHolder').css({'position': 'absolute',
+									  'bottom': '-0%',
+									  'left': '0px',
+									  'width': '0px',
+									  'height': '0px',
+									  'padding-bottom': '0px',
+									  'margin-top': '0px'});
+
+	$('#adCard').css({'position': 'absolute',
+							'bottom': '-0%',
+							'right': '0px',
+							'width': '0px',
+							'height': '0px',
+							'padding-bottom': '0px'});
+
+	$( "#errorNotification" ).after( '<div id="moddedMenu"><div class="titleMM">Anime Mod</div><div class="one"><label class="switch"></span></label><div class="two"><div class="text"><b>Anime Mod<br><label class="container">Music<input type="checkbox" id="Music"><span class="checkmark"></label><label><div></div>');
+	(function() {var css = [
+		"div#adCard, ",
+		"  #twitterFollow, ",
+		"  #youtubeFollow, ",
+		"  #downloadButtonContainer, ",
+		"  #followText, ",
+		"  #promoImg {",
+		"    display: none;",
+		"  }",
+		"",
+		"  #featuredYoutube > a.ytLink, ",
+		"  a {",
+		"    color: red !important;",
+		"    font-size: 20px;",
+		"    margin-top: 0px;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  a:hover {",
+		"    color: red !important;",
+		"  }",
+		"",
+		"  #youtuberOf, ",
+		"  #linksContainer2, ",
+		"  .partyWrap {",
+		"    background: rgba(0,0,0,0.6);",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"    border-radius: 10px;",
+		"    padding: 10px;",
+		"    font-size: 20px;",
+		"    position: absolute;",
+		"    color: red;",
+		"  }",
+		"",
+		"  .partyWrap {",
+		"    min-height: 80px;",
+		"    min-width: 160px;",
+		"    top: 10px;",
+		"    right: 10px;",
+		"  }",
+		"",
+		"  #youtuberOf {",
+		"    top: 10px;",
+		"    left: 10px;",
+		"  }",
+		"",
+		"  #followText {",
+		"    min-height: 200px;",
+		"    bottom: 10px;",
+		"    left: 10px;",
+		"  }",
+		"",
+		"  #linksContainer2 {",
+		"    bottom: 10px;",
+		"    right: 10px;",
+		"    color: red;",
+		"  }",
+		"",
+		"  .menuCard {",
+		"    background: rgba(0,0,0,0.6);",
+		"    border-radius: 10px;",
+		"    border: 10px solid rgba(0,0,0,0.9);",
+		"    box-shadow: none;",
+		"    overflow:auto;",
+		"  }",
+		"",
+		"  ::-webkit-scrollbar {",
+		"    width: 10px;",
+		"    border-right: 2px solid red;",
+		"  }",
+		"",
+		"  ::-webkit-scrollbar-thumb {",
+		"    border: 2px solid red;",
+		"  }",
+		"",
+		"  ::-webkit-scrollbar-thumb:hover {",
+		"    background: red;",
+		"  }",
+		"",
+		"  ::-webkit-scrollbar-thumb:active {",
+		"    background: red;",
+		"    border: 2px solid red;",
+		"  }",
+		"",
+		"  .menuHeader {",
+		"    font-size: 24px;",
+		"    color: red;",
+		"    margin-bottom: 3px;",
+		"    border-bottom: 3px solid red;",
+		"  }",
+		"",
+		"  .menuHeader:first-child {",
+		"    margin-bottom: 30px;",
+		"  }",
+		"",
+		"  .menuText {",
+		"    font-size: 18px;",
+		"    color: red;",
+		"    margin-bottom: 10px;",
+		"  }",
+		"",
+		"  .ytLink {",
+		"    color: red;",
+		"    font-size: 24px;",
+		"    text-decoration: none;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  .menuButton {",
+		"    color: red;",
+		"    background-color: transparent;",
+		"    border: 5px solid red;",
+		"    position: relative;",
+		"    display: inline-flex;",
+		"    padding: 0px 70px;",
+		"    font-family: denk one;",
+		"    transition: color .5s;",
+		"    overflow: hidden;",
+		"    width: 100%;",
+		"    justify-content: center;",
+		"  }",
+		"",
+		"  .menuButton:hover {",
+		"    color: red !important;",
+		"    border: 5px solid red;",
+		"    cursor: pointer;",
+		"    background-color: transparent;",
+		"  }",
+		"",
+		"  .menuButton:before {",
+		"    content: \'\';",
+		"    position: absolute;",
+		"    top: 0;",
+		"    left: 0;",
+		"    width: 130%; ",
+		"    height: 10000%;",
+		"    background: red;",
+		"    border-right: 20px solid red;",
+		"    z-index: -1;",
+		"    transform-origin:0 0 ;",
+		"    transform:translateX(-112%) skewX(45deg);",
+		"    transition: transform .5s;",
+		"  }",
+		"",
+		"  .menuButton:hover:before {",
+		"    color: red !important;",
+		"    transform: translateX(-20%) skewX(45deg);",
+		"  }",
+		"",
+		"  .menuCard span {",
+		"    margin: 10px;",
+		"  }",
+		"",
+		"  #promoHolderImg > img {",
+		"    width: 300px;",
+		"    height: 94px;",
+		"  }",
+		"",
+		"  #guideCard {",
+		"    max-height: 282px;",
+		"  }",
+		"",
+		"  .skinColorItem {",
+		"    transition: 1s;",
+		"    border: 3px solid red;",
+		"  }",
+		"",
+		"  select {",
+		"    background: red;",
+		"    border-radius: 5px;",
+		"    border: 3px solid red;",
+		"    margin-bottom: 10px;",
+		"    color: red;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  select:hover {",
+		"    background: red;",
+		"    border: 3px solid red;",
+		"  }",
+		"",
+		"  #pre-content-container {",
+		"    display: none!important;",
+		"  }",
+		"",
+		"  .uiElement, ",
+		"  .resourceDisplay, ",
+		"  .actionBarItem {",
+		"    background-color: rgba(0,0,0,0.6) !important;",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"    border-radius: 50px !important;",
+		"    color: red;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  .uiElement:hover, ",
+		"  .resourceDisplay:hover, ",
+		"  .actionBarItem:hover {",
+		"    background-color: rgba(0,0,0,0.5) !important;",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"    border-radius: 50px !important;",
+		"    color: red;",
+		"  }",
+		"",
+		"  #topInfoHolder, #itemInfoHolder, #mapDisplay, #chatBox  { ",
+		"    background-color: rgba(0,0,0,0.6) !important;",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"    border-radius: 10px !important;",
+		"    color: red;",
+		"  }",
+		"",
+		"  #itemInfoHolder { ",
+		"    -webkit-text-stroke: transparent;",
+		"  }",
+		"",
+		"  .material-icons { ",
+		"    color: red;",
+		"    font-size: 31px;",
+		"    -webkit-text-stroke: 1.5px red;",
+		"  }",
+		"",
+		"  #altServer > a > i {",
+		"    font-size: 30px !important;",
+		"    -webkit-text-stroke: transparent !important;",
+		"  }",
+		"",
+		"  #ageText { ",
+		"    font-size: 40px !important;",
+		"    color: red;",
+		"    -webkit-text-stroke: 1.5px red;",
+		"    margin-bottom: 30px;",
+		"  }",
+		"",
+		"  #ageBarBody {",
+		 "    background: url('https://scitechdaily.com/images/Galaxy-Rotation-Illustration-777x518.jpg');",
+		"    border: 3px solid red",
+		"  }",
+		"",
+		"  #ageBar {",
+		"    background-color: rgba(0,0,0,0.6) !important;",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"    height: 10px;",
+		"    padding-bottom: 10px;",
+		"    margin-bottom: 20px;",
+		"  }",
+		"",
+		"  .actionBarItem {",
+		"    width: 65px;",
+		"    height: 65px;",
+		"    background-position: center; ",
+		"    background-size: 55px 55px;",
+		"  }",
+		"",
+		"  #aBox {",
+		"    color:  red !important;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  #chatBox::placeholder {",
+		"    color: red !important;",
+		"  }",
+		"",
+		"  #chatBox:hover {",
+		"    background: rgba(0,0,0,0.5)!important;",
+		"  }",
+		"",
+		"  #chatBox:hover::placeholder {",
+		"    color: red!important;",
+		"  }",
+		"",
+		"  #leaderboard, .leaderboardItem[style*=\"color: rgb(255, 255, 255);\"] {",
+		"    color: red !important;",
+		"  }",
+		"",
+		"  .ytLink:hover {",
+		"    color: red;",
+		"  }",
+		"",
+		"  #nameInput {",
+		"    background: red;",
+		"    border: 5px solid red;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  #nameInput::placeholder {",
+		"    color: red;",
+		"    transition: 0.5s;",
+		"  }",
+		"",
+		"  #nameInput:hover {",
+		"    background: red;",
+		"    color: red;",
+		"  }",
+		"",
+		"  #nameInput:hover::placeholder {",
+		"    background: rgba(0,0,0,0.4);",
+		"    color: red;",
+		"  }",
+		"",
+		"  #linksContainer2 {",
+		"    max-height: 500px;",
+		"    width: 250px;",
+		"  }",
+		"",
+		"  #linksContainer2 > * {",
+		"    display:table-cell;",
+		"    vertical-align:middle;",
+		"    text-align: center;",
+		"    width:700px;",
+		"  }",
+		"  ",
+		"  .storeTab, ",
+		"  #storeHolder, ",
+		"  #allianceHolder, ",
+		"  #allianceInput, ",
+		"  .allianceButtonM {",
+		"    background: rgba(0,0,0,0.6);",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"  }",
+		"",
+		"  .storeItem, ",
+		"  .storeTab, ",
+		"  .allianceButtonM, ",
+		"  #allianceInput::placeholder, ",
+		"  .allianceItem {",
+		"    color: red !important;",
+		"  }",
+		"",
+		"  .storeItem, ",
+		"  .storeTab, ",
+		"  .allianceButtonM, ",
+		"  #allianceInput::placeholder, ",
+		"  .allianceItem, ",
+		"  .joinAlBtn {",
+		"    color: red !important;",
+		"  }",
+		"",
+		"  .storeItem:hover, ",
+		"  .storeTab:hover, ",
+		"  .allianceButtonM:hover,",
+		"  .allianceItem:hover, ",
+		"  .joinAlBtn:hover {",
+		"    color: red !important;",
+		"  }",
+		"",
+		"  #allianceInput, ",
+		"  #killCounter {",
+		"    color: red;",
+		"  }",
+		"  ",
+		"  #allianceInput:hover {",
+		"    background: rgba(0,0,0,0.5);",
+		"    color: red;",
+		"  }",
+		"",
+		"  #allianceInput:hover::placeholder{",
+		"    color: red;",
+		"  }",
+		"",
+		"  #linksContainer2 > *:first-child {",
+		"    border-bottom: 3px solid red;",
+		"  }",
+		"",
+		"  #moddedMenu {",
+		"    position: absolute;",
+		"    top: 3.25%;",
+		"    left: 0px;",
+		"    width: 3%;",
+		"    height: 50.5%;",
+		"    background: rgba(0,0,0,0.6);",
+		"    border: 3px solid rgba(0,0,0,0.9);",
+		"    border-top-right-radius: 30px;",
+		"    border-bottom-right-radius: 30px;",
+		"    transition: 1s;",
+		"    z-index: 999;",
+		"  }",
+		"",
+		"  #moddedMenu:hover {",
+		"    width: 20%;",
+		"  }",
+		"",
+		"  #youtuberOf {",
+		"    bottom: 10px;",
+		"    top: auto;",
+		"  }",
+		"",
+		"  .titleMM {",
+		"    color: red;",
+		"    border-bottom: 3px solid red;",
+		"    font-size: 32px;",
+		"    transform: rotate(90deg);",
+		"    white-space: nowrap;",
+		"    margin-top: 250%;",
+		"    transition: 1s;",
+		"  }",
+		"",
+		"  #moddedMenu:hover > .titleMM {",
+		"    transform: rotate(0deg) translate(0,-1580%)",
+		"  }",
+		"",
+		"  .switch {",
+		"    margin-top: 5px;",
+		"    margin-left: 10px;",
+		"    position: absolute;",
+		"    width: 60px;",
+		"    height: 34px;",
+		"    transition: opacity 1s;",
+		"    opacity: 0;",
+		"  }",
+		"",
+		"  .text {",
+		"    bottom: 76%;",
+		"    position: absolute;",
+		"    color: red;",
+		"    font-size: 20px;",
+		"    left: 0%;",
+		"    display: none;",
+		"    transition: 1s;",
+		"  }",
+		"",
+		"  .text > b { ",
+		"    font-size: 20px;",
+		"    color: red;",
+		"  }",
+		"",
+		"  b:hover { ",
+		"    color: red;",
+		"  }",
+		"",
+		"  .one > .text {",
+		"    top: 5.5%;",
+		"  }",
+		"",
+		"  .two > .text {",
+		"    top: 10.7%;",
+		"  }",
+		"",
+		"  .three > .text {",
+		"    top: 37.5%;",
+		"  }",
+		"",
+		"  .four > .text {",
+		"    top: 47.5%;",
+		"  }",
+		"",
+		"  .five > .text {",
+		"    top: 57.5%;",
+		"  }",
+		"",
+		"  .six > .text {",
+		"    top: 67.5%;",
+		"  }",
+		"",
+		"  .seven > .text {",
+		"    top: 77.5%;",
+		"  }",
+		"",
+		"  .eight > .text {",
+		"    top: 87.5%;",
+		"  }",
+		"",
+		"  #moddedMenu:hover .switch {",
+		"    opacity: 1;",
+		"  }",
+		"",
+		"  #moddedMenu:hover .text {",
+		"    display: block;",
+		"  }",
+		"",
+		"  .one > .switch {",
+		"    top: 15%;",
+		"  }",
+		"",
+		"  .two > .switch {",
+		"    top: 25%;",
+		"  }",
+		"",
+		"  .three > .switch {",
+		"    top: 35%;",
+		"  }",
+		"",
+		"  .four > .switch {",
+		"    top: 45%;",
+		"  }",
+		"",
+		"  .five > .switch {",
+		"    top: 55%;",
+		"  }",
+		"",
+		"  .six > .switch {",
+		"    top: 65%;",
+		"  }",
+		"",
+		"  .seven > .switch {",
+		"    top: 75%;",
+		"  }",
+		"",
+		"  .eight > .switch {",
+		"    top: 85%;",
+		"  }",
+		"",
+		"  .switch input {",
+		"    display:none;",
+		"  }",
+		"",
+		"  .slider {",
+		"    position: absolute;",
+		"    cursor: pointer;",
+		"    top: 0;",
+		"    left: 0;",
+		"    right: 0;",
+		"    bottom: 0;",
+		"    background-color: red;",
+		"    -webkit-transition: .4s;",
+		"    transition: .4s;",
+		"  }",
+		"",
+		"  .slider:before {",
+		"    position: absolute;",
+		"    content: \"\";",
+		"    height: 26px;",
+		"    width: 26px;",
+		"    left: 4px;",
+		"    bottom: 4px;",
+		"    background-color: red;",
+		"    -webkit-transition: .4s;",
+		"    transition: .4s;",
+		"  }",
+		"",
+		"  input:checked + .slider {",
+		"    background-color: red;",
+		"  }",
+		"  ",
+		"  input:focus + .slider {",
+		"    box-shadow: 0 0 1px red;",
+		"  }",
+		"",
+		"  input:checked + .slider:before {",
+		"    -webkit-transform: translateX(26px);",
+		"    -ms-transform: translateX(26px);",
+		"    transform: translateX(26px);",
+		"  }",
+		"",
+		"  .slider.round {",
+		"    border-radius: 34px;",
+		"  }",
+		"",
+		"  .slider.round:before {",
+		"    border-radius: 50%;",
+		"  }"
+
+	].join("\n");
+	if (typeof GM_addStyle != "undefined") {
+		GM_addStyle(css);
+	} else if (typeof PRO_addStyle != "undefined") {
+		PRO_addStyle(css);
+	} else if (typeof addStyle != "undefined") {
+		addStyle(css);
+	} else {
+		var node = document.createElement("style");
+		node.type = "text/css";
+		node.appendChild(document.createTextNode(css));
+		var heads = document.getElementsByTagName("head");
+		if (heads.length > 0) {
+			heads[0].appendChild(node);
+		} else {
+			// no head yet, stick it whereever
+			document.documentElement.appendChild(node);
+		}
+	}
+	})();
+
+
+	var astro = "https://cdn.discordapp.com/attachments/738793842609881108/784486621063806986/gg.m4a"
+	var musiccc = new Audio(astro);
+
+	var Music = document.querySelector("#Music")
+
+	Music.addEventListener('change', function() {
+		 if (this.checked) {
+			  musiccc.play();
+			  doNewSend(["ch", ["mUsIc : On"]]);
+		 } else {
+			  doNewSend(["ch", ["mUsIc : Off"]]);
+			  musiccc.pause();
+		 }
+	})
