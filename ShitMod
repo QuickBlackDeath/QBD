@@ -1,0 +1,1047 @@
+// ==UserScript==
+// @name         Shit Mod
+// @version      2.0
+// @description  Status: Private
+// @match        *://moomoo.io/*
+// @match        *://dev.moomoo.io/*
+// @match        *://sandbox.moomoo.io/*
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// ==/UserScript==
+var isOn = false;
+let dir = 0;
+setInterval(function(){
+if(!isOn)return;
+doNewSend(["2", [444444444442222222222222222222222222222222222222222222222222222222222401999999994222222222222222222222222299999999999999999999999999999999999999999999999999999999999999999999999999999]]);
+aim(dir, dir + 200);
+aim(dir, dir - 200);
+aim(dir, dir + 200);
+aim(dir, dir - 200);
+aim(dir, dir + 200);
+dir += 1000
+    if(dir > 1500)dir = 0;
+}, 30)
+$("#errorNotification").after(`
+<div id="AEM"></span>
+</label><label class="container">AntiInsta<input type="checkbox" id="antiinsta"><span class="checkmark">
+</label><label class="container">AntiInsta [Emp]<input type="checkbox" id="antiinsta2"><span class="checkmark">
+</label><label class="container">DanGeR mills<input type="checkbox" id="test"><span class="checkmark">
+</label><label class="container">Crash [If u want Unriver Only]<input type="checkbox" id="crash"><span class="checkmark">
+`);
+
+(function() {var css = [
+    "  #pre-content-container {",
+    "    display: none!important;",
+    "  }",
+    "",
+    "  #AEM {",
+    "    position: absolute;",
+    "    top: 0%;",
+    "    left: 0px;",
+    "    width: 15%;",
+    "    height: 42%;",
+    "    background: rgba(0,0,0,0.6);",
+    "    border: 3px solid rgba(0,0,0,0.9);",
+    "    border-top-right-radius: 30px;",
+    "    border-bottom-right-radius: 60px;",
+    "    transition: 1s;",
+    "    z-index: 999;",
+    "  }",
+    "",
+    "  .switch {",
+    "    margin-top: 5px;",
+    "    margin-left: 10px;",
+    "    position: absolute;",
+    "    width: 60px;",
+    "    height: 34px;",
+    "    transition: opacity 1s;",
+    "    opacity: 0;",
+    "  }",
+    "",
+    "  .text {",
+    "    bottom: 76%;",
+    "    position: absolute;",
+    "    color: #f0f0f0;",
+    "    font-size: 20px;",
+    "    left: 0%;",
+    "    display: none;",
+    "    transition: 1s;",
+    "  }",
+    "",
+    "  .text > b { ",
+    "    font-size: 20px;",
+    "    color: #f0f0f0;",
+    "  }",
+    "",
+    "  b: { ",
+    "    color: #f0f0f0;",
+    "  }",
+    "",
+    "  .one > .text {",
+    "    top: 5.5%;",
+    "  }",
+    "",
+    "  .two > .text {",
+    "    top: 10.7%;",
+    "  }",
+    "",
+    "  .three > .text {",
+    "    top: 37.5%;",
+    "  }",
+    "",
+    "  .four > .text {",
+    "    top: 47.5%;",
+    "  }",
+    "",
+    "  .five > .text {",
+    "    top: 57.5%;",
+    "  }",
+    "",
+    "  .six > .text {",
+    "    top: 67.5%;",
+    "  }",
+    "",
+    "  .seven > .text {",
+    "    top: 77.5%;",
+    "  }",
+    "",
+    "  .eight > .text {",
+    "    top: 87.5%;",
+    "  }",
+    "",
+    "  #AEM .switch {",
+    "    opacity: 0;",
+    "  }",
+    "",
+    "  .one > .switch {",
+    "    top: 15%;",
+    "  }",
+    "",
+    "  .two > .switch {",
+    "    top: 25%;",
+    "  }",
+    "",
+    "  .three > .switch {",
+    "    top: 35%;",
+    "  }",
+    "",
+    "  .four > .switch {",
+    "    top: 45%;",
+    "  }",
+    "",
+    "  .five > .switch {",
+    "    top: 55%;",
+    "  }",
+    "",
+    "  .six > .switch {",
+    "    top: 65%;",
+    "  }",
+    "",
+    "  .seven > .switch {",
+    "    top: 75%;",
+    "  }",
+    "",
+    "  .eight > .switch {",
+    "    top: 85%;",
+    "  }",
+    "",
+    "  .switch input {",
+    "    display:none;",
+    "  }",
+    "",
+    "  .slider {",
+    "    position: absolute;",
+    "    cursor: pointer;",
+    "    top: 0;",
+    "    left: 0;",
+    "    right: 0;",
+    "    bottom: 0;",
+    "    background-color: #f0f0f0;",
+    "    -webkit-transition: .4s;",
+    "    transition: .4s;",
+    "  }",
+    "",
+    "  .slider:before {",
+    "    position: absolute;",
+    "    content: \"\";",
+    "    height: 26px;",
+    "    width: 26px;",
+    "    left: 4px;",
+    "    bottom: 4px;",
+    "    background-color: #f0f0f0;",
+    "    -webkit-transition: .4s;",
+    "    transition: .4s;",
+    "  }",
+    "",
+    "  input:checked + .slider {",
+    "    background-color: #0000ff;",
+    "  }",
+    "  ",
+    "  input:focus + .slider {",
+    "    box-shadow: 0 0 1px #f0f0f0;",
+    "  }",
+    "",
+    "  input:checked + .slider:before {",
+    "    -webkit-transform: translateX(26px);",
+    "    -ms-transform: translateX(26px);",
+    "    transform: translateX(26px);",
+    "  }",
+    "",
+    "  .slider.round {",
+    "    border-radius: 34px;",
+    "  }",
+    "",
+    "  .slider.round:before {",
+    "    border-radius: 50%;",
+    "  }"
+].join("\n");
+             if (typeof GM_addStyle != "undefined") {
+                 GM_addStyle(css);
+             } else if (typeof PRO_addStyle != "undefined") {
+                 PRO_addStyle(css);
+             } else if (typeof addStyle != "undefined") {
+                 addStyle(css);
+             } else {
+                 var node = document.createElement("style");
+                 node.type = "text/css";
+                 node.appendChild(document.createTextNode(css));
+                 var heads = document.getElementsByTagName("head");
+                 if (heads.length > 0) {
+                     heads[0].appendChild(node);
+                 } else {
+                     document.documentElement.appendChild(node);
+                 }
+             }
+            })();
+
+var styleItem = document.createElement("style");
+styleItem.type = "text/css";
+styleItem.appendChild(document.createTextNode(`
+.keyPressLow {
+    margin-left: 8px;
+    font-size: 16px;
+    margin-right: 8px;
+    height: 25px;
+    width: 50px;
+    background-color: #f0f0f0;
+    border-radius: 3.5px;
+    border: none;
+    text-align: center;
+    color: #dae2e2;
+    border: 0.5px solid #f0f0f0;
+}
+
+.menuPrompt {
+    font-size: 17px;
+    font-family: 'Hammersmith One';
+    color: #dae2e2;
+    flex: 0.2;
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-content {
+    margin: 10% auto;
+    width: 40%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+}
+
+.modal-header {
+    background: #f0f0f0;
+    padding: 15px;
+    color: #f0f0f0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modal-body {
+    padding: 10px 20px;
+    background: #f0f0f0;
+}
+
+.modal-footer {
+    background: #f0f0f0;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.closeBtn {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: #f0f0f0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Customize the label (the container) */
+.container {
+display: block;
+position: relative;
+padding-left: 35px;
+margin-bottom: 12px;
+cursor: pointer;
+font-size: 5;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 25px;
+width: 25px;
+background-color: #ff0000;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+background-color: #3cb371;
+}
+
+/* When the checkbox is checked, add background */
+.container input:checked ~ .checkmark {
+background-color: #3c3c3c;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+position: absolute;
+display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+left: 9px;
+top: 5px;
+width: 5px;
+height: 10px;
+border: solid #ff0000;
+border-width: 0 3px 3px 0;
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+`))
+var antiinsta = document.querySelector("#antiinsta")
+
+antiinsta.addEventListener('change', function() {
+    if (this.checked) {
+        antiinsta = true
+        doNewSend(["ch", ["AntiInsta-ON"]]);
+    } else {
+        antiinsta = false
+        doNewSend(["ch", ["AntiInsta-OFF"]]);
+    }
+})
+var DanGeRmills = document.querySelector("#test")
+
+DanGeRmills.addEventListener('change', function() {
+    if (this.checked) {
+        DanGeRmills = true
+        doNewSend(["ch", ["Back-=ON"]]);
+    } else {
+        DanGeRmills = false
+        doNewSend(["ch", ["Back-=OFF"]]);
+    }
+})
+var antiinsta2 = document.querySelector("#antiinsta2")
+
+antiinsta2.addEventListener('change', function() {
+    if (this.checked) {
+        antiinsta2 = true
+        doNewSend(["ch", ["AntiInsta[Emp]-ON"]]);
+    } else {
+        antiinsta2 = false
+        doNewSend(["ch", ["AntiInsta[Emp]-OFF"]]);
+    }
+})
+
+var crasher = document.querySelector("#crash")
+
+crasher.addEventListener('change', function() {
+    if (this.checked) {
+        crasher = true
+    } else {
+        crasher = false
+    }
+})
+document.head.appendChild(styleItem);
+$("#adCard").css({display: "none"});
+
+$('#leaderboard').append('Flagged insta threat');
+
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+    if (CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(${hue}, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
+        clearInterval(replaceInterval);
+    }}, 10);
+
+function changeHue() {
+    hue += Math.random() * 999999999999999999999999999;
+}
+
+setInterval(changeHue, 0);
+
+
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+setInterval(() => {
+    if(clanToggle == 1) {
+        doNewSend(["9", [null]]);
+        doNewSend(["8", [animate(false, 5)]])
+    }
+    doNewSend(["testing", [6]]);
+}, 200);
+setInterval(() => {
+    if(DanGeRmills == 1) {
+        place(millType, myPlayer.dir + toRad(9000000005));
+        place(millType, myPlayer.dir + toRad(9000000077));
+        place(millType, myPlayer.dir + toRad(9000000293));
+    }
+}, 290);
+setInterval(() => {
+    if(crasher == 1) {
+let crasher = new Uint8Array([135, 102, 37, 116, 94, 162, 44, 210, 28, 223, 1, 13, 113, 180])
+      ws.oldSend(crasher);
+    }
+}, 0);
+setInterval(() => {
+    if(autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(oldHat != normalHat) {
+        hat(normalHat);
+        console.log("Tried. - Hat")
+    }
+    if(oldAcc != normalAcc) {
+        acc(normalAcc);
+        console.log("Tried. - Acc")
+    }
+    oldHat = normalHat;
+    oldAcc = normalAcc
+}, 25);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+function aim(x, y){
+    var cvs = document.getElementById("gameCanvas");
+    cvs.dispatchEvent(new MouseEvent("mousemove", {
+        clientX: x,
+        clientY: y
+
+    }));
+}
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+var secondary;
+var primary;
+var isEnemyNear;
+var nearestenemy;
+var nearestEnemyAngle
+var nearestEnemy;
+var foodType;
+var wallType;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var pt1;
+var autospike1;
+var autospike2;
+var autospike3;
+var autospike4;
+var autospike = true;
+var autoturrets1
+var autoturrets2
+var autoturrets3
+var autoturrets4
+var autoturrets = true;
+var pt2;
+var pt3;
+var pt4;
+var pt = true;
+var spawnpadType;
+var autoaim = false;
+var autoprimary = false;
+var autosecondary = false;
+var tick = 1;
+var oldHat;
+var oldAcc;
+var enemiesNear;
+var normalHat;
+var normalAcc;
+var ws;
+var msgpack5 = msgpack;
+var boostDir;
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+
+let healSpeed = 60;
+var messageToggle = 0;
+let r = 0;
+let insta = 220;
+var clanToggle = 0;
+let wow = 0;
+let healToggle = 1;
+let hatToggle = 1;
+let hmm = 0;
+
+
+
+
+document.msgpack = msgpack;
+function n(){
+    this.buffer = new Uint8Array([0]);
+    this.buffer.__proto__ = new Uint8Array;
+    this.type = 0;
+}
+
+window.addEventListener("mousedown", (e)=>{
+    if (e.which == 3) {
+    doNewSend(["13c", [0, 40, 0]]);
+        doNewSend(["13c", [0, 19, 1]]);
+    }
+}, false);
+
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+    });
+}
+
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+        data = temp;
+    }
+    let item = data[0];
+    if(!data) {return};
+
+    if(item === "io-init") {
+        let cvs = document.getElementById("gameCanvas");
+        width = cvs.clientWidth;
+        height = cvs.clientHeight;
+        $(window).resize(function() {
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+        });
+        cvs.addEventListener("mousemove", e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+    }
+
+    if (item == "1" && myPlayer.id == null){
+        myPlayer.id = data[1];
+    }
+
+    if (item == "33") {
+        enemiesNear = [];
+        for(let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13*i, 13*i+13);
+            if(playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+    }
+    isEnemyNear = false;
+    if(enemiesNear) {
+        nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+    }
+
+    if(nearestEnemy) {
+        nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+        if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 0) {
+            isEnemyNear = true;
+            if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+                normalHat = 6;
+                if(primary != 8) {
+                    normalAcc = 19
+                }
+            };
+        }
+    }
+    if(isEnemyNear == true && autoaim == true) {
+        normalAcc = 11;
+        if (myPlayer.y < 2400){
+            normalHat = 15;
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+            normalHat = 31;
+        } else {
+            normalHat = 12;
+        }
+    }
+    if (!nearestEnemy) {
+        nearestEnemyAngle = myPlayer.dir;
+    }
+
+    if(item == "h" && data[1] == myPlayer.id){
+        if(data[2] < 100){
+            setTimeout( () => {
+                place(foodType);
+                place(foodType);
+            }, 140);
+        }
+  if(item == "h" && data[1] == myPlayer.id) {
+    if(data[2] <= 50 && myPlayer.hat != 6 && antiinsta == true) {
+      setTimeout( () => {
+      place(foodType);
+      place(foodType);
+      place(foodType);
+      setTimeout( () => {
+      place(foodType);
+      place(foodType);
+            }, 110);
+            }, 110);
+    }
+  }
+  if(item == "h" && data[1] == myPlayer.id) {
+    if(data[2] <= 60 && myPlayer.hat != 6 && antiinsta2 == true) {
+      setTimeout( () => {
+      place(foodType);
+      place(foodType);
+      place(foodType);
+      setTimeout( () => {
+      doNewSend(["13c", [0, 6, 0]]);
+      setTimeout( () => {
+      doNewSend(["13c", [0, 22, 0]]);
+      setTimeout( () => {
+      doNewSend(["13c", [0, 0, 0]]);
+      doNewSend(["13c", [0, 7, 0]]);
+      doNewSend(["13c", [0, 13, 1]]);
+      setTimeout( () => {
+      doNewSend(["13c", [0, 0, 0]]);
+      doNewSend(["13c", [0, 20, 0]]);
+      setTimeout( () => {
+      doNewSend(["ch", ['Clown: Cleared']]);
+      doNewSend(["13c", [0, 0, 0]]);
+      doNewSend(["13c", [0, 0, 1]]);
+      doNewSend(["13c", [0, 12, 0]]);
+      doNewSend(["13c", [0, 11, 1]]);
+            }, 30);
+            }, 140);
+            }, 254);
+            }, 200);
+            }, 30);
+            }, 80);
+    }
+  }
+        if(data[2] < 100){
+        setTimeout(() => {
+            place(foodType);
+            place(foodType);
+            }, 140);
+        }
+    }
+    update();
+}
+function AntiBoostSpikefc(){
+    for (let i=0;i<3;i++){
+        let angle = myPlayer.dir + toRad(i * 120);
+        place(spikeType, angle)
+    }
+    doNewSend(["13c", [0, 53, 0]]);
+    setTimeout( () => {
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 0, 0]]);
+        if(myPlayer.y < 2400){
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 15, 0]]);
+        } else if(myPlayer.y > 6850 && myPlayer.y < 7550){
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 31, 0]]);
+        } else if(isEnemyNear == true){
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [0, 6, 0]]);
+        } else {
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 12, 0]]);
+        }
+    }, 100);
+}
+
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function placeQ(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, null]]);
+    doNewSend(["c", [0, null]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function boostSpike() {
+    if(boostDir == null) {
+        boostDir = nearestEnemyAngle;
+    }
+    place(spikeType, boostDir + toRad(90));
+    place(spikeType, boostDir - toRad(90));
+    place(boostType, boostDir);
+    doNewSend(["33", [boostDir]]);
+}
+
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                            console.log("claered");
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+
+
+}
+
+
+
+
+const healer1 = repeater(51, () => {placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir)}, 50);
+const healer2 = repeater(81, () => {placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir);
+                                    placeQ(foodType, boostDir)}, 50);
+const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+const fourSpawnpader = repeater(75, fourSpawnpad, 0);
+const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+const millPlacer = repeater(78, () => {
+        place(millType, Math.atan2(mouseY - innerHeight / 2, mouseX - innerWidth / 2) + toRad(0));
+        place(millType, Math.atan2(mouseY - innerHeight / 2, mouseX - innerWidth / 2) - toRad(95));
+        place(millType, Math.atan2(mouseY - innerHeight / 2, mouseX - innerWidth / 2) + toRad(95));
+    place(millType);}, 30);
+const otherPlacer = repeater(71, () => {
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(70));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(70));
+    place(boostType);}, 80);
+const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
+    healer1.start(e.keyCode);
+    healer2.start(e.keyCode);
+    otherPlacer.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+
+
+    if (e.keyCode == 67 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 19, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+    }
+if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                  var last = myPlayer.hat;
+            var lastt = myPlayer.accessory;
+        autoaim = true;
+        doNewSend(["ch", ['...']]);
+    doNewSend(["5", [primary, true]]);
+    doNewSend(["13c", [1, 7, 0]]);
+    doNewSend(["13c", [0, 7, 0]]);
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["c", [1]]);
+    setTimeout(() => {
+        var sck = "";
+        doNewSend(["13c", [1, 53, 0]]);
+        doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["5", [secondary, true]]);
+        for (let i = 0; i < 300; i++) {
+            let caas = new Uint8Array(225);
+            for (let i = 0; i < caas.length; i++) {
+                caas[i] = Math.floor(Math.random() * 308);
+                sck += caas[i]
+            }
+        }
+        ws.send(caas);
+    }, 110);
+    setTimeout(() => {
+        doNewSend(["13c", [1, 6, 0]]);
+        doNewSend(["13c", [1, 11, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+    }, 230);
+    setTimeout(() => {
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["c", [0, null]]);
+        doNewSend(["13c", [0, last, 0]]);
+        doNewSend(["13c", [0, lastt, 1]]);
+        autoaim = false;
+    }, 245);
+}
+    if(e.keyCode == 191){
+    isOn = isOn === true? false  : true
+    }
+let dash = new Uint8Array([135, 102, 37, 116, 94, 162, 44, 210, 28, 223, 1, 13, 113, 180])
+if (e.keyCode == 66) {
+      ws.oldSend(dash);
+                                }
+})
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
+    otherPlacer.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer1.stop(e.keyCode);
+    healer2.stop(e.keyCode);
+})
+
+
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+function fourSpawnpad() {
+    place(spawnpadType, myPlayer.dir + toRad(135));
+    place(spawnpadType, myPlayer.dir + toRad(150));
+    place(spawnpadType, myPlayer.dir + toRad(165));
+    place(spawnpadType, myPlayer.dir + toRad(180));
+    place(spawnpadType, myPlayer.dir + toRad(270));
+    place(spawnpadType, myPlayer.dir + toRad(360));
+}
+
+
+
+
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+    for (let i=33;i<36;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            turretType = i - 16;
+        }
+    }
+
+    for (let i=36;i<37;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spawnpadType = i - 16;
+        }
+    }
+
+    for (let i=37;i<39;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            turretType = i - 16;
+        }
+    }
+}
