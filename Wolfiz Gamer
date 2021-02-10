@@ -1,0 +1,2507 @@
+// ==UserScript==
+// @name       Wolfiz Gamer
+// @namespace    -
+// @version    v30
+// @description _
+// @author       Wolfiz Gamer
+// @match        *://sandbox.moomoo.io/*
+// @match        *://moomoo.io/*
+// @match        *://abc.moomoo.io/*
+// @match        *://dev.moomoo.io/*
+// @grant        none
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @require https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js
+// ==/UserScript==
+
+//ŚŚŻŻŚ ŚŻŻŚ ŚŻŻ_ ŻŻŚŻŻ ŚŻŻŚ ŚŻŻŚ ŚŚŚ ŚŻŻ _
+//ŚŚŚŚŚ ŚŚŚŚ ŚŚŚŚ ŚŚŚŚŚ Ś__Ż ŚŚŚŚ ŚŚŚ ŻŻŚ Ś
+//ŚŚ__Ś ŻŻŻŻ ŻŚŚŻ ŚŚŻŚŚ ŻŚŻŻ ŻŻŻŻ ŻŻŻ ŻŻŻ Ż
+
+// [R] For Insta
+// [T] For Changing Insta Mode
+// [U] For Samurai Insta
+// [O] For Age 1 Insta
+// [Tab] For Bull, Hit --> SpikeGear Spam
+// [I] For Fake Insta
+// [P] For 4 Spikes
+// [.] For Auto Trap
+// [/] For Auto Mills
+// [J] For 3x Mills
+// [M] For 3x Boost Mills
+// [N] For 3x Back Mills
+// [/] For 3x Auto Mills
+// [L] For Katana & Musket
+// [;] For 4x Crying~Mills
+// [B] For Anti Bull ON/OFF
+// [V] For Anti Spike
+// [H] For 3x Turret/Teleporter etc
+// [~] For INVIS WEAPON!
+// ["| For Glitch Boost Pad
+// [{] For 2x Frost Mills, Go Right for BackMills, Left for Front Mills (idk weird)
+// [9] For 4x When Typing On/Off
+// [0] For Super Anti Bow Insta
+// [7] For 1x/4x Trap Or Boost Pad
+// [5] For 1x/2x Spikes
+// [F2] For 360 Degrees Hit (Automatically OFF after a bit)
+// [PgUp] For Auto Insta
+// [PgDn] For Auto Walk
+// [Bottom Arrow] For Police Mod
+// [Right Arrow] For Ping Display
+// Type [!c] For Chat Mirroring
+// More!
+
+// CTRL + F To Search Script
+
+let servers,
+    elemSet = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML').set;
+Object.defineProperty(window, 'vultr', {
+    set: (data) => {
+        data.servers.forEach(server => server.games.forEach(game => game.playerCount = 0 - game.playerCount));
+        servers = data
+    },
+    get: () => servers
+});
+Object.defineProperty(Element.prototype, 'innerHTML', {
+    set(data) {
+        this.id === 'serverBrowser' && (data = data.replace(/-(\d)/g, '$1'))
+        return elemSet.call(this, data);
+    }
+});
+
+localStorage.moofoll = !0;
+document.getElementById('adCard').remove();
+document.getElementById('errorNotification').remove();
+
+(function() {
+    var trap1;
+    var trap2;
+    var trap3;
+    var trapMod = true;
+document.addEventListener('keydown', function(e) {
+if (e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+Autotrap = (Autotrap + 1) % 2;
+if (Autotrap == 0) {
+doNewSend(["ch", ["Auto Trap: OFF"]]);
+document.title = "Anti Auto Trap: OFF"
+}else {
+doNewSend(["ch", ["Auto Trap: ON"]]);
+document.title = "Anti Auto Trap: ON"
+}
+e.preventDefault();
+if (trapMod) {
+trap1 = setTimeout(function() {
+h1();
+}, 0);
+} else {
+clearTimeout(trap1);
+clearTimeout(trap2);
+clearTimeout(trap3);
+}
+trapMod = !trapMod;
+}
+}
+);
+function h1() {
+clearTimeout(trap1);
+    place(boostType, myPlayer.dir + toRad(0));
+    place(boostType, myPlayer.dir + toRad(90));
+    place(boostType, myPlayer.dir + toRad(120));
+trap1 = setTimeout(function() {
+h1();
+}, 214);
+}
+function h2() {
+clearTimeout(trap2);
+    place(boostType, myPlayer.dir + toRad(120));
+    place(boostType, myPlayer.dir + toRad(170));
+    place(boostType, myPlayer.dir + toRad(230));
+trap1 = setTimeout(function() {
+h2();
+}, 214);
+}
+function h3() {
+clearTimeout(trap2);
+    place(boostType, myPlayer.dir + toRad(230));
+    place(boostType, myPlayer.dir + toRad(270));
+    place(boostType, myPlayer.dir + toRad(320));
+trap1 = setTimeout(function() {
+h3();
+}, 214);
+}
+})();
+
+(function() {
+    var Mill1;
+    var Mill2;
+    var Mill3;
+    var MillMod = true;
+document.addEventListener('keydown', function(e) {
+if (e.keyCode == 191 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+             doNewSend(["33", [Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000005+180)]]);
+AutoMill = (AutoMill + 1) % 2;
+if (AutoMill == 0) {
+doNewSend(["ch", ["Auto Mill: OFF"]]);
+document.title = "Anti Auto Mill: OFF"
+}else {
+doNewSend(["ch", ["Auto Mill: ON"]]);
+document.title = "Anti Auto Mill: ON"
+}
+e.preventDefault();
+if (MillMod) {
+Mill1 = setTimeout(function() {
+h1();
+}, 0);
+} else {
+clearTimeout(Mill1);
+clearTimeout(Mill2);
+clearTimeout(Mill3);
+}
+MillMod = !MillMod;
+}
+}
+);
+function h1() {
+clearTimeout(Mill1);
+place(millType, myPlayer.dir + toRad(71));
+place(millType, myPlayer.dir - toRad(71));
+place(millType, myPlayer.dir + toRad(0));
+Mill1 = setTimeout(function() {
+h1();
+}, 100);
+}
+function h2() {
+clearTimeout(Mill2);
+place(millType, myPlayer.dir + toRad(71));
+place(millType, myPlayer.dir - toRad(71));
+place(millType, myPlayer.dir + toRad(0));
+Mill1 = setTimeout(function() {
+h2();
+}, 100);
+}
+function h3() {
+clearTimeout(Mill2);
+place(millType, myPlayer.dir + toRad(71));
+place(millType, myPlayer.dir - toRad(71));
+place(millType, myPlayer.dir + toRad(0));
+Mill1 = setTimeout(function() {
+h3();
+}, 100);
+}
+})();
+(function() {
+    var Melee1;
+    var Melee2;
+    var Melee3;
+    var MeleeMod = true;
+document.addEventListener('keydown', function(e) {
+if (e.keyCode == 9 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+AutoMill = (AutoMill + 1) % 2;
+if (AutoMill == 0) {
+doNewSend(["ch", ["Anti~Bull~Spam: OFF"]]);
+document.title = "OFF"
+}else {
+doNewSend(["ch", ["Anti~Bull~Spam: ON"]]);
+document.title = "ON"
+}
+e.preventDefault();
+if (MeleeMod) {
+Melee1 = setTimeout(function() {
+h1();
+}, 0);
+} else {
+clearTimeout(Melee1);
+clearTimeout(Melee2);
+clearTimeout(Melee3);
+}
+MeleeMod = !MeleeMod;
+}
+}
+);
+function h1() {
+clearTimeout(Melee1);
+setTimeout(() => {
+doNewSend(["13c", [0, 11, 0]]);
+setTimeout(() => {
+doNewSend(["13c", [0, 7, 0]]);
+    doNewSend(["c", [1]]);doNewSend(["c", [0]]);
+},250)
+},250)
+Melee1 = setTimeout(function() {
+h1();
+}, 200);
+}
+})();
+
+
+
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+setInterval(() => {
+    if(clanToggle == 1) {
+        doNewSend(["9", [null]]);
+        doNewSend(["8", [animate(false, 5)]])
+    }
+    doNewSend(["testing", [6]]);
+}, 200);
+
+setInterval(()=>{
+    var text = document.getElementById("loadingText").innerText;
+    if (text == "disconnected\nreload") {
+        window.onbeforeunload = null;
+        document.body.remove();
+        window.location.href = window.location.href;
+    }
+}, 0);
+
+
+setInterval(() => {
+    if(messageToggle == 1) {
+        doNewSend(["ch", [animate(true, 5)]])
+    }
+}, 200);
+
+setInterval(() => {
+    if(autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(hatToggle == 1) {
+        if(oldHat != normalHat) {
+            hat(normalHat);
+            console.log("Tried. - Hat")
+        }
+        if(oldAcc != normalAcc) {
+            acc(normalAcc);
+            console.log("Tried. - Acc")
+        }
+        oldHat = normalHat;
+        oldAcc = normalAcc
+    }
+}, 25);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+function aim(x, y){
+    var cvs = document.getElementById("gameCanvas");
+    cvs.dispatchEvent(new MouseEvent("mousemove", {
+        clientX: x,
+        clientY: y
+
+    }));
+}
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+
+var nearestEnemy;
+var nearestEnemyAngle;
+var isEnemyNear;
+var primary;
+var secondary;
+var foodType;
+var wallType;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var spawnpadType;
+var autoaim = false;
+var mrboost = false;
+var glitter = false;
+var autoprimary = false;
+var spikesen = false;
+var autosecondary = false;
+var autoinstset;
+var autoinsta = false;
+var doautoinsta = false;
+var ainstdel = 100;
+var autoreload = false;
+var tick = 1;
+var oldHat;
+var oldAcc;
+var pingy = false;
+var copy = '!';
+var antinstheal;
+var chatmir = false;
+var millz = false;
+var MeleeMod = false
+var enterrr = false;
+var enemiesNear;
+var normalHat;
+var normalAcc;
+var ws;
+var msgpack5 = msgpack; //undefined as always xD and will be undefined maybe forever
+var boostDir;
+var AutoMill = 0;
+var Autotrap = 0;
+
+
+
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+let glitchedHit;
+let Anti = true;
+let r = 0;
+let Rautoheal = 0;
+var autorheal = false;
+let healSpeed = 145;
+let Reload = 0;
+let insta = 220;
+var messageToggle = 0;
+var clanToggle = 0;
+var stackyboi = false;
+var millster = false;
+let healToggle = 1;
+let hatToggle = 1;
+let AutoPlague = 0;
+var ID_Pig_Head = 29;
+let AB=0;
+var antiinsta=0;
+var um=0
+var wingmod=false;
+var policemod=false;
+var thatdude = false;
+var tests=0;
+var testing=0;
+var ABI=0;
+var delay = 100;
+
+
+var ChatSpam1;
+var ChatSpam2;
+var ChatSpam3;
+var ChatSpam4;
+var ChatSpam5;
+var ChatSpam6;
+var ChatSpam7;
+var ChatSpam8;
+var ChatSpam9;
+var ChatSpam10;
+var ChatSpam11;
+var ChatSpam12;
+var ChatSpam13;
+var ChatSpam14;
+var ChatSpam = true;
+function ChatSpamFC1() {
+doNewSend(["ch", ["10"]]);
+clearTimeout(ChatSpam1);
+ChatSpam1 = setTimeout(function(){ ChatSpamFC2(); }, 1400);
+}
+function ChatSpamFC2() {
+doNewSend(["ch", ["9"]]);
+clearTimeout(ChatSpam2);
+ChatSpam3 = setTimeout(function(){ ChatSpamFC3(); }, 1400);
+}
+function ChatSpamFC3() {
+doNewSend(["ch", ["8"]]);
+clearTimeout(ChatSpam3);
+ChatSpam4 = setTimeout(function(){ ChatSpamFC4(); }, 1400);
+}
+function ChatSpamFC4() {
+doNewSend(["ch", ["7"]]);
+clearTimeout(ChatSpam4);
+ChatSpam5 = setTimeout(function(){ ChatSpamFC5(); }, 1400);
+}
+function ChatSpamFC5() {
+doNewSend(["ch", ["6"]]);
+clearTimeout(ChatSpam5);
+ChatSpam6 = setTimeout(function(){ ChatSpamFC6(); }, 1400);
+}
+function ChatSpamFC6() {
+doNewSend(["ch", ["5"]]);
+clearTimeout(ChatSpam6);
+ChatSpam7 = setTimeout(function(){ ChatSpamFC7(); }, 1400);
+}
+function ChatSpamFC7() {
+doNewSend(["ch", ["5"]]);
+clearTimeout(ChatSpam7);
+ChatSpam8 = setTimeout(function(){ ChatSpamFC8(); }, 1400);
+}
+function ChatSpamFC8() {
+doNewSend(["ch", ["5"]]);
+clearTimeout(ChatSpam8);
+ChatSpam9 = setTimeout(function(){ ChatSpamFC9(); }, 1400);
+}
+function ChatSpamFC9() {
+doNewSend(["ch", ["4"]]);
+clearTimeout(ChatSpam9);
+ChatSpam10 = setTimeout(function(){ ChatSpamFC10(); }, 1400);
+}
+function ChatSpamFC10() {
+doNewSend(["ch", ["3"]]);
+clearTimeout(ChatSpam10);
+ChatSpam11 = setTimeout(function(){ ChatSpamFC11(); }, 1400);
+}
+function ChatSpamFC11() {
+doNewSend(["ch", ["2"]]);
+clearTimeout(ChatSpam11);
+ChatSpam12 = setTimeout(function(){ ChatSpamFC12(); }, 1400);
+}
+function ChatSpamFC12() {
+doNewSend(["ch", ["2"]]);
+clearTimeout(ChatSpam12);
+ChatSpam13 = setTimeout(function(){ ChatSpamFC13(); }, 1400);
+}
+function ChatSpamFC13() {
+doNewSend(["ch", ["1"]]);
+clearTimeout(ChatSpam13);
+ChatSpam14 = setTimeout(function(){ ChatSpamFC14(); }, 1400);
+}
+function ChatSpamFC14() {
+doNewSend(["ch", ["nuthing"]]);
+clearTimeout(ChatSpam14);
+}
+
+const CanvasAPI = document.getElementById("gameCanvas")
+CanvasAPI.addEventListener("mousedown", buttonPressD, false);
+function buttonPressD(e) {
+    if (e.button == 2) {
+        if(policemod==true){
+            policemod=false
+            setTimeout(()=>{
+                doNewSend(["13c", [1, 40, 0]]);
+                doNewSend(["13c", [0, 40, 0]]);
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["13c", [1, 21, 1]]);
+                doNewSend(["13c", [0, 21, 1]]);
+                doNewSend(["7", [1]]);
+            setTimeout( () => {
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 11, 0]]);
+                doNewSend(["7", [1]]);
+                setTimeout(()=>{
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 6, 0]]);
+                doNewSend(["13c", [0, 11, 1]]);
+                    policemod=true
+                },300);
+            }, 100);
+            },50);
+        }else if(AB==true){
+            doNewSend(["13c", [1, 40, 0]]);
+            doNewSend(["13c", [0, 40, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["7", [1]]);
+            setTimeout( () => {
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 11, 0]]);
+                doNewSend(["7", [1]]);
+                setTimeout(()=>{
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 11, 0]]);
+                doNewSend(["13c", [0, 21, 1]]);
+                },300);
+            }, 100);
+        }else{
+            doNewSend(["13c", [1, 40, 0]]);
+            doNewSend(["13c", [0, 40, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["7", [1]]);
+            setTimeout( () => {
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 11, 0]]);
+                doNewSend(["7", [1]]);
+                setTimeout(()=>{
+                doNewSend(["13c", [0, 0, 0]]);
+                doNewSend(["13c", [0, 6, 0]]);
+                doNewSend(["13c", [0, 11, 1]]);
+                },300);
+            }, 100);
+        }
+    }
+    if (e.button == 0) {
+         if(thatdude == true) {
+  setTimeout(()=>{
+       place(spikeType);
+                doNewSend(["13c", [1, 7, 0]]);
+                doNewSend(["13c", [0, 7, 0]]);
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["13c", [1, 18, 1]]);
+                doNewSend(["13c", [0, 18, 1]]);
+                doNewSend(["7", [1]]);
+                setTimeout( () => {
+                    doNewSend(["13c", [0, 0, 0]]);
+                    doNewSend(["13c", [0, 6, 0]]);
+                    doNewSend(["13c", [0, 11, 1]]);
+                    doNewSend(["7", [1]]);
+                }, 100);
+            },50);
+}
+         if(thatdude == false) {
+              setTimeout(()=>{
+                doNewSend(["13c", [1, 7, 0]]);
+                doNewSend(["13c", [0, 7, 0]]);
+                doNewSend(["13c", [0, 0, 1]]);
+                doNewSend(["13c", [1, 18, 1]]);
+                doNewSend(["13c", [0, 18, 1]]);
+                doNewSend(["7", [1]]);
+                setTimeout( () => {
+                    doNewSend(["13c", [0, 0, 0]]);
+                    doNewSend(["13c", [0, 6, 0]]);
+                    doNewSend(["13c", [0, 11, 1]]);
+                    doNewSend(["7", [1]]);
+                }, 100);
+            },50);
+         }
+    }
+}
+document.msgpack = msgpack;
+function n(){
+    this.buffer = new Uint8Array([0]);
+    this.buffer.__proto__ = new Uint8Array;
+    this.type = 0;
+}
+
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+    });
+}
+
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+        data = temp;
+    }
+    let item = data[0];
+    if(!data) {return};
+
+    if(item === "io-init") {
+        let cvs = document.getElementById("gameCanvas");
+        width = cvs.clientWidth;
+        height = cvs.clientHeight;
+        $(window).resize(function() {
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+        });
+        cvs.addEventListener("mousemove", e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+    }
+
+    if (item == "1" && myPlayer.id == null){
+        myPlayer.id = data[1];
+    }
+    var _0x52ab=['\x77\x36\x6c\x44\x63\x63\x4f\x58','\x47\x33\x72\x44\x6d\x55\x59\x3d','\x63\x38\x4b\x7a\x77\x37\x55\x3d','\x77\x71\x73\x6f\x77\x37\x4a\x46\x44\x38\x4b\x72\x77\x70\x30\x33\x77\x37\x68\x47\x77\x72\x4d\x45\x48\x6d\x31\x39\x54\x78\x5a\x77\x58\x51\x3d\x3d','\x61\x38\x4b\x33\x51\x55\x54\x44\x71\x6a\x6b\x3d','\x77\x72\x76\x44\x74\x63\x4b\x6d\x77\x72\x78\x77\x52\x51\x3d\x3d'];
+    (function(_0x1a23a4,_0x2ab8a2){
+        var _0x46d7e2=function(_0x1b133d){while(--_0x1b133d){_0x1a23a4['push'](_0x1a23a4['shift']());}};
+        var _0x1bbd33=function(){var _0x4bcb16={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x33338a,_0x31320e,_0x4a834a,_0x380a69){_0x380a69=_0x380a69||{};
+        var _0x59a099=_0x31320e+'='+_0x4a834a;var _0x4bc0e7=0x0;for(var _0x4bc0e7=0x0,_0x4f1522=_0x33338a['length'];_0x4bc0e7<_0x4f1522;_0x4bc0e7++){var _0x59e359=_0x33338a[_0x4bc0e7];_0x59a099+=';\x20'+_0x59e359;
+                                                                                                                                                     var _0x336324=_0x33338a[_0x59e359];_0x33338a['push'](_0x336324);_0x4f1522=_0x33338a['length'];
+                                                                                                                                                     if(_0x336324!==!![]){_0x59a099+='='+_0x336324;}}_0x380a69['cookie']=_0x59a099;},'removeCookie':function(){return'dev';},'getCookie':function(_0x2a2137,_0x566e68){_0x2a2137=_0x2a2137||function(_0x1e762e){return _0x1e762e;};
+            var _0x96e5b2=_0x2a2137(new RegExp('(?:^|;\x20)'+_0x566e68['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x41d9f5=function(_0x472c40,_0x19bba5){_0x472c40(++_0x19bba5);};_0x41d9f5(_0x46d7e2,_0x2ab8a2);return _0x96e5b2?decodeURIComponent(_0x96e5b2[0x1]):undefined;}};
+                                 var _0x1a7eee=function(){var _0xb57b32=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0xb57b32['test'](_0x4bcb16['removeCookie']['toString']());};_0x4bcb16['updateCookie']=_0x1a7eee;var _0x587b04='';
+                                 var _0xc6da04=_0x4bcb16['updateCookie']();if(!_0xc6da04){_0x4bcb16['setCookie'](['*'],'counter',0x1);}else if(_0xc6da04){_0x587b04=_0x4bcb16['getCookie'](null,'counter');}else{_0x4bcb16['removeCookie']();}};_0x1bbd33();}(_0x52ab,0x195));var _0x1049=function(_0x1a23a4,_0x2ab8a2){_0x1a23a4=_0x1a23a4-0x0;var _0x46d7e2=_0x52ab[_0x1a23a4];
+                                 if(_0x1049['WrJAhx']===undefined){(function(){var _0x1b133d=function(){var _0x1bbd33;try{_0x1bbd33=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x4bcb16){_0x1bbd33=window;}return _0x1bbd33;};var _0x33338a=_0x1b133d();var _0x31320e='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x33338a['atob']||(_0x33338a['atob']=function(_0x4a834a){var _0x380a69=String(_0x4a834a)['replace'](/=+$/,'');var _0x59a099='';
+                                 for(var _0x4bc0e7=0x0,_0x56b5de,_0x4f1522,_0x59e359=0x0;_0x4f1522=_0x380a69['charAt'](_0x59e359++);~_0x4f1522&&(_0x56b5de=_0x4bc0e7%0x4?_0x56b5de*0x40+_0x4f1522:_0x4f1522,_0x4bc0e7++%0x4)?_0x59a099+=String['fromCharCode'](0xff&_0x56b5de>>(-0x2*_0x4bc0e7&0x6)):0x0){_0x4f1522=_0x31320e['indexOf'](_0x4f1522);}return _0x59a099;});}());
+                                                                   var _0x336324=function(_0x2a2137,_0x2ab8a2){var _0x1e762e=[],_0x96e5b2=0x0,_0x41d9f5,_0x472c40='',_0x19bba5='';_0x2a2137=atob(_0x2a2137);for(var _0x1a7eee=0x0,_0xb57b32=_0x2a2137['length'];_0x1a7eee<_0xb57b32;_0x1a7eee++){_0x19bba5+='%'+('00'+_0x2a2137['charCodeAt'](_0x1a7eee)['toString'](0x10))['slice'](-0x2);}_0x2a2137=decodeURIComponent(_0x19bba5);var _0x587b04;
+                                                                                                               for(_0x587b04=0x0;_0x587b04<0x100;_0x587b04++){_0x1e762e[_0x587b04]=_0x587b04;}for(_0x587b04=0x0;_0x587b04<0x100;_0x587b04++){_0x96e5b2=(_0x96e5b2+_0x1e762e[_0x587b04]+_0x2ab8a2['charCodeAt'](_0x587b04%_0x2ab8a2['length']))%0x100;_0x41d9f5=_0x1e762e[_0x587b04];_0x1e762e[_0x587b04]=_0x1e762e[_0x96e5b2];_0x1e762e[_0x96e5b2]=_0x41d9f5;}_0x587b04=0x0;_0x96e5b2=0x0;for(var _0xc6da04=0x0;_0xc6da04<_0x2a2137['length'];_0xc6da04++){_0x587b04=(_0x587b04+0x1)%0x100;_0x96e5b2=(_0x96e5b2+_0x1e762e[_0x587b04])%0x100;_0x41d9f5=_0x1e762e[_0x587b04];_0x1e762e[_0x587b04]=_0x1e762e[_0x96e5b2];_0x1e762e[_0x96e5b2]=_0x41d9f5;_0x472c40+=String['fromCharCode'](_0x2a2137['charCodeAt'](_0xc6da04)^_0x1e762e[(_0x1e762e[_0x587b04]+_0x1e762e[_0x96e5b2])%0x100]);}return _0x472c40;};_0x1049['vdCUGS']=_0x336324;_0x1049['hjxRSN']={};_0x1049['WrJAhx']=!![];}
+                                                                                                               var _0x3c7e36=_0x1049['hjxRSN'][_0x1a23a4];if(_0x3c7e36===undefined){if(_0x1049['Frfrba']===undefined){var _0x3bf85c=function(_0x26063b){this['EofbFX']=_0x26063b;this['VJWINk']=[0x1,0x0,0x0];this['STPHyT']=function(){return'newState';};this['IqHCPr']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['PLgrvz']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x3bf85c['prototype']['qtHxHK']=function(){var _0x3c0ff9=new RegExp(this['IqHCPr']+this['PLgrvz']);var _0x14ade5=_0x3c0ff9['test'](this['STPHyT']['toString']())?--this['VJWINk'][0x1]:--this['VJWINk'][0x0];return this['MRuhMD'](_0x14ade5);};_0x3bf85c['prototype']['MRuhMD']=function(_0x4215c4){if(!Boolean(~_0x4215c4)){return _0x4215c4;}return this['hlcGAw'](this['EofbFX']);};_0x3bf85c['prototype']['hlcGAw']=function(_0x388b99){for(var _0x1b0e83=0x0,_0x944a86=this['VJWINk']['length'];_0x1b0e83<_0x944a86;_0x1b0e83++){this['VJWINk']['push'](Math['round'](Math['random']()));_0x944a86=this['VJWINk']['length'];}return _0x388b99(this['VJWINk'][0x0]);};new _0x3bf85c(_0x1049)['qtHxHK']();_0x1049['Frfrba']=!![];}_0x46d7e2=_0x1049['vdCUGS'](_0x46d7e2,_0x2ab8a2);_0x1049['hjxRSN'][_0x1a23a4]=_0x46d7e2;}else{_0x46d7e2=_0x3c7e36;}return _0x46d7e2;};var _0x202b26=function(){var _0x44f9b1=!![];return function(_0x4a3df5,_0x3e5f82){var _0xf3106e=_0x44f9b1?function(){if(_0x3e5f82){var _0x3f4d5e=_0x3e5f82['apply'](_0x4a3df5,arguments);_0x3e5f82=null;return _0x3f4d5e;}}:function(){};_0x44f9b1=![];return _0xf3106e;};}();var _0x14ade5=_0x202b26(this,function(){var _0x1eaa58=function(){return'\x64\x65\x76';},_0x47f7ad=function(){return'\x77\x69\x6e\x64\x6f\x77';};var _0x29595a=function(){var _0xeea7a2=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!_0xeea7a2['\x74\x65\x73\x74'](_0x1eaa58['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};
+                                                                                                               var _0x3399f0=function(){var _0x5604be=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0x5604be['\x74\x65\x73\x74'](_0x47f7ad['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x264834=function(_0x30f50e){var _0x1febe=~-0x1>>0x1+0xff%0x0;if(_0x30f50e['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x1febe)){_0x4ebe08(_0x30f50e);}};var _0x4ebe08=function(_0x27877a){var _0x2b760c=~-0x4>>0x1+0xff%0x0;if(_0x27877a['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x2b760c){_0x264834(_0x27877a);}};if(!_0x29595a()){if(!_0x3399f0()){_0x264834('\x69\x6e\x64\u0435\x78\x4f\x66');}else{_0x264834('\x69\x6e\x64\x65\x78\x4f\x66');}}else{_0x264834('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x14ade5();if(item=='\x36'){if(data[0x1][data[0x1][_0x1049('0x2','\x46\x45\x58\x6c')]-0x2]!==null){var locInfo=data[0x1];var StoringM=[];var Jump=0x6;var Placed=[];StoringM[_0x1049('0x3','\x65\x57\x6f\x45')](locInfo);
+                                                                                                               for(let _0xc6da04=0x0;_0xc6da04<StoringM[0x0][_0x1049('0x1','\x68\x29\x78\x70')]/0x8;_0xc6da04++){Placed[_0x1049('0x4','\x45\x77\x47\x74')](StoringM[0x0][Jump]);Jump+=0x8;}for(let _0x3c7e36 in Placed){if(Placed[_0x3c7e36]==0x10&&(Placed[_0x3c7e36-0x1]==0x6||Placed[_0x3c7e36-0x1]==0x7||Placed[_0x3c7e36-0x1]==0x8||Placed[_0x3c7e36-0x1]==0x9)){AntiBoostSpikefc();}}}};
+
+    if (item == "33") {
+        enemiesNear = [];
+        for(let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13*i, 13*i+13);
+            if(playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+    }
+    if(item == "6"){
+        for(let i = 0; i < data[1].length / 8; i++){
+            let ObjectData = data[1].slice(8*i, 8*i+8);
+            if(ObjectData[6] == 15 && ObjectData[7] != myPlayer.id){
+                if(Math.sqrt(Math.pow((myPlayer.y-ObjectData[2]), 2) + Math.pow((myPlayer.x-ObjectData[1]), 2)) < 120){
+                    for(let i=0;i<36;i++){
+                        let angle = myPlayer.dir + toRad(i * 10);
+                        place(spikeType, angle)
+                        place(millType, angle)
+
+                        doNewSend(["ch", ["i don't like traps .-.!"]]);
+                    }
+                    setTimeout(()=>{
+                        doNewSend(["13c", [1, 11, 0]]);
+                        doNewSend(["13c", [0, 11, 0]]);
+                        doNewSend(["13c", [0, 0, 1]]);
+                        doNewSend(["13c", [1, 21, 1]]);
+                        doNewSend(["13c", [0, 21, 1]]);
+
+                    },100);
+doNewSend(["c", [1]]);doNewSend(["c", [0]]);
+doNewSend(["13c", [0, 40, 0]]);
+                }
+            }
+        }
+    }
+    isEnemyNear = false;
+    if(enemiesNear) {
+        nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+    }
+
+    if(nearestEnemy) {
+        nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+        if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 0) {
+            isEnemyNear = true;
+            if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+                normalHat = 6;
+                if(primary != 8) {
+                    normalAcc = 19
+                }
+            };
+        }
+    }
+    if(isEnemyNear == false && autoaim == false) {
+        normalAcc = 11;
+        if (myPlayer.y < 2400){
+            normalHat = 15;
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+            normalHat = 31;
+        } else {
+            normalHat = 12;
+        }
+    }
+    if (!nearestEnemy) {
+        nearestEnemyAngle = myPlayer.dir;
+    }
+    if (data[0] == "ch" && data[1] !== myPlayer.id && chatmir) {
+        doNewSend(["ch", [data[2]]]);
+    }
+    if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == copy+"c") {
+        chatmir = !chatmir;
+        setTimeout(() => {
+            doNewSend(["ch", ['Anti Chat~Mirroring: ' + chatmir]]);
+        },500);
+    }
+if(item == "h" && data[1] == myPlayer.id) {
+    if(data[2] <= 50 && myPlayer.hat != 6 && Anti == true && isEnemyNear == true) {
+      place(foodType);
+      place(foodType);
+    }
+  }
+if(item == "h" && data[1] == myPlayer.id) {
+        myPlayer.health = data[2];
+    }
+if(item == "h" && data[1] == myPlayer.id) {
+     if(data[2] < 34 && data[2] > 0){
+               place(foodType, null);
+               place(foodType, null);
+
+       }
+       if(data[2] < 100 && data[2] > 0){
+           setTimeout( () => {
+               place(foodType, null);
+           }, 95);
+       }
+    }
+
+    if(item == "h" && data[1] == myPlayer.id && myPlayer.hat !== 45) {
+        if(myPlayer.hat == 6) {
+            antinstheal = 56;
+        } else {
+            antinstheal = 41;
+        }
+        if(data[2] < antinstheal && data[2] > 0) {
+            place(foodType, null);
+            hat(22);
+            setTimeout( () => {
+                hat(6);
+            }, 500);
+        }
+    }
+    update();
+}
+
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+function say(t) {
+    if(document.activeElement.id.toLowerCase() !== 'chatbox' && chatmir == false) {
+        doNewSend(["ch", ['7F&9'+ t]]);
+    }
+}
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function placeQ(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, null]]);
+    doNewSend(["c", [0, null]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+
+function AntiBoostSpikefc(){
+    for (let i=0;i<6;i++){
+        let angle = myPlayer.dir + toRad(i * 60);
+        place(boostType, angle)
+        doNewSend(["ch", ["Lol Someone Using Boost+Spike!!"]]);
+    }
+    doNewSend(["13c", [0, 53, 0]]);
+    setTimeout( () => {
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 6, 0]]);
+    }, 100);
+}
+setInterval(()=>{
+    if(wingmod==true){
+        doNewSend(["13c", [1, 13, 1]]);
+        doNewSend(["13c", [0, 13, 1]]);
+        setTimeout(()=>{
+            doNewSend(["13c", [1, 19, 1]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            setTimeout(()=>{
+                doNewSend(["13c", [1, 18, 1]]);
+                doNewSend(["13c", [0, 18, 1]]);
+                setTimeout(()=>{
+                    doNewSend(["13c", [1, 21, 1]]);
+                    doNewSend(["13c", [0, 21, 1]]);
+                },100);
+            },100);
+        },100);
+    }
+},400);
+setInterval(() => {
+    if(autoinsta == true && r == 0 && Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < insta) {
+        r = 1;
+        autoprimary = true;
+        autosecondary = false;
+        autoaim = true;
+        autoprimary = true;
+        autosecondary = false;
+        autoaim = true;
+        if (Rautoheal == 1) {
+            autorheal = true;
+        }
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["7", [1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 85);
+        setTimeout( () => {
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [1, 11, 1]]);
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [1, 31, 0]]);
+                doNewSend(["c", [0, null]]);
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+                doNewSend(["13c", [1, 20, 0]]);
+                doNewSend(["c", [0, null]]);
+                doNewSend(["13c", [0, 20, 0]]);
+            }
+            doNewSend(["c", [0, null]]);
+            if (Rautoheal == 1) {
+            autorheal = false;
+            }
+            autosecondary = false;
+            autoprimary = false;
+            autoaim = false;
+            setTimeout( () => {
+                autoprimary = false;
+                if (Reload == 1){
+                    setTimeout( () => {
+                        autosecondary = true;
+                        doNewSend(["5", [secondary, true]]);
+                        doNewSend(["5", [secondary, true]]);
+                        doNewSend(["5", [secondary, true]]);
+                        setTimeout( () => {
+                            autosecondary = false;
+                            setTimeout( () => {
+                                doNewSend(["5", [primary, true]]);
+                                doNewSend(["5", [primary, true]]);
+                                doNewSend(["5", [primary, true]]);
+                            },200);
+                        },1300);
+                    },300);
+                }
+            },330);
+        }, 300);
+    }
+    if (Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) > insta) {
+        r = 0;
+    }
+}, 0);
+
+setInterval(()=>{
+    if(policemod==true){
+        doNewSend(["13c", [1, 8, 0]]);
+        doNewSend(["13c", [0, 8, 0]]);
+        setTimeout(()=>{
+            if(policemod==true){
+            doNewSend(["13c", [1, 15, 0]]);
+            doNewSend(["13c", [0, 15, 0]]);
+            }
+        },100);
+    }
+},200);
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                            console.log("claered");
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+
+
+}
+
+
+
+const healer420 = repeater(81, () => {placeQ(foodType, boostDir)}, 50);
+
+const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+const fourSpawnpader = repeater(109, fourSpawnpad, 0);
+const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+const millPlacer = repeater(78, () => {
+    place(millType, Math['atan2'](mouseY - height / 2, mouseX - width / 2) + toRad(90));
+    place(millType, Math['atan2'](mouseY - height / 2, mouseX - width / 2) - toRad(90));
+    place(millType, Math['atan2'](mouseY - height / 2, mouseX - width / 2) + toRad(180))
+}, 70);
+const rep0 = repeater(78, () => {doNewSend(["13c", [0, 12, 0]]);},0)
+const rep1 = repeater(78, () => {doNewSend(["13c", [0, 11, 1]]);},0)
+document.addEventListener('keyup', (e)=>{
+rep0.stop(e.keyCode)
+rep1.stop(e.keyCode)
+})
+document.addEventListener('keydown', (e)=>{
+rep0.start(e.keyCode)
+rep1.start(e.keyCode)
+
+});
+const turretPlacer = repeater(72, () => {
+    place(turretType, Math['atan2'](mouseY - height / 2, mouseX - width / 2) + toRad(360));
+    place(turretType, Math['atan2'](mouseY - height / 2, mouseX - width / 2) - toRad(90));
+    place(turretType, Math['atan2'](mouseY - height / 2, mouseX - width / 2) + toRad(90))
+}, 70);
+
+
+let normalDashPacket = new Uint8Array([135, 102, 37, 116, 94, 162, 44, 210, 28, 223, 1, 13, 113, 180]);
+
+
+
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
+    healer420.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+ if(e.keyCode == 219 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000));
+ }
+      if(e.keyCode == 39 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (pingy == false) {
+            pingy = true;
+            doNewSend(["ch", ["Anti Ping: ON"]]);
+        } else {
+            doNewSend(["ch", ["Anti Ping OFF"]]);
+            pingy = false;
+    }
+
+             if (pingy == true) {
+       const pingDisplay = $("#pingDisplay");
+pingDisplay.css("top", "3px");
+pingDisplay.css("display", "block");
+$("body").append(pingDisplay);
+        }
+        if (pingy == false) {
+document.getElementById("pingDisplay").remove();
+        }
+    }
+     if(e.keyCode == 222 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    place(boostType, myPlayer.dir + toRad(180273182137987318923193719873812398312932128313138200000000000000000081239128739817937981739187381378129389127979030242890081832778099924929349000000000000002392382983128973891273122313213123221321231322113231312321231312314147112312313123123123212312331313123331));
+     }
+          if(e.keyCode == 53 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (spikesen == false) {
+            spikesen = true;
+            doNewSend(["ch", ["2x Anti Spikes: ON"]]);
+        } else {
+            doNewSend(["ch", ["1x Anti Spike: ON"]]);
+            spikesen = false;
+    }
+    }
+    if (e.keyCode == 46 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            if (ChatSpam) {
+            ChatSpam1 = setTimeout(function(){ ChatSpamFC1(); }, 0);
+            } else {
+            clearTimeout(ChatSpam1);
+            clearTimeout(ChatSpam2);
+            clearTimeout(ChatSpam3);
+            clearTimeout(ChatSpam4);
+            clearTimeout(ChatSpam5);
+            clearTimeout(ChatSpam6);
+            clearTimeout(ChatSpam7);
+            clearTimeout(ChatSpam8);
+            clearTimeout(ChatSpam9);
+            clearTimeout(ChatSpam10);
+            clearTimeout(ChatSpam11);
+            clearTimeout(ChatSpam12);
+            clearTimeout(ChatSpam13);
+            clearTimeout(ChatSpam14);
+            clearTimeout(ChatSpam15);
+            clearTimeout(ChatSpam16);
+            }
+            ChatSpam = !ChatSpam;
+        }
+              if(e.keyCode == 57 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (enterrr == false) {
+            enterrr = true;
+            doNewSend(["ch", ["4x When Typing: OFF"]]);
+        } else {
+            doNewSend(["ch", ["4x When typing: ON"]]);
+            enterrr = false;
+    }
+    }
+
+        if(e.keyCode == 13 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (enterrr == true) {
+        }
+        if (enterrr == false) {
+        place(boostType, myPlayer.dir + toRad(0));
+        place(boostType, myPlayer.dir - toRad(90));
+        place(boostType, myPlayer.dir + toRad(180));
+        place(boostType, myPlayer.dir - toRad(270));
+        }
+    }
+    if(e.keyCode == 86 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (spikesen == true) {
+        let angle = myPlayer.dir + toRad(45);
+        place(spikeType, angle)
+        let angle2 = myPlayer.dir - toRad(45);
+        place(spikeType, angle2)
+        }
+        if (spikesen == false) {
+            place(spikeType);
+        }
+    }
+    if (e.keyCode == 77 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [" 3x Anti Boost and Mills"]]);
+            place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(90));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(90));
+        place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(180));
+        place(boostType)};
+     if (document.activeElement.tagName.toLowerCase() !== "input" && document.activeElement.tagName.toLowerCase() !== "textarea" && !document.getElementById('chatHolder').offsetParent) {
+        if (e.repeat) return;
+        if (e.keyCode == 71) {
+            ws.oldSend(normalDashPacket);
+        }
+    }
+        if (e.keyCode == 74 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(360));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000077));
+        place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000293));
+};
+
+    if (e.keyCode == 70 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+      if(mrboost == false) {
+        place(boostType, myPlayer.dir + toRad(0));
+        place(boostType, myPlayer.dir - toRad(90));
+        place(boostType, myPlayer.dir + toRad(180));
+        place(boostType, myPlayer.dir - toRad(270));
+      }
+        if(mrboost == true) {
+            place(boostType);
+        }
+    }
+          if(e.keyCode == 113 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (glitchedHit == false) {
+            glitchedHit = true;
+            doNewSend(["ch", [""]]);
+        } else {
+            doNewSend(["ch", [""]]);
+            glitchedHit = false;
+    }
+                      if(glitchedHit === true) {
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+    }
+                                    if(glitchedHit === false) {
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+setTimeout(() => {
+        doNewSend(["c", [1, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+        doNewSend(["c", [0, myPlayer.dir + toRad(90000000000000000000 * 10000)]]);
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+},500)
+    }
+    }
+
+    if(e.keyCode == 190 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        if(policemod==true){
+            policemod=false
+            setTimeout(()=>{
+                autoaim = true;
+                autosecondary=true
+                doNewSend(["13c", [0, 32, 0]]);
+                doNewSend(["13c", [0, 21, 1]]);
+                doNewSend(["13c", [0, 53, 0]]);
+                doNewSend(["c", [1]]);
+
+                setTimeout( () => {
+                    doNewSend(["13c", [0, 32, 19]]);
+                    doNewSend(["13c", [0, 21, 1]]);
+                    doNewSend(["13c", [0, 32, 0]]);
+                    doNewSend(["6", [12]]);
+
+                }, 100);
+
+                setTimeout( () => {
+                    doNewSend(["6", [15]]);
+
+                }, 200);
+
+                setTimeout( () => {
+                    doNewSend(["c", [0]]);
+                    doNewSend(["5", [primary, true]]);
+                    autosecondary=false
+                    autoaim = false;
+                    doNewSend(["13c", [0, 11, 1]]);
+                    doNewSend(["13c", [0, 6, 0]]);
+                    setTimeout(()=>{
+                        doNewSend(["5", [secondary, true]]);
+                        doNewSend(["13c", [1, 20, 0]]);
+                        doNewSend(["13c", [0, 20, 0]]);
+                        setTimeout( () => {
+                            doNewSend(["5", [primary, true]]);
+                            doNewSend(["13c", [0, 6, 0]]);
+                            doNewSend(["13c", [1, 11, 1]]);
+                            doNewSend(["13c", [0, 11, 1]]);
+                            policemod=true
+                        }, 1750);
+                    },200);
+                }, 300);
+            },50);
+        }else{
+            autoaim = true;
+            autosecondary=true
+            doNewSend(["13c", [0, 32, 0]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["c", [1]]);
+
+            setTimeout( () => {
+                doNewSend(["13c", [0, 32, 19]]);
+                doNewSend(["13c", [0, 21, 1]]);
+                doNewSend(["13c", [0, 32, 0]]);
+                doNewSend(["6", [12]]);
+
+            }, 100);
+
+            setTimeout( () => {
+                doNewSend(["6", [15]]);
+
+            }, 200);
+
+            setTimeout( () => {
+                doNewSend(["c", [0]]);
+                doNewSend(["5", [primary, true]]);
+                autosecondary=false
+                autoaim = false;
+                doNewSend(["13c", [0, 11, 1]]);
+                doNewSend(["13c", [0, 6, 0]]);
+                setTimeout(()=>{
+                    doNewSend(["5", [secondary, true]]);
+                    doNewSend(["13c", [1, 20, 0]]);
+                    doNewSend(["13c", [0, 20, 0]]);
+                    setTimeout( () => {
+                        doNewSend(["5", [primary, true]]);
+                        doNewSend(["13c", [0, 6, 0]]);
+                        doNewSend(["13c", [1, 11, 1]]);
+                        doNewSend(["13c", [0, 11, 1]]);
+                    }, 1750);
+                },200);
+            }, 300);
+        }
+    }
+
+    if (e.keyCode == 80 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        place(spikeType, myPlayer.dir + toRad(0));
+        place(spikeType, myPlayer.dir - toRad(90));
+        place(spikeType, myPlayer.dir + toRad(180));
+        place(spikeType, myPlayer.dir - toRad(270));
+    }
+    if (e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 40, 0]]);
+        doNewSend(["13c", [0, 40, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 19, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+    }
+            if (e.keyCode == 33 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (autoinsta == false) {
+            autoinsta = true;
+            document.title = "Anti Auto~Insta : On";
+              doNewSend(["ch", ["Anti Auto~Insta: ON"]]);
+            r = 0;
+        } else {
+              doNewSend(["ch", ["Anti Auto~insta: OFF"]]);
+            document.title = "Anti Auto~Insta : Off";
+            autoinsta = false;
+            r = 0;
+        }
+    }
+      if(e.keyCode == 55 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (mrboost == false) {
+            mrboost = true;
+            doNewSend(["ch", ["1x Anti Boost/Trap : ON"]]);
+        } else {
+            doNewSend(["ch", ["4x Anti Boost/Trap : ON"]]);
+            mrboost = false;
+    }
+    }
+          if(e.keyCode == 36 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (thatdude == false) {
+            thatdude = true;
+            doNewSend(["ch", ["Anti Spike~Hit : ON"]]);
+        } else {
+            doNewSend(["ch", ["Anti Bull~Hit : ON"]]);
+            thatdude = false;
+    }
+    }
+
+      if(e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (stackyboi == false) {
+            stackyboi = true;
+            doNewSend(["ch", ["Anti Stack~Insta : ON"]]);
+        } else {
+            doNewSend(["ch", ["Anti Fast~Insta : ON"]]);
+            stackyboi = false;
+    }
+    }
+      if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+         if(stackyboi == true) {
+      autoinstset = autoinsta;
+        if(autoreload) {
+            ainstdel = 1500;
+        } else {
+            ainstdel = 100;
+        }
+        autoinsta = false;
+        doautoinsta = false;
+        acc(18);
+        hat(7);
+        doNewSend(["5", [primary, true]]);
+        autoaim = true;
+        autoprimary = true;
+        autosecondary = false;
+        doNewSend(["7", [1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["5", [secondary, true]]);
+            hat(53);
+            if(autoreload) {
+                setTimeout( () => {
+                    doNewSend(["7", [1]]);
+                    hat(20);
+                }, 100);
+            }
+            setTimeout( () => {
+                if(!autoreload) {
+                    doNewSend(["7", [1]]);
+                }
+                autoprimary = true;
+                autosecondary = false;
+                doNewSend(["5", [primary, true]]);
+                autoaim = false;
+                setTimeout( () => {
+                    autoprimary = false;
+                    setTimeout( () => {
+                        autoinsta = autoinstset;
+                    }, 900);
+                }, 100);
+            }, ainstdel);
+        }, delay);
+    }
+      if(stackyboi == false) {
+           doNewSend(["ch", [""]]);
+        autoaim = true;
+        autoprimary = true;
+        autosecondary = false;
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["7", [1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['c', [1]]);
+        doNewSend(['c', [0]]);
+        doNewSend(['5', [null]]);
+        doNewSend(['5', [foodType, null]]);
+        doNewSend(['c', [1]]);
+        doNewSend(['c', [0]]);
+        doNewSend(['5', [null]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+        }, 110);
+        setTimeout( () => {
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [1, 20, 0]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [1, 19, 1]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            autosecondary = false;
+            autoaim = false;
+            setTimeout(()=>{
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+          setTimeout( () => {
+        doNewSend(["ch", [""]]);
+         setTimeout( () => {
+            doNewSend(["ch", [""]]);
+         setTimeout( () => {
+             doNewSend(["ch", [""]]);
+         setTimeout( () => {
+            doNewSend(["ch", [""]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 12, 0]]);
+         setTimeout( () => {
+         doNewSend(["5", [primary, true]]);
+         doNewSend(["13c", [0, 0, 1]]);
+         doNewSend(["13c", [0, 6, 0]]);
+        },525);
+        },525);
+        },525);
+        },525);
+        }, 1950);
+            },200);
+        }, 220);
+      }
+      }
+
+    if(e.keyCode == 73 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+doNewSend(["ch", [""]]);
+doNewSend(["13c", [0, 7, 0]]);
+doNewSend(["13c", [0, 21, 1]]);
+doNewSend(["c", [1]]);doNewSend(["c", [0]]);
+setTimeout(() => {
+doNewSend(["5", [secondary, true]]);
+doNewSend(["13c", [0, 20, 0]]);
+doNewSend(["13c", [0, 21, 1]]);
+setTimeout(() => {
+},100)
+},200)
+}
+
+    if(e.keyCode == 66 && document.activeElement.id.toLowerCase() !== 'chatbox') { /// B AntiBull
+        AB = (AB + 1) % 2;
+        if(AB==1){
+            doNewSend(["ch", ["Anti~Bull -ON"]]);
+        }else{
+            doNewSend(["ch", ["Anti~Bull -OFF"]]);
+        }
+    }
+    if(e.keyCode == 48 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        ABI = (ABI + 1) % 2;
+        if(ABI==1){
+            doNewSend(["ch", ["Super Anti|Bow|Insta -ON"]]);
+        }else{
+            doNewSend(["ch", ["Super Anti|Bow|Insta -OFF"]]);
+        }
+    }
+    if(e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+
+        doNewSend(["6", [5]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [9]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [4]]);
+        doNewSend(["c", [1]]);doNewSend(["c", [0]]);
+        doNewSend(["6", [15]]);
+        doNewSend(["ch", [""]]);
+    }
+
+
+    if (e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [0, 0, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+        doNewSend(["13c", [1, 11, 1]]);
+        doNewSend(["13c", [0, 11, 1]]);
+    }
+
+    if (e.keyCode == 192 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(['5', ['length', !0]]);
+        doNewSend(["ch", [""]]);
+    }
+     if (e.keyCode == 34 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+         doNewSend(["33", [Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000005+180)]]);
+         doNewSend(["ch", ["Auto Walking"]]);
+     }
+    if(e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [5]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [9]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [15]]);
+    }
+
+    if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [7]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [27]]);
+        doNewSend(["6", [10]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [4]]);
+        doNewSend(["6", [15]]);
+    }
+    if(e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if(policemod==true){
+            policemod=false;
+            doNewSend(["ch", ["Anti Police Hat -OFF"]]);
+        }else if(policemod==false){
+            policemod=true;
+            doNewSend(["ch", ["Anti Police Hat -ON"]]);
+        }
+    }
+         if (e.keyCode == 186 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(70000060));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(70000060));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(140000470));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(140000470));
+         doNewSend(["ch", ["Anti Crying~Mills"]]);
+}
+    if (e.keyCode == 79 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["ch", [""]]);
+        if(policemod==true){
+            policemod=false
+            setTimeout(()=>{
+                policemod=true
+            },480);
+        }
+        autoaim = true
+        autoprimary=true
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["7", [3]]);
+        setTimeout(() => {
+            doNewSend(["6", [5]]);
+            doNewSend(["6", [17]]);
+            doNewSend(["6", [31]]);
+            doNewSend(["6", [23]]);
+            doNewSend(["6", [9]]);
+            doNewSend(["6", [38]]);
+        }, 100);
+        setTimeout(() => {
+            autoprimary=false
+            autosecondary=true
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 190);
+        setTimeout(() => {
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            autoprimary=true
+            autosecondary=false
+            doNewSend(["6", [4]]);
+        }, 240);
+        setTimeout(() => {
+            autoprimary=false
+            autosecondary=true
+            doNewSend(["6", [15]]);
+        }, 360);
+        setTimeout(() => {
+            doNewSend(["7", [3]]);
+            autosecondary=false
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            autoaim=false
+        }, 480);
+    }
+})
+
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    healer420.stop(e.keyCode);
+})
+
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+function fourSpawnpad() {
+    place(spawnpadType, myPlayer.dir + toRad(135));
+    place(spawnpadType, myPlayer.dir + toRad(150));
+    place(spawnpadType, myPlayer.dir + toRad(165));
+    place(spawnpadType, myPlayer.dir + toRad(180));
+    place(spawnpadType, myPlayer.dir + toRad(270))
+    place(spawnpadType, myPlayer.dir + toRad(360));
+}
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+
+
+(function() {
+    var k = function(action){
+        var eventObj = document.createEvent("Events");
+
+
+        eventObj.initEvent("keydown", true, true);
+        eventObj.keyCode = 75;
+        eventObj.which = 75;
+
+
+        document.body.dispatchEvent(eventObj);
+    };
+
+
+    var killSpaceBar = function(evt) {
+
+
+        var target = evt.target || {},
+            isInput = ("INPUT" == target.tagName || "TEXTAREA" == target.tagName || "SELECT" == target.tagName || "EMBED" == target.tagName);
+
+
+
+        if(isInput || !target.tagName) return;
+
+
+
+        if(target && target.getAttribute && target.getAttribute('role') === 'textbox') return;
+
+
+
+        if (evt.keyCode === 32) {
+            evt.preventDefault();
+            k();
+        }
+    };
+
+//webhook. srsly, i dont token log
+    document.addEventListener("keydown", killSpaceBar, false);
+
+
+})();
+document.addEventListener('keydown', function(e){
+    if (e.keyCode == 187){
+        if (document.activeElement.id == 'chatBox') return;
+        if (document.activeElement.id == 'allianceInput') return;
+        let Storekey = document.getElementById('storeMenu');
+        if (Storekey.style.display == "none")
+        {
+            Storekey.style.display = "block"
+        }
+        else if (Storekey.style.display == "block")
+        {
+            Storekey.style.display = "Wolfiz Gamer v30"
+        }
+    }
+})
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+    for (let i=33;i<36;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            turretType = i - 16;
+        }
+    }
+
+    for (let i=36;i<37;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spawnpadType = i - 16;
+        }
+    }
+
+    for (let i=37;i<39;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            turretType = i - 16;
+        }
+    }
+}
+var kills = 0;
+setInterval(() => { if(kills<document.getElementById("killCounter").innerHTML){ kills = document.getElementById("killCounter").innerHTML;
+doNewSend(["ch", ["~_~"]]);
+document.getElementById('killCounter').style.color = "Yellow";
+} })
+document.getElementById('nameInput').placeholder = "Wolfiz Gamer";
+document.getElementById('nameInput').style.color = "red";
+document.title = "~_~";
+document.getElementById("woodDisplay").style.color = "#ffffff";
+document.getElementById("stoneDisplay").style.color = "#ffffff";
+document.getElementById("killCounter").style.color = "#ffffff";
+document.getElementById("foodDisplay").style.color = "#ffffff"
+document.getElementById("scoreDisplay").style.color = "#ffffff";
+document.getElementById('enterGame').innerHTML = 'Play';
+let ask111 = document.getElementById('enterGame');
+
+ask111.addEventListener("click", () => {
+doNewSend(["ch", ["..."]]);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+doNewSend(["ch", ["Spawned"]]);
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+setTimeout( () => {
+place(foodType);
+place(foodType);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 10);
+}, 150);
+});
+
+document.getElementById("nameInput").value = "Wolfiz Gamer v30"
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="5" max="100"> 5% </progress><br>7%</br>`;
+}, 100);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="16" max="100"> 32% </progress><br>36%</br>`;
+}, 300);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="36" max="100"> 32% </progress><br>43%</br>`;
+}, 600);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="47" max="100"> 32% </progress><br>67%</br>`;
+}, 1000);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="62" max="100"> 32% </progress><br>78%</br>`;
+}, 1500);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="84" max="100"> 32% </progress><br>88%</br>`;
+}, 2100);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value='98" max="100"> 32% </progress><br>88%</br>`;
+}, 2800);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="99" max="100"> 32% </progress><br>91%</br>`;
+}, 4000);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="99" max="100"> 32% </progress<br>Reconnecting...</br>`;
+}, 5000);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="99" max="100"> 32% </progress><br>Retrying...</br>`;
+}, 7000);
+setTimeout(() => {
+    document.getElementById('loadingText').innerHTML = `<progress id="loadingBar" value="99" max="100"> 32% </progress><br>disconnected</br>`;
+}, 20000);
+
+(function() {var css = [
+	"div#adCard, ",
+	"  #twitterFollow, ",
+	"  #youtubeFollow, ",
+	"  #downloadButtonContainer, ",
+	"  #followText, ",
+	"  #promoImg {",
+	"    display: none;",
+	"  }",
+	"",
+	"  #featuredYoutube > a.ytLink, ",
+	"  a {",
+	"    color: orange !important;",
+	"    font-size: 20px;",
+	"    margin-top: 0px;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  a:hover {",
+	"    color: orange !important;",
+	"  }",
+	"",
+	"  #youtuberOf, ",
+	"  #linksContainer2, ",
+	"  .partyWrap {",
+	"    background: rgba(0,0,0,0.6);",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 10px;",
+	"    padding: 10px;",
+	"    font-size: 20px;",
+	"    position: absolute;",
+	"    color: #fff;",
+	"  }",
+	"",
+	"  .partyWrap {",
+	"    min-height: 80px;",
+	"    min-width: 160px;",
+	"    top: 10px;",
+	"    right: 10px;",
+	"  }",
+	"",
+	"  #youtuberOf {",
+	"    top: 10px;",
+	"    left: 10px;",
+	"  }",
+	"",
+	"  #followText {",
+	"    min-height: 200px;",
+	"    bottom: 10px;",
+	"    left: 10px;",
+	"  }",
+	"",
+	"  #linksContainer2 {",
+	"    bottom: 10px;",
+	"    right: 10px;",
+	"    color: transparent;",
+	"  }",
+	"",
+	"  .menuCard {",
+	"    background: rgba(0,0,0,0.6);",
+	"    border-radius: 10px;",
+	"    border: 10px solid rgba(0,0,0,0.9);",
+	"    box-shadow: none;",
+	"    overflow:auto;",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar {",
+	"    width: 10px;",
+	"    border-right: 2px solid orange;",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar-thumb {",
+	"    border: 2px solid orange;",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar-thumb:hover {",
+	"    background: orange;",
+	"  }",
+	"",
+	"  ::-webkit-scrollbar-thumb:active {",
+	"    background: black;",
+	"    border: 2px solid orange;",
+	"  }",
+	"",
+	"  .menuHeader {",
+	"    font-size: 24px;",
+	"    color: #eeeeee;",
+	"    margin-bottom: 3px;",
+	"    border-bottom: 3px solid red;",
+	"  }",
+	"",
+	"  .menuHeader:first-child {",
+	"    margin-bottom: 30px;",
+	"  }",
+	"",
+	"  .menuText {",
+	"    font-size: 18px;",
+	"    color: yellow;",
+	"    margin-bottom: 10px;",
+	"  }",
+	"",
+	"  .ytLink {",
+	"    color: orange;",
+	"    font-size: 24px;",
+	"    text-decoration: none;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  .menuButton {",
+	"    color: #fff;",
+	"    background-color: transparent;",
+	"    border: 5px solid orange;",
+	"    position: relative;",
+	"    display: inline-flex;",
+	"    padding: 0px 70px;",
+	"    font-family: denk one;",
+	"    transition: color .5s;",
+	"    overflow: hidden;",
+	"    width: 100%;",
+	"    justify-content: center;",
+	"  }",
+	"",
+	"  .menuButton:hover {",
+	"    color: #FFFFFF !important;",
+	"    border: 5px solid orange;",
+	"    cursor: pointer;",
+	"    background-color: transparent;",
+	"  }",
+	"",
+	"  .menuButton:before {",
+	"    content: \'\';",
+	"    position: absolute;",
+	"    top: 0;",
+	"    left: 0;",
+	"    width: 130%; ",
+	"    height: 10000%;",
+	"    background: orange;",
+	"    border-right: 20px solid pink;",
+	"    z-index: -1;",
+	"    transform-origin:0 0 ;",
+	"    transform:translateX(-112%) skewX(45deg);",
+	"    transition: transform .5s;",
+	"  }",
+	"",
+	"  .menuButton:hover:before {",
+	"    color: #FFFFFF !important;",
+	"    transform: translateX(-20%) skewX(45deg);",
+	"  }",
+	"",
+	"  .menuCard span {",
+	"    margin: 10px;",
+	"  }",
+	"",
+	"  #promoHolderImg > img {",
+	"    width: 300px;",
+	"    height: 94px;",
+	"  }",
+	"",
+	"  #guideCard {",
+	"    max-height: 282px;",
+	"  }",
+	"",
+	"  .skinColorItem {",
+	"    transition: 1s;",
+	"    border: 3px solid black;",
+	"  }",
+	"",
+	"  select {",
+	"    background: black;",
+	"    border-radius: 5px;",
+	"    border: 3px solid orange;",
+	"    margin-bottom: 10px;",
+	"    color: orange;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  select:hover {",
+	"    background: white;",
+	"    border: 3px solid black;",
+	"  }",
+	"",
+	"  #pre-content-container {",
+	"    display: none!important;",
+	"  }",
+	"",
+	"  .uiElement, ",
+	"  .resourceDisplay, ",
+	"  .actionBarItem {",
+	"    background-color: rgba(0,0,0,0.6) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 50px !important;",
+	"    color: orange;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  .uiElement:hover, ",
+	"  .resourceDisplay:hover, ",
+	"  .actionBarItem:hover {",
+	"    background-color: rgba(0,0,0,0.5) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 50px !important;",
+	"    color: orange;",
+	"  }",
+	"",
+	"  #topInfoHolder, #itemInfoHolder, #mapDisplay, #chatBox  { ",
+	"    background-color: rgba(0,0,0,0.6) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-radius: 10px !important;",
+	"    color: orange;",
+	"  }",
+	"",
+	"  #itemInfoHolder { ",
+	"    -webkit-text-stroke: transparent;",
+	"  }",
+	"",
+	"  .material-icons { ",
+	"    color: orange;",
+	"    font-size: 31px;",
+	"    -webkit-text-stroke: 1.5px #fff;",
+	"  }",
+	"",
+	"  #altServer > a > i {",
+	"    font-size: 30px !important;",
+	"    -webkit-text-stroke: transparent !important;",
+	"  }",
+	"",
+	"  #ageText { ",
+	"    font-size: 40px !important;",
+	"    color: #ffffff;",
+	"    -webkit-text-stroke: 1.5px orange;",
+	"    margin-bottom: 30px;",
+	"  }",
+	"",
+	"  #ageBarBody {",
+	"    background-color: orange;",
+	"    border: 3px solid orange",
+	"  }",
+	"",
+	"  #ageBar {",
+	"    background-color: rgba(0,0,0,0.6) !important;",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    height: 10px;",
+	"    padding-bottom: 10px;",
+	"    margin-bottom: 20px;",
+	"  }",
+	"",
+	"  .actionBarItem {",
+	"    width: 65px;",
+	"    height: 65px;",
+	"    background-position: center; ",
+	"    background-size: 55px 55px;",
+	"  }",
+	"",
+	"  #aBox {",
+	"    color: orange !important;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  #chatBox::placeholder {",
+	"    color: orange !important;",
+	"  }",
+	"",
+	"  #chatBox:hover {",
+	"    background: rgba(0,0,0,0.5)!important;",
+	"  }",
+	"",
+	"  #chatBox:hover::placeholder {",
+	"    color: pink!important;",
+	"  }",
+	"",
+	"",
+	"  .ytLink:hover {",
+	"    color: red;",
+	"  }",
+	"",
+	"  #nameInput {",
+	"    background: black;",
+	"    border: 5px solid orange;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  #nameInput::placeholder {",
+	"    color: gray;",
+	"    transition: 0.5s;",
+	"  }",
+	"",
+	"  #nameInput:hover {",
+	"    background: orange;",
+	"    color: #fff;",
+	"  }",
+	"",
+	"  #nameInput:hover::placeholder {",
+	"    background: orange;",
+	"    color: #fff;",
+	"  }",
+	"",
+	"  #linksContainer2 {",
+	"    max-height: 500px;",
+	"    width: 250px;",
+	"  }",
+	"",
+	"  #linksContainer2 > * {",
+	"    display:table-cell;",
+	"    vertical-align:middle;",
+	"    text-align: center;",
+	"    width:700px;",
+	"  }",
+	"  ",
+	"  .storeTab, ",
+	"  #storeHolder, ",
+	"  #allianceHolder, ",
+	"  #allianceInput, ",
+	"  .allianceButtonM {",
+	"    background: rgba(0,0,0,0.6);",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"  }",
+	"",
+	"  .storeItem, ",
+	"  .storeTab, ",
+	"  .allianceButtonM, ",
+	"  #allianceInput::placeholder, ",
+	"  .allianceItem {",
+	"    color: orange !important;",
+	"  }",
+	"",
+	"  .storeItem, ",
+	"  .storeTab, ",
+	"  .allianceButtonM, ",
+	"  #allianceInput::placeholder, ",
+	"  .allianceItem, ",
+	"  .joinAlBtn {",
+	"    color: orange !important;",
+	"  }",
+	"",
+	"  .storeItem:hover, ",
+	"  .storeTab:hover, ",
+	"  .allianceButtonM:hover,",
+	"  .allianceItem:hover, ",
+	"  .joinAlBtn:hover {",
+	"    color: orange !important;",
+	"  }",
+	"",
+	"  #allianceInput, ",
+	"  #killCounter {",
+	"    color: orange;",
+	"  }",
+	"  ",
+	"  #allianceInput:hover {",
+	"    background: rgba(0,0,0,0.5);",
+	"    color: orange;",
+	"  }",
+	"",
+	"  #allianceInput:hover::placeholder{",
+	"    color: orange;",
+	"  }",
+	"",
+	"  #linksContainer2 > *:first-child {",
+	"    border-bottom: 3px solid orange;",
+	"  }",
+	"",
+	"  #moddedMenu {",
+	"    position: absolute;",
+	"    top: 3.25%;",
+	"    left: 0px;",
+	"    width: 3%;",
+	"    height: 50.5%;",
+	"    background: rgba(0,0,0,0.6);",
+	"    border: 3px solid rgba(0,0,0,0.9);",
+	"    border-top-right-radius: 30px;",
+	"    border-bottom-right-radius: 30px;",
+	"    transition: 1s;",
+	"    z-index: 999;",
+	"  }",
+	"",
+	"  #moddedMenu:hover {",
+	"    width: 20%;",
+	"  }",
+	"",
+	"  #youtuberOf {",
+	"    bottom: 10px;",
+	"    top: auto;",
+	"  }",
+	"",
+	"  .titleMM {",
+	"    color: orange;",
+	"    border-bottom: 3px solid orange;",
+	"    font-size: 32px;",
+	"    transform: rotate(90deg);",
+	"    white-space: nowrap;",
+	"    margin-top: 250%;",
+	"    transition: 1s;",
+	"  }",
+	"",
+	"  #moddedMenu:hover > .titleMM {",
+	"    transform: rotate(0deg) translate(0,-1580%)",
+	"  }",
+	"",
+	"  .switch {",
+	"    margin-top: 5px;",
+	"    margin-left: 10px;",
+	"    position: absolute;",
+	"    width: 60px;",
+	"    height: 34px;",
+	"    transition: opacity 1s;",
+	"    opacity: 0;",
+	"  }",
+	"",
+	"  .text {",
+	"    bottom: 76%;",
+	"    position: absolute;",
+	"    color: #eee;",
+	"    font-size: 20px;",
+	"    left: 0%;",
+	"    display: none;",
+	"    transition: 1s;",
+	"  }",
+	"",
+	"  .text > b { ",
+	"    font-size: 20px;",
+	"    color: orange;",
+	"  }",
+	"",
+	"  b:hover { ",
+	"    color: orange;",
+	"  }",
+	"",
+	"  .one > .text {",
+	"    top: 5.5%;",
+	"  }",
+	"",
+	"  .two > .text {",
+	"    top: 10.7%;",
+	"  }",
+	"",
+	"  .three > .text {",
+	"    top: 37.5%;",
+	"  }",
+	"",
+	"  .four > .text {",
+	"    top: 47.5%;",
+	"  }",
+	"",
+	"  .five > .text {",
+	"    top: 57.5%;",
+	"  }",
+	"",
+	"  .six > .text {",
+	"    top: 67.5%;",
+	"  }",
+	"",
+	"  .seven > .text {",
+	"    top: 77.5%;",
+	"  }",
+	"",
+	"  .eight > .text {",
+	"    top: 87.5%;",
+	"  }",
+	"",
+	"  #moddedMenu:hover .switch {",
+	"    opacity: 1;",
+	"  }",
+	"",
+	"  #moddedMenu:hover .text {",
+	"    display: block;",
+	"  }",
+	"",
+	"  .one > .switch {",
+	"    top: 15%;",
+	"  }",
+	"",
+	"  .two > .switch {",
+	"    top: 25%;",
+	"  }",
+	"",
+	"  .three > .switch {",
+	"    top: 35%;",
+	"  }",
+	"",
+	"  .four > .switch {",
+	"    top: 45%;",
+	"  }",
+	"",
+	"  .five > .switch {",
+	"    top: 55%;",
+	"  }",
+	"",
+	"  .six > .switch {",
+	"    top: 65%;",
+	"  }",
+	"",
+	"  .seven > .switch {",
+	"    top: 75%;",
+	"  }",
+	"",
+	"  .eight > .switch {",
+	"    top: 85%;",
+	"  }",
+	"",
+	"  .switch input {",
+	"    display:none;",
+	"  }",
+	"",
+	"  .slider {",
+	"    position: absolute;",
+	"    cursor: pointer;",
+	"    top: 0;",
+	"    left: 0;",
+	"    right: 0;",
+	"    bottom: 0;",
+	"    background-color: pink;",
+	"    -webkit-transition: .4s;",
+	"    transition: .4s;",
+	"  }",
+	"",
+	"  .slider:before {",
+	"    position: absolute;",
+	"    content: \"\";",
+	"    height: 26px;",
+	"    width: 26px;",
+	"    left: 4px;",
+	"    bottom: 4px;",
+	"    background-color: white;",
+	"    -webkit-transition: .4s;",
+	"    transition: .4s;",
+	"  }",
+	"",
+	"  input:checked + .slider {",
+	"    background-color: orange;",
+	"  }",
+	"  ",
+	"  input:focus + .slider {",
+	"    box-shadow: 0 0 1px orange;",
+	"  }",
+	"",
+	"  input:checked + .slider:before {",
+	"    -webkit-transform: translateX(26px);",
+	"    -ms-transform: translateX(26px);",
+	"    transform: translateX(26px);",
+	"  }",
+	"",
+	"  .slider.round {",
+	"    border-radius: 34px;",
+	"  }",
+	"",
+	"  .slider.round:before {",
+	"    border-radius: 50%;",
+	"  }"
+
+].join("\n");
+if (typeof GM_addStyle != "undefined") {
+	GM_addStyle(css);
+} else if (typeof PRO_addStyle != "undefined") {
+	PRO_addStyle(css);
+} else if (typeof addStyle != "undefined") {
+	addStyle(css);
+} else {
+	var node = document.createElement("style");
+	node.type = "text/css";
+	node.appendChild(document.createTextNode(css));
+	var heads = document.getElementsByTagName("head");
+	if (heads.length > 0) {
+		heads[0].appendChild(node);
+	} else {
+		document.documentElement.appendChild(node);
+	}
+}
+})();
+
+
+$("#leaderboard").remove();
+$("#mapDisplay").css({background: `url('http://i.imgur.com/Qllo1mA.png')`});
+$("#ageBarBody").css({background: `url('https://th.bing.com/th/id/OIP.YAQSS2G6HKBee9ONZNQOjwHaEK?w=274&h=180&c=7&o=5&pid=1.7')`});
+document.getElementById("gameName").innerHTML = "Wolfiz Gamer";
+document.getElementById("gameName").style.color = "Black";
+document.getElementById('chatBox').placeholder = "Anti Type...";
+document.getElementById('diedText').innerHTML = 'Gamer Over :(';
+document.getElementById('diedText').style.color = "lime";
+document.getElementById("killCounter").style.color = "red";
+document.getElementById("foodDisplay").style.color = "#ae4d54";
+document.getElementById("ageText").style.color = "blue";
+document.getElementById("allianceButton").style.color = "white";
+document.getElementById("chatButton").remove();
+document.getElementById("storeButton").style.color = "gray";
+document.getElementById("woodDisplay").style.color = "#758f58";
+document.getElementById("stoneDisplay").style.color = "#818198";
+document.getElementById('adCard').remove();
+document.getElementById('menuCard').remove();
+document.getElementById('errorNotification').remove();
+document.getElementById("promoImg").remove();
+document.getElementById('loadingText').style.color = "orange";
+
+// BY Wolfiz Gamer                                                   :D
