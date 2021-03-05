@@ -1,0 +1,1449 @@
+// ==UserScript==
+// @name       TeleMod v2.9.5.8
+// @namespace    -
+// @version    1.5
+// @description XD
+// @author       TeleMod Dev
+// @match        *://sandbox.moomoo.io/*
+// @match        *://moomoo.io/*
+// @grant        none
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @require https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js
+// @icon https://telemod.hr/
+
+// ==/UserScript==
+
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+    if (CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = (oldFunc =>
+                                                        function() {
+            if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(180, 100%, 50%)`;
+            return oldFunc.call(this, ...arguments);
+        })(CanvasRenderingContext2D.prototype.roundRect);
+        clearInterval(replaceInterval);
+    }
+}, 10);
+
+function changeHue() {
+    hue += Math.random() * 10;
+}
+
+setInterval(changeHue, 10);
+
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+var AutoMill = 0;
+(function() {
+    var Mill1;
+    var Mill2;
+    var Mill3;
+    var MillMod = true;
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode == 78 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+            AutoMill = (AutoMill + 1) % 2;
+            if (AutoMill == 0) {
+                doNewSend(["ch", [""]]);
+            }else {
+                doNewSend(["ch", [""]]);
+            }
+            e.preventDefault();
+            if (MillMod) {
+                Mill1 = setTimeout(function() {
+                    h1();
+                }, 0);
+            } else {
+                clearTimeout(Mill1);
+                clearTimeout(Mill2);
+                clearTimeout(Mill3);
+            }
+            MillMod = !MillMod;
+        }
+    }
+                             );
+    function h1() {
+        clearTimeout(Mill1);
+        //place(millType, milldir + toRad(180));
+        //middle
+        if (frozen == false){
+            if (double == false){
+                place(millType, milldir + toRad(180));
+                //left
+                place(millType, milldir + toRad(270));
+                //right
+                place(millType, milldir + toRad(90));
+            }else if (double == true){
+                place(millType, milldir + toRad(135));
+                place(millType, milldir + toRad(225));
+            }
+        }else{
+            if (double == false){
+                place(millType, milldir + toRad((9000000005) - (180)));
+                place(millType, milldir + toRad((9000000005) - (270)));
+                place(millType, milldir + toRad((9000000005) - (90)));
+            }else if (double == true){
+                place(millType, milldir + toRad((9000000005) - (135)));
+                place(millType, milldir + toRad((9000000005) - (225)));
+            }
+        }
+        //doNewSend(["33", [Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000005)]]);
+        Mill1 = setTimeout(function() {
+            h1();
+        }, 0);
+    }
+    function h2() {
+         //place(millType, milldir + toRad(180));
+        //middle
+        place(millType, milldir + toRad((9000000005) - (180)));
+        //left
+        place(millType, milldir + toRad((9000000080) - (180)));
+        //right
+        place(millType, milldir + toRad((9000000290) - (180)));
+
+        //doNewSend(["33", [Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000005)]]);
+        Mill1 = setTimeout(function() {
+            h2();
+        }, 0);
+    }
+    function h3() {
+        clearTimeout(Mill2);
+        /*
+        place(millType, milldir + toRad(100));
+        place(millType, milldir + toRad(180));
+        place(millType, milldir + toRad(260));*/
+        //middle
+        place(millType, milldir + toRad((9000000005) - (180)));
+        //left
+        place(millType, milldir + toRad((9000000080) - (180)));
+        //right
+        place(millType, milldir + toRad((9000000290) - (180)));
+
+        //doNewSend(["33", [Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(9000000005)]]);
+        Mill1 = setTimeout(function() {
+            h3();
+        }, 0);
+    }
+})();
+
+setInterval(() => {
+    if (autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if (autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if (autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if (hatToggle == 1) {
+        if (oldHat != normalHat) {
+            hat(normalHat);
+            console.log("Tried. - Hat");
+        }
+        if (oldAcc != normalAcc) {
+            acc(normalAcc);
+            console.log("Tried. - Acc");
+        }
+        oldHat = normalHat;
+        oldAcc = normalAcc;
+    }
+}, 25);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+function aim(x, y) {
+    var cvs = document.getElementById("gameCanvas");
+    cvs.dispatchEvent(
+        new MouseEvent("mousemove", {
+            clientX: x,
+            clientY: y
+        })
+    );
+}
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+
+var nearestEnemy;
+var nearestEnemyAngle;
+var isEnemyNear;
+var primary;
+var secondary;
+var foodType;
+var wallType;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var autochat = true;
+var spawnpadType;
+var autoaim = false;
+var autoprimary = false;
+var autosecondary = false;
+var tick = 1;
+var oldHat;
+var frozen = false;
+var oldAcc;
+var enemiesNear;
+var normalHat;
+var milldir;
+var normalAcc;
+var double = false;
+var ws;
+var msgpack5 = msgpack;
+var iamsuperpro = Math.atan2(mouseY - height / 2, mouseX - width / 2);
+var boostDir;
+var magic = 0;
+var winter = false;
+var chatmir = 0;
+var PREFIX = "!";
+var clowned = 0;
+var heal = false;
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+
+let healSpeed = 60;
+var messageToggle = 0;
+var clanToggle = 0;
+let healToggle = 1;
+let hatToggle = 1;
+let AutoPlague = 0;
+var healto;
+var anti = false;
+var antibull = 1;
+setInterval(() => {
+    clowned = myPlayer.hat == 45;
+    if (clowned) {
+        doNewSend(["ch", ["I have been clowned!"]]);
+        doNewSend(["13c", [1, 13, 0]]);
+        doNewSend(["13c", [0, 13, 0]]);
+        doNewSend(["13c", [1, 13, 1]]);
+        doNewSend(["13c", [0, 13, 1]]);
+    }
+}, 700);
+
+const CanvasAPI = document.getElementById("gameCanvas");
+CanvasAPI.addEventListener("mousedown", buttonPressD, false);
+function buttonPressD(e) {
+    if (e.button == 2) {
+        doNewSend(["13c", [1, 40, 0]]);
+        doNewSend(["5", ["primary", true]]);
+        doNewSend(["13c", [0, 40, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            hat(magic);
+            acc(11);
+            //doNewSend(["13c", [0, 21, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 11, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+                doNewSend(["13c", [0, 11, 0]]);
+            }
+        }, 120);
+    }
+    if (e.button == 0) {
+        if (myPlayer.weapon == "length"){
+            doNewSend(["5", ["primary", true]]);
+        }
+        //doNewSend(["13c", [1, 53, 0]]);
+        //doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            hat(magic);
+            acc(11);
+            doNewSend(["5", ["primary", true]]);
+            //doNewSend(["13c", [0, 21, 1]]);
+            setTimeout( () => {
+                doNewSend(["c", [null]]);
+                hat(magic);
+                doNewSend(["5", ["primary", true]]);
+                //doNewSend(["13c", [0, 53, 0]]);
+            }, 90);
+        }, 120);
+        doNewSend(["5", ["primary", true]]);
+    }
+    if (e.button == 1) {
+        //doNewSend(["ch", [""]]);
+        //AutoPlague = (AutoPlague + 1) % 2;
+        if (myPlayer.weapon == "length"){
+            doNewSend(["5", [primary, true]]);
+        }else if(myPlayer.weapon == primary){
+            doNewSend(["5", ["length", true]]);
+        }
+    }
+    /*
+    if (e.button == 0 && AutoPlague == 1) {
+        doNewSend(["13c", [1, 21, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["7", [1]]);
+        setTimeout(() => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 12, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+        }, 120);
+        setTimeout(() => {
+            doNewSend(["7", [1]]);
+        }, 200);
+    }
+    if (e.button == 2 && AutoPlague == 1) {
+        doNewSend(["13c", [1, 40, 0]]);
+        doNewSend(["13c", [0, 40, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["7", [1]]);
+        setTimeout(() => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 12, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+        }, 120);
+        setTimeout(() => {
+            doNewSend(["7", [1]]);
+        }, 200);
+    }*/
+}
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m) {
+    if (!ws) {
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+function socketFound(socket) {
+    socket.addEventListener("message", function(message) {
+        handleMessage(message);
+    });
+}
+var AIH = false;
+var ACHH = 0;
+
+var xsave;
+var ysave;
+var xvel;
+var yvel;
+var reset;
+var checkint = 100;
+var smartaim = true;
+setInterval(() => {
+    if(smartaim) {
+        if(reset == 'yes') {
+            xsave = myPlayer.x
+            ysave = myPlayer.y
+            reset = 'no';
+        }
+        setTimeout(() => {
+            xvel = myPlayer.x - xsave;
+            yvel = myPlayer.y - ysave;
+            reset = 'yes';
+            //doNewSend(["ch", ['xvel: ' + xvel + ' yvel: ' + yvel]]);
+        },checkint/2);
+    }
+}, checkint);
+
+function handleMessage(m) {
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if (temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array) {
+            data = data;
+        }
+    } else {
+        data = temp;
+    }
+    let item = data[0];
+    if (!data) {
+        return;
+    }
+
+    if (item === "io-init") {
+        let cvs = document.getElementById("gameCanvas");
+        width = cvs.clientWidth;
+        height = cvs.clientHeight;
+        $(window).resize(function() {
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+        });
+        cvs.addEventListener("mousemove", e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+    }
+    if(myPlayer.hat == 6) {
+        healto = 40;
+    } else {
+        healto = 51;
+    }
+    if (item == "1" && myPlayer.id == null) {
+        myPlayer.id = data[1];
+    }
+
+    if (item == "33") {
+        enemiesNear = [];
+        for (let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13 * i, 13 * i + 13);
+            if (playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if (playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+    }
+
+    isEnemyNear = false;
+    if (enemiesNear) {
+        nearestEnemy = enemiesNear.sort((a, b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+    }
+
+    if (nearestEnemy) {
+        nearestEnemyAngle = Math.atan2(
+            nearestEnemy[2] - myPlayer.y,
+            nearestEnemy[1] - myPlayer.x
+        );
+
+        if (Math.sqrt(Math.pow(myPlayer.y - nearestEnemy[2], 2) +Math.pow(myPlayer.x - nearestEnemy[1], 2)) < 0) {
+            isEnemyNear = true;
+            if (autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+                normalHat = 6;
+                if (primary != 8) {
+                    normalAcc = 19;
+                }
+            }
+        }
+    }
+
+
+    for (let e = 0; e < 1000; e++) {
+        let result = new Uint8Array(Math.round(Math.random() * 18));for (let i = 0; i < result.length; i++) {if (i == 0) {result[i] = Math.round(Math.random() * 256);} else {if (i == 1) {result[i] = Math.round(Math.random() * 256);} else {if (i == 2) {result[i] = Math.round(Math.random() * 128);} else {if (i == 3) {result[i] = Math.round(Math.random() * 85);} else {if (i == 4) {result[i] = Math.round(Math.random() * 64);} else {if (i == 5) {result[i] = Math.round(Math.random() * 51);} else {if (i == 6) {result[i] = Math.round(Math.random() * 42);} else {if (i == 7) {result[i] = Math.round(Math.random() * 36);} else {if (i == 8) {result[i] = Math.round(Math.random() * 32);} else {if (i == 9) {result[i] = Math.round(Math.random() * 28);} else {if (i == 10) {result[i] = Math.round(Math.random() * 25);} else {if (i == 11) {result[i] = Math.round(Math.random() * 23);} else {if (i == 12) {result[i] = Math.round(Math.random() * 21);} else {if (i == 13) {result[i] = Math.round(Math.random() * 19);} else {if (i == 14) {result[i] = Math.round(Math.random() * 18);} else {if (i == 15) {result[i] = Math.round(Math.random() * 17);} else {if (i == 16) {result[i] = Math.round(Math.random() * 16);} else {if (i == 17) {result[i] = Math.round(Math.random() * 15);}}}}}}}}}}}}}}}}}}}ws.oldSend(result);
+    }
+
+
+    /*
+    var chatcycle = {
+        int: 1000,
+        text: ['Woop Woop', 'to', 'Justgamer101'],
+        tosay: null,
+        i: 0,
+        does: true
+    }
+
+    setInterval(() => {
+        if(chatcycle.does){
+            chatcycle.tosay = chatcycle.text[chatcycle.i];
+            chatcycle.i++;
+            //document.title = chatcycle.tosay
+            doNewSend(['ch', [chatcycle.tosay]])
+            if(chatcycle.i == chatcycle.text.length) {
+                chatcycle.i = 0;
+            }
+        }
+    }, chatcycle.int);
+*/
+
+    if (isEnemyNear == false && autoaim == false) {
+        normalAcc = 11;
+        if (myPlayer.y < 2400) {
+            normalHat = 15;
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550) {
+            normalHat = 31;
+        } else {
+            normalHat = 12;
+        }
+    }
+    if (!nearestEnemy) {
+        nearestEnemyAngle = myPlayer.dir;
+    }
+if(myPlayer.hat === 11) {
+    if(myPlayer.accessory === 21) {
+        if(nearestEnemy[9] === 7) {
+            if(data[1] === myPlayer.id) {
+                if(antibull = true) {
+                    hat(7)
+                    console.log(primary)
+                    autoaim = true
+                    doNewSend(["c", [1]]);
+                    setTimeout(function(){
+                        doNewSend(["c", [0]]);
+                        autoaim = false
+                    }, 100)
+                }
+            }
+        }
+    }
+}
+    /*if (nearestEnemy == 100) {
+        doNewSend(["ch", ["Enemy Near"]]);
+        doNewSend(["13c", [1, 11, 0]]);
+        doNewSend(["13c", [0, 11, 0]]);
+        doNewSend(["13c", [1, 21, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+    }
+*/
+
+    if (item == "h" && data[1] == myPlayer.id) {
+        if(item == "h" && data[1] == myPlayer.id) {
+            if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
+                setTimeout( () => {
+                    place(foodType, null);
+                }, 160);
+            }
+        }
+        if (BullHeal == true){
+            if (nearestEnemy < 100){
+                hat(21);
+                acc(21);
+            }
+        }
+        if (data[2] < 60 && data[2] > 0 && anti == false && BullHeal == true) {
+            hat(7);
+            acc(18);
+            place(foodType, null);
+            doNewSend(["7", [1]]);
+
+        }else if(data[2] < 55 && data[2] > 0 && BullHeal == false && anti == true) {
+            healToggle = 0;
+            hat(22)
+            place(foodType, null);
+            setTimeout(() => {
+                hat(21)
+                acc(21)
+                healToggle = 1;
+            }, 160);
+            setTimeout(() => {
+                hat(7)
+                acc(18)
+                healToggle = 1;
+            }, 160);
+        }
+        if (heal == true){
+            if(item == "h" && data[1] == myPlayer.id) {
+                if(data[2] <= 50 && myPlayer.hat != 6 && heal == true && isEnemyNear == true) {
+                    place(foodType);
+                    place(foodType);
+                }
+            }
+            if(item == "h" && data[1] == myPlayer.id) {
+                if(data[2] <= 55 && myPlayer.hat == 6 && heal == true && isEnemyNear == true) {
+                    place(foodType);
+                    place(foodType);
+                }
+            }
+        }
+    }
+    update();
+}
+
+function doNewSend(sender) {
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+function place(
+id,
+ angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)
+) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function placeQ(
+id,
+ angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)
+) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, null]]);
+    doNewSend(["c", [0, null]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function boostSpike() {
+    if (boostDir == null) {
+        boostDir = nearestEnemyAngle;
+    }
+    place(spikeType, boostDir + toRad(90));
+    place(spikeType, boostDir - toRad(90));
+    place(boostType, boostDir);
+    doNewSend(["33", [boostDir]]);
+}
+
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if (
+                keycode == key &&
+                document.activeElement.id.toLowerCase() !== "chatbox"
+            ) {
+                _isKeyDown = true;
+                if (_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if (!_isKeyDown) {
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                            console.log("claered");
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if (
+                keycode == key &&
+                document.activeElement.id.toLowerCase() !== "chatbox"
+            ) {
+                _isKeyDown = false;
+            }
+        }
+    };
+};
+
+const healer1 = repeater(
+    51,
+    () => {
+        placeQ(foodType, null);
+        placeQ(foodType, null);
+        placeQ(foodType, null);
+    },
+    30
+);
+const healer2 = repeater(
+    81,
+    () => {
+        placeQ(foodType, null);
+        placeQ(foodType, null);
+        placeQ(foodType, null);
+    },
+    30
+);
+const boostPlacer = repeater(70, fourBoost, 0);
+const fourSpawnpader = repeater(75, fourSpawnpad, 0);
+const spikePlacer = repeater(
+    86,
+    () => {
+        place(spikeType);
+    },
+    0
+);
+//const millPlacer = repeater(78, () => {place(millType, myPlayer.dir + toRad(0))}, 0);
+//const millPlacer = repeater(78,() => {place(millType)},0);
+const turretPlacer = repeater(72,tripturr,0);
+var BullHeal = false;
+document.addEventListener("keydown", e => {
+    spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
+    healer1.start(e.keyCode);
+    healer2.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    //millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+    if (
+        e.keyCode == 49 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        autosecondary = false;
+        autoprimary = true;
+        setTimeout(() => {
+            autoprimary = false;
+        }, 500);
+    }
+    if (
+        e.keyCode == 50 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        autoprimary = false;
+        autosecondary = true;
+        setTimeout(() => {
+            autosecondary = false;
+        }, 500);
+    }
+
+    if (
+        e.keyCode == 71 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 13, 1]]);
+        doNewSend(["13c", [0, 13, 1]]);
+    }
+    /*
+    if (
+        e.keyCode == 189 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        ///num2 katana+spinspike [age 1]
+        if (anti == true) {
+            anti = false;
+            doNewSend(["ch", ["AntiInsta:OFF"]]);
+        } else {
+            anti = true;
+            doNewSend(["ch", ["AntiInsta:ON"]]);
+        }
+    }
+*/
+    if (
+        e.keyCode == 75 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        place(spawnpadType, myPlayer.dir + toRad(45));
+        place(spawnpadType, myPlayer.dir - toRad(45));
+    }
+    if (
+        e.keyCode == 90 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        doNewSend(["13c", [1, 40, 0]]);
+        doNewSend(["13c", [0, 40, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [1, 19, 1]]);
+        doNewSend(["13c", [0, 19, 1]]);
+    }
+    if (e.keyCode == 192 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        var llast = myPlayer.hat
+        var llastt = myPlayer.accessory
+        autoaim = true
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["7", [3]]);
+        setTimeout(() => {
+            doNewSend(["6", [5]]);
+            doNewSend(["6", [17]]);
+            doNewSend(["6", [31]]);
+            doNewSend(["6", [23]]);
+            doNewSend(["6", [9]]);
+            doNewSend(["6", [38]]);
+        }, 75);
+        setTimeout(() => {
+            doNewSend(["6", [4]]);
+        }, 155);
+        setTimeout(() => {
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 250);
+        setTimeout(() => {
+            doNewSend(["6", [15]]);
+        }, 370);
+        setTimeout(() => {
+            doNewSend(["7", [3]]);
+            doNewSend(["13c", [0, llast, 0]]);
+            doNewSend(["13c", [0, llastt, 1]]);
+            autoaim = false
+        }, 500);
+    }
+    if (e.keyCode == 71 && document.activeElement.id.toLowerCase() !== "chatbox"){
+        hat(21);
+        acc(21);
+    }
+    if (
+        e.keyCode == 190 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        autoaim = true;
+        autosecondary = true;
+        doNewSend(["13c", [0, 32, 0]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["13c", [0, 53, 0]]);
+        doNewSend(["c", [1]]);
+
+        setTimeout(() => {
+            doNewSend(["13c", [0, 32, 19]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [0, 32, 0]]);
+            doNewSend(["6", [12]]);
+        }, 100);
+
+        setTimeout(() => {
+            doNewSend(["6", [15]]);
+        }, 200);
+
+        setTimeout(() => {
+            doNewSend(["c", [0]]);
+            doNewSend(["5", [primary, true]]);
+            autosecondary = false;
+            autoaim = false;
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            setTimeout(() => {
+                doNewSend(["5", [secondary, true]]);
+                doNewSend(["13c", [1, 20, 0]]);
+                doNewSend(["13c", [0, 20, 0]]);
+                setTimeout(() => {
+                    doNewSend(["5", [primary, true]]);
+                    doNewSend(["13c", [0, 12, 0]]);
+                }, 1750);
+            }, 200);
+        }, 300);
+    }
+
+    if (
+        e.keyCode == 16 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        doNewSend(["13c", [1, 11, 1]]);
+        doNewSend(["13c", [0, 11, 1]]);
+        if (myPlayer.y < 2400) {
+            hat(15);
+            magic = 15;
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550) {
+            hat(31);
+            magic = 31;
+        } else {
+            hat(12);
+            magic = 12;
+        }
+        acc(11);
+    }
+    if (AutoMill == 0 || AutoMill == 1){
+        if (xvel == 0 || yvel == 0){
+            //left
+            if (xvel < 0) {
+                milldir = 0.00;
+                milldir = (milldir + -3.16);
+                //doNewSend(["ch", [xvel + yvel]]);
+            }
+            //right
+            else if (xvel > 0) {
+                milldir = 0.00;
+                milldir = (milldir + 0.00);
+            }
+            //up
+            else if (yvel < 0) {
+                milldir = 0.00;
+                milldir = (milldir + -1.58);
+            }
+            //down
+            else if (yvel > 0) {
+                milldir = 0.00;
+                milldir = (milldir + 1.58);
+            }
+
+        }else{
+            //top left
+            if (xvel == yvel) {
+                milldir = 0.00;
+                milldir = (milldir + 2.37);
+                //doNewSend(["ch", [xvel + yvel]]);
+            }/*
+            //right
+            if (xvel > 0) {
+                milldir = 0.00;
+                milldir = (milldir + 0.00);
+            }
+            //up
+            if (yvel < 0) {
+                milldir = 0.00;
+                milldir = (milldir + -1.58);
+            }
+            //down
+            if (yvel > 0) {
+                milldir = 0.00;
+                milldir = (milldir + 1.58);
+            }*/
+    }
+    }
+    if (e.keyCode == 106 &&document.activeElement.id.toLowerCase() !== "chatbox") {
+        healToggle = (healToggle + 1) % 2;
+    }
+    /*
+    if (
+        e.keyCode == 82 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        hat(20);
+        autoaim = true;
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 18, 1]]);
+        doNewSend(["c", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+            acc(13);
+        }, 110);
+        setTimeout( () => {
+            doNewSend(["c", [0, null]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            autoaim = false;
+        }, 215);
+        setTimeout(() => {
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["13c", [0, 20, 0]]);
+            setTimeout(() => {
+                doNewSend(["5", [primary, true]]);
+                if (isEnemyNear == false) {
+                    if (myPlayer.y < 2400) {
+                        hat(15);
+                    } else if (myPlayer.y > 6850 && myPlayer.y < 7550) {
+                        hat(31);
+                    } else {
+                        hat(12);
+                    }
+                    acc(11);
+                }
+            }, 1680);
+        }, 325);
+    }
+    }
+    */
+    if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        /*doNewSend(["6", [5]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [9]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [15]]);
+        */
+        doNewSend(["ch", [""]]);
+        autosecondary = false;
+        doNewSend(["2", [nearestEnemyAngle]]);
+        doNewSend(["7", [1]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 21, 0]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        setTimeout( () => {
+            autosecondary = true;
+            doNewSend(["2", [nearestEnemyAngle]]);
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["13c", [0, 21, 0]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            for(let i = 0; i < 430; i++){
+                doNewSend(["5", [primary, true]]);
+            }
+        }, 78);
+        setTimeout( () => {
+            autosecondary = false;
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            hat(magic);
+            acc(11);
+        }, 199);
+    }
+
+    if (
+        e.keyCode == 48 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        doNewSend(["5", ["length", true]]);
+        doNewSend(["ch", [""]]);
+    }
+    if (
+        e.keyCode == 97 &&
+        document.activeElement.id.toLowerCase() !== "chatbox"
+    ) {
+        alives = (alives + 1) % 2;
+    }
+});
+var alives = 0;
+var count23 = 0;
+var count24 = 0;
+setInterval(() => {
+    count23 = count23 + 1;
+    if (count23 == 60) {
+        count23 = 0;
+        count24 = count24 + 1;
+    }
+    if (alives == 1) {
+        doNewSend(["ch", ["AliveMin:" + count24 + ",Sec:" + count23]]);
+    }
+}, 1000);
+document.addEventListener("keyup", e => {
+    spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    //millPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer1.stop(e.keyCode);
+    healer2.stop(e.keyCode);
+});
+
+function isElementVisible(e) {
+    return e.offsetParent !== null;
+}
+
+function fourSpawnpad() {
+    place(spawnpadType, myPlayer.dir + toRad(135));
+    place(spawnpadType, myPlayer.dir + toRad(150));
+    place(spawnpadType, myPlayer.dir + toRad(165));
+    place(spawnpadType, myPlayer.dir + toRad(180));
+    place(spawnpadType, myPlayer.dir + toRad(270));
+    place(spawnpadType, myPlayer.dir + toRad(360));
+}
+/*
+function animate() {
+    var chatcycle = {
+        int: 2000,
+        text: 'As the wind whips round,I take a breath for victory,Wanna play tag,or wave your white flag, cause you will never, touch me, King of hearts all in, (all in), its not a sin, to wanna win, (sin to wanna win), cant see me flying, like a bee, black and yellow energy, only on my team, (naturally), I see a dreamer over there, by the water, but I got no, but I got no (x2), Kakorrhapiophobbia, I see a dreamer, and hes ripe for the slaughter, but i got no,  but i got no, Kakorrhapiophobia, Phobia, Phobia (x2), Phobia (x3)',tosay: null,i: 0,does: false}
+    setInterval(() => {
+        if(chatcycle.does){
+            chatcycle.tosay = chatcycle.text.split(",")[chatcycle.i];
+            chatcycle.i++;
+            doNewSend(["ch", [chatcycle.tosay]]);
+            if(chatcycle.i == (chatcycle.text.split(",").length)) {
+                chatcycle.i = 0;
+            }
+        }
+    }, chatcycle.int);
+}
+
+setInterval(() => {
+    if(chatcycle.does){
+        chatcycle.tosay = chatcycle.text.split(",")[chatcycle.i];
+        chatcycle.i++;
+         doNewSend(["ch", [chatcycle.tosay]]);
+        if(chatcycle.i == (chatcycle.text.split(",").length)) {
+            chatcycle.i = 0;
+        }
+    }
+}, chatcycle.int)
+*/
+
+
+
+
+function fourBoost() {
+    place(boostType, myPlayer.dir + toRad(135));
+    place(boostType, myPlayer.dir + toRad(150));
+    place(boostType, myPlayer.dir + toRad(165));
+    place(boostType, myPlayer.dir + toRad(180));
+    place(boostType, myPlayer.dir + toRad(270));
+    place(boostType, myPlayer.dir + toRad(360));
+}
+
+function tripturr() {
+    place(turretType, myPlayer.dir + toRad(0));
+    place(turretType, myPlayer.dir + toRad(80));
+    place(turretType, myPlayer.dir + toRad(280));
+}
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b) {
+    return Math.sqrt(Math.pow(b.y - a[2], 2) + Math.pow(b.x - a[1], 2));
+}
+
+function inviswep() {
+    doNewSend(["5", ["length", !0]]);
+}
+
+function update() {
+    for (let i = 0; i < 9; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            primary = i;
+        }
+    }
+
+    for (let i = 9; i < 16; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            secondary = i;
+        }
+    }
+
+    for (let i = 16; i < 19; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            foodType = i - 16;
+        }
+    }
+
+    for (let i = 19; i < 22; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            wallType = i - 16;
+        }
+    }
+
+    for (let i = 22; i < 26; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i = 26; i < 29; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            millType = i - 16;
+        }
+    }
+
+    for (let i = 29; i < 31; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            mineType = i - 16;
+        }
+    }
+
+    for (let i = 31; i < 33; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            boostType = i - 16;
+        }
+    }
+
+    for (let i = 33; i < 36; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            turretType = i - 16;
+        }
+    }
+
+    for (let i = 36; i < 37; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            spawnpadType = i - 16;
+        }
+    }
+
+    for (let i = 37; i < 39; i++) {
+        if (
+            isElementVisible(document.getElementById("actionBarItem" + i.toString()))
+        ) {
+            turretType = i - 16;
+        }
+    }
+    $("#linksContainer2").html(
+        '<a href="./docs/versions.txt" target="_blank" class="menuLink">⚠!AntiClown!⚠'
+    );
+    document.getElementById("gameName").innerHTML = "TeleMod";
+    document.getElementById("loadingText").innerHTML = "Loading...";
+    document.getElementById("enterGame").innerHTML = "Play";
+    document.getElementById("chatBox").placeholder = "Type Here";
+    $("#mapDisplay").css({ background: `url('http://i.imgur.com/Qllo1mA.png')` });
+}
+
+var menuChange = document.createElement("div");
+        menuChange.className = "menuCard";
+        menuChange.id = "mainSettings";
+        menuChange.innerHTML = `
+        <div id="simpleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn">&times;</span>
+                    <h2 style="font-size: 17px;">Menu</h2>
+                </div>
+                <div class="modal-body" style="font-size: 15px;">
+                    <div class="flexControl">
+                    <h2 style="font-size: 17px;">Anti Options</h2>
+        <label class="container">AntiBull
+        <input type="checkbox" id="ABH">
+        <span class="checkmark"></span></label>
+        <label class="container">Anti Insta
+        <input type="checkbox" id="AIH">
+        <span class="checkmark"></span></label>
+        <label class="container">testheal
+        <input type="checkbox" id="KEWL">
+        <span class="checkmark"></span></label>
+                    <h2 style="font-size: 17px;">Insta Options</h2>
+        <label class="container">Lag Insta
+        <input type="checkbox" id="Pedro3">
+        <span class="checkmark"></span></label>
+                    <h2 style="font-size: 17px;">Mill Options</h2>
+        <label class="container">Frozen Mills?
+        <input type="checkbox" id="MillTriple">
+        <span class="checkmark"></span></label>
+        <label class="container">DoubleMills?
+        <input type="checkbox" id="Double">
+        <span class="checkmark"></span></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+        `
+        document.body.appendChild(menuChange)
+        var styleItem1 = document.createElement("style");
+        styleItem1.type = "text/css";
+        styleItem1.appendChild(document.createTextNode(`
+        .keyPressLow {
+            margin-left: 8px;
+            font-size: 16px;
+            margin-right: 8px;
+            height: 25px;
+            width: 50px;
+            background-color: #00F0F8FF;
+            border-radius: 3.5px;
+            border: none;
+            text-align: center;
+            color: #4A4A4A;
+            border: 0.5px solid #f2f2f2;
+        }
+        .menuPrompt {
+            font-size: 17px;
+            font-family: 'Hammersmith One';
+            color: #4A4A4A;
+            flex: 0.2;
+            text-align: center;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            overflow: auto;
+            height: 100%;
+            width: 100%;
+        }
+        .modal-content {
+            margin: 10% auto;
+            width: 40%;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .modal-header h2,
+        .modal-footer h3 {
+          margin: 0;
+        }
+        .modal-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            color: #fff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .modal-body {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.5);
+        }
+        .modal-footer {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .closeBtn {
+            color: #00c864;
+            float: right;
+            font-size: 30px;
+            color: red;
+        }
+        .closeBtn:hover,
+        .closeBtn:focus {
+            color: #00c864;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .container {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 16px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        .container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: yellow;
+        }
+        .container:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+        .container input:checked ~ .checkmark {
+          background-color: #00c864;
+        }
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+        .container input:checked ~ .checkmark:after {
+          display: block;
+        }
+        .container .checkmark:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        `))
+        document.head.appendChild(styleItem1);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode == 27){
+                if (modal.style.display = "none") {
+                    modal.style.display = "block";
+                } else if (modal.style.display = "block") {
+                    modal.style.display = "none";
+                }
+            }
+        })
+
+        var modal = document.getElementById("simpleModal");
+        var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
+
+        function closeModal() {
+          modal.style.display = 'none';
+        }
+        function outsideClick(e) {
+          if (e.target == modal) {
+            modal.style.display = 'none';
+          }
+        }
+        var ProjaInvis1 = document.querySelector("#AIH")
+        ProjaInvis1.addEventListener('change', function() {
+        if (this.checked) {
+            anti = true;
+        } else {
+            anti = false;
+        }
+        })
+        var ez = document.querySelector("#ABH")
+        ez.addEventListener('change', function() {
+        if (this.checked) {
+            BullHeal = true;
+        } else {
+            BullHeal = false;
+        }
+        })
+var pro = document.querySelector("#MillTriple")
+        pro.addEventListener('change', function() {
+        if (this.checked) {
+            frozen = true;
+        } else {
+            frozen = false;
+        }
+        })
+var ok = document.querySelector("#Double")
+        ok.addEventListener('change', function() {
+        if (this.checked) {
+            double = true;
+        } else {
+            double = false;
+        }
+        })
+var exas = document.querySelector("#KEWL")
+        exas.addEventListener('change', function() {
+        if (this.checked) {
+            heal = true;
+        } else {
+            heal = false;
+        }
+        })
